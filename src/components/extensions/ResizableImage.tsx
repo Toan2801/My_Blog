@@ -3,7 +3,7 @@ import Image from '@tiptap/extension-image';
 import { mergeAttributes } from '@tiptap/core';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-const ImageNodeView = (props: NodeViewRendererProps) => {
+const ImageNodeView = (props: NodeViewRendererProps | any) => {
   const { node, updateAttributes, selected } = props;
   const imageRef = useRef<HTMLImageElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);

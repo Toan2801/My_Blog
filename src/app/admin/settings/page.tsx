@@ -77,7 +77,7 @@ export default function SettingsPage() {
         ].map(f => (
           <div key={f.key} className="form-group" style={{ marginBottom: 'var(--space-3)' }}>
             <label className="form-label">{f.label}</label>
-            <input className="form-input" value={(config as Record<string, string>)[f.key] || ''} onChange={e => update(f.key, e.target.value)} />
+            <input className="form-input" value={((config as unknown) as Record<string, string>)[f.key] || ''} onChange={e => update(f.key, e.target.value)} />
           </div>
         ))}
         <div className="form-group">

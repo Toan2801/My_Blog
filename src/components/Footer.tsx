@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { SiteConfig } from '@/lib/data';
+import { SiteConfig } from '@/lib/types';
 
 export default function Footer({ config }: { config: SiteConfig }) {
   return (
