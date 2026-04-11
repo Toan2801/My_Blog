@@ -1,12 +1,27 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export default function Navigation({ title, categories = [] }: { title: string; categories?: string[] }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    const saved = localStorage.getItem('theme') || 'light';
+    setTheme(saved);
+    document.documentElement.setAttribute('data-theme', saved);
+  }, []);
+
+  const toggleTheme = () => {
+    const next = theme === 'light' ? 'dark' : 'light';
+    setTheme(next);
+    localStorage.setItem('theme', next);
+    document.documentElement.setAttribute('data-theme', next);
+  };
+
 
   return (
     <nav className="nav">
@@ -68,15 +83,20 @@ export default function Navigation({ title, categories = [] }: { title: string; 
           </li>
         </ul>
 
-        <button
-          className="nav-hamburger"
-          onClick={() => setOpen(!open)}
-          aria-label="Menu"
-        >
-          <span />
-          <span />
-          <span />
-        </button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle Theme" style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.2rem', padding: '5px' }}>
+            {theme === 'dark' ? '☀️' : '🌙'}
+          </button>
+          <button
+            className="nav-hamburger"
+            onClick={() => setOpen(!open)}
+            aria-label="Menu"
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
       </div>
     </nav>
   );

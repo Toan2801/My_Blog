@@ -11,13 +11,13 @@ export const metadata: Metadata = {
 export default function HomePage() {
   const config = getSiteConfig();
   const allArticles = getAllArticles();
-  
+
   // Daily random logic: Pick a featured article based on current date seed
   const today = new Date().toISOString().split('T')[0]; // "YYYY-MM-DD"
   const seed = today.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
   const featuredIndex = seed % (allArticles.length || 1);
   const featured = allArticles[featuredIndex] || null;
-  
+
   const recent = allArticles.filter(a => a.slug !== featured?.slug).slice(0, 5);
   const suggested = config.suggestedReading
     .map(slug => allArticles.find(a => a.slug === slug))
@@ -49,7 +49,7 @@ export default function HomePage() {
           {config.categories.slice(0, 4).map(cat => (
             <Link key={cat} href={`/articles?category=${encodeURIComponent(cat)}`} className="era-card">
               <span className="era-name">{cat}</span>
-              <span className="era-period">Khám phá tư liệu</span>
+              <span className="era-period">Xem thêm</span>
             </Link>
           ))}
         </section>
@@ -60,7 +60,7 @@ export default function HomePage() {
           <div>
             <p className="section-label">Bài viết nổi bật</p>
             <div className="article-list">
-              {allArticles.slice(0, 10).map(article => (
+              {recent.slice(0, 4).map(article => (
                 <article key={article.slug} className="article-card">
                   <div className="article-card-meta">
                     <span className="category-badge">{article.category}</span>
@@ -70,7 +70,7 @@ export default function HomePage() {
                     {article.title}
                   </Link>
                   <p className="article-card-excerpt">{article.excerpt}</p>
-                  
+
                   {/* TAGS DISPLAY */}
                   <div className="home-tags">
                     {article.tags.map(tag => (
@@ -110,7 +110,6 @@ export default function HomePage() {
 
             {/* Simplified Support Area */}
             <div className="sidebar-section admin-card" style={{ padding: '24px', textAlign: 'center' }}>
-              <p style={{ fontFamily: 'var(--font-ui)', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--gold)', marginBottom: '16px' }}>Đồng hành cùng tác giả</p>
               <Link href="/contact" className="btn-secondary" style={{ width: '100%', textAlign: 'center' }}>
                 Ủng hộ tác giả
               </Link>
@@ -165,7 +164,7 @@ export default function HomePage() {
                   <span>{featured.readingTime} phút đọc</span>
                 </div>
                 <p className="featured-excerpt" style={{ fontSize: '1.1rem' }}>{featured.excerpt}</p>
-                
+
                 <div className="home-tags" style={{ marginBottom: 'var(--space-6)' }}>
                   {featured.tags.map(tag => (
                     <span key={tag} className="tag-item">#{tag}</span>

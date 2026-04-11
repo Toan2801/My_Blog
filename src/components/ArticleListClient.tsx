@@ -138,6 +138,13 @@ export default function ArticleListClient({ articles, categories, initialCategor
                 <Link href={`/articles/${article.slug}`} className="article-card-title">
                   {article.title}
                 </Link>
+                {article.coverImage && (
+                  <Link href={`/articles/${article.slug}`}>
+                    <div style={{ margin: 'var(--space-3) 0', borderRadius: 'var(--radius)', overflow: 'hidden', height: '220px', cursor: 'pointer' }}>
+                      <img src={article.coverImage} alt={article.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.3s' }} className="article-card-cover" />
+                    </div>
+                  </Link>
+                )}
                 {article.subtitle && (
                   <p style={{ fontStyle: 'italic', color: 'var(--ink-muted)', fontSize: '0.9rem', marginTop: '-8px' }}>
                     {article.subtitle}
@@ -151,6 +158,9 @@ export default function ArticleListClient({ articles, categories, initialCategor
                     ))}
                   </div>
                 )}
+                <Link href={`/articles/${article.slug}`} className="read-more" style={{ display: 'inline-block', marginTop: 'var(--space-2)' }}>
+                  Đọc tiếp →
+                </Link>
               </article>
             ))}
           </div>
