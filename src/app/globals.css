@@ -2540,3 +2540,14 @@ li { margin-bottom: var(--space-1); }
   border: 1px solid rgba(255,255,255,0.3) !important;
 }
 
+
+/* User Requested Adjustments */
+@media (max-width: 1024px) {
+  .article-sidebar {
+    display: none !important;
+  }
+}
+.nav-hamburger {
+  padding: 0 !important;
+}
+
