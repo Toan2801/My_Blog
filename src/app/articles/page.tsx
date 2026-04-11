@@ -15,8 +15,6 @@ export default async function ArticlesPage({
 
   return (
     <>
-    <>
-
       <div className="container" style={{ marginTop: 'var(--space-8)' }}>
         <div className="page-header" style={{ textAlign: 'center', marginBottom: 'var(--space-8)' }}>
           <h1 className="page-title" style={{ fontSize: '2.5rem', fontFamily: 'var(--font-serif)', color: 'var(--ink)' }}>Bài viết</h1>
