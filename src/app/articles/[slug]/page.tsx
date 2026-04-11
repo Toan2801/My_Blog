@@ -37,23 +37,6 @@ export default async function ArticleDetailPage({ params }: Props) {
 
   return (
     <article>
-      {/* Hero Header - Matching Homepage and All Pages */}
-      <section className="hero">
-        {config.heroImage && (
-          <div className="hero-bg">
-            <img src={config.heroImage} alt="Background" />
-            <div className="hero-overlay" />
-          </div>
-        )}
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <h1 className="hero-title">{config.blogTitle}</h1>
-          <div className="hero-divider" />
-          <p className="hero-description" style={{ textShadow: '0 1px 1px rgba(255,255,255,0.8)' }}>
-            {config.blogDescription}
-          </p>
-        </div>
-      </section>
-
       {/* Main Content Area */}
       <div className="container" style={{ marginTop: 'var(--space-8)' }}>
         <header className="article-detail-header" style={{ textAlign: 'center', marginBottom: 'var(--space-10)' }}>
