@@ -7,11 +7,7 @@ export default function Footer({ config }: { config: SiteConfig }) {
       <div className="footer-inner">
         <div className="footer-top">
           <div>
-            <div className="footer-brand">{config.blogTitle}</div>
-            <p className="footer-desc">{config.blogDescription}</p>
-          </div>
-          <div>
-            <div className="footer-heading">Điều Hướng</div>
+            <div className="footer-heading">Điều hướng</div>
             <ul className="footer-links">
               <li><Link href="/">Trang Chủ</Link></li>
               <li><Link href="/articles">Bài Viết</Link></li>
