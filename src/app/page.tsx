@@ -3,6 +3,9 @@ import Image from 'next/image';
 import { getSiteConfig, getAllArticles, getArticleBySlug } from '@/lib/data';
 import { formatDate } from '@/lib/utils';
 import type { Metadata } from 'next';
+import Hero3D from '@/components/Hero3D';
+import TiltCard from '@/components/TiltCard';
+
 
 export const metadata: Metadata = {
   title: 'Trang Chủ',
@@ -27,12 +30,8 @@ export default function HomePage() {
     <>
       {/* Hero with Background Cover */}
       <section className="hero">
-        {config.heroImage && (
-          <div className="hero-bg">
-            <img src={config.heroImage} alt="Background" />
-            <div className="hero-overlay" />
-          </div>
-        )}
+        <Hero3D />
+
         <div className="container">
           {config.blogSubtitle && <p className="hero-eyebrow">{config.blogSubtitle}</p>}
           <h1 className="hero-title">{config.blogTitle}</h1>
@@ -47,10 +46,12 @@ export default function HomePage() {
         {/* Dynamic Category Navigator - Replacing static eras */}
         <section className="era-navigator">
           {config.categories.slice(0, 4).map(cat => (
-            <Link key={cat} href={`/articles?category=${encodeURIComponent(cat)}`} className="era-card">
-              <span className="era-name">{cat}</span>
-              <span className="era-period">Xem thêm</span>
-            </Link>
+            <TiltCard key={cat}>
+              <Link href={`/articles?category=${encodeURIComponent(cat)}`} className="era-card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                <span className="era-name">{cat}</span>
+                <span className="era-period">Xem thêm</span>
+              </Link>
+            </TiltCard>
           ))}
         </section>
 
@@ -61,27 +62,29 @@ export default function HomePage() {
             <p className="section-label">Bài viết nổi bật</p>
             <div className="article-list">
               {recent.slice(0, 4).map(article => (
-                <article key={article.slug} className="article-card">
-                  <div className="article-card-meta">
-                    <span className="category-badge">{article.category}</span>
-                    <span className="article-date">{formatDate(article.date)}</span>
-                  </div>
-                  <Link href={`/articles/${article.slug}`} className="article-card-title">
-                    {article.title}
-                  </Link>
-                  <p className="article-card-excerpt">{article.excerpt}</p>
+                <TiltCard key={article.slug}>
+                  <article className="article-card" style={{ height: '100%' }}>
+                    <div className="article-card-meta">
+                      <span className="category-badge">{article.category}</span>
+                      <span className="article-date">{formatDate(article.date)}</span>
+                    </div>
+                    <Link href={`/articles/${article.slug}`} className="article-card-title">
+                      {article.title}
+                    </Link>
+                    <p className="article-card-excerpt">{article.excerpt}</p>
 
-                  {/* TAGS DISPLAY */}
-                  <div className="home-tags">
-                    {article.tags.map(tag => (
-                      <span key={tag} className="tag-item">#{tag}</span>
-                    ))}
-                  </div>
+                    {/* TAGS DISPLAY */}
+                    <div className="home-tags">
+                      {article.tags.map(tag => (
+                        <span key={tag} className="tag-item">#{tag}</span>
+                      ))}
+                    </div>
 
-                  <Link href={`/articles/${article.slug}`} className="read-more">
-                    Xem chi tiết →
-                  </Link>
-                </article>
+                    <Link href={`/articles/${article.slug}`} className="read-more">
+                      Xem chi tiết →
+                    </Link>
+                  </article>
+                </TiltCard>
               ))}
               {allArticles.length === 0 && (
                 <p className="text-muted" style={{ fontStyle: 'italic', padding: 'var(--space-8)' }}>
@@ -187,11 +190,13 @@ export default function HomePage() {
             <p className="section-label">Có thể bạn quan tâm</p>
             <div className="suggested-grid">
               {suggested.map(article => article && (
-                <Link key={article.slug} href={`/articles/${article.slug}`} className="suggested-card">
-                  <span className="suggested-category">{article.category}</span>
-                  <span className="suggested-title">{article.title}</span>
-                  <span className="suggested-date">{formatDate(article.date)}</span>
-                </Link>
+                <TiltCard key={article.slug}>
+                  <Link href={`/articles/${article.slug}`} className="suggested-card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                    <span className="suggested-category">{article.category}</span>
+                    <span className="suggested-title">{article.title}</span>
+                    <span className="suggested-date">{formatDate(article.date)}</span>
+                  </Link>
+                </TiltCard>
               ))}
             </div>
           </section>

@@ -4,21 +4,21 @@
    DESIGN TOKENS
    ============================================ */
 :root {
-  /* Colors */
+  /* Colors - Light Theme */
   --paper: #fdf8f0;
-  --paper-dark: #f5edd8;
-  --paper-darker: #ecdec4;
-  --ink: #2c1a0e;
-  --ink-light: #5a4032;
-  --ink-muted: #8a7060;
-  --gold: #a0783a;
-  --gold-light: #c9a96e;
-  --gold-pale: #f0e6cc;
+  --paper-dark: #f0e8d5;
+  --paper-darker: #e3d5bb;
+  --ink: #1f1209; /* Darkened for higher contrast */
+  --ink-light: #422d20; /* Darkened for better readability */
+  --ink-muted: #6b5548;
+  --gold: #91682c; /* Deepened gold for better contrast on light backgrounds */
+  --gold-light: #b58d4a;
+  --gold-pale: #ebe2cd;
   --border: #d4c4a8;
   --border-light: #e8dcc8;
   --surface: #ffffff;
-  --error: #c0392b;
-  --success: #27ae60;
+  --error: #b73326;
+  --success: #229954;
 
   /* Typography */
   --font-serif: 'Playfair Display', serif;
@@ -51,15 +51,16 @@
 }
 
 :root[data-theme="dark"] {
-  --paper: #000000;
-  --paper-dark: #0f0f0f;
-  --paper-darker: #1a1a1a;
-  --ink: #009900;
-  --ink-light: #f0f0f0;
-  --ink-muted: #cccccc;
+  /* Colors - Dark Theme (High Contrast) */
+  --paper: #0a0a0a;
+  --paper-dark: #141414;
+  --paper-darker: #222222;
+  --ink: #f5f5f5; /* Pure white/off-white for max readability */
+  --ink-light: #d4d4d4;
+  --ink-muted: #a3a3a3;
   --gold: #d4af37;
-  --gold-light: #ffd700;
-  --gold-pale: #2a2a2a;
+  --gold-light: #f5d053;
+  --gold-pale: #2a2010; /* Dark yellow/gold bg for pills/badges */
   --border: #333333;
   --border-light: #444444;
   --surface: #121212;
@@ -399,10 +400,15 @@ li {
    FOOTER
    ============================================ */
 .footer {
-  background: var(--ink);
+  background: var(--ink); /* In light mode, ink is dark */
   color: rgba(253, 248, 240, 0.7);
   padding: var(--space-8) 0 var(--space-5);
   margin-top: var(--space-9);
+}
+
+:root[data-theme="dark"] .footer {
+  background: var(--paper-darker); /* In dark mode, use a deep background for a dark footer */
+  color: var(--ink-muted);
 }
 
 .footer-inner {
@@ -422,8 +428,12 @@ li {
   font-family: var(--font-serif);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--paper);
+  color: var(--paper); /* In light mode, paper is light */
   margin-bottom: var(--space-3);
+}
+
+:root[data-theme="dark"] .footer-brand {
+  color: var(--ink); /* In dark mode, ink is light */
 }
 
 .footer-desc {
@@ -459,6 +469,10 @@ li {
   transition: color var(--transition);
 }
 
+:root[data-theme="dark"] .footer-links a {
+  color: var(--ink-light);
+}
+
 .footer-links a:hover {
   color: var(--gold-light);
 }
@@ -469,6 +483,15 @@ li {
   font-family: var(--font-ui);
   font-size: 0.8rem;
   text-align: center;
+}
+
+.footer-bottom p {
+  color: inherit;
+  margin: 0;
+}
+
+:root[data-theme="dark"] .footer-bottom {
+  border-top: 1px solid var(--border);
 }
 
 /* ============================================
