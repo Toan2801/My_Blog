@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import Image from 'next/image';
+
 import { getSiteConfig, getAllArticles, getArticleBySlug } from '@/lib/data';
 import { formatDate } from '@/lib/utils';
 import type { Metadata } from 'next';
-import Hero3D from '@/components/Hero3D';
+
 import TiltCard from '@/components/TiltCard';
 
 
@@ -28,19 +28,7 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero with Background Cover */}
-      <section className="hero">
-        <Hero3D />
 
-        <div className="container">
-          {config.blogSubtitle && <p className="hero-eyebrow">{config.blogSubtitle}</p>}
-          <h1 className="hero-title">{config.blogTitle}</h1>
-          <div className="hero-divider" />
-          <p className="hero-description" style={{ textShadow: '0 1px 1px rgba(255,255,255,0.8)' }}>
-            {config.blogDescription}
-          </p>
-        </div>
-      </section>
 
       <div className="container">
         {/* Dynamic Category Navigator - Replacing static eras */}
@@ -63,7 +51,14 @@ export default function HomePage() {
             <div className="article-list">
               {recent.slice(0, 4).map(article => (
                 <TiltCard key={article.slug}>
-                  <article className="article-card" style={{ height: '100%' }}>
+                  <article className="article-card" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    {article.coverImage && (
+                      <Link href={`/articles/${article.slug}`}>
+                        <div className="article-card-image">
+                          <img src={article.coverImage} alt={article.title} />
+                        </div>
+                      </Link>
+                    )}
                     <div className="article-card-meta">
                       <span className="category-badge">{article.category}</span>
                       <span className="article-date">{formatDate(article.date)}</span>

@@ -1,26 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export default function Navigation({ title, categories = [] }: { title: string; categories?: string[] }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const [theme, setTheme] = useState('light');
 
-  useEffect(() => {
-    const saved = localStorage.getItem('theme') || 'light';
-    setTheme(saved);
-    document.documentElement.setAttribute('data-theme', saved);
-  }, []);
-
-  const toggleTheme = () => {
-    const next = theme === 'light' ? 'dark' : 'light';
-    setTheme(next);
-    localStorage.setItem('theme', next);
-    document.documentElement.setAttribute('data-theme', next);
-  };
 
 
   return (
@@ -63,6 +50,19 @@ export default function Navigation({ title, categories = [] }: { title: string; 
               Liên Hệ
             </Link>
           </li>
+          <li>
+            <Link 
+              href={`/api/articles/random?t=${Date.now()}`} 
+              prefetch={false} 
+              style={{ color: 'var(--gold)', fontWeight: 'bold' }}
+              onClick={(e) => {
+                // Force a refresh even if the user is already on a random article
+                e.currentTarget.href = `/api/articles/random?t=${Date.now()}`;
+              }}
+            >
+              ✨ Ngẫu nhiên
+            </Link>
+          </li>
           <li className="search-nav">
             <form action="/articles" method="GET" style={{ position: 'relative' }}>
               <input
@@ -83,10 +83,7 @@ export default function Navigation({ title, categories = [] }: { title: string; 
           </li>
         </ul>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle Theme" style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.2rem', padding: '5px' }}>
-            {theme === 'dark' ? '☀️' : '🌙'}
-          </button>
+
           <button
             className="nav-hamburger"
             onClick={() => setOpen(!open)}
@@ -97,7 +94,6 @@ export default function Navigation({ title, categories = [] }: { title: string; 
             <span />
           </button>
         </div>
-      </div>
     </nav>
   );
 }

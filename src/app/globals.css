@@ -5,17 +5,17 @@
    ============================================ */
 :root {
   /* Colors - Light Theme */
-  --paper: #fdf8f0;
-  --paper-dark: #f0e8d5;
-  --paper-darker: #e3d5bb;
-  --ink: #1f1209; /* Darkened for higher contrast */
-  --ink-light: #422d20; /* Darkened for better readability */
-  --ink-muted: #6b5548;
-  --gold: #91682c; /* Deepened gold for better contrast on light backgrounds */
-  --gold-light: #b58d4a;
-  --gold-pale: #ebe2cd;
-  --border: #d4c4a8;
-  --border-light: #e8dcc8;
+  --paper: #f0f7ff; /* Light Blue background */
+  --paper-dark: #e1efff; /* Slightly deeper blue for headers */
+  --paper-darker: #d1e5ff;
+  --ink: #1f2d3d; /* Dark blue-grey ink for better harmony */
+  --ink-light: #3c4858;
+  --ink-muted: #8492a6;
+  --gold: #2c5282; /* Changing gold to a deep blue for a blue-centric theme? Or keep gold? */
+  --gold-light: #4299e1;
+  --gold-pale: #ebf8ff;
+  --border: #ccd6e0;
+  --border-light: #e0e6ed;
   --surface: #ffffff;
   --error: #b73326;
   --success: #229954;
@@ -50,32 +50,7 @@
   --transition: 200ms ease;
 }
 
-:root[data-theme="dark"] {
-  /* Colors - Dark Theme (High Contrast) */
-  --paper: #0a0a0a;
-  --paper-dark: #141414;
-  --paper-darker: #222222;
-  --ink: #f5f5f5; /* Pure white/off-white for max readability */
-  --ink-light: #d4d4d4;
-  --ink-muted: #a3a3a3;
-  --gold: #d4af37;
-  --gold-light: #f5d053;
-  --gold-pale: #2a2010; /* Dark yellow/gold bg for pills/badges */
-  --border: #333333;
-  --border-light: #444444;
-  --surface: #121212;
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.8);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.9);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 1);
-}
 
-:root[data-theme="dark"] body {
-  background-image: none !important;
-}
-
-:root[data-theme="dark"] body::before {
-  display: none !important;
-}
 
 /* ============================================
    RESET & BASE
@@ -111,22 +86,11 @@ body {
   background-color: var(--paper);
   color: var(--ink);
   font-family: var(--font-body);
-  background-image: var(--paper-pattern);
+  /* Removed paper-pattern for a cleaner blue background */
   position: relative;
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: radial-gradient(circle at 10% 20%, rgba(211, 47, 47, 0.03) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(2, 119, 189, 0.03) 0%, transparent 40%);
-  pointer-events: none;
-  z-index: -1;
-}
+
 
 /* ============================================
    TYPOGRAPHY
@@ -406,10 +370,7 @@ li {
   margin-top: var(--space-9);
 }
 
-:root[data-theme="dark"] .footer {
-  background: var(--paper-darker); /* In dark mode, use a deep background for a dark footer */
-  color: var(--ink-muted);
-}
+
 
 .footer-inner {
   max-width: var(--container);
@@ -432,9 +393,7 @@ li {
   margin-bottom: var(--space-3);
 }
 
-:root[data-theme="dark"] .footer-brand {
-  color: var(--ink); /* In dark mode, ink is light */
-}
+
 
 .footer-desc {
   font-size: 0.875rem;
@@ -469,9 +428,7 @@ li {
   transition: color var(--transition);
 }
 
-:root[data-theme="dark"] .footer-links a {
-  color: var(--ink-light);
-}
+
 
 .footer-links a:hover {
   color: var(--gold-light);
@@ -490,59 +447,46 @@ li {
   margin: 0;
 }
 
-:root[data-theme="dark"] .footer-bottom {
-  border-top: 1px solid var(--border);
-}
 
-/* ============================================
-   HERO SECTION
-   ============================================ */
 .hero {
   position: relative;
-  padding: var(--space-10) 0;
+  padding: var(--space-6) 0;
   text-align: center;
   border-bottom: 1px solid var(--border);
-  overflow: hidden;
-  min-height: 500px;
+  overflow: visible;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: var(--paper-dark);
+  gap: var(--space-4);
 }
 
-.hero-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 0;
-}
-
-.hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 20%;
-}
-
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(to bottom, transparent, var(--paper-dark));
-  z-index: 1;
-}
-
-:root[data-theme="dark"] .hero-overlay {
-  background: rgba(0, 0, 0, 0.85) !important;
-}
-
-.hero>.container {
-  position: relative;
+.hero-logo-container {
   z-index: 2;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-logo-image {
+  max-width: 100%;
+  max-height: 160px;
+  height: auto;
+  width: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  border: 4px solid var(--paper);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.hero-logo-container:hover .hero-logo-image {
+  max-height: 450px; /* Expands significantly */
+  box-shadow: var(--shadow-lg);
+  transform: scale(1.02);
+}
+
+.hero-logo-container:hover {
+  margin-bottom: var(--space-4);
 }
 
 .hero-eyebrow {
@@ -552,31 +496,13 @@ li {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: var(--space-4);
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
-}
-
-.hero-title {
-  font-size: clamp(3rem, 8vw, 5.5rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  margin-bottom: var(--space-5);
-  line-height: 1.1;
-  color: var(--ink);
-  text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
-}
-
-.hero-divider {
-  width: 60px;
-  height: 2px;
-  background: var(--gold);
-  margin: var(--space-5) auto;
+  margin-bottom: var(--space-2);
 }
 
 .hero-description {
   max-width: 560px;
   margin: 0 auto;
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--ink-light);
   font-style: italic;
   line-height: 1.8;
@@ -649,9 +575,7 @@ li {
   transform: scale(1.1);
 }
 
-:root[data-theme="dark"] .featured-article .cover-bg {
-  display: none !important;
-}
+
 
 .featured-article .cover {
   position: relative;
@@ -867,6 +791,31 @@ li {
   position: relative;
   overflow: hidden;
   box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.article-card-image {
+  margin: var(--space-4) 0 var(--space-4) calc(-1 * var(--space-4)); /* Shifted slightly to account for the padding */
+  border-radius: var(--radius);
+  overflow: hidden;
+  height: 250px;
+  background: var(--paper-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-light);
+}
+
+.article-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Prevents cropping */
+  transition: transform var(--transition);
+}
+
+.article-card:hover .article-card-image img {
+  transform: scale(1.02);
 }
 
 .article-card::before {
@@ -2970,4 +2919,169 @@ figcaption.image-caption {
 
 .nav-hamburger {
   padding: 0 !important;
+}
+/* ============================================
+   READING OPTIMIZATIONS
+   ============================================ */
+.reading-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 2000;
+  pointer-events: none;
+}
+
+.reading-progress-bar {
+  height: 100%;
+  background: var(--gold);
+  transition: width 0.1s ease;
+  box-shadow: 0 0 10px var(--gold-light);
+}
+
+.zen-mode-active .article-sidebar,
+.zen-mode-active .footer,
+.zen-mode-active .site-header {
+  display: none !important;
+}
+
+.zen-mode-active .article-reading-layout {
+  display: block !important;
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.zen-mode-active .container {
+  max-width: var(--content-width);
+}
+
+.zen-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--surface);
+  color: var(--gold);
+  border: 1px solid var(--border);
+  padding: 10px 15px;
+  border-radius: 30px;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  z-index: 1000;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all var(--transition);
+}
+
+.zen-toggle:hover {
+  background: var(--gold);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.zen-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+
+.font-size-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  margin-bottom: var(--space-4);
+  width: fit-content;
+}
+
+.font-size-control button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--gold);
+  font-weight: bold;
+  padding: 2px 5px;
+}
+
+.font-size-control button:hover {
+  color: var(--gold-light);
+}
+
+.voice-reader-controls {
+  margin: var(--space-4) 0;
+  display: flex;
+  justify-content: center;
+}
+
+.voice-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--paper-dark);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 30px;
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.voice-btn:hover {
+  background: var(--gold);
+  color: white;
+  border-color: var(--gold);
+}
+
+.voice-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.voice-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--paper-dark);
+  padding: 5px 15px;
+  border-radius: 30px;
+  border: 1px solid var(--border);
+}
+
+.voice-status {
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-left: 5px;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.voice-btn.loading {
+  cursor: not-allowed;
+  opacity: 0.8;
 }

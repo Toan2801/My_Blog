@@ -56,7 +56,7 @@ export default function CommentSection({ slug }: { slug: string }) {
   return (
     <section className="comments-section">
       <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', marginBottom: 'var(--space-5)' }}>
-        Bình Luận {comments.length > 0 && `(${comments.length})`}
+        Bình luận {comments.length > 0 && `(${comments.length})`}
       </h3>
 
       {loading ? (

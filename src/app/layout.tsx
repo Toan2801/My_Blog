@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { getSiteConfig } from '@/lib/data';
-import Navigation from '@/components/Navigation';
+import SiteHeader from '@/components/SiteHeader';
 import Footer from '@/components/Footer';
+import ReadingProgress from '@/components/ReadingProgress';
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = getSiteConfig();
@@ -18,23 +19,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="vi" suppressHydrationWarning>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var savedTheme = localStorage.getItem('theme');
-                  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  var theme = savedTheme || (prefersDark ? 'dark' : 'light');
-                  document.documentElement.setAttribute('data-theme', theme);
-                } catch (e) {}
-              })();
-            `,
-          }}
-        />
+        <script src="https://code.responsivevoice.org/responsivevoice.js?key=YOUR_FREE_KEY"></script>
       </head>
       <body suppressHydrationWarning>
-        <Navigation title={config.blogTitle} categories={config.categories} />
+        <ReadingProgress />
+        <SiteHeader config={config} />
         <main>{children}</main>
         <Footer config={config} />
       </body>

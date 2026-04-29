@@ -140,8 +140,8 @@ export default function ArticleListClient({ articles, categories, initialCategor
                 </Link>
                 {article.coverImage && (
                   <Link href={`/articles/${article.slug}`}>
-                    <div style={{ margin: 'var(--space-3) 0', borderRadius: 'var(--radius)', overflow: 'hidden', height: '220px', cursor: 'pointer' }}>
-                      <img src={article.coverImage} alt={article.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.3s' }} className="article-card-cover" />
+                    <div className="article-card-image">
+                      <img src={article.coverImage} alt={article.title} />
                     </div>
                   </Link>
                 )}

@@ -5,6 +5,8 @@ import { formatDate } from '@/lib/utils';
 import TableOfContents from '@/components/TableOfContents';
 import ArticleBody from '@/components/ArticleBody';
 import CommentSection from '@/components/CommentSection';
+import ZenToggle from '@/components/ZenToggle';
+import VoiceReader from '@/components/VoiceReader';
 import type { Metadata } from 'next';
 
 interface Props { params: { slug: string } }
@@ -28,7 +30,7 @@ export default async function ArticleDetailPage({ params }: Props) {
   const { slug } = await params;
   const article = getArticleBySlug(slug);
   const config = getSiteConfig();
-  
+
   if (!article) notFound();
   if (article.status !== 'published') notFound();
 
@@ -52,12 +54,13 @@ export default async function ArticleDetailPage({ params }: Props) {
           </div>
           {article.tags.length > 0 && (
             <div className="article-tags" style={{ justifyContent: 'center' }}>
-               {article.tags.map(tag => (
-                 <Link key={tag} href={`/articles?search=${tag}`} className="tag-chip" style={{ fontSize: '0.8rem', padding: '4px 12px' }}>#{tag}</Link>
-               ))}
+              {article.tags.map(tag => (
+                <Link key={tag} href={`/articles?search=${tag}`} className="tag-chip" style={{ fontSize: '0.8rem', padding: '4px 12px' }}>#{tag}</Link>
+              ))}
             </div>
           )}
-        <div style={{ width: '60px', height: '2px', background: 'var(--gold)', margin: '32px auto 0' }} />
+          <VoiceReader />
+          <div style={{ width: '60px', height: '2px', background: 'var(--gold)', margin: '16px auto 0' }} />
         </header>
       </div>
 
@@ -106,7 +109,7 @@ export default async function ArticleDetailPage({ params }: Props) {
             {/* Related Posts */}
             {related.length > 0 && (
               <div className="related-posts">
-                <h2 style={{ fontSize: '1.3rem', marginBottom: 'var(--space-2)' }}>Bài Viết Liên Quan</h2>
+                <h2 style={{ fontSize: '1.3rem', marginBottom: 'var(--space-2)' }}>Bài viết liên quan</h2>
                 <div className="related-grid">
                   {related.map(r => (
                     <Link key={r.slug} href={`/articles/${r.slug}`} className="related-card">
@@ -124,6 +127,7 @@ export default async function ArticleDetailPage({ params }: Props) {
           </div>
         </div>
       </div>
+      <ZenToggle />
     </article>
   );
 }
