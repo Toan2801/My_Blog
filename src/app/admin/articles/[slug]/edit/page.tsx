@@ -11,7 +11,7 @@ export default async function EditArticlePage({ params }: { params: { slug: stri
   return (
     <>
       <div className="admin-header">
-        <h1 className="admin-page-title">Chỉnh Sửa Bài Viết</h1>
+        <h1 className="admin-page-title">Chỉnh sửa bài viết</h1>
       </div>
       <ArticleEditor initialArticle={article} categories={config.categories} isEdit />
     </>

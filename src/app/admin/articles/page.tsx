@@ -8,7 +8,7 @@ export default function AdminArticlesPage() {
   return (
     <>
       <div className="admin-header">
-        <h1 className="admin-page-title">Quản Lý Bài Viết</h1>
+        <h1 className="admin-page-title">Quản lý bài viết</h1>
         <Link href="/admin/articles/new" className="btn-primary">+ Bài viết mới</Link>
       </div>
       <div className="admin-card">

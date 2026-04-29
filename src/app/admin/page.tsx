@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import { getAllArticlesAdmin, getSiteConfig } from '@/lib/data';
+import { getVideos } from '@/lib/video-data';
 import DeleteArticleButton from '@/components/DeleteArticleButton';
 
 export default function AdminDashboard() {
   const articles = getAllArticlesAdmin();
+  const videos = getVideos();
   const published = articles.filter(a => a.status === 'published').length;
   const drafts = articles.filter(a => a.status === 'draft').length;
   const featured = articles.find(a => a.featured);
@@ -11,16 +13,20 @@ export default function AdminDashboard() {
   return (
     <>
       <div className="admin-header">
-        <h1 className="admin-page-title">Tổng Quan</h1>
-        <Link href="/admin/articles/new" className="btn-primary">+ Bài viết mới</Link>
+        <h1 className="admin-page-title">Tổng quan</h1>
+        <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
+          <Link href="/admin/videos" className="btn-edit" style={{ textDecoration: 'none' }}>Quản lý Video</Link>
+          <Link href="/admin/articles/new" className="btn-primary" style={{ textDecoration: 'none' }}>+ Bài viết mới</Link>
+        </div>
       </div>
 
       {/* Stats */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-4)', marginBottom: 'var(--space-6)' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-4)', marginBottom: 'var(--space-6)' }}>
         {[
           { label: 'Đã xuất bản', value: published, color: 'var(--success)' },
           { label: 'Bản nháp', value: drafts, color: 'var(--gold)' },
-          { label: 'Tổng bài viết', value: articles.length, color: 'var(--ink)' },
+          { label: 'Bài viết', value: articles.length, color: 'var(--ink)' },
+          { label: 'Video', value: videos.length, color: 'var(--blue-accent)' },
         ].map(s => (
           <div key={s.label} className="admin-card" style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-serif)', color: s.color }}>{s.value}</div>

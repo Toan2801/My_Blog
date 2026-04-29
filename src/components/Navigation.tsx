@@ -44,6 +44,11 @@ export default function Navigation({ title, categories = [] }: { title: string; 
               </ul>
             )}
           </li>
+          <li>
+            <Link href="/videos" className={pathname === '/videos' ? 'active' : ''} onClick={() => setOpen(false)}>
+              Video
+            </Link>
+          </li>
 
           <li>
             <Link href="/contact" className={pathname === '/contact' ? 'active' : ''} onClick={() => setOpen(false)}>
