@@ -15,21 +15,36 @@ export default function HomePage() {
   const config = getSiteConfig();
   const allArticles = getAllArticles();
 
+  // Separate series articles
+  const seriesArticles = allArticles.filter(a => a.series);
+  const regularArticles = allArticles.filter(a => !a.series);
+
+  // Group by series
+  const seriesGroups = seriesArticles.reduce((acc, a) => {
+    if (!a.series) return acc;
+    if (!acc[a.series]) acc[a.series] = [];
+    acc[a.series].push(a);
+    return acc;
+  }, {} as Record<string, typeof allArticles>);
+
+  // Sort articles within each series by order
+  Object.keys(seriesGroups).forEach(name => {
+    seriesGroups[name].sort((a, b) => (a.seriesOrder || 0) - (b.seriesOrder || 0));
+  });
+
   // Daily random logic: Pick a featured article based on current date seed
   const today = new Date().toISOString().split('T')[0]; // "YYYY-MM-DD"
   const seed = today.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  const featuredIndex = seed % (allArticles.length || 1);
-  const featured = allArticles[featuredIndex] || null;
+  const featuredIndex = seed % (regularArticles.length || 1);
+  const featured = regularArticles[featuredIndex] || allArticles[0] || null;
 
-  const recent = allArticles.filter(a => a.slug !== featured?.slug).slice(0, 5);
+  const recent = regularArticles.filter(a => a.slug !== featured?.slug).slice(0, 5);
   const suggested = config.suggestedReading
     .map(slug => allArticles.find(a => a.slug === slug))
     .filter(Boolean);
 
   return (
     <>
-
-
       <div className="container">
         {/* Dynamic Category Navigator - Replacing static eras */}
         <section className="era-navigator">
@@ -43,13 +58,43 @@ export default function HomePage() {
           ))}
         </section>
 
+        {/* Books & Series Section */}
+        {Object.keys(seriesGroups).length > 0 && (
+          <section className="series-showcase" style={{ marginBottom: 'var(--space-10)' }}>
+            <p className="section-label">Series dài kỳ</p>
+            <div className="series-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 'var(--space-6)' }}>
+              {Object.entries(seriesGroups).map(([name, articles]) => (
+                <TiltCard key={name}>
+                  <div className="series-card admin-card" style={{ padding: 'var(--space-6)', height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <h3 style={{ fontSize: '1.4rem', fontFamily: 'var(--font-serif)', color: 'var(--gold)', marginBottom: 'var(--space-4)' }}>{name}</h3>
+                    <div className="series-chapters" style={{ flex: 1 }}>
+                      {articles.slice(0, 3).map(a => (
+                        <Link key={a.slug} href={`/articles/${a.slug}`} className="series-chapter-link" style={{ display: 'block', padding: 'var(--space-2) 0', borderBottom: '1px solid var(--border-light)', fontSize: '0.9rem' }}>
+                          <span style={{ color: 'var(--gold)', marginRight: '8px' }}>Phần {a.seriesOrder}:</span>
+                          {a.title}
+                        </Link>
+                      ))}
+                    </div>
+                    {articles.length > 3 && (
+                      <p style={{ fontSize: '0.8rem', color: 'var(--ink-muted)', marginTop: 'var(--space-3)' }}>... và {articles.length - 3} phần khác</p>
+                    )}
+                    <Link href={`/articles/${articles[0].slug}`} className="btn-secondary" style={{ marginTop: 'var(--space-5)', textAlign: 'center', fontSize: '0.9rem' }}>
+                      Đọc từ đầu
+                    </Link>
+                  </div>
+                </TiltCard>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Main Content Grid */}
         <div className="home-grid">
           {/* Left: Recent Articles with TAGS */}
           <div>
-            <p className="section-label">Bài viết nổi bật</p>
+            <p className="section-label">Bài viết mới nhất</p>
             <div className="article-list">
-              {recent.slice(0, 4).map(article => (
+              {recent.map(article => (
                 <TiltCard key={article.slug}>
                   <article className="article-card" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                     {article.coverImage && (
@@ -81,7 +126,7 @@ export default function HomePage() {
                   </article>
                 </TiltCard>
               ))}
-              {allArticles.length === 0 && (
+              {recent.length === 0 && (
                 <p className="text-muted" style={{ fontStyle: 'italic', padding: 'var(--space-8)' }}>
                   Đang trong quá trình hiệu đính bài viết...
                 </p>

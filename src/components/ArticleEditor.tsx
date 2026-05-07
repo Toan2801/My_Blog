@@ -117,7 +117,7 @@ export default function ArticleEditor({ initialArticle, categories, isEdit }: Pr
       category: form.category,
       tags: form.tags,
       series: form.series || null,
-      seriesOrder: null, // Removed as per user request
+      seriesOrder: form.seriesOrder ? parseInt(form.seriesOrder) : null,
       featured: form.featured,
       status: form.status,
       date: form.date,
@@ -344,6 +344,10 @@ export default function ArticleEditor({ initialArticle, categories, isEdit }: Pr
             <div className="form-group">
               <label className="form-label">Tên series</label>
               <input className="form-input" value={form.series} onChange={e => update('series', e.target.value)} placeholder="VD: Huyền Sử Việt..." />
+            </div>
+            <div className="form-group" style={{ marginTop: 'var(--space-3)' }}>
+              <label className="form-label">Thứ tự trong series (Phần số...)</label>
+              <input type="number" className="form-input" value={form.seriesOrder} onChange={e => update('seriesOrder', e.target.value)} placeholder="VD: 1" />
             </div>
           </div>
 

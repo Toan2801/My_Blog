@@ -87,7 +87,70 @@ export default async function ArticleDetailPage({ params }: Props) {
 
           {/* Body */}
           <div>
+            {article.series && (
+              <div className="series-nav-top admin-card" style={{ padding: 'var(--space-4)', marginBottom: 'var(--space-6)', borderLeft: '4px solid var(--gold)' }}>
+                <p style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--ink-muted)', marginBottom: '8px' }}>
+                  Thuộc loạt bài viết: <span style={{ color: 'var(--gold)', fontWeight: 'bold' }}>{article.series}</span> (Phần {article.seriesOrder})
+                </p>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  {(() => {
+                    const seriesArticles = allArticles
+                      .filter(a => a.series === article.series)
+                      .sort((a, b) => (a.seriesOrder || 0) - (b.seriesOrder || 0));
+                    const currentIndex = seriesArticles.findIndex(a => a.slug === article.slug);
+                    const prev = seriesArticles[currentIndex - 1];
+                    const next = seriesArticles[currentIndex + 1];
+
+                    return (
+                      <>
+                        {prev ? (
+                          <Link href={`/articles/${prev.slug}`} style={{ fontSize: '0.9rem', color: 'var(--gold)' }}>
+                            ← Phần trước
+                          </Link>
+                        ) : <span />}
+
+                        {next ? (
+                          <Link href={`/articles/${next.slug}`} style={{ fontSize: '0.9rem', color: 'var(--gold)' }}>
+                            Phần tiếp theo →
+                          </Link>
+                        ) : <span />}
+                      </>
+                    );
+                  })()}
+                </div>
+              </div>
+            )}
+
             <ArticleBody content={article.content} />
+
+            {article.series && (
+              <div className="series-nav-bottom admin-card" style={{ padding: 'var(--space-6)', marginTop: 'var(--space-8)', textAlign: 'center' }}>
+                <p style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', color: 'var(--gold)', marginBottom: 'var(--space-4)' }}>{article.series}</p>
+                <div style={{ display: 'flex', gap: 'var(--space-4)', justifyContent: 'center', flexWrap: 'wrap' }}>
+                  {allArticles
+                    .filter(a => a.series === article.series)
+                    .sort((a, b) => (a.seriesOrder || 0) - (b.seriesOrder || 0))
+                    .map(a => (
+                      <Link
+                        key={a.slug}
+                        href={`/articles/${a.slug}`}
+                        className={`chapter-link ${a.slug === article.slug ? 'active' : ''}`}
+                        style={{
+                          padding: '6px 12px',
+                          borderRadius: '4px',
+                          fontSize: '0.85rem',
+                          background: a.slug === article.slug ? 'var(--gold)' : 'rgba(212, 175, 55, 0.1)',
+                          color: a.slug === article.slug ? 'var(--paper)' : 'var(--ink)',
+                          border: '1px solid var(--gold)'
+                        }}
+                      >
+                        Phần {a.seriesOrder}
+                      </Link>
+                    ))
+                  }
+                </div>
+              </div>
+            )}
 
             {/* Footnotes Display */}
             {article.footnotes && article.footnotes.length > 0 && (

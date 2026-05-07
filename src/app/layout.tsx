@@ -18,9 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="vi" suppressHydrationWarning>
-      <head>
-        <script src="https://code.responsivevoice.org/responsivevoice.js?key=YOUR_FREE_KEY"></script>
-      </head>
+      <head />
       <body suppressHydrationWarning>
         <ReadingProgress />
         <SiteHeader config={config} />

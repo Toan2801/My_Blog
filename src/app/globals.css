@@ -3138,3 +3138,64 @@ figcaption.image-caption {
   transform: translateX(5px);
   border-color: var(--gold);
 }
+
+/* ============================================
+   SERIES & BOOKS
+   ============================================ */
+.series-showcase {
+  padding: var(--space-8) 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.series-card {
+  background: white;
+  border: 1px solid var(--border-light);
+  transition: all var(--transition);
+}
+
+.series-card:hover {
+  border-color: var(--gold);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.series-chapter-link {
+  text-decoration: none;
+  color: var(--ink-light);
+  transition: all var(--transition);
+}
+
+.series-chapter-link:hover {
+  color: var(--gold);
+  padding-left: 4px !important;
+}
+
+.chapter-link {
+  text-decoration: none;
+  transition: all var(--transition);
+}
+
+.chapter-link:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.chapter-link.active {
+  cursor: default;
+  font-weight: bold;
+}
+
+.series-nav-top {
+  background: var(--paper-dark);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.series-nav-top a {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.series-nav-top a:hover {
+  text-decoration: underline;
+}

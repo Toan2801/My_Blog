@@ -66,3 +66,9 @@ export function getRelatedArticles(current: Article, all: Article[], limit = 3):
     .filter(a => a.slug !== current.slug && (a.category === current.category || a.tags.some(t => current.tags.includes(t))))
     .slice(0, limit);
 }
+export function getArticlesBySeries(seriesName: string): Article[] {
+  const all = getAllArticles();
+  return all
+    .filter(a => a.series === seriesName)
+    .sort((a, b) => (a.seriesOrder || 0) - (b.seriesOrder || 0));
+}

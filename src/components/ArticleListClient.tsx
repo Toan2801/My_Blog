@@ -134,6 +134,7 @@ export default function ArticleListClient({ articles, categories, initialCategor
                   <span className="article-date">{formatDate(article.date)}</span>
                   <span className="article-reading-time">{article.readingTime} phút đọc</span>
                   {article.featured && <span className="series-badge">★ Nổi bật</span>}
+                  {article.series && <span className="series-badge" style={{ background: 'var(--gold)', color: 'white' }}>{article.series} - Phần {article.seriesOrder}</span>}
                 </div>
                 <Link href={`/articles/${article.slug}`} className="article-card-title">
                   {article.title}
