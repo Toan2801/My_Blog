@@ -1,11 +1,11 @@
 export function formatDate(dateStr: string): string {
   if (!dateStr) return '';
   const date = new Date(dateStr);
-  return date.toLocaleDateString('vi-VN', {
-    day: '2-digit',
-    month: 'long',
-    year: 'numeric',
-  });
+  if (isNaN(date.getTime())) return '';
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  return `${day} tháng ${month}, ${year}`;
 }
 
 export function generateSlug(title: string): string {
