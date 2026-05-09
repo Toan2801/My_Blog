@@ -31,7 +31,6 @@ export default function HomePage() {
   const showFeaturedTranslations = featuredTranslations.length > 0 || featuredSeriesTranslations.length > 0;
 
   const imgBoxStyle: React.CSSProperties = {
-    display: 'block',
     height: '180px',
     overflow: 'hidden',
     background: 'var(--parchment, #f5f0e8)',
