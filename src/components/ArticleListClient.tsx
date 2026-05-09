@@ -155,8 +155,8 @@ export default function ArticleListClient({ items, categories, initialCategory, 
                     </Link>
                     {item.coverImage && (
                       <Link href={`/series/${item.slug}`}>
-                        <div className="article-card-image" style={{ height: '200px' }}>
-                          <img src={item.coverImage} alt={item.title} style={{ objectFit: 'cover', height: '100%', width: '100%' }} />
+                        <div className="article-card-image" style={{ height: '200px', background: 'var(--parchment, #f5f0e8)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <img src={item.coverImage} alt={item.title} style={{ objectFit: 'contain', height: '100%', width: '100%' }} />
                         </div>
                       </Link>
                     )}
@@ -182,8 +182,8 @@ export default function ArticleListClient({ items, categories, initialCategory, 
                   </Link>
                   {article.coverImage && (
                     <Link href={`/articles/${article.slug}`}>
-                      <div className="article-card-image">
-                        <img src={article.coverImage} alt={article.title} />
+                      <div className="article-card-image" style={{ height: '200px', background: 'var(--parchment, #f5f0e8)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <img src={article.coverImage} alt={article.title} style={{ objectFit: 'contain', height: '100%', width: '100%' }} />
                       </div>
                     </Link>
                   )}
