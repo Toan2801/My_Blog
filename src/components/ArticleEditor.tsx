@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { Article, Footnote } from '@/lib/types';
+import { Article, Footnote, Series } from '@/lib/types';
 import dynamic from 'next/dynamic';
 import { RichTextEditorRef } from './RichTextEditor';
 
@@ -14,10 +14,11 @@ const RichTextEditor = dynamic(() => import('./RichTextEditor'), {
 interface Props {
   initialArticle?: Partial<Article>;
   categories: string[];
+  seriesList: Series[];
   isEdit?: boolean;
 }
 
-export default function ArticleEditor({ initialArticle, categories, isEdit }: Props) {
+export default function ArticleEditor({ initialArticle, categories, seriesList, isEdit }: Props) {
   const router = useRouter();
   const editorRef = useRef<RichTextEditorRef>(null);
   const [saving, setSaving] = useState(false);
@@ -29,6 +30,7 @@ export default function ArticleEditor({ initialArticle, categories, isEdit }: Pr
     excerpt: initialArticle?.excerpt || '',
     content: initialArticle?.content || '',
     category: initialArticle?.category || categories[0] || '',
+    type: initialArticle?.type || 'articles' as 'articles' | 'translation',
     tags: initialArticle?.tags || [] as string[],
     series: initialArticle?.series || '',
     seriesOrder: initialArticle?.seriesOrder?.toString() || '',
@@ -49,7 +51,7 @@ export default function ArticleEditor({ initialArticle, categories, isEdit }: Pr
       num: nextNum,
       content: ''
     };
-    
+
     setForm(f => ({
       ...f,
       footnotes: [...f.footnotes, newFootnote]
@@ -78,7 +80,7 @@ export default function ArticleEditor({ initialArticle, categories, isEdit }: Pr
   const update = (key: string, val: unknown) => {
     setForm(f => {
       const next = { ...f, [key]: val };
-      
+
       // Auto-calculate reading time when content changes
       if (key === 'content' && typeof val === 'string') {
         const text = val.replace(/<[^>]*>/g, ''); // strip html
@@ -86,7 +88,7 @@ export default function ArticleEditor({ initialArticle, categories, isEdit }: Pr
         const minutes = Math.max(1, Math.ceil(wordCount / 200));
         next.readingTime = minutes.toString();
       }
-      
+
       return next;
     });
   };
@@ -114,7 +116,8 @@ export default function ArticleEditor({ initialArticle, categories, isEdit }: Pr
       subtitle: form.subtitle,
       excerpt: form.excerpt,
       content: form.content,
-      category: form.category,
+      category: form.series ? (form.category || undefined) : (form.category || 'Chưa phân loại'),
+      type: form.type,
       tags: form.tags,
       series: form.series || null,
       seriesOrder: form.seriesOrder ? parseInt(form.seriesOrder) : null,
@@ -181,10 +184,10 @@ export default function ArticleEditor({ initialArticle, categories, isEdit }: Pr
 
           <div className="form-group">
             <label className="form-label">Nội dung bài viết (WYSIWYG) *</label>
-            <RichTextEditor 
+            <RichTextEditor
               ref={editorRef}
-              content={form.content} 
-              onChange={html => update('content', html)} 
+              content={form.content}
+              onChange={html => update('content', html)}
               onAddFootnote={handleAddFootnote}
             />
           </div>
@@ -205,8 +208,8 @@ export default function ArticleEditor({ initialArticle, categories, isEdit }: Pr
                   <div key={fn.id} style={{ padding: '10px', background: 'var(--paper-dark)', borderRadius: '4px', border: '1px solid var(--border-light)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
                       <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--gold)' }}>CHÚ THÍCH [{fn.num}]</span>
-                      <button 
-                        type="button" 
+                      <button
+                        type="button"
                         onClick={() => removeFootnote(fn.id)}
                         style={{ background: 'none', border: 'none', color: 'var(--error)', cursor: 'pointer', fontSize: '0.9rem' }}
                       >
@@ -217,12 +220,12 @@ export default function ArticleEditor({ initialArticle, categories, isEdit }: Pr
                       placeholder="Nội dung chú thích..."
                       value={fn.content}
                       onChange={(e) => updateFootnote(fn.id, e.target.value)}
-                      style={{ 
-                        width: '100%', 
-                        minHeight: '60px', 
-                        fontSize: '0.85rem', 
-                        padding: '8px', 
-                        borderRadius: '2px', 
+                      style={{
+                        width: '100%',
+                        minHeight: '60px',
+                        fontSize: '0.85rem',
+                        padding: '8px',
+                        borderRadius: '2px',
                         border: '1px solid var(--border)',
                         fontFamily: 'var(--font-body)',
                         resize: 'vertical'
@@ -272,12 +275,12 @@ export default function ArticleEditor({ initialArticle, categories, isEdit }: Pr
             <p className="admin-card-title">Phân Loại</p>
             <div className="form-group">
               <label className="form-label">Chủ đề / Danh mục *</label>
-              
+
               <div className="category-suggestions" style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '10px' }}>
                 {categories.map(c => (
-                  <button 
-                    key={c} 
-                    type="button" 
+                  <button
+                    key={c}
+                    type="button"
                     className={`category-pill ${form.category === c ? 'active' : ''}`}
                     onClick={() => update('category', c)}
                   >
@@ -287,16 +290,16 @@ export default function ArticleEditor({ initialArticle, categories, isEdit }: Pr
               </div>
 
               <div style={{ display: 'flex', gap: '8px' }}>
-                <input 
-                  className="form-input" 
-                  value={form.category} 
-                  onChange={e => update('category', e.target.value)} 
-                  placeholder="Nhập chủ đề mới..." 
-                  required 
+                <input
+                  className="form-input"
+                  value={form.category}
+                  onChange={e => update('category', e.target.value)}
+                  placeholder="Nhập chủ đề mới..."
+                  required
                 />
                 {!categories.includes(form.category) && form.category.trim() !== '' && (
-                  <button 
-                    type="button" 
+                  <button
+                    type="button"
                     className="btn-secondary"
                     title="Lưu vào danh sách gợi ý"
                     onClick={async () => {
@@ -336,14 +339,85 @@ export default function ArticleEditor({ initialArticle, categories, isEdit }: Pr
                 />
               </div>
             </div>
+            <div className="form-group" style={{ marginTop: 'var(--space-4)' }}>
+              <label className="form-label">Loại nội dung</label>
+              <select className="sort-select" value={form.type} onChange={e => update('type', e.target.value)}>
+                <option value="original">Bài viết</option>
+                <option value="translation">Bài dịch</option>
+              </select>
+            </div>
           </div>
 
           {/* Series */}
           <div className="admin-card">
             <p className="admin-card-title">Bộ Sưu Tập / Series</p>
             <div className="form-group">
-              <label className="form-label">Tên series</label>
-              <input className="form-input" value={form.series} onChange={e => update('series', e.target.value)} placeholder="VD: Huyền Sử Việt..." />
+              <label className="form-label">Chọn series có sẵn</label>
+              <div className="category-suggestions" style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '10px' }}>
+                <button
+                  type="button"
+                  className={`category-pill ${!form.series ? 'active' : ''}`}
+                  onClick={() => update('series', '')}
+                >
+                  Không có series
+                </button>
+                {seriesList.map(s => (
+                  <button
+                    key={s.slug}
+                    type="button"
+                    className={`category-pill ${form.series === s.title ? 'active' : ''}`}
+                    onClick={() => update('series', s.title)}
+                  >
+                    {s.title}
+                  </button>
+                ))}
+              </div>
+
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <input
+                  className="form-input"
+                  value={form.series}
+                  onChange={e => update('series', e.target.value)}
+                  placeholder="Hoặc nhập tên series mới..."
+                />
+                {form.series && !seriesList.some(s => s.title === form.series) && (
+                  <button
+                    type="button"
+                    className="btn-secondary"
+                    title="Tạo series mới"
+                    onClick={async () => {
+                      const slug = form.series.toLowerCase()
+                        .normalize('NFD')
+                        .replace(/[\u0300-\u036f]/g, '')
+                        .replace(/[đĐ]/g, 'd')
+                        .replace(/\s+/g, '-')
+                        .replace(/[^a-z0-9-]/g, '');
+
+                      const newSeries: Series = {
+                        slug,
+                        title: form.series,
+                        description: `Lời giới thiệu cho series ${form.series}...`,
+                        coverImage: null,
+                        type: form.type,
+                        status: 'published'
+                      };
+
+                      const res = await fetch('/api/series', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(newSeries),
+                      });
+
+                      if (res.ok) {
+                        router.refresh();
+                        setMsg('✓ Đã tạo series mới!');
+                      }
+                    }}
+                  >
+                    Thêm
+                  </button>
+                )}
+              </div>
             </div>
             <div className="form-group" style={{ marginTop: 'var(--space-3)' }}>
               <label className="form-label">Thứ tự trong series (Phần số...)</label>
@@ -389,7 +463,7 @@ export default function ArticleEditor({ initialArticle, categories, isEdit }: Pr
                 }}
               />
               {form.coverImage && (
-                <img src={form.coverImage} alt="Preview" style={{ width: '100%', height: '120px', objectFit: 'cover', borderRadius: '4px', border: '1px solid var(--border)' }} />
+                <img src={form.coverImage} alt="Preview" style={{ width: '100%', height: '120px', objectFit: 'contain', background: 'var(--parchment, #f5f0e8)', borderRadius: '4px', border: '1px solid var(--border)' }} />
               )}
             </div>
             <div className="form-group" style={{ marginTop: 'var(--space-3)' }}>

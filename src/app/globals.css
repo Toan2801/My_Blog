@@ -83,11 +83,42 @@ html {
 }
 
 body {
-  background-color: var(--paper);
+  background-image: url('/images/bg-map.png');
+  background-color: #d2b48c; /* Tan/parchment base color */
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
   color: var(--ink);
   font-family: var(--font-body);
-  /* Removed paper-pattern for a cleaner blue background */
   position: relative;
+  min-height: 100vh;
+}
+
+/* Ensure readability on map background - Heavier neutral overlay */
+.container {
+  background: rgba(255, 253, 245, 0.92); /* Neutral cream/parchment color */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius-md);
+  padding: var(--space-6) var(--space-5);
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-6);
+  box-shadow: 0 15px 45px rgba(0,0,0,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.site-header, 
+.hero, 
+.hero-compact {
+  background: transparent !important;
+}
+
+.site-header .container {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 
@@ -450,9 +481,9 @@ li {
 
 .hero {
   position: relative;
-  padding: var(--space-6) 0;
+  padding: 0;
   text-align: center;
-  border-bottom: 1px solid var(--border);
+  border-bottom: none;
   overflow: visible;
   display: flex;
   flex-direction: column;
@@ -467,26 +498,99 @@ li {
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.hero-logo-container {
+  max-width: var(--container);
+  margin: 0 auto;
+  width: 100%;
+}
+
 .hero-logo-image {
-  max-width: 100%;
-  max-height: 160px;
+  width: 100%;
   height: auto;
-  width: auto;
   border-radius: var(--radius);
   box-shadow: var(--shadow-md);
-  border: 4px solid var(--paper);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
+  display: block;
 }
 
-.hero-logo-container:hover .hero-logo-image {
-  max-height: 450px; /* Expands significantly */
-  box-shadow: var(--shadow-lg);
-  transform: scale(1.02);
+/* Removed redundant active styles */
+
+.nav-link-premium.active::after {
+  display: none;
 }
 
-.hero-logo-container:hover {
-  margin-bottom: var(--space-4);
+.main-nav-premium {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  background: transparent; /* No full-width background */
+}
+
+.main-nav-premium-inner {
+  width: 100%;
+  max-width: var(--container);
+  display: flex;
+  justify-content: center; /* Center links within the container */
+  align-items: stretch;
+  background: rgba(18, 16, 12, 0.98); /* Deep ink black */
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  height: 52px;
+  border-bottom: 2px solid #a0783a; /* True gold border */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  overflow: hidden; /* For inner link highlights */
+}
+
+.nav-link-premium {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.8) !important;
+  text-decoration: none !important;
+  padding: 0 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link-premium:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.1);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.nav-link-premium.active {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.18) !important; /* Lighter background for active */
+  font-weight: 700;
+}
+
+.nav-link-premium::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #a0783a;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-link-premium.active::after {
+  transform: scaleX(1);
+}
+.nav-link-premium:hover::after {
+  transform: scaleX(1);
 }
 
 .hero-eyebrow {
@@ -3198,4 +3302,10 @@ figcaption.image-caption {
 
 .series-nav-top a:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .hero-logo-image {
+    max-height: 250px;
+  }
 }

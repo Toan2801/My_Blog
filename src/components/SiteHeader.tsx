@@ -11,7 +11,6 @@ export default function SiteHeader({ config }: { config: SiteConfig }) {
 
   return (
     <header className="site-header">
-      <Navigation title={config.blogTitle} categories={config.categories} />
       
       {/* Hero Section - Compact and unified on all pages */}
       <section className="hero hero-compact">
@@ -20,17 +19,19 @@ export default function SiteHeader({ config }: { config: SiteConfig }) {
             <img src={config.heroImage} alt={config.blogTitle} className="hero-logo-image" />
           </div>
         )}
-
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          {isHome && config.blogSubtitle && <p className="hero-eyebrow">{config.blogSubtitle}</p>}
-          {/* Removed redundant h1 title here as it's already in the Navigation */}
-          {isHome && config.blogDescription && (
-            <p className="hero-description" style={{ textShadow: '0 1px 1px rgba(255,255,255,0.8)' }}>
-              {config.blogDescription}
-            </p>
-          )}
-        </div>
       </section>
+
+      {/* Main Navigator - Now sticky and container-aligned */}
+      <nav className="main-nav-premium">
+        <div className="main-nav-premium-inner">
+          <Link href="/" className={`nav-link-premium ${pathname === '/' ? 'active' : ''}`}>Trang chủ</Link>
+          <Link href="/articles" className={`nav-link-premium ${pathname.startsWith('/articles') ? 'active' : ''}`}>Bài viết</Link>
+          <Link href="/translations" className={`nav-link-premium ${pathname.startsWith('/translations') ? 'active' : ''}`}>Bài dịch</Link>
+          <Link href="/videos" className={`nav-link-premium ${pathname.startsWith('/videos') ? 'active' : ''}`}>Video</Link>
+          <Link href="/contact" className={`nav-link-premium ${pathname.startsWith('/contact') ? 'active' : ''}`}>Liên hệ</Link>
+          <a href="/api/articles/random" className="nav-link-premium">✨ Ngẫu nhiên</a>
+        </div>
+      </nav>
     </header>
   );
 }

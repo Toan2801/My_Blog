@@ -2,17 +2,19 @@
 
 import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
-import { Article } from '@/lib/types';
+import { Article, Series } from '@/lib/types';
 import { formatDate } from '@/lib/utils';
 
+type ListItem = (Article & { isSeries?: false }) | (Series & { isSeries: true });
+
 interface Props {
-  articles: Article[];
+  items: ListItem[];
   categories: string[];
   initialCategory?: string;
   initialSearch?: string;
 }
 
-export default function ArticleListClient({ articles, categories, initialCategory, initialSearch }: Props) {
+export default function ArticleListClient({ items, categories, initialCategory, initialSearch }: Props) {
   const [search, setSearch] = useState(initialSearch || '');
   const [selectedCats, setSelectedCats] = useState<string[]>(initialCategory ? [initialCategory] : []);
   const [sort, setSort] = useState('newest');
@@ -39,23 +41,38 @@ export default function ArticleListClient({ articles, categories, initialCategor
   };
 
   const filtered = useMemo(() => {
-    let res = [...articles];
+    let res = [...items];
     if (search.trim()) {
       const q = search.toLowerCase();
-      res = res.filter(a =>
-        a.title.toLowerCase().includes(q) ||
-        a.excerpt.toLowerCase().includes(q) ||
-        a.tags.some(t => t.toLowerCase().includes(q))
-      );
+      res = res.filter(item => {
+        const title = item.title.toLowerCase();
+        const excerpt = item.isSeries ? item.description.toLowerCase() : item.excerpt.toLowerCase();
+        const tags = item.isSeries ? [] : item.tags.map(t => t.toLowerCase());
+        return title.includes(q) || excerpt.includes(q) || tags.some(t => t.includes(q));
+      });
     }
     if (selectedCats.length > 0) {
-      res = res.filter(a => selectedCats.includes(a.category));
+      res = res.filter(item => {
+        if (item.isSeries) return true; // Show series always or handle category for series?
+        return selectedCats.includes(item.category || '');
+      });
     }
-    if (sort === 'newest') res.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-    if (sort === 'oldest') res.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-    if (sort === 'featured') res.sort((a, b) => Number(b.featured) - Number(a.featured));
+    
+    res.sort((a, b) => {
+      const dateA = a.isSeries ? 0 : new Date(a.date).getTime();
+      const dateB = b.isSeries ? 0 : new Date(b.date).getTime();
+      
+      if (sort === 'newest') return dateB - dateA;
+      if (sort === 'oldest') return dateA - dateB;
+      if (sort === 'featured') {
+        const featA = a.isSeries ? 1 : Number(a.featured);
+        const featB = b.isSeries ? 1 : Number(b.featured);
+        return featB - featA;
+      }
+      return 0;
+    });
     return res;
-  }, [articles, search, selectedCats, sort]);
+  }, [items, search, selectedCats, sort]);
 
   return (
     <div className="articles-layout">
@@ -115,55 +132,75 @@ export default function ArticleListClient({ articles, categories, initialCategor
       {/* Article List */}
       <div>
         <p className="text-ui text-muted" style={{ fontSize: '0.82rem', marginBottom: 'var(--space-4)' }}>
-          {filtered.length} bài viết
-          {search && ` · tìm kiếm "${search}"`}
-          {selectedCats.length > 0 && ` · ${selectedCats.join(', ')}`}
+          {search ? `Tìm kiếm "${search}"` : ''}
+          {selectedCats.length > 0 && (search ? ' · ' : '') + selectedCats.join(', ')}
         </p>
 
         {filtered.length === 0 ? (
           <div className="no-results">
-            <p>Không tìm thấy bài viết nào.</p>
+            <p>Không tìm thấy nội dung nào.</p>
             <p style={{ fontSize: '0.85rem', marginTop: '8px' }}>Hãy thử điều chỉnh bộ lọc hoặc từ khóa tìm kiếm.</p>
           </div>
         ) : (
           <div className="article-list">
-            {filtered.map(article => (
-              <article key={article.slug} className="article-card">
-                <div className="article-card-meta">
-                  <span className="category-badge">{article.category}</span>
-                  <span className="article-date">{formatDate(article.date)}</span>
-                  <span className="article-reading-time">{article.readingTime} phút đọc</span>
-                  {article.featured && <span className="series-badge">★ Nổi bật</span>}
-                  {article.series && <span className="series-badge" style={{ background: 'var(--gold)', color: 'white' }}>{article.series} - Phần {article.seriesOrder}</span>}
-                </div>
-                <Link href={`/articles/${article.slug}`} className="article-card-title">
-                  {article.title}
-                </Link>
-                {article.coverImage && (
-                  <Link href={`/articles/${article.slug}`}>
-                    <div className="article-card-image">
-                      <img src={article.coverImage} alt={article.title} />
+            {filtered.map(item => {
+              if (item.isSeries) {
+                return (
+                  <article key={item.slug} className="article-card series-card-item" style={{ borderLeft: '4px solid var(--gold)' }}>
+                    <div className="article-card-meta">
+                      <span className="series-badge" style={{ background: 'var(--gold)', color: 'white' }}>SERIES DÀI KỲ</span>
                     </div>
-                  </Link>
-                )}
-                {article.subtitle && (
-                  <p style={{ fontStyle: 'italic', color: 'var(--ink-muted)', fontSize: '0.9rem', marginTop: '-8px' }}>
-                    {article.subtitle}
-                  </p>
-                )}
-                <p className="article-card-excerpt">{article.excerpt}</p>
-                {article.tags.length > 0 && (
-                  <div className="article-tags">
-                    {article.tags.map(tag => (
-                      <span key={tag} className="tag-chip">#{tag}</span>
-                    ))}
+                    <Link href={`/series/${item.slug}`} className="article-card-title">
+                      {item.title}
+                    </Link>
+                    {item.coverImage && (
+                      <Link href={`/series/${item.slug}`}>
+                        <div className="article-card-image" style={{ height: '200px' }}>
+                          <img src={item.coverImage} alt={item.title} style={{ objectFit: 'cover', height: '100%', width: '100%' }} />
+                        </div>
+                      </Link>
+                    )}
+                    <p className="article-card-excerpt">{item.description}</p>
+                    <Link href={`/series/${item.slug}`} className="read-more" style={{ display: 'inline-block', marginTop: 'var(--space-2)' }}>
+                      Xem trọn bộ →
+                    </Link>
+                  </article>
+                );
+              }
+
+              const article = item;
+              return (
+                <article key={article.slug} className="article-card">
+                  <div className="article-card-meta">
+                    {article.category && <span className="category-badge">{article.category}</span>}
+                    <span className="article-date">{formatDate(article.date)}</span>
+                    <span className="article-reading-time">{article.readingTime} phút đọc</span>
+                    {article.featured && <span className="series-badge">★ Nổi bật</span>}
                   </div>
-                )}
-                <Link href={`/articles/${article.slug}`} className="read-more" style={{ display: 'inline-block', marginTop: 'var(--space-2)' }}>
-                  Đọc tiếp →
-                </Link>
-              </article>
-            ))}
+                  <Link href={`/articles/${article.slug}`} className="article-card-title">
+                    {article.title}
+                  </Link>
+                  {article.coverImage && (
+                    <Link href={`/articles/${article.slug}`}>
+                      <div className="article-card-image">
+                        <img src={article.coverImage} alt={article.title} />
+                      </div>
+                    </Link>
+                  )}
+                  <p className="article-card-excerpt">{article.excerpt}</p>
+                  {article.tags.length > 0 && (
+                    <div className="article-tags">
+                      {article.tags.map(tag => (
+                        <span key={tag} className="tag-chip">#{tag}</span>
+                      ))}
+                    </div>
+                  )}
+                  <Link href={`/articles/${article.slug}`} className="read-more" style={{ display: 'inline-block', marginTop: 'var(--space-2)' }}>
+                    Đọc tiếp →
+                  </Link>
+                </article>
+              );
+            })}
           </div>
         )}
       </div>

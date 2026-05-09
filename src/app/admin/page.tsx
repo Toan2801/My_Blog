@@ -15,8 +15,19 @@ export default function AdminDashboard() {
       <div className="admin-header">
         <h1 className="admin-page-title">Tổng quan</h1>
         <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
+          <Link href="/admin/series" className="btn-edit" style={{ textDecoration: 'none' }}>Quản lý Series</Link>
           <Link href="/admin/videos" className="btn-edit" style={{ textDecoration: 'none' }}>Quản lý Video</Link>
           <Link href="/admin/articles/new" className="btn-primary" style={{ textDecoration: 'none' }}>+ Bài viết mới</Link>
+        </div>
+      </div>
+
+      <div className="admin-card" style={{ background: 'linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(0,0,0,0) 100%)', border: '1px solid rgba(212,175,55,0.3)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <p className="admin-card-title" style={{ color: 'var(--gold)', marginBottom: '4px' }}>Quản lý Nội dung Series</p>
+            <p style={{ fontSize: '0.875rem', color: 'var(--ink-muted)' }}>Cập nhật ảnh bìa và lời giới thiệu cho các bộ sưu tập bài viết.</p>
+          </div>
+          <Link href="/admin/series" className="btn-primary" style={{ textDecoration: 'none', background: 'var(--gold)', color: 'black' }}>Vào quản lý →</Link>
         </div>
       </div>
 

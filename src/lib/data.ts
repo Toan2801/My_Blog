@@ -1,9 +1,10 @@
 import fs from 'fs';
 import path from 'path';
-import { Article, SiteConfig } from './types';
+import { Article, SiteConfig, Series } from './types';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 const ARTICLES_DIR = path.join(DATA_DIR, 'articles');
+const SERIES_DIR = path.join(DATA_DIR, 'series');
 const CONFIG_PATH = path.join(DATA_DIR, 'config.json');
 
 export function getSiteConfig(): SiteConfig {
@@ -21,7 +22,9 @@ export function getAllArticles(): Article[] {
   return files
     .map(f => {
       const raw = fs.readFileSync(path.join(ARTICLES_DIR, f), 'utf-8');
-      return JSON.parse(raw) as Article;
+      const data = JSON.parse(raw) as Article;
+      if (!data.type) data.type = 'articles';
+      return data;
     })
     .filter(a => a.status === 'published')
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
@@ -33,7 +36,9 @@ export function getAllArticlesAdmin(): Article[] {
   return files
     .map(f => {
       const raw = fs.readFileSync(path.join(ARTICLES_DIR, f), 'utf-8');
-      return JSON.parse(raw) as Article;
+      const data = JSON.parse(raw) as Article;
+      if (!data.type) data.type = 'articles';
+      return data;
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
@@ -42,7 +47,9 @@ export function getArticleBySlug(slug: string): Article | null {
   const filePath = path.join(ARTICLES_DIR, `${slug}.json`);
   if (!fs.existsSync(filePath)) return null;
   const raw = fs.readFileSync(filePath, 'utf-8');
-  return JSON.parse(raw);
+  const data = JSON.parse(raw) as Article;
+  if (!data.type) data.type = 'articles';
+  return data;
 }
 
 export function saveArticle(article: Article): void {
@@ -71,4 +78,35 @@ export function getArticlesBySeries(seriesName: string): Article[] {
   return all
     .filter(a => a.series === seriesName)
     .sort((a, b) => (a.seriesOrder || 0) - (b.seriesOrder || 0));
+}
+
+export function getAllSeries(): Series[] {
+  if (!fs.existsSync(SERIES_DIR)) return [];
+  const files = fs.readdirSync(SERIES_DIR).filter(f => f.endsWith('.json'));
+  return files.map(f => {
+    const raw = fs.readFileSync(path.join(SERIES_DIR, f), 'utf-8');
+    const data = JSON.parse(raw) as Series;
+    if (!data.type) data.type = 'articles';
+    return data;
+  });
+}
+
+export function getSeriesBySlug(slug: string): Series | null {
+  const filePath = path.join(SERIES_DIR, `${slug}.json`);
+  if (!fs.existsSync(filePath)) return null;
+  const raw = fs.readFileSync(filePath, 'utf-8');
+  const data = JSON.parse(raw) as Series;
+  if (!data.type) data.type = 'articles';
+  return data;
+}
+
+export function saveSeries(series: Series): void {
+  if (!fs.existsSync(SERIES_DIR)) fs.mkdirSync(SERIES_DIR, { recursive: true });
+  const filePath = path.join(SERIES_DIR, `${series.slug}.json`);
+  fs.writeFileSync(filePath, JSON.stringify(series, null, 2), 'utf-8');
+}
+
+export function deleteSeries(slug: string): void {
+  const filePath = path.join(SERIES_DIR, `${slug}.json`);
+  if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
 }

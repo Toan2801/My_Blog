@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { getArticleBySlug, getSiteConfig } from '@/lib/data';
+import { getArticleBySlug, getSiteConfig, getAllSeries } from '@/lib/data';
 import ArticleEditor from '@/components/ArticleEditor';
 
 export default async function EditArticlePage({ params }: { params: { slug: string } }) {
@@ -13,7 +13,7 @@ export default async function EditArticlePage({ params }: { params: { slug: stri
       <div className="admin-header">
         <h1 className="admin-page-title">Chỉnh sửa bài viết</h1>
       </div>
-      <ArticleEditor initialArticle={article} categories={config.categories} isEdit />
+      <ArticleEditor initialArticle={article} categories={config.categories} seriesList={getAllSeries()} isEdit />
     </>
   );
 }

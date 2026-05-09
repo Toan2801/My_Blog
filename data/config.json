@@ -1,11 +1,7 @@
 {
-  "blogTitle": "Reading History Against the Grain",
-  "blogSubtitle": "",
-  "blogDescription": "\"Tướng là chim ưng, dân lính là vịt, dùng vịt để nuôi chim ưng thì có gì là lạ?\" — Trần Khánh Dư",
   "authorName": "Toan Nguyen",
-  "authorBio": "Chỉ là một kẻ thất phu bình thường trong xã hội",
   "authorEmail": "",
-  "authorAvatar": "/images/yue-fei.png",
+  "authorAvatar": "/uploads/personal_logo.jpg",
   "featuredArticleSlug": "tangquocphien",
   "quoteBlock": {
     "text": "Dĩ cổ vi giám, khả dĩ tri hưng thế.",
@@ -25,5 +21,5 @@
     "qrImage": "/uploads/qr-1775885889862.png"
   },
   "facebook": "https://www.facebook.com/huy.vu.526612/",
-  "heroImage": "/data/image/logo.jpg"
+  "heroImage": "/images/header-art.png"
 }

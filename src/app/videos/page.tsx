@@ -23,7 +23,6 @@ export default function VideoPage() {
   return (
     <div className="video-page container py-12">
       <header className="page-header text-center mb-16">
-        <h1 className="display-font text-5xl mb-6">Thư viện</h1>
         <p className="text-ink-muted max-w-2xl mx-auto text-lg">
           Một số video về lịch sử và âm nhạc
         </p>

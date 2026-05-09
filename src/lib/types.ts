@@ -11,7 +11,8 @@ export interface Article {
   subtitle: string;
   excerpt: string;
   content: string;
-  category: string;
+  category?: string;
+  type: 'articles' | 'translation';
   tags: string[];
   series: string | null;
   seriesOrder: number | null;
@@ -22,6 +23,16 @@ export interface Article {
   status: 'draft' | 'published';
   readingTime: number;
   footnotes?: Footnote[];
+}
+
+export interface Series {
+  slug: string;
+  title: string;
+  description: string;
+  coverImage: string | null;
+  type: 'articles' | 'translation';
+  status: 'draft' | 'published';
+  featured?: boolean;
 }
 
 export interface SiteConfig {

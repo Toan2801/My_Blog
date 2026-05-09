@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getArticleBySlug, getAllArticles, getRelatedArticles, getSiteConfig } from '@/lib/data';
+import { getArticleBySlug, getAllArticles, getRelatedArticles, getSiteConfig, getAllSeries } from '@/lib/data';
 import { formatDate } from '@/lib/utils';
 import TableOfContents from '@/components/TableOfContents';
 import ArticleBody from '@/components/ArticleBody';
@@ -35,7 +35,11 @@ export default async function ArticleDetailPage({ params }: Props) {
   if (article.status !== 'published') notFound();
 
   const allArticles = getAllArticles();
+  const allSeries = getAllSeries();
   const related = getRelatedArticles(article, allArticles);
+
+  const seriesMeta = article.series ? allSeries.find(s => s.title === article.series) : null;
+  const seriesSlug = seriesMeta?.slug || article.series?.toLowerCase().replace(/\s+/g, '-');
 
   return (
     <article>
@@ -90,7 +94,7 @@ export default async function ArticleDetailPage({ params }: Props) {
             {article.series && (
               <div className="series-nav-top admin-card" style={{ padding: 'var(--space-4)', marginBottom: 'var(--space-6)', borderLeft: '4px solid var(--gold)' }}>
                 <p style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--ink-muted)', marginBottom: '8px' }}>
-                  Thuộc loạt bài viết: <span style={{ color: 'var(--gold)', fontWeight: 'bold' }}>{article.series}</span> (Phần {article.seriesOrder})
+                  Thuộc loạt bài viết: <Link href={`/series/${seriesSlug}`} style={{ color: 'var(--gold)', fontWeight: 'bold', textDecoration: 'none' }} className="hover-underline">{article.series}</Link>
                 </p>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   {(() => {
@@ -104,14 +108,14 @@ export default async function ArticleDetailPage({ params }: Props) {
                     return (
                       <>
                         {prev ? (
-                          <Link href={`/articles/${prev.slug}`} style={{ fontSize: '0.9rem', color: 'var(--gold)' }}>
-                            ← Phần trước
+                          <Link href={`/articles/${prev.slug}`} style={{ fontSize: '0.9rem', color: 'var(--gold)', maxWidth: '45%', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                            ← {prev.title}
                           </Link>
                         ) : <span />}
 
                         {next ? (
-                          <Link href={`/articles/${next.slug}`} style={{ fontSize: '0.9rem', color: 'var(--gold)' }}>
-                            Phần tiếp theo →
+                          <Link href={`/articles/${next.slug}`} style={{ fontSize: '0.9rem', color: 'var(--gold)', maxWidth: '45%', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'right' }}>
+                            {next.title} →
                           </Link>
                         ) : <span />}
                       </>
@@ -125,7 +129,9 @@ export default async function ArticleDetailPage({ params }: Props) {
 
             {article.series && (
               <div className="series-nav-bottom admin-card" style={{ padding: 'var(--space-6)', marginTop: 'var(--space-8)', textAlign: 'center' }}>
-                <p style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', color: 'var(--gold)', marginBottom: 'var(--space-4)' }}>{article.series}</p>
+                <p style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', color: 'var(--gold)', marginBottom: 'var(--space-4)' }}>
+                  <Link href={`/series/${seriesSlug}`} style={{ color: 'inherit', textDecoration: 'none' }}>{article.series}</Link>
+                </p>
                 <div style={{ display: 'flex', gap: 'var(--space-4)', justifyContent: 'center', flexWrap: 'wrap' }}>
                   {allArticles
                     .filter(a => a.series === article.series)
@@ -136,15 +142,17 @@ export default async function ArticleDetailPage({ params }: Props) {
                         href={`/articles/${a.slug}`}
                         className={`chapter-link ${a.slug === article.slug ? 'active' : ''}`}
                         style={{
-                          padding: '6px 12px',
+                          padding: '6px 16px',
                           borderRadius: '4px',
                           fontSize: '0.85rem',
-                          background: a.slug === article.slug ? 'var(--gold)' : 'rgba(212, 175, 55, 0.1)',
-                          color: a.slug === article.slug ? 'var(--paper)' : 'var(--ink)',
-                          border: '1px solid var(--gold)'
+                          background: a.slug === article.slug ? 'var(--gold)' : 'rgba(212, 175, 55, 0.05)',
+                          color: a.slug === article.slug ? 'white' : 'var(--ink)',
+                          border: '1px solid var(--gold)',
+                          textDecoration: 'none',
+                          transition: 'all 0.3s ease'
                         }}
                       >
-                        Phần {a.seriesOrder}
+                        {a.title}
                       </Link>
                     ))
                   }
@@ -186,7 +194,9 @@ export default async function ArticleDetailPage({ params }: Props) {
             )}
 
             {/* Comments */}
-            <CommentSection slug={article.slug} />
+            <div id="comments-section">
+              <CommentSection slug={article.slug} />
+            </div>
           </div>
         </div>
       </div>
