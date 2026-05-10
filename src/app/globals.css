@@ -1491,7 +1491,19 @@ li {
 
 /* Article Body */
 .article-body {
+  width: 100%;
   max-width: 680px;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.article-body img,
+.article-body video,
+.article-body iframe {
+  max-width: 100% !important;
+  height: auto !important;
 }
 
 .article-body h2 {
@@ -3397,5 +3409,30 @@ figcaption.image-caption {
 
   .footer-top {
     gap: var(--space-5);
+  }
+
+  .article-card {
+    padding: var(--space-5) !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .article-card-image {
+    height: auto !important;
+    margin: 0 0 var(--space-4) 0 !important;
+  }
+
+  .article-body p {
+    text-align: left !important;
+  }
+
+  .article-body blockquote {
+    padding: var(--space-4) var(--space-4) !important;
+    margin: var(--space-4) 0 !important;
+  }
+
+  .series-nav-top,
+  .series-nav-bottom {
+    padding: var(--space-4) !important;
   }
 }
