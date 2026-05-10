@@ -23,7 +23,7 @@ export default async function SeriesLandingPage({ params }: { params: { slug: st
   const config = getSiteConfig();
 
   return (
-    <div className="container" style={{ padding: 'var(--space-10) 0' }}>
+    <div className="container" style={{ marginTop: 'var(--space-10)', marginBottom: 'var(--space-10)' }}>
       <header className="series-header admin-card" style={{ padding: 'var(--space-8)', marginBottom: 'var(--space-10)', textAlign: 'center' }}>
         {series.coverImage && (
           <div className="article-cover-container" style={{ marginBottom: 'var(--space-6)', background: 'var(--parchment, #f5f0e8)', boxShadow: 'none', border: '1px solid var(--border-light)' }}>

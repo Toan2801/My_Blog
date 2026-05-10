@@ -45,10 +45,10 @@ export default async function ArticleDetailPage({ params }: Props) {
     <article>
       {/* Main Content Area */}
       <div className="container" style={{ marginTop: 'var(--space-8)' }}>
-        <header className="article-detail-header" style={{ textAlign: 'center', marginBottom: 'var(--space-10)' }}>
-          <p className="article-header-category" style={{ marginBottom: 'var(--space-2)' }}>{article.category}</p>
-          <h1 style={{ fontSize: '3rem', fontFamily: 'var(--font-serif)', color: 'var(--ink)', marginBottom: 'var(--space-4)', lineHeight: 1.2 }}>{article.title}</h1>
-          {article.subtitle && <p className="article-subtitle" style={{ fontSize: '1.2rem', marginBottom: 'var(--space-4)' }}>{article.subtitle}</p>}
+        <header className="article-detail-header">
+          <p className="article-header-category">{article.category}</p>
+          <h1 className="article-title">{article.title}</h1>
+          {article.subtitle && <p className="article-subtitle">{article.subtitle}</p>}
           <div className="article-meta" style={{ color: 'var(--ink-muted)', justifyContent: 'center', marginBottom: 'var(--space-5)' }}>
             <span>{article.author}</span>
             <span className="sep">·</span>
@@ -57,7 +57,7 @@ export default async function ArticleDetailPage({ params }: Props) {
             <span>{article.readingTime} phút đọc</span>
           </div>
           {article.tags.length > 0 && (
-            <div className="article-tags" style={{ justifyContent: 'center' }}>
+            <div className="article-tags" style={{ justifyContent: 'center', display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
               {article.tags.map(tag => (
                 <Link key={tag} href={`/articles?search=${tag}`} className="tag-chip" style={{ fontSize: '0.8rem', padding: '4px 12px' }}>#{tag}</Link>
               ))}
