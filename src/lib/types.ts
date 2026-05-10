@@ -31,6 +31,7 @@ export interface Series {
   description: string;
   coverImage: string | null;
   type: 'articles' | 'translation';
+  category?: string;
   status: 'draft' | 'published';
   featured?: boolean;
 }
