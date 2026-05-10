@@ -53,7 +53,6 @@ export default function ArticleListClient({ items, categories, initialCategory, 
     }
     if (selectedCats.length > 0) {
       res = res.filter(item => {
-        if (item.isSeries) return true; // Show series always or handle category for series?
         return selectedCats.includes(item.category || '');
       });
     }
