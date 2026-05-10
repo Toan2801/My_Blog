@@ -1406,12 +1406,16 @@ li {
 }
 
 .article-title {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
   font-family: var(--font-serif);
   color: var(--ink);
   margin-bottom: var(--space-4);
   line-height: 1.2;
   overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  display: block;
+  width: 100%;
 }
 
 .article-meta {
@@ -1491,7 +1495,19 @@ li {
 
 /* Article Body */
 .article-body {
+  width: 100%;
   max-width: 680px;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.article-body img,
+.article-body video,
+.article-body iframe {
+  max-width: 100% !important;
+  height: auto !important;
 }
 
 .article-body h2 {
@@ -3351,13 +3367,15 @@ figcaption.image-caption {
   }
 
   .container {
-    width: calc(100% - 12px) !important;
-    margin-left: 6px !important;
-    margin-right: 6px !important;
-    padding-left: 12px !important;
-    padding-right: 12px !important;
-    padding-top: var(--space-5) !important;
-    padding-bottom: var(--space-5) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    padding-top: var(--space-4) !important;
+    padding-bottom: var(--space-4) !important;
+    box-sizing: border-box !important;
   }
 
   .main-nav-premium-inner {
@@ -3375,7 +3393,14 @@ figcaption.image-caption {
   .articles-layout,
   .article-reading-layout {
     grid-template-columns: 1fr !important;
-    gap: var(--space-6) !important;
+    gap: var(--space-4) !important;
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .article-reading-layout > div:last-child {
+    width: 100% !important;
+    overflow-x: hidden;
   }
 
   .sidebar-filters,
@@ -3397,5 +3422,30 @@ figcaption.image-caption {
 
   .footer-top {
     gap: var(--space-5);
+  }
+
+  .article-card {
+    padding: var(--space-5) !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .article-card-image {
+    height: auto !important;
+    margin: 0 0 var(--space-4) 0 !important;
+  }
+
+  .article-body p {
+    text-align: left !important;
+  }
+
+  .article-body blockquote {
+    padding: var(--space-4) var(--space-4) !important;
+    margin: var(--space-4) 0 !important;
+  }
+
+  .series-nav-top,
+  .series-nav-bottom {
+    padding: var(--space-4) !important;
   }
 }

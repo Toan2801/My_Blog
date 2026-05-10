@@ -96,7 +96,7 @@ export default async function ArticleDetailPage({ params }: Props) {
                 <p style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--ink-muted)', marginBottom: '8px' }}>
                   Thuộc loạt bài viết: <Link href={`/series/${seriesSlug}`} style={{ color: 'var(--gold)', fontWeight: 'bold', textDecoration: 'none' }} className="hover-underline">{article.series}</Link>
                 </p>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
                   {(() => {
                     const seriesArticles = allArticles
                       .filter(a => a.series === article.series)
@@ -108,13 +108,13 @@ export default async function ArticleDetailPage({ params }: Props) {
                     return (
                       <>
                         {prev ? (
-                          <Link href={`/articles/${prev.slug}`} style={{ fontSize: '0.9rem', color: 'var(--gold)', maxWidth: '45%', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                          <Link href={`/articles/${prev.slug}`} style={{ fontSize: '0.85rem', color: 'var(--gold)', maxWidth: '100%', whiteSpace: 'normal', overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center' }}>
                             ← {prev.title}
                           </Link>
                         ) : <span />}
 
                         {next ? (
-                          <Link href={`/articles/${next.slug}`} style={{ fontSize: '0.9rem', color: 'var(--gold)', maxWidth: '45%', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'right' }}>
+                          <Link href={`/articles/${next.slug}`} style={{ fontSize: '0.85rem', color: 'var(--gold)', maxWidth: '100%', whiteSpace: 'normal', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'right', display: 'flex', alignItems: 'center', marginLeft: 'auto' }}>
                             {next.title} →
                           </Link>
                         ) : <span />}
