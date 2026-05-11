@@ -8,7 +8,10 @@ export default function AdminSeriesPage() {
     <>
       <div className="admin-header">
         <h1 className="admin-page-title">Quản lý Series</h1>
-        <Link href="/admin" className="btn-edit" style={{ textDecoration: 'none' }}>← Quay lại</Link>
+        <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
+          <Link href="/admin" className="btn-edit" style={{ textDecoration: 'none' }}>← Quay lại</Link>
+          <Link href="/admin/series/new" className="btn-primary" style={{ textDecoration: 'none' }}>+ Thêm series mới</Link>
+        </div>
       </div>
 
       <div className="admin-card">

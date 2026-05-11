@@ -15,9 +15,22 @@ export default function SeriesEditor({ series, articles }: Props) {
   const [form, setForm] = useState(series);
   const [saving, setSaving] = useState(false);
   const [msg, setMsg] = useState('');
+  const isNew = !series.slug;
 
   const update = (key: string, val: unknown) => {
-    setForm(f => ({ ...f, [key]: val }));
+    setForm(f => {
+      const next = { ...f, [key]: val };
+      // Auto-generate slug from title if it's a new series and slug wasn't manually edited
+      if (isNew && key === 'title' && typeof val === 'string') {
+        next.slug = val.toLowerCase()
+          .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+          .replace(/[đĐ]/g, 'd')
+          .replace(/[^a-z0-9]/g, '-')
+          .replace(/-+/g, '-')
+          .replace(/^-|-$/g, '');
+      }
+      return next;
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -27,14 +40,18 @@ export default function SeriesEditor({ series, articles }: Props) {
 
     try {
       const res = await fetch('/api/series', {
-        method: 'PUT',
+        method: isNew ? 'POST' : 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
 
       if (res.ok) {
         setMsg('✓ Đã lưu thành công!');
-        router.refresh();
+        if (isNew) {
+          router.push(`/admin/series/${form.slug}/edit`);
+        } else {
+          router.refresh();
+        }
       } else {
         const err = await res.json();
         setMsg('Lỗi: ' + err.error);
@@ -46,6 +63,7 @@ export default function SeriesEditor({ series, articles }: Props) {
   };
 
   const handleDelete = async () => {
+    if (isNew) return;
     if (!confirm('Xác nhận xóa series này? (Các bài viết trong series sẽ không bị xóa nhưng sẽ mất liên kết)')) return;
     const res = await fetch(`/api/series?slug=${form.slug}`, { method: 'DELETE' });
     if (res.ok) router.push('/admin/series');
@@ -136,46 +154,50 @@ export default function SeriesEditor({ series, articles }: Props) {
 
           <div style={{ marginTop: 'var(--space-6)', display: 'flex', gap: 'var(--space-3)' }}>
             <button type="submit" className="btn-primary" disabled={saving} style={{ flex: 1 }}>
-              {saving ? 'Đang lưu...' : 'Cập nhật series'}
+              {saving ? 'Đang lưu...' : isNew ? 'Tạo series mới' : 'Cập nhật series'}
             </button>
-            <button type="button" onClick={handleDelete} className="btn-delete">
-              Xóa series
-            </button>
+            {!isNew && (
+              <button type="button" onClick={handleDelete} className="btn-delete">
+                Xóa series
+              </button>
+            )}
           </div>
         </div>
       </form>
 
-      <div className="editor-sidebar">
-        <div className="admin-card">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-4)' }}>
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: 'var(--ink)' }}>Các bài con</h2>
-            <Link href={`/admin/articles/new?series=${encodeURIComponent(series.title)}`} className="btn-secondary" style={{ fontSize: '0.8rem', padding: '4px 12px' }}>
-              + Bài mới
-            </Link>
-          </div>
+      {!isNew && (
+        <div className="editor-sidebar">
+          <div className="admin-card">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-4)' }}>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: 'var(--ink)' }}>Các bài con</h2>
+              <Link href={`/admin/articles/new?series=${encodeURIComponent(series.title)}`} className="btn-secondary" style={{ fontSize: '0.8rem', padding: '4px 12px' }}>
+                + Bài mới
+              </Link>
+            </div>
 
-          <div className="admin-article-list">
-            {articles.length === 0 ? (
-              <p style={{ color: 'var(--ink-muted)', fontStyle: 'italic', textAlign: 'center', padding: 'var(--space-4) 0' }}>Chưa có bài viết nào trong series này.</p>
-            ) : (
-              articles.sort((a, b) => (a.seriesOrder || 0) - (b.seriesOrder || 0)).map((a, idx) => (
-                <div key={a.slug} className="admin-article-item" style={{ padding: 'var(--space-2) 0', borderBottom: '1px solid var(--border-light)' }}>
-                  <div className="admin-article-info" style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--ink-muted)', width: '20px' }}>{a.seriesOrder || idx + 1}.</span>
-                    <div>
-                      <p className="admin-article-title" style={{ fontSize: '0.95rem' }}>{a.title}</p>
-                      <p className="admin-article-meta" style={{ fontSize: '0.75rem' }}>{a.readingTime} phút đọc · {a.status === 'published' ? 'Đã đăng' : 'Nháp'}</p>
+            <div className="admin-article-list">
+              {articles.length === 0 ? (
+                <p style={{ color: 'var(--ink-muted)', fontStyle: 'italic', textAlign: 'center', padding: 'var(--space-4) 0' }}>Chưa có bài viết nào trong series này.</p>
+              ) : (
+                articles.sort((a, b) => (a.seriesOrder || 0) - (b.seriesOrder || 0)).map((a, idx) => (
+                  <div key={a.slug} className="admin-article-item" style={{ padding: 'var(--space-2) 0', borderBottom: '1px solid var(--border-light)' }}>
+                    <div className="admin-article-info" style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
+                      <span style={{ fontSize: '0.75rem', color: 'var(--ink-muted)', width: '20px' }}>{a.seriesOrder || idx + 1}.</span>
+                      <div>
+                        <p className="admin-article-title" style={{ fontSize: '0.95rem' }}>{a.title}</p>
+                        <p className="admin-article-meta" style={{ fontSize: '0.75rem' }}>{a.readingTime} phút đọc · {a.status === 'published' ? 'Đã đăng' : 'Nháp'}</p>
+                      </div>
+                    </div>
+                    <div className="admin-actions">
+                      <Link href={`/admin/articles/${a.slug}/edit`} className="btn-edit" style={{ fontSize: '0.75rem', padding: '2px 8px' }}>Sửa</Link>
                     </div>
                   </div>
-                  <div className="admin-actions">
-                    <Link href={`/admin/articles/${a.slug}/edit`} className="btn-edit" style={{ fontSize: '0.75rem', padding: '2px 8px' }}>Sửa</Link>
-                  </div>
-                </div>
-              ))
-            )}
+                ))
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
