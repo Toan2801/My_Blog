@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getSeriesBySlug, getArticlesBySeries, getSiteConfig } from '@/lib/data';
 import { formatDate } from '@/lib/utils';
 import TiltCard from '@/components/TiltCard';
+import SupportQR from '@/components/SupportQR';
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const { slug } = await params;
@@ -44,6 +45,8 @@ export default async function SeriesLandingPage({ params }: { params: { slug: st
           dangerouslySetInnerHTML={{ __html: series.description.replace(/\n/g, '<br/>') }}
         />
       </header>
+      
+      <SupportQR qrImage={config.donation.qrImage} facebookUrl={config.facebook} />
 
       <section style={{ background: '#fff', borderRadius: 'var(--radius)', padding: 'var(--space-6) var(--space-8)' }}>
         <p className="section-label">Danh sách các phần ({articles.length})</p>

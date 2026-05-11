@@ -6,6 +6,7 @@ import TableOfContents from '@/components/TableOfContents';
 import ArticleBody from '@/components/ArticleBody';
 import CommentSection from '@/components/CommentSection';
 import ZenToggle from '@/components/ZenToggle';
+import SupportQR from '@/components/SupportQR';
 import VoiceReader from '@/components/VoiceReader';
 import type { Metadata } from 'next';
 
@@ -125,7 +126,10 @@ export default async function ArticleDetailPage({ params }: Props) {
               </div>
             )}
 
+            <SupportQR qrImage={config.donation.qrImage} facebookUrl={config.facebook} />
+
             <ArticleBody content={article.content} />
+
 
             {article.series && (
               <div className="series-nav-bottom admin-card" style={{ padding: 'var(--space-6)', marginTop: 'var(--space-8)', textAlign: 'center' }}>
