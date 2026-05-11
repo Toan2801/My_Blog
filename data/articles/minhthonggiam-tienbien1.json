@@ -15,5 +15,579 @@
   "readingTime": 99,
   "coverImage": "/uploads/img-1778168598679.jfif",
   "author": "Toan Nguyen",
-  "footnotes": []
+  "footnotes": [],
+  "pages": [
+    {
+      "pageNumber": 1,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-1.png"
+    },
+    {
+      "pageNumber": 2,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-2.png"
+    },
+    {
+      "pageNumber": 3,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-3.png"
+    },
+    {
+      "pageNumber": 4,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-4.png"
+    },
+    {
+      "pageNumber": 5,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-5.png"
+    },
+    {
+      "pageNumber": 6,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-6.png"
+    },
+    {
+      "pageNumber": 7,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-7.png"
+    },
+    {
+      "pageNumber": 8,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-8.png"
+    },
+    {
+      "pageNumber": 9,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-9.png"
+    },
+    {
+      "pageNumber": 10,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-10.png"
+    },
+    {
+      "pageNumber": 11,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-11.png"
+    },
+    {
+      "pageNumber": 12,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-12.png"
+    },
+    {
+      "pageNumber": 13,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-13.png"
+    },
+    {
+      "pageNumber": 14,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-14.png"
+    },
+    {
+      "pageNumber": 15,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-15.png"
+    },
+    {
+      "pageNumber": 16,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-16.png"
+    },
+    {
+      "pageNumber": 17,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-17.png"
+    },
+    {
+      "pageNumber": 18,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-18.png"
+    },
+    {
+      "pageNumber": 19,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-19.png"
+    },
+    {
+      "pageNumber": 20,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-20.png"
+    },
+    {
+      "pageNumber": 21,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-21.png"
+    },
+    {
+      "pageNumber": 22,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-22.png"
+    },
+    {
+      "pageNumber": 23,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-23.png"
+    },
+    {
+      "pageNumber": 24,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-24.png"
+    },
+    {
+      "pageNumber": 25,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-25.png"
+    },
+    {
+      "pageNumber": 26,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-26.png"
+    },
+    {
+      "pageNumber": 27,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-27.png"
+    },
+    {
+      "pageNumber": 28,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-28.png"
+    },
+    {
+      "pageNumber": 29,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-29.png"
+    },
+    {
+      "pageNumber": 30,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-30.png"
+    },
+    {
+      "pageNumber": 31,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-31.png"
+    },
+    {
+      "pageNumber": 32,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-32.png"
+    },
+    {
+      "pageNumber": 33,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-33.png"
+    },
+    {
+      "pageNumber": 34,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-34.png"
+    },
+    {
+      "pageNumber": 35,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-35.png"
+    },
+    {
+      "pageNumber": 36,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-36.png"
+    },
+    {
+      "pageNumber": 37,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-37.png"
+    },
+    {
+      "pageNumber": 38,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-38.png"
+    },
+    {
+      "pageNumber": 39,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-39.png"
+    },
+    {
+      "pageNumber": 40,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-40.png"
+    },
+    {
+      "pageNumber": 41,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-41.png"
+    },
+    {
+      "pageNumber": 42,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-42.png"
+    },
+    {
+      "pageNumber": 43,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-43.png"
+    },
+    {
+      "pageNumber": 44,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-44.png"
+    },
+    {
+      "pageNumber": 45,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-45.png"
+    },
+    {
+      "pageNumber": 46,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-46.png"
+    },
+    {
+      "pageNumber": 47,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-47.png"
+    },
+    {
+      "pageNumber": 48,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-48.png"
+    },
+    {
+      "pageNumber": 49,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-49.png"
+    },
+    {
+      "pageNumber": 50,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-50.png"
+    },
+    {
+      "pageNumber": 51,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-51.png"
+    },
+    {
+      "pageNumber": 52,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-52.png"
+    },
+    {
+      "pageNumber": 53,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-53.png"
+    },
+    {
+      "pageNumber": 54,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-54.png"
+    },
+    {
+      "pageNumber": 55,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-55.png"
+    },
+    {
+      "pageNumber": 56,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-56.png"
+    },
+    {
+      "pageNumber": 57,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-57.png"
+    },
+    {
+      "pageNumber": 58,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-58.png"
+    },
+    {
+      "pageNumber": 59,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-59.png"
+    },
+    {
+      "pageNumber": 60,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-60.png"
+    },
+    {
+      "pageNumber": 61,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-61.png"
+    },
+    {
+      "pageNumber": 62,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-62.png"
+    },
+    {
+      "pageNumber": 63,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-63.png"
+    },
+    {
+      "pageNumber": 64,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-64.png"
+    },
+    {
+      "pageNumber": 65,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-65.png"
+    },
+    {
+      "pageNumber": 66,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-66.png"
+    },
+    {
+      "pageNumber": 67,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-67.png"
+    },
+    {
+      "pageNumber": 68,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-68.png"
+    },
+    {
+      "pageNumber": 69,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-69.png"
+    },
+    {
+      "pageNumber": 70,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-70.png"
+    },
+    {
+      "pageNumber": 71,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-71.png"
+    },
+    {
+      "pageNumber": 72,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-72.png"
+    },
+    {
+      "pageNumber": 73,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-73.png"
+    },
+    {
+      "pageNumber": 74,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-74.png"
+    },
+    {
+      "pageNumber": 75,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-75.png"
+    },
+    {
+      "pageNumber": 76,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-76.png"
+    },
+    {
+      "pageNumber": 77,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-77.png"
+    },
+    {
+      "pageNumber": 78,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-78.png"
+    },
+    {
+      "pageNumber": 79,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-79.png"
+    },
+    {
+      "pageNumber": 80,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-80.png"
+    },
+    {
+      "pageNumber": 81,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-81.png"
+    },
+    {
+      "pageNumber": 82,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-82.png"
+    },
+    {
+      "pageNumber": 83,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-83.png"
+    },
+    {
+      "pageNumber": 84,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-84.png"
+    },
+    {
+      "pageNumber": 85,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-85.png"
+    },
+    {
+      "pageNumber": 86,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-86.png"
+    },
+    {
+      "pageNumber": 87,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-87.png"
+    },
+    {
+      "pageNumber": 88,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-88.png"
+    },
+    {
+      "pageNumber": 89,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-89.png"
+    },
+    {
+      "pageNumber": 90,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-90.png"
+    },
+    {
+      "pageNumber": 91,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-91.png"
+    },
+    {
+      "pageNumber": 92,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-92.png"
+    },
+    {
+      "pageNumber": 93,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-93.png"
+    },
+    {
+      "pageNumber": 94,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-94.png"
+    },
+    {
+      "pageNumber": 95,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-95.png"
+    },
+    {
+      "pageNumber": 96,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-96.png"
+    },
+    {
+      "pageNumber": 97,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-97.png"
+    },
+    {
+      "pageNumber": 98,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-98.png"
+    },
+    {
+      "pageNumber": 99,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-99.png"
+    },
+    {
+      "pageNumber": 100,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-100.png"
+    },
+    {
+      "pageNumber": 101,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-101.png"
+    },
+    {
+      "pageNumber": 102,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-102.png"
+    },
+    {
+      "pageNumber": 103,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-103.png"
+    },
+    {
+      "pageNumber": 104,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-104.png"
+    },
+    {
+      "pageNumber": 105,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-105.png"
+    },
+    {
+      "pageNumber": 106,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-106.png"
+    },
+    {
+      "pageNumber": 107,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-107.png"
+    },
+    {
+      "pageNumber": 108,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-108.png"
+    },
+    {
+      "pageNumber": 109,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-109.png"
+    },
+    {
+      "pageNumber": 110,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-110.png"
+    },
+    {
+      "pageNumber": 111,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-111.png"
+    },
+    {
+      "pageNumber": 112,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-112.png"
+    },
+    {
+      "pageNumber": 113,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-113.png"
+    },
+    {
+      "pageNumber": 114,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-114.png"
+    },
+    {
+      "pageNumber": 115,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-115.png"
+    },
+    {
+      "pageNumber": 116,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-116.png"
+    },
+    {
+      "pageNumber": 117,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-117.png"
+    },
+    {
+      "pageNumber": 118,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-118.png"
+    },
+    {
+      "pageNumber": 119,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-119.png"
+    },
+    {
+      "pageNumber": 120,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-120.png"
+    },
+    {
+      "pageNumber": 121,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-121.png"
+    },
+    {
+      "pageNumber": 122,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-122.png"
+    },
+    {
+      "pageNumber": 123,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-123.png"
+    },
+    {
+      "pageNumber": 124,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-124.png"
+    },
+    {
+      "pageNumber": 125,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-125.png"
+    },
+    {
+      "pageNumber": 126,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-126.png"
+    },
+    {
+      "pageNumber": 127,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-127.png"
+    },
+    {
+      "pageNumber": 128,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-128.png"
+    },
+    {
+      "pageNumber": 129,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-129.png"
+    },
+    {
+      "pageNumber": 130,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-130.png"
+    },
+    {
+      "pageNumber": 131,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-131.png"
+    },
+    {
+      "pageNumber": 132,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-132.png"
+    },
+    {
+      "pageNumber": 133,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-133.png"
+    },
+    {
+      "pageNumber": 134,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-134.png"
+    },
+    {
+      "pageNumber": 135,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-135.png"
+    },
+    {
+      "pageNumber": 136,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-136.png"
+    },
+    {
+      "pageNumber": 137,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-137.png"
+    },
+    {
+      "pageNumber": 138,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-138.png"
+    },
+    {
+      "pageNumber": 139,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-139.png"
+    },
+    {
+      "pageNumber": 140,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-140.png"
+    },
+    {
+      "pageNumber": 141,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-141.png"
+    },
+    {
+      "pageNumber": 142,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-142.png"
+    },
+    {
+      "pageNumber": 143,
+      "imageUrl": "/data/image/articles/minhthonggiam-tienbien1/page-143.png"
+    }
+  ]
 }

@@ -1,0 +1,227 @@
+/* ============================================
+   BOOK READER — Page-flip reading mode
+   ============================================ */
+
+.reader-layout {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  background: #1a1a1a;
+  color: #fff;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Toolbar */
+.reader-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 0 16px;
+  background: #111;
+  border-bottom: 1px solid #333;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.reader-toolbar-left,
+.reader-toolbar-center,
+.reader-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reader-toolbar-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.reader-btn {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-family: var(--font-ui, sans-serif);
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.reader-btn:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.reader-btn.active {
+  background: rgba(198,138,43,0.3);
+  border-color: rgba(198,138,43,0.5);
+}
+
+.reader-page-indicator {
+  font-family: var(--font-ui, sans-serif);
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.7);
+  white-space: nowrap;
+}
+
+.reader-page-input {
+  width: 40px;
+  text-align: center;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  border-radius: 3px;
+  padding: 2px 4px;
+  font-size: 0.82rem;
+  font-family: var(--font-ui, sans-serif);
+}
+
+/* Viewport */
+.reader-viewport {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 16px;
+}
+
+/* ── Book container (StPageFlip renders its canvas here) ──── */
+.reader-book-container {
+  /* StPageFlip sizes this container automatically.
+     The container holds a <canvas> that renders the flip animation. */
+  position: relative;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,0.2),
+    0 8px 32px rgba(0,0,0,0.3);
+  border-radius: 3px;
+}
+
+/* StPageFlip's internal canvas fills the container */
+.reader-book-container canvas {
+  display: block;
+}
+
+/* Page navigation arrows */
+.reader-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  width: 44px;
+  height: 64px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, opacity 0.15s;
+  z-index: 5;
+}
+
+.reader-arrow:hover {
+  background: rgba(0,0,0,0.7);
+}
+
+.reader-arrow-prev {
+  left: 16px;
+}
+
+.reader-arrow-next {
+  right: 16px;
+}
+
+.reader-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Loading overlay */
+.reader-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: rgba(0,0,0,0.6);
+  z-index: 20;
+}
+
+.reader-loading-text {
+  font-family: var(--font-ui, sans-serif);
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+}
+
+.reader-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255,255,255,0.2);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: reader-spin 0.8s linear infinite;
+}
+
+@keyframes reader-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Error state */
+.reader-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+  font-family: var(--font-ui, sans-serif);
+  color: rgba(255,255,255,0.7);
+}
+
+/* Print prevention */
+@media print {
+  .reader-layout {
+    display: none !important;
+  }
+  body::after {
+    content: 'In ấn không được hỗ trợ trong chế độ đọc.';
+    display: block;
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2rem;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .reader-toolbar {
+    height: 40px;
+    padding: 0 8px;
+  }
+  .reader-btn {
+    padding: 4px 10px;
+    font-size: 0.75rem;
+  }
+  .reader-viewport {
+    padding: 8px;
+  }
+  .reader-arrow {
+    width: 32px;
+    height: 48px;
+    font-size: 1.1rem;
+  }
+  .reader-arrow-prev { left: 4px; }
+  .reader-arrow-next { right: 4px; }
+}

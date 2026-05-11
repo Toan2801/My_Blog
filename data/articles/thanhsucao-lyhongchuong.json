@@ -23,5 +23,107 @@
   "readingTime": 32,
   "coverImage": "/uploads/img-1775890433995.png",
   "author": "Toan Nguyen",
-  "footnotes": []
+  "footnotes": [],
+  "pages": [
+    {
+      "pageNumber": 1,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-1.png"
+    },
+    {
+      "pageNumber": 2,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-2.png"
+    },
+    {
+      "pageNumber": 3,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-3.png"
+    },
+    {
+      "pageNumber": 4,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-4.png"
+    },
+    {
+      "pageNumber": 5,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-5.png"
+    },
+    {
+      "pageNumber": 6,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-6.png"
+    },
+    {
+      "pageNumber": 7,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-7.png"
+    },
+    {
+      "pageNumber": 8,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-8.png"
+    },
+    {
+      "pageNumber": 9,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-9.png"
+    },
+    {
+      "pageNumber": 10,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-10.png"
+    },
+    {
+      "pageNumber": 11,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-11.png"
+    },
+    {
+      "pageNumber": 12,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-12.png"
+    },
+    {
+      "pageNumber": 13,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-13.png"
+    },
+    {
+      "pageNumber": 14,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-14.png"
+    },
+    {
+      "pageNumber": 15,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-15.png"
+    },
+    {
+      "pageNumber": 16,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-16.png"
+    },
+    {
+      "pageNumber": 17,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-17.png"
+    },
+    {
+      "pageNumber": 18,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-18.png"
+    },
+    {
+      "pageNumber": 19,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-19.png"
+    },
+    {
+      "pageNumber": 20,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-20.png"
+    },
+    {
+      "pageNumber": 21,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-21.png"
+    },
+    {
+      "pageNumber": 22,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-22.png"
+    },
+    {
+      "pageNumber": 23,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-23.png"
+    },
+    {
+      "pageNumber": 24,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-24.png"
+    },
+    {
+      "pageNumber": 25,
+      "imageUrl": "/data/image/articles/thanhsucao-lyhongchuong/page-25.png"
+    }
+  ]
 }

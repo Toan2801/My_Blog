@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "migrate": "tsx scripts/migrate.ts",
+    "rasterize": "tsx scripts/rasterize-articles.ts"
   },
   "dependencies": {
     "@tiptap/core": "^3.22.3",
@@ -24,9 +26,11 @@
     "framer-motion": "^12.38.0",
     "google-tts-api": "^2.0.2",
     "gray-matter": "^4.0.3",
+    "html2canvas": "^1.4.1",
     "lucide-react": "^1.8.0",
     "mongoose": "^9.4.1",
     "next": "16.2.3",
+    "page-flip": "^2.0.7",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-markdown": "^10.1.0",
@@ -39,6 +43,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.3",
+    "puppeteer": "^24.43.0",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

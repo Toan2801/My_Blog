@@ -19,5 +19,51 @@
   "readingTime": 6,
   "coverImage": "/uploads/img-1778380556127.jpg",
   "author": "Toan Nguyen",
-  "footnotes": []
+  "footnotes": [],
+  "pages": [
+    {
+      "pageNumber": 1,
+      "imageUrl": "/data/image/articles/laivanquangtuthuat/page-1.png"
+    },
+    {
+      "pageNumber": 2,
+      "imageUrl": "/data/image/articles/laivanquangtuthuat/page-2.png"
+    },
+    {
+      "pageNumber": 3,
+      "imageUrl": "/data/image/articles/laivanquangtuthuat/page-3.png"
+    },
+    {
+      "pageNumber": 4,
+      "imageUrl": "/data/image/articles/laivanquangtuthuat/page-4.png"
+    },
+    {
+      "pageNumber": 5,
+      "imageUrl": "/data/image/articles/laivanquangtuthuat/page-5.png"
+    },
+    {
+      "pageNumber": 6,
+      "imageUrl": "/data/image/articles/laivanquangtuthuat/page-6.png"
+    },
+    {
+      "pageNumber": 7,
+      "imageUrl": "/data/image/articles/laivanquangtuthuat/page-7.png"
+    },
+    {
+      "pageNumber": 8,
+      "imageUrl": "/data/image/articles/laivanquangtuthuat/page-8.png"
+    },
+    {
+      "pageNumber": 9,
+      "imageUrl": "/data/image/articles/laivanquangtuthuat/page-9.png"
+    },
+    {
+      "pageNumber": 10,
+      "imageUrl": "/data/image/articles/laivanquangtuthuat/page-10.png"
+    },
+    {
+      "pageNumber": 11,
+      "imageUrl": "/data/image/articles/laivanquangtuthuat/page-11.png"
+    }
+  ]
 }

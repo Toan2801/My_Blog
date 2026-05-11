@@ -35,6 +35,10 @@ const ArticleSchema: Schema = new Schema({
     id: { type: String },
     num: { type: Number },
     content: { type: String }
+  }],
+  pages: [{
+    pageNumber: { type: Number },
+    imageUrl: { type: String }
   }]
 }, {
   timestamps: true,

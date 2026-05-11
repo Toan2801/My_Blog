@@ -2,36 +2,75 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 import { SiteConfig } from '@/lib/types';
-import Navigation from './Navigation';
 
 export default function SiteHeader({ config }: { config: SiteConfig }) {
   const pathname = usePathname();
-  const isHome = pathname === '/';
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="site-header">
-      
-      {/* Hero Section - Compact and unified on all pages */}
-      <section className="hero hero-compact">
-        {config.heroImage && (
-          <div className="hero-logo-container">
-            <img src={config.heroImage} alt={config.blogTitle} className="hero-logo-image" />
-          </div>
-        )}
-      </section>
+    <>
+      {/* Header Art Banner */}
+      {config.heroImage && (
+        <div className="header-banner">
+          <Link href="/">
+            <img src={config.heroImage} alt={config.blogTitle} className="header-banner-img" />
+          </Link>
+        </div>
+      )}
 
-      {/* Main Navigator - Now sticky and container-aligned */}
-      <nav className="main-nav-premium">
-        <div className="main-nav-premium-inner">
-          <Link href="/" className={`nav-link-premium ${pathname === '/' ? 'active' : ''}`}>Trang chủ</Link>
-          <Link href="/articles" className={`nav-link-premium ${pathname.startsWith('/articles') ? 'active' : ''}`}>Bài viết</Link>
-          <Link href="/translations" className={`nav-link-premium ${pathname.startsWith('/translations') ? 'active' : ''}`}>Bài dịch</Link>
-          <Link href="/videos" className={`nav-link-premium ${pathname.startsWith('/videos') ? 'active' : ''}`}>Video</Link>
-          <Link href="/contact" className={`nav-link-premium ${pathname.startsWith('/contact') ? 'active' : ''}`}>Liên hệ</Link>
-          <a href="/api/articles/random" className="nav-link-premium">✨ Ngẫu nhiên</a>
+      {/* Main Navigation (sticky — outside header so sticky works against body scroll) */}
+      <nav className="header-nav">
+        <div className="header-nav-inner">
+          <ul className={`nav-items${menuOpen ? ' open' : ''}`}>
+            <li>
+              <Link href="/" className={pathname === '/' ? 'active' : ''} onClick={() => setMenuOpen(false)}>
+                Trang chủ
+              </Link>
+            </li>
+            <li className="has-dropdown">
+              <Link href="/articles" className={pathname.startsWith('/articles') ? 'active' : ''} onClick={() => setMenuOpen(false)}>
+                Bài viết ▾
+              </Link>
+              <ul className="dropdown">
+                {config.categories.map(cat => (
+                  <li key={cat}>
+                    <Link href={`/articles?category=${encodeURIComponent(cat)}`} onClick={() => setMenuOpen(false)}>
+                      {cat}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </li>
+            <li>
+              <Link href="/translations" className={pathname.startsWith('/translations') ? 'active' : ''} onClick={() => setMenuOpen(false)}>
+                Bài dịch
+              </Link>
+            </li>
+            <li>
+              <Link href="/videos" className={pathname.startsWith('/videos') ? 'active' : ''} onClick={() => setMenuOpen(false)}>
+                Video
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className={pathname.startsWith('/contact') ? 'active' : ''} onClick={() => setMenuOpen(false)}>
+                Liên hệ
+              </Link>
+            </li>
+            <li>
+              <a href="/api/articles/random" onClick={() => setMenuOpen(false)}>Ngẫu nhiên</a>
+            </li>
+          </ul>
+          <button
+            className="header-hamburger"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span /><span /><span />
+          </button>
         </div>
       </nav>
-    </header>
+    </>
   );
 }

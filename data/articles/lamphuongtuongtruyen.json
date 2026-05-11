@@ -17,5 +17,67 @@
   "readingTime": 8,
   "coverImage": "/uploads/img-1778394219844.jpg",
   "author": "Toan Nguyen",
-  "footnotes": []
+  "footnotes": [],
+  "pages": [
+    {
+      "pageNumber": 1,
+      "imageUrl": "/data/image/articles/lamphuongtuongtruyen/page-1.png"
+    },
+    {
+      "pageNumber": 2,
+      "imageUrl": "/data/image/articles/lamphuongtuongtruyen/page-2.png"
+    },
+    {
+      "pageNumber": 3,
+      "imageUrl": "/data/image/articles/lamphuongtuongtruyen/page-3.png"
+    },
+    {
+      "pageNumber": 4,
+      "imageUrl": "/data/image/articles/lamphuongtuongtruyen/page-4.png"
+    },
+    {
+      "pageNumber": 5,
+      "imageUrl": "/data/image/articles/lamphuongtuongtruyen/page-5.png"
+    },
+    {
+      "pageNumber": 6,
+      "imageUrl": "/data/image/articles/lamphuongtuongtruyen/page-6.png"
+    },
+    {
+      "pageNumber": 7,
+      "imageUrl": "/data/image/articles/lamphuongtuongtruyen/page-7.png"
+    },
+    {
+      "pageNumber": 8,
+      "imageUrl": "/data/image/articles/lamphuongtuongtruyen/page-8.png"
+    },
+    {
+      "pageNumber": 9,
+      "imageUrl": "/data/image/articles/lamphuongtuongtruyen/page-9.png"
+    },
+    {
+      "pageNumber": 10,
+      "imageUrl": "/data/image/articles/lamphuongtuongtruyen/page-10.png"
+    },
+    {
+      "pageNumber": 11,
+      "imageUrl": "/data/image/articles/lamphuongtuongtruyen/page-11.png"
+    },
+    {
+      "pageNumber": 12,
+      "imageUrl": "/data/image/articles/lamphuongtuongtruyen/page-12.png"
+    },
+    {
+      "pageNumber": 13,
+      "imageUrl": "/data/image/articles/lamphuongtuongtruyen/page-13.png"
+    },
+    {
+      "pageNumber": 14,
+      "imageUrl": "/data/image/articles/lamphuongtuongtruyen/page-14.png"
+    },
+    {
+      "pageNumber": 15,
+      "imageUrl": "/data/image/articles/lamphuongtuongtruyen/page-15.png"
+    }
+  ]
 }

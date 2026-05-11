@@ -8,6 +8,7 @@ import CommentSection from '@/components/CommentSection';
 import ZenToggle from '@/components/ZenToggle';
 import SupportQR from '@/components/SupportQR';
 import VoiceReader from '@/components/VoiceReader';
+import Breadcrumb from '@/components/Breadcrumb';
 import type { Metadata } from 'next';
 
 interface Props { params: { slug: string } }
@@ -46,6 +47,10 @@ export default async function ArticleDetailPage({ params }: Props) {
     <article>
       {/* Main Content Area */}
       <div className="container" style={{ marginTop: 'var(--space-8)' }}>
+        <Breadcrumb items={[
+          { label: 'Bài viết', href: '/articles' },
+          { label: article.title },
+        ]} />
         <header className="article-detail-header">
           <p className="article-header-category">{article.category}</p>
           <h1 className="article-title">{article.title}</h1>
@@ -65,6 +70,11 @@ export default async function ArticleDetailPage({ params }: Props) {
             </div>
           )}
           <VoiceReader />
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'var(--space-3)' }}>
+            <Link href={`/read/${slug}`} className="btn-reader">
+              📖 Đọc trên trình xem
+            </Link>
+          </div>
           <div style={{ width: '60px', height: '2px', background: 'var(--gold)', margin: '16px auto 0' }} />
         </header>
       </div>

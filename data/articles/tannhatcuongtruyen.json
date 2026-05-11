@@ -18,5 +18,47 @@
   "readingTime": 12,
   "coverImage": "/uploads/img-1778394803335.jpg",
   "author": "Toan Nguyen",
-  "footnotes": []
+  "footnotes": [],
+  "pages": [
+    {
+      "pageNumber": 1,
+      "imageUrl": "/data/image/articles/tannhatcuongtruyen/page-1.png"
+    },
+    {
+      "pageNumber": 2,
+      "imageUrl": "/data/image/articles/tannhatcuongtruyen/page-2.png"
+    },
+    {
+      "pageNumber": 3,
+      "imageUrl": "/data/image/articles/tannhatcuongtruyen/page-3.png"
+    },
+    {
+      "pageNumber": 4,
+      "imageUrl": "/data/image/articles/tannhatcuongtruyen/page-4.png"
+    },
+    {
+      "pageNumber": 5,
+      "imageUrl": "/data/image/articles/tannhatcuongtruyen/page-5.png"
+    },
+    {
+      "pageNumber": 6,
+      "imageUrl": "/data/image/articles/tannhatcuongtruyen/page-6.png"
+    },
+    {
+      "pageNumber": 7,
+      "imageUrl": "/data/image/articles/tannhatcuongtruyen/page-7.png"
+    },
+    {
+      "pageNumber": 8,
+      "imageUrl": "/data/image/articles/tannhatcuongtruyen/page-8.png"
+    },
+    {
+      "pageNumber": 9,
+      "imageUrl": "/data/image/articles/tannhatcuongtruyen/page-9.png"
+    },
+    {
+      "pageNumber": 10,
+      "imageUrl": "/data/image/articles/tannhatcuongtruyen/page-10.png"
+    }
+  ]
 }

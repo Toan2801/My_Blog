@@ -4,6 +4,11 @@ export interface Footnote {
   content: string;
 }
 
+export interface ArticlePage {
+  pageNumber: number;
+  imageUrl: string;
+}
+
 export interface Article {
   id: string;
   slug: string;
@@ -23,6 +28,7 @@ export interface Article {
   status: 'draft' | 'published';
   readingTime: number;
   footnotes?: Footnote[];
+  pages?: ArticlePage[];
 }
 
 export interface Series {
