@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useRef, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Article, Footnote, Series } from '@/lib/types';
 import dynamic from 'next/dynamic';
 import { RichTextEditorRef } from './RichTextEditor';
@@ -20,6 +20,9 @@ interface Props {
 
 export default function ArticleEditor({ initialArticle, categories, seriesList, isEdit }: Props) {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const seriesFromUrl = searchParams.get('series');
+  
   const editorRef = useRef<RichTextEditorRef>(null);
   const [saving, setSaving] = useState(false);
   const [msg, setMsg] = useState('');
@@ -32,7 +35,7 @@ export default function ArticleEditor({ initialArticle, categories, seriesList, 
     category: initialArticle?.category || categories[0] || '',
     type: initialArticle?.type || 'articles' as 'articles' | 'translation',
     tags: initialArticle?.tags || [] as string[],
-    series: initialArticle?.series || '',
+    series: initialArticle?.series || seriesFromUrl || '',
     seriesOrder: initialArticle?.seriesOrder?.toString() || '',
     featured: initialArticle?.featured || false,
     status: initialArticle?.status || 'draft' as 'draft' | 'published',
@@ -43,6 +46,20 @@ export default function ArticleEditor({ initialArticle, categories, seriesList, 
     author: initialArticle?.author || '',
     footnotes: initialArticle?.footnotes || [] as Footnote[],
   });
+
+  // Automatically sync with series settings
+  useEffect(() => {
+    if (form.series) {
+      const seriesObj = seriesList.find(s => s.title === form.series);
+      if (seriesObj) {
+        setForm(f => ({
+          ...f,
+          category: seriesObj.category || f.category,
+          type: seriesObj.type || f.type
+        }));
+      }
+    }
+  }, [form.series, seriesList]);
 
   const handleAddFootnote = () => {
     const nextNum = form.footnotes.length + 1;
@@ -271,82 +288,84 @@ export default function ArticleEditor({ initialArticle, categories, seriesList, 
           </div>
 
           {/* Meta */}
-          <div className="admin-card">
-            <p className="admin-card-title">Phân Loại</p>
-            <div className="form-group">
-              <label className="form-label">Chủ đề / Danh mục *</label>
+          {!form.series && (
+            <div className="admin-card">
+              <p className="admin-card-title">Phân Loại</p>
+              <div className="form-group">
+                <label className="form-label">Chủ đề / Danh mục *</label>
 
-              <div className="category-suggestions" style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '10px' }}>
-                {categories.map(c => (
-                  <button
-                    key={c}
-                    type="button"
-                    className={`category-pill ${form.category === c ? 'active' : ''}`}
-                    onClick={() => update('category', c)}
-                  >
-                    {c}
-                  </button>
-                ))}
-              </div>
+                <div className="category-suggestions" style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '10px' }}>
+                  {categories.map(c => (
+                    <button
+                      key={c}
+                      type="button"
+                      className={`category-pill ${form.category === c ? 'active' : ''}`}
+                      onClick={() => update('category', c)}
+                    >
+                      {c}
+                    </button>
+                  ))}
+                </div>
 
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <input
-                  className="form-input"
-                  value={form.category}
-                  onChange={e => update('category', e.target.value)}
-                  placeholder="Nhập chủ đề mới..."
-                  required
-                />
-                {!categories.includes(form.category) && form.category.trim() !== '' && (
-                  <button
-                    type="button"
-                    className="btn-secondary"
-                    title="Lưu vào danh sách gợi ý"
-                    onClick={async () => {
-                      // Logic to save new category to config
-                      const res = await fetch('/api/config', {
-                        method: 'PATCH',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ categories: [...categories, form.category.trim()] }),
-                      });
-                      if (res.ok) {
-                        router.refresh();
-                        setMsg('✓ Đã lưu danh mục mới!');
-                      }
-                    }}
-                  >
-                    Thêm
-                  </button>
-                )}
+                <div style={{ display: 'flex', gap: '8px' }}>
+                  <input
+                    className="form-input"
+                    value={form.category}
+                    onChange={e => update('category', e.target.value)}
+                    placeholder="Nhập chủ đề mới..."
+                    required
+                  />
+                  {!categories.includes(form.category) && form.category.trim() !== '' && (
+                    <button
+                      type="button"
+                      className="btn-secondary"
+                      title="Lưu vào danh sách gợi ý"
+                      onClick={async () => {
+                        // Logic to save new category to config
+                        const res = await fetch('/api/config', {
+                          method: 'PATCH',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({ categories: [...categories, form.category.trim()] }),
+                        });
+                        if (res.ok) {
+                          router.refresh();
+                          setMsg('✓ Đã lưu danh mục mới!');
+                        }
+                      }}
+                    >
+                      Thêm
+                    </button>
+                  )}
+                </div>
+              </div>
+              <div className="form-group" style={{ marginTop: 'var(--space-3)' }}>
+                <label className="form-label">Tags (Enter để thêm)</label>
+                <div className="tags-input-wrapper" onClick={() => document.getElementById('tag-input')?.focus()}>
+                  {form.tags.map(tag => (
+                    <span key={tag} className="tag-pill-remove">
+                      #{tag}
+                      <button type="button" onClick={() => removeTag(tag)}>×</button>
+                    </span>
+                  ))}
+                  <input
+                    id="tag-input"
+                    className="tags-input-field"
+                    value={tagInput}
+                    onChange={e => setTagInput(e.target.value)}
+                    onKeyDown={addTag}
+                    placeholder={form.tags.length === 0 ? 'thêm tag...' : ''}
+                  />
+                </div>
+              </div>
+              <div className="form-group" style={{ marginTop: 'var(--space-4)' }}>
+                <label className="form-label">Loại nội dung</label>
+                <select className="sort-select" value={form.type} onChange={e => update('type', e.target.value)}>
+                  <option value="articles">Bài viết</option>
+                  <option value="translation">Bài dịch</option>
+                </select>
               </div>
             </div>
-            <div className="form-group" style={{ marginTop: 'var(--space-3)' }}>
-              <label className="form-label">Tags (Enter để thêm)</label>
-              <div className="tags-input-wrapper" onClick={() => document.getElementById('tag-input')?.focus()}>
-                {form.tags.map(tag => (
-                  <span key={tag} className="tag-pill-remove">
-                    #{tag}
-                    <button type="button" onClick={() => removeTag(tag)}>×</button>
-                  </span>
-                ))}
-                <input
-                  id="tag-input"
-                  className="tags-input-field"
-                  value={tagInput}
-                  onChange={e => setTagInput(e.target.value)}
-                  onKeyDown={addTag}
-                  placeholder={form.tags.length === 0 ? 'thêm tag...' : ''}
-                />
-              </div>
-            </div>
-            <div className="form-group" style={{ marginTop: 'var(--space-4)' }}>
-              <label className="form-label">Loại nội dung</label>
-              <select className="sort-select" value={form.type} onChange={e => update('type', e.target.value)}>
-                <option value="original">Bài viết</option>
-                <option value="translation">Bài dịch</option>
-              </select>
-            </div>
-          </div>
+          )}
 
           {/* Series */}
           <div className="admin-card">

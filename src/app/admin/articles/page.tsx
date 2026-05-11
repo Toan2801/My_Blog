@@ -3,7 +3,7 @@ import { getAllArticlesAdmin } from '@/lib/data';
 import DeleteArticleButton from '@/components/DeleteArticleButton';
 
 export default function AdminArticlesPage() {
-  const articles = getAllArticlesAdmin();
+  const articles = getAllArticlesAdmin().filter(a => !a.series);
 
   return (
     <>

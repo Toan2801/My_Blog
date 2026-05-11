@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getArticleBySlug, getSiteConfig, getAllSeries } from '@/lib/data';
 import ArticleEditor from '@/components/ArticleEditor';
+import { Suspense } from 'react';
 
 export default async function EditArticlePage({ params }: { params: { slug: string } }) {
   const { slug } = await params;
@@ -13,7 +14,9 @@ export default async function EditArticlePage({ params }: { params: { slug: stri
       <div className="admin-header">
         <h1 className="admin-page-title">Chỉnh sửa bài viết</h1>
       </div>
-      <ArticleEditor initialArticle={article} categories={config.categories} seriesList={getAllSeries()} isEdit />
+      <Suspense fallback={<div>Đang tải bộ soạn thảo...</div>}>
+        <ArticleEditor initialArticle={article} categories={config.categories} seriesList={getAllSeries()} isEdit />
+      </Suspense>
     </>
   );
 }

@@ -17,7 +17,7 @@ export default function AdminAssistant() {
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 1000);
-    
+
     const interval = setInterval(() => {
       setFade(false);
       setTimeout(() => {
@@ -41,17 +41,17 @@ export default function AdminAssistant() {
         <svg viewBox="0 0 200 240" className="cat-svg">
           {/* Đuôi - vẫy mạnh hơn */}
           <path d="M140 180 Q180 160 170 210 Q160 230 180 200" fill="none" stroke="#FFB6C1" strokeWidth="8" strokeLinecap="round" className="tail-full" />
-          
+
           {/* Tai */}
           <path d="M60 70 L40 20 L85 50 Z" fill="#FFE4E1" stroke="#FFB6C1" strokeWidth="2" />
           <path d="M140 70 L160 20 L115 50 Z" fill="#FFE4E1" stroke="#FFB6C1" strokeWidth="2" />
-          
+
           {/* Thân */}
           <ellipse cx="100" cy="170" rx="55" ry="50" fill="#FFF" stroke="#FFB6C1" strokeWidth="3" />
-          
+
           {/* Đầu */}
           <circle cx="100" cy="90" r="65" fill="#FFF" stroke="#FFB6C1" strokeWidth="3" />
-          
+
           {/* Mắt to tròn long lanh */}
           <g className="eyes-group">
             <circle cx="75" cy="85" r="10" fill="#333" />
@@ -59,11 +59,11 @@ export default function AdminAssistant() {
             <circle cx="125" cy="85" r="10" fill="#333" />
             <circle cx="122" cy="82" r="4" fill="#FFF" /> {/* Điểm sáng mắt */}
           </g>
-          
+
           {/* Mũi & Miệng */}
           <circle cx="100" cy="100" r="4" fill="#FFB6C1" />
           <path d="M90 110 Q100 120 110 110" fill="none" stroke="#FFB6C1" strokeWidth="2" strokeLinecap="round" />
-          
+
           {/* Râu */}
           <line x1="50" y1="100" x2="20" y2="95" stroke="#FFB6C1" strokeWidth="1" />
           <line x1="50" y1="110" x2="20" y2="115" stroke="#FFB6C1" strokeWidth="1" />
@@ -73,7 +73,7 @@ export default function AdminAssistant() {
           {/* Hai tay/chân trước */}
           <ellipse cx="80" cy="190" rx="12" ry="18" fill="#FFF" stroke="#FFB6C1" strokeWidth="2" />
           <ellipse cx="120" cy="190" rx="12" ry="18" fill="#FFF" stroke="#FFB6C1" strokeWidth="2" />
-          
+
           {/* Hai chân sau */}
           <ellipse cx="60" cy="210" rx="15" ry="10" fill="#FFF" stroke="#FFB6C1" strokeWidth="2" />
           <ellipse cx="140" cy="210" rx="15" ry="10" fill="#FFF" stroke="#FFB6C1" strokeWidth="2" />

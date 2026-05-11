@@ -80,6 +80,13 @@ export function getArticlesBySeries(seriesName: string): Article[] {
     .sort((a, b) => (a.seriesOrder || 0) - (b.seriesOrder || 0));
 }
 
+export function getArticlesBySeriesAdmin(seriesName: string): Article[] {
+  const all = getAllArticlesAdmin();
+  return all
+    .filter(a => a.series === seriesName)
+    .sort((a, b) => (a.seriesOrder || 0) - (b.seriesOrder || 0));
+}
+
 export function getAllSeries(): Series[] {
   if (!fs.existsSync(SERIES_DIR)) return [];
   const files = fs.readdirSync(SERIES_DIR).filter(f => f.endsWith('.json'));
