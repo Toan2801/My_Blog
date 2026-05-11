@@ -9,6 +9,11 @@ export interface ArticlePage {
   imageUrl: string;
 }
 
+export interface ArticleMarkdownPage {
+  pageNumber: number;
+  markdown: string;
+}
+
 export interface Article {
   id: string;
   slug: string;
@@ -29,6 +34,7 @@ export interface Article {
   readingTime: number;
   footnotes?: Footnote[];
   pages?: ArticlePage[];
+  markdownPages?: ArticleMarkdownPage[];
 }
 
 export interface Series {

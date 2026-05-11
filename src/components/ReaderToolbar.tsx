@@ -7,6 +7,7 @@ interface Props {
   onBack: () => void;
   onPageChange: (page: number) => void;
   onFullscreen: () => void;
+  onSearch?: () => void;
 }
 
 export default function ReaderToolbar({
@@ -16,6 +17,7 @@ export default function ReaderToolbar({
   onBack,
   onPageChange,
   onFullscreen,
+  onSearch,
 }: Props) {
   const handlePageInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -55,6 +57,11 @@ export default function ReaderToolbar({
       </div>
 
       <div className="reader-toolbar-right">
+        {onSearch && (
+          <button className="reader-btn" onClick={onSearch} title="Tìm trong bài (Ctrl+F)">
+            🔍
+          </button>
+        )}
         <button className="reader-btn" onClick={onFullscreen} title="Toàn màn hình">
           ⛶
         </button>

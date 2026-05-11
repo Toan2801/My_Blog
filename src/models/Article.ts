@@ -39,6 +39,10 @@ const ArticleSchema: Schema = new Schema({
   pages: [{
     pageNumber: { type: Number },
     imageUrl: { type: String }
+  }],
+  markdownPages: [{
+    pageNumber: { type: Number },
+    markdown: { type: String }
   }]
 }, {
   timestamps: true,

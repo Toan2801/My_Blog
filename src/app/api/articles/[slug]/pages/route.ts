@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getArticleBySlug } from '@/lib/data';
+import { issueReaderToken } from '@/lib/reader-token';
 
 // Rate limit: simple in-memory tracker (per-process)
 const rateLimitMap = new Map<string, { count: number; reset: number }>();
@@ -55,14 +56,22 @@ export async function GET(
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }
 
-  // Return all pre-rasterized page image URLs
-  const pages = article.pages ?? [];
+  // Mint a short-lived token; the reader appends it to each image fetch.
+  // We DO NOT bake the token into the stored URLs (they're shared across
+  // sessions) — the client composes the final URL on request.
+  const { token, expiresAt } = issueReaderToken(slug);
+  const pages = (article.pages ?? []).map((p) => ({
+    pageNumber: p.pageNumber,
+    imageUrl: p.imageUrl,
+  }));
 
   return NextResponse.json({
     pages,
     totalPages: pages.length,
     title: article.title,
     author: article.author,
+    token,
+    tokenExpiresAt: expiresAt,
   }, {
     headers: { 'Cache-Control': 'private, no-store' },
   });

@@ -19,403 +19,453 @@
   "pages": [
     {
       "pageNumber": 1,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-1.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/1/image"
     },
     {
       "pageNumber": 2,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-2.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/2/image"
     },
     {
       "pageNumber": 3,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-3.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/3/image"
     },
     {
       "pageNumber": 4,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-4.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/4/image"
     },
     {
       "pageNumber": 5,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-5.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/5/image"
     },
     {
       "pageNumber": 6,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-6.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/6/image"
     },
     {
       "pageNumber": 7,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-7.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/7/image"
     },
     {
       "pageNumber": 8,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-8.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/8/image"
     },
     {
       "pageNumber": 9,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-9.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/9/image"
     },
     {
       "pageNumber": 10,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-10.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/10/image"
     },
     {
       "pageNumber": 11,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-11.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/11/image"
     },
     {
       "pageNumber": 12,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-12.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/12/image"
     },
     {
       "pageNumber": 13,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-13.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/13/image"
     },
     {
       "pageNumber": 14,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-14.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/14/image"
     },
     {
       "pageNumber": 15,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-15.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/15/image"
     },
     {
       "pageNumber": 16,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-16.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/16/image"
     },
     {
       "pageNumber": 17,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-17.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/17/image"
     },
     {
       "pageNumber": 18,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-18.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/18/image"
     },
     {
       "pageNumber": 19,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-19.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/19/image"
     },
     {
       "pageNumber": 20,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-20.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/20/image"
     },
     {
       "pageNumber": 21,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-21.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/21/image"
     },
     {
       "pageNumber": 22,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-22.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/22/image"
     },
     {
       "pageNumber": 23,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-23.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/23/image"
     },
     {
       "pageNumber": 24,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-24.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/24/image"
     },
     {
       "pageNumber": 25,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-25.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/25/image"
     },
     {
       "pageNumber": 26,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-26.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/26/image"
     },
     {
       "pageNumber": 27,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-27.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/27/image"
     },
     {
       "pageNumber": 28,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-28.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/28/image"
     },
     {
       "pageNumber": 29,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-29.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/29/image"
     },
     {
       "pageNumber": 30,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-30.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/30/image"
     },
     {
       "pageNumber": 31,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-31.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/31/image"
     },
     {
       "pageNumber": 32,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-32.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/32/image"
     },
     {
       "pageNumber": 33,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-33.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/33/image"
     },
     {
       "pageNumber": 34,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-34.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/34/image"
     },
     {
       "pageNumber": 35,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-35.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/35/image"
     },
     {
       "pageNumber": 36,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-36.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/36/image"
     },
     {
       "pageNumber": 37,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-37.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/37/image"
     },
     {
       "pageNumber": 38,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-38.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/38/image"
     },
     {
       "pageNumber": 39,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-39.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/39/image"
     },
     {
       "pageNumber": 40,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-40.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/40/image"
     },
     {
       "pageNumber": 41,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-41.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/41/image"
     },
     {
       "pageNumber": 42,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-42.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/42/image"
     },
     {
       "pageNumber": 43,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-43.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/43/image"
     },
     {
       "pageNumber": 44,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-44.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/44/image"
     },
     {
       "pageNumber": 45,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-45.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/45/image"
     },
     {
       "pageNumber": 46,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-46.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/46/image"
     },
     {
       "pageNumber": 47,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-47.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/47/image"
     },
     {
       "pageNumber": 48,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-48.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/48/image"
     },
     {
       "pageNumber": 49,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-49.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/49/image"
     },
     {
       "pageNumber": 50,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-50.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/50/image"
     },
     {
       "pageNumber": 51,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-51.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/51/image"
     },
     {
       "pageNumber": 52,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-52.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/52/image"
     },
     {
       "pageNumber": 53,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-53.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/53/image"
     },
     {
       "pageNumber": 54,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-54.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/54/image"
     },
     {
       "pageNumber": 55,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-55.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/55/image"
     },
     {
       "pageNumber": 56,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-56.png"
+      "imageUrl": "/api/articles/minhthonggiam-tienbien3/page/56/image"
+    }
+  ],
+  "markdownPages": [
+    {
+      "pageNumber": 1,
+      "markdown": "## Thái Tổ — Nguyên Chí Chính năm thứ 24, Giáp Thìn, 1364\n\nMùa xuân, tháng giêng, ngày Bính Dần sóc, bọn Lý Thiện Trường, Từ Đạt dẫn quần thần phụng Thái Tổ tức vị Ngô Vương. Trước đó, các bề tôi vì công đức của Thái Tổ ngày càng lớn, nhiều lần dâng biểu khuyên tiến. Thái Tổ nói:\n\n> Nay binh mã chưa yên, vết thương chiến loạn chưa lành, thiên mệnh khó biết chắc, lòng người chưa định. Nếu vội chiếm lấy tôn hiệu, thật là điều chưa kịp làm. Đợi thiên hạ đại định rồi làm cũng chưa muộn.\n\nBọn Thiện Trường cố xin, ngài mới chấp thuận. Bèn đặt trăm quan, lập chức Tả, Hữu Tướng Quốc trong Trung Thư Tỉnh; lấy Thiện Trường làm Hữu Tướng Quốc, Từ Đạt làm Tả Tướng Quốc, Thường Ngộ Xuân, Du Thông Hải làm Bình Chương Chính Sự, lập con là Tiêu làm Thế Tử. Vẫn dùng niên hiệu Long Phượng để kỷ niên, hạ giáo thì gọi là “lệnh chỉ”."
     },
     {
-      "pageNumber": 57,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-57.png"
+      "pageNumber": 2,
+      "markdown": "-   **Khảo dị:** Tất thị _Thông giám khảo dị_ nói Minh Tổ tôn phụng Long Phượng, thấy trong ghi chép của người Minh, đều gọi là “hoàng đế thánh chỉ”, “Ngô Vương lệnh chỉ”. Tiền Tân Mi căn cứ đầu _Đào học sĩ tập_ có chép hai bản lệnh chỉ tháng 2 và tháng 12 năm Long Phượng thứ 10, tức năm Chí Chính thứ 24. Nay xét _Tiềm Am sử cảo_, tháng giêng năm Chí Chính thứ 24, Thái Tổ tức vị Ngô Vương, hạ giáo lệnh. Từ đó đến năm thứ 26, mọi lời giáo dụ đều gọi là “lệnh viết”. Đây là chứng cứ xác thực rằng Thái Tổ vẫn phụng chính sóc Long Phượng, nay theo.\n    \n\nNgài dụ bọn Thiện Trường rằng:\n\n> Buổi đầu dựng nước, trước hết cốt ở chỉnh đốn cương kỷ. Họ Nguyên hôn loạn, cương kỷ không lập; chủ hoang, thần chuyên, uy phúc dời xuống dưới, bởi vậy pháp độ không thi hành, lòng người tan rã, rồi khiến thiên hạ rối động. Nay các bậc tướng tướng, đại thần nên lấy đó làm gương, cùng lòng mưu trị, chớ cẩu thả lần lữa, chỉ lấy việc giữ chức cho đủ mà thôi.\n\nLại nói:"
     },
     {
-      "pageNumber": 58,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-58.png"
+      "pageNumber": 3,
+      "markdown": "> Lễ pháp là cương kỷ của nước. Lễ pháp lập thì chí dân định, trên dưới yên. Buổi đầu dựng nước, đây là việc cần làm trước. Xưa ta khởi binh ở Hào Lương, thấy các chủ tướng đương thời đều không có lễ pháp, buông tình theo riêng, mặc sức làm bạo loạn. Đó là do không biết đạo trị kẻ dưới, cho nên rốt cuộc đi đến diệt vong. Nay các tướng soái ta dùng đều là người cùng công một thể. Từ khi họ quy tâm với ta, ta liền cùng họ định danh phận, lập ước thúc, cho nên đều vâng hiệu lệnh, không ai dám khác. Các ông làm phụ tướng của ta, nên giữ đạo ấy, đừng cẩn trọng lúc đầu mà lơ là lúc cuối."
     },
     {
-      "pageNumber": 59,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-59.png"
+      "pageNumber": 4,
+      "markdown": "Tháng 2, ngày Ất Mùi sóc, Thái Tổ vì Vũ Xương bị vây đã lâu chưa hạ, lại thân đến xem quân. Ngày Tân Hợi đến Vũ Xương, thúc đánh thành. Phía đông thành có núi Cao Quan, quân Hán chiếm trên đó, từ trên nhìn xuống có thể thấy trong thành; ngài gấp lệnh đoạt lấy. Các tướng nhìn nhau không ai dám tiến. Phó Hữu Đức dẫn vài trăm người, một hồi trống đã lên trước; tên bắn trúng má, xuyên hông mà vẫn không động, cuối cùng đoạt được. Địch có kiêu tướng Trần Đồng Thiêm bất ngờ rút giáo, phóng ngựa xông vào dưới trướng Trung Quân. Thái Tổ đang ngồi trên hồ sàng, vội hô: “Quách Tứ vì ta giết hắn.” Quách Tứ là Quách Anh, em của Quách Hưng. Anh cầm thương, vung tay hô một tiếng, địch liền ngã xuống. Thái Tổ nói: “Uất Trì Kính Đức cũng không hơn ngươi.” Bèn cởi chiến bào ban cho. Trần Lý, Trương Định Biên thấy việc nguy cấp, ngầm sai quân theo dây xuống thành chạy đến Nhạc Châu, báo với Thừa Tướng Trương Tất Tiên khiến vào cứu. Đến đây Tất Tiên dẫn binh đến Hồng Sơn, cách thành hai mươi dặm. Thái Tổ lệnh Thường Ngộ Xuân đem tinh nhuệ nhân lúc quân ấy chưa tập hợp mà đánh bại, bèn bắt được Tất Tiên. Tất Tiên kiêu dũng, giỏi chiến, trong quân gọi là “Bát Trương”; quân địch đang cậy làm chỗ trọng. Đến khi bị bắt, trói đem đến dưới thành cho xem, nói: “Kẻ các ngươi cậy là Bát Trương, nay đã bị ta bắt, còn cậy gì nữa?” Tất Tiên cũng gọi Định Biên rằng: “Ta đã đến nước này, anh nên mau hàng.” Định Biên khí mất, không nói được gì nữa."
     },
     {
-      "pageNumber": 60,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-60.png"
+      "pageNumber": 5,
+      "markdown": "Vài ngày sau, Thái Tổ lại sai cựu thần của Hữu Lượng là La Phục Nhân vào thành dụ Trần Lý hàng. Phục Nhân là người Cát Thủy, ban đầu thờ Hữu Lượng, biết không thành, trốn đi rồi theo Thái Tổ. Nhân đó xin rằng: “Chủ thượng mở đức hiếu sinh, ban ơn một phương này, khiến cô nhi họ Trần được giữ đầu cổ, mà thần không phải ăn lời xấu. Thần dù chết cũng không hận.” Thái Tổ nói: “Binh lực của ta không phải không đủ. Sở dĩ đóng lâu ở đây là muốn đợi họ tự về, tránh làm tổn thương sinh linh mà thôi. Ngươi đi, ta tất không phụ ngươi.” Phục Nhân đến dưới thành khóc lớn. Lý kinh ngạc, gọi vào. Hai người cầm tay nhau khóc; khóc xong hỏi cớ, Phục Nhân đem ý Thái Tổ dụ bảo, lời lẽ khẩn thiết. Khi ấy các tướng họ Trần không ai hơn Định Biên, mà Định Biên cũng biết không thể chống giữ. Ngày Quý Sửu, Trần Lý để trần vai, ngậm ngọc bích, dẫn bọn Định Biên đến quân môn xin hàng. Lý thấy Thái Tổ thì cúi phục run sợ, không dám ngẩng nhìn. Thái Tổ thấy ông còn trẻ yếu, đứng dậy cầm tay nói: “Ta không bắt tội ngươi, đừng sợ.” Lệnh hoạn giả vào cung, truyền dụ cha mẹ Hữu Lượng; mọi tích trữ trong phủ khố đều cho tự lấy. Lại sai văn võ quan liêu của họ lần lượt ra cửa, vợ con, tư trang đều được tự đem theo. Quân vây Vũ Xương tất cả sáu tháng mới hàng. Sĩ tốt không ai dám vào thành thị, trong thành yên ổn như không biết có binh. Dân trong thành đói khốn, ngài lệnh cấp gạo chẩn tế, gọi phụ lão đến phủ dụ, dân rất vui. Vì vậy các quận huyện Hán, Miện, Kinh, Nhạc đều nối nhau nguyện hàng. Ngày Ất Mão, đặt Hồ Quảng Hành Trung Thư Tỉnh, lấy Xu Mật Viện Phán Dương Cảnh làm Tham Chính. Ban đầu, khi Hữu Lượng theo Từ Thọ Huy, cha ông là Phổ Tài ngăn mà không nghe. Đến khi phú quý sai người đón cha, Phổ Tài nói: “Ngươi trái mệnh ta, ta không biết sẽ chết ở đâu.” Phổ Tài có năm con: trưởng là Hữu Phú, thứ là Hữu Trực, tiếp đến Hữu Lượng, rồi Hữu Nhân, Hữu Quý. Trong trận Bà Dương, Hữu Nhân, Hữu Quý đều chết trước; đến đây Lý thua, tất cả đều bị đưa đến Ứng Thiên."
     },
     {
-      "pageNumber": 61,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-61.png"
+      "pageNumber": 6,
+      "markdown": "Phản tướng Lý Minh Đạo nghe Thái Tổ định Vũ Xương thì sợ mà chạy, cắt râu tóc, trốn vào núi Vũ Ninh. Có người nhận ra, trói giải đến Vũ Xương. Thái Tổ kể tội phản phúc của ông rồi giết.\n\nTháng ấy, lấy Đào An làm Tri Phủ Hoàng Châu. Khi ấy Hoàng Châu mới hạ, Thái Tổ nghĩ phải được trọng thần trấn giữ, nói: “Không ai hơn An.” Bèn có mệnh ấy.\n\n-   **Khảo dị:** Việc An giữ Hoàng Châu, _Long phi kỷ lược_ buộc vào năm Chí Chính thứ 21, _Trần thị thông kỷ_ buộc vào năm thứ 20, đều sai. Khi ấy chưa bình Hữu Lượng, sao đã hạ Hoàng Châu được? Nay căn cứ _Học sĩ tập_, có lệnh chỉ tháng 2 năm ấy.\n    \n\nTháng 3, ngày Ất Sửu, Thái Tổ đến Ứng Thiên. Ngày Bính Dần, phong Trần Lý làm Quy Đức Hầu.\n\nNgày Đinh Mão, đặt chức Khởi Cư Chú Cấp Sự Trung.\n\nNgày Mậu Thìn, lấy Trung Thư Tả Thừa Thang Hòa làm Bình Chương Chính Sự. Khi ấy Hòa giữ Thường Châu, dẫn Nguyên Soái Ngô Phúc Hưng đem thủy quân tuần lược núi Hoàng Dương, gặp thủy quân Trương Sĩ Thành, đánh bại, bắt Thiên Hộ Lưu Văn Hưng và bọn ấy, thu được sáu thuyền buồm, cho nên có mệnh ấy."
     },
     {
-      "pageNumber": 62,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-62.png"
+      "pageNumber": 7,
+      "markdown": "Ngày Kỷ Tỵ, dụ các quan Trung Thư Tỉnh rằng: “Quan quận huyện từ năm mươi tuổi trở lên, tuy luyện đạt chính sự mà tinh lực đã suy, nên lệnh hữu ty chọn trong dân gian những người tuấn tú từ hai mươi lăm tuổi trở lên, tư tính sáng suốt, có học thức, tài cán, gọi đến Trung Thư, dùng xen với người già. Đợi khi người già nghỉ hưu, người trẻ đã quen việc. Như thế thì nhân tài không thiếu, quan chức được người. Hãy ban bố ý này, khiến hữu ty biết.”\n\nNgày Canh Ngọ, Giang Tây Hành Tỉnh dâng giường khắc vàng của Trần Hữu Lượng. Thái Tổ xem rồi nói với thị thần: “Cái này khác gì đồ tiểu bằng thất bảo của Mạnh Sưởng? Một chiếc giường đã tinh xảo như thế, những thứ khác có thể biết. Cha con họ Trần cùng xa cực dục, sao không mất mạng? Hãy phá hủy đi.”\n\nBan đầu, Thái Tổ bình các lộ, đều đặt Dực Quân, tổng quản bằng Nguyên Soái. Đến đây bãi các Dực Nguyên Soái Phủ, đặt mười bảy Vệ Thân Quân Chỉ Huy Sứ Ty."
     },
     {
-      "pageNumber": 63,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-63.png"
+      "pageNumber": 8,
+      "markdown": "Ngày Tân Mùi, Thái Tổ ngự Tây Lâu. Có hơn mười quân sĩ tự trình chiến công, cầu thăng thưởng. Thái Tổ dụ rằng: “Các ngươi theo ta đã nhiều năm; tài lực, dũng khiếp của các ngươi, dù ta không biết hết, người chỉ huy các ngươi tất biết. Các ngươi có công, ta há bỏ quên sao? Không có công, há có thể nói bừa? Hơn nữa các ngươi không thấy Từ Tướng Quốc sao? Nay quý là nguyên huân, mà những người cùng theo lúc ấy vẫn còn ở hàng ngũ. Ta há kiêng họ sao? Chỉ vì tài trí của họ dừng ở mức ấy, không thể hơn người mà thôi. Các ngươi nếu có thể siêng gắng lập công, ngày khác tước thưởng, ta há tiếc với các ngươi? Chỉ lo không ra sức mà thôi.” Từ đó quân sĩ không dám nói nữa."
     },
     {
-      "pageNumber": 64,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-64.png"
+      "pageNumber": 9,
+      "markdown": "Mùa hạ, tháng 4, ngày Giáp Ngọ sóc, Thái Tổ lui triều, cùng Lang Trung Khổng Khắc Nhân bàn nguyên nhân thành bại đời trước, nói: “Chính sự nhà Tần bạo ngược, Hán Cao Đế khởi từ áo vải, dùng khoan đại mà sai khiến quần hùng, bèn làm chủ thiên hạ. Nay chính sự Nguyên không có lưới pháp, quần hùng đều nổi, đều không biết sửa pháp độ để làm sáng quân chính, đó là nguyên do họ không thành.” Lại nói: “Nay thiên hạ dùng binh, Hà Bắc có Bác La Đặc Mục Nhĩ, Hà Nam có Khố Khố Đặc Mục Nhĩ, tức Khoách Khuếch Thiếp Mộc Nhi, Quan Trung có Lý Tư Tề, Trương Lương Bật. Nhưng có binh mà không có kỷ luật là Hà Bắc; hơi có kỷ luật mà binh không mạnh là Hà Nam; đường sá không thông, lương vận không nối là Quan Trung. Giang Nam thì chỉ có ta và Trương Sĩ Thành thôi. Sĩ Thành nhiều gian mưu, chuộng gián điệp, trị quân không có kỷ luật. Ta có mấy chục vạn quân, sửa quân chính, dùng tướng soái, đợi thời mà động, thế ấy có gì không bình được?” Khắc Nhân đáp: “Chủ thượng thần võ, đáng yên thiên hạ làm một. Nay chính là thời vậy.”"
     },
     {
-      "pageNumber": 65,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-65.png"
+      "pageNumber": 10,
+      "markdown": "Ngày Bính Thân, lệnh dựng Trung Thần Từ ở núi Khang Lang, hồ Bà Dương, thờ Đinh Phổ Lang, Trương Chí Hùng, Hàn Thành, Tống Quý, Trần Triệu Tiên, Dư Sưởng, Xương Văn Quý, Vương Thắng, Lý Tín, Trần Bật, Lưu Nghĩa, Từ Công Phụ, Lý Chí Cao, Vương Giảo Trụ, Khương Nhuận, Thạch Minh, Vương Đức, Chu Đỉnh, Vương Thanh, Thường Đức Thắng, Vương Phượng Hiển, Đinh Vũ, Vương Nhân, Uông Trạch, Vương Lý, Trần Xung, Bùi Chẩn, Vương Hỷ Tiên, Viên Hoa, Sử Đức Thắng, Thường Duy Đức, Tào Tín, Lục Đức Sơn, Trịnh Hưng, La Thế Vinh, cùng Trình Quốc Thắng, người trước đánh ở cửa Phủ Châu chưa chết, sau lại theo đánh ở núi Khang Lang mà chết, tất cả ba mươi sáu người. Lại lệnh dựng Trung Thần Từ ở phủ Nam Xương, thờ Triệu Đức Thắng, Lý Kế Tiên, Hứa Khuê, Triệu Quốc Vượng, Ngưu Hải Long, Trương Tử Minh, Trương Đức Sơn, Hạ Mậu Thành, Từ Minh, Chu Tích — mười người trên đều chết trong nạn Hữu Lượng đánh Nam Xương; Lưu Tề, Chu Thúc Hoa, Triệu Thiên Lân — ba người trên bị bắt ở Cát An, Lâm Giang, giải đến dưới thành Nam Xương mà chết; Diệp Sâm, Vạn Tư Thành — hai người trên chết trong nạn Chúc Tông, Khang Thái; tất cả mười lăm người, đều truy phong, tặng huân tước có khác bậc."
     },
     {
-      "pageNumber": 66,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-66.png"
+      "pageNumber": 11,
+      "markdown": "-   **Khảo dị:** Việc thờ ở Khang Lang Sơn là ba mươi sáu người, tính cả Trình Quốc Thắng, thấy ở trên. Đến việc thờ ở Dự Chương, căn cứ _Minh sử Triệu Đức Thắng truyện_, nói lập Trung Thần Từ ở Dự Chương, thờ chung mười bốn người, lấy Đức Thắng đứng đầu. Cái gọi là mười bốn người là trừ Đức Thắng ra mà tính, văn nghĩa rất rõ; nhưng các sách đều căn cứ lời “mười bốn người”. Vì thế _Kỷ sự bản mạt_ bỏ sót Triệu Quốc Vượng, _Thất tu loại cảo_ của Lang thị bỏ sót Chu Thúc Hoa, lại có Triệu Đức Chiêu mà không có Triệu Quốc Vượng, có lẽ là một người hai tên chăng? Tất thị _Thông giám_ ở Khang Lang Sơn chép ba mươi lăm người, bỏ sót Trình Quốc Thắng; ở Nam Xương chép mười bốn người, bỏ sót Triệu Quốc Vượng, đều theo lỗi cũ sử. Không biết cái chết của Triệu Quốc Vượng đã được ghi trong trận cửa Phủ Châu, cùng với bọn Lý Kế Tiên đồng chết trận; vì sao chưa khảo kỹ việc thờ Nam Xương mà bỏ sót? Nay đều căn cứ _Minh sử Triệu Đức Thắng truyện_, ghi rõ mười lăm người và tên ba mươi sáu người. Lại xét _Tiềm Am sử cảo_ cũng nói Đinh Phổ Lang và bọn ấy ba mươi lăm người, Triệu Đức Thắng và bọn ấy mười bốn người, đại khái cũng căn cứ lời trong truyện _Minh sử_ mà không biết một bên là trừ Triệu Đức Thắng, một bên là trừ Trình Quốc Thắng. Người được chép trong truyện đều có sự tích khảo được, xét ra không sai."
     },
     {
-      "pageNumber": 67,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-67.png"
+      "pageNumber": 12,
+      "markdown": "Ngày Ất Tỵ, Thái Tổ nghe các gia đồng của công thần có kẻ ngang ngược, bèn gọi bọn Từ Đạt, Thường Ngộ Xuân dụ rằng: “Các ngươi theo ta khởi thân gian nan, thành công huân này, không phải sớm chiều mà được. Gần đây nghe gia đồng các ngươi nuôi có kẻ cậy thế kiêu căng, vượt lễ pháp. Tiểu nhân không kiêng, nếu không sớm trừng trị, ngày khác hoặc sinh hiềm khích, há chẳng bị họ liên lụy sao? Nên mau trừ đi. Như trị bệnh, phải gấp trừ tận gốc; nếu nhẫn nhịn dung túng, cuối cùng thành hại cho thân.”\n\nNgày Bính Ngọ, Trung Thư Tỉnh nói các châu huyện thuộc Hồ Quảng Hành Tỉnh vốn có nơi luyện sắt; nay đang lúc dùng binh, nếu không có sắt thì không lấy gì giúp quân dụng, xin dựng lò luyện để chuẩn bị đúc rèn. Ngài theo.\n\nNgày Đinh Mùi, lệnh Tả Tướng Quốc Từ Đạt dẫn binh lấy Lư Châu. Tả Quân Bật nghe Đạt đến, sợ không địch nổi, chạy vào An Phong, để bộ tướng Ân Tòng Đạo, Trương Hoán giữ thành. Đạt đốc binh vây.\n\nNgày Kỷ Dậu, lệnh Trung Thư Tỉnh: phàm thương thuế lấy một phần trong ba mươi phần; ai thu nhiều hơn thì luận theo tội trái lệ. Đổi Đô Quan Điếm ở kinh thành làm Tuyên Khóa Ty; Quan Điếm phủ, châu, huyện làm Thông Khóa Ty.\n\nNgày Nhâm Tuất, lệnh Giang Tây Hành Tỉnh đặt Đại Tuyền Cục, đặt Đại Sứ, Phó Sứ mỗi chức một người; ban mẫu tiền Đại Trung thông bảo, năm hạng lớn nhỏ, khiến đúc."
     },
     {
-      "pageNumber": 68,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-68.png"
+      "pageNumber": 13,
+      "markdown": "Tháng ấy, Bình Chương Du Thông Hải dẫn binh lược Lưu Gia Cảng, đánh bại quân Trương Sĩ Thành, bắt Viện Phán Chu Quỳnh và bọn ấy.\n\nTrung Thư Tỉnh dâng lễ nghi tế hưởng tông miếu và lễ tiến đồ mới ngày sóc hằng tháng. Thái Tổ xem xong, buồn không tự kìm được, nói với Tống Liêm, Khổng Khắc Nhân rằng: “Xưa ta gặp đời gian nan, đói kém nối nhau; khi ấy cha mẹ đều còn, ta muốn nuôi mà sức không đủ. Nay nhờ trời đất giúp, hóa nhà thành nước, mà cha mẹ không kịp phụng dưỡng. Nghĩ đến đây, đau đớn sao nói xiết?” Nhân đó lệnh ghi cả ngày kỵ Hoàng Khảo, Hoàng Tỷ và việc hưởng tế hằng năm làm thường lệ."
     },
     {
-      "pageNumber": 69,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-69.png"
+      "pageNumber": 14,
+      "markdown": "Tháng 5, ngày Bính Tý, Thái Tổ ngự điện Bạch Hổ, xem sách Hán. Ngài hỏi Khởi Cư Chú Tống Liêm, Lang Trung Khổng Khắc Nhân rằng: “Đời Hán trị không bằng Tam đại là vì sao?” Khắc Nhân đáp: “Vì vương đạo, bá đạo xen tạp.” Thái Tổ nói: “Ai chịu lỗi ấy?” Đáp: “Ở Cao Tổ.” Thái Tổ nói: “Xưa Cao Tổ sáng nghiệp, gặp lúc nhà Tần diệt học, đốt thi thư, chưa rảnh lễ nhạc. Hiếu Văn là minh chủ, chính nên chế lễ tác nhạc để khôi phục phép cũ Tam đại, vậy mà do dự chưa kịp, khiến cơ nghiệp Hán rốt cuộc như thế. Đạo đế vương quý ở không trái thời. Vua Tam đại có thời mà làm được; Hán Văn có thời mà không làm; Chu Thế Tông thì không có thời mà muốn làm.” Lại hỏi Khắc Nhân: “Hán Cao khởi từ tay trắng mà làm chủ vạn thặng, nắm đạo gì?” Đáp: “Biết người, khéo sai dùng.” Thái Tổ nói: “Hạng Vũ nam diện xưng cô, không thi hành nhân nghĩa mà tự khoe công phạt. Cao Tổ biết như vậy, tiếp bằng mềm mỏng, giúp bằng khoan nhân, rốt cuộc thắng được. Nay hào kiệt không phải một, ta giữ Giang Tả, dùng hiền, vỗ dân, để xem biến thiên hạ. Nếu chỉ cùng nhau đấu sức, thì khó định nhanh.”\n\n-   **Khảo dị:** Việc này cùng việc trên bàn nguyên nhân thành bại đời trước đều thấy trong _Khắc Nhân truyện_, _Kỷ sự bản mạt_, một việc buộc vào tháng 4, một việc buộc vào tháng 5. Đại khái lời dụ về đời Hán tháng 5 có cả Tống Liêm hầu bên. Chứng với _Hoàng Minh thực huấn_, lời bàn về trị Hán ở ngày Bính Tý tháng 5, nay theo."
     },
     {
-      "pageNumber": 70,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-70.png"
+      "pageNumber": 15,
+      "markdown": "Tháng 6, ngày Mậu Tuất, các Trưởng Quan khê động Hồ Quảng như bọn Hướng Tư Minh nạp khoản. Tư Minh vốn là An Định Tuyên Phủ Sứ Hồ Quảng do Nguyên trao. Ban đầu Trần Hữu Lượng chiếm vùng Hồ, Tương, các người Miêu sợ thế mạnh của ông, Hữu Lượng lại dụ bằng lợi, thường mượn binh lực họ sai khiến. Đến khi Hữu Lượng thua, Thái Tổ tiến khắc Vũ Xương, các quận Hồ Nam nghe gió đều quy phụ. Vì vậy Tư Minh đem ấn Tuyên Phủ Sứ do Nguyên trao đến dâng, xin đổi trao. Bèn lệnh vẫn đặt hai An Định đẳng xứ Tuyên Phủ Ty, lấy Tư Minh và em là Tư Thắng làm quan; lại đặt một Hoài Đức Quân Dân Tuyên Phủ Ty, hai Thống Quân Nguyên Soái; các khê động khác đều đặt Trưởng Quan. Từ đó người hàng nối nhau đến. Thái Tổ nói với đình thần rằng: “Đạo trị nước, trước hết phải thông đường nói. Lời nói như nước, muốn cho chảy dài. Nước bị bít thì các dòng bị ngăn; đường nói bị bít thì trên dưới bị che lấp.” Ngày Mậu Ngọ, lại dụ đình thần rằng: “Chính trị được mất của quốc gia, vui buồn của sinh dân đều hệ ở đó. Giữa vua tôi, mỗi bên giữ trách nhiệm của mình, không nên có điều ẩn tránh. Nếu che giấu không nói, cùng nhau dung túng im lặng, đã không phải đạo thờ vua, với mình cũng bất lợi. Từ nay nên đều tận lòng, nói thẳng không giấu.”"
     },
     {
-      "pageNumber": 71,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-71.png"
+      "pageNumber": 16,
+      "markdown": "Mùa thu, tháng 7, ngày Đinh Sửu, Từ Đạt, Thường Ngộ Xuân khắc Lư Châu. Khi ấy thành châu bị vây ba tháng, quân chúng đều đói khốn, không thể chiến đấu. Trương Hoán cùng Giả Sửu ngầm thông khoản với Đạt, hẹn đánh cửa đông thì làm nội ứng. Vì vậy tiến binh gấp đánh. Các quân trong thành đều cứu cửa đông, Hoán bèn cắt cầu treo, mở cửa tây nạp quân ta vào thành, bắt bộ tướng Ngô Phó Sứ và mẹ, vợ, con của Tả Quân Bật, đều đưa đến Kiến Khang, lấy Chỉ Huy Đới Đức giữ nơi ấy.\n\nNgày Kỷ Mão, bộ tướng của Tả Quân Bật là Hứa Vinh đem Thư Thành hàng, vẫn lệnh Vinh giữ. Đổi lộ Lư Châu làm phủ, đặt Giang Hoài Hành Tỉnh, lệnh Bình Chương Du Thông Hải nhiếp việc tỉnh, trấn giữ. Lúc binh cách, dân phần nhiều trốn lánh; Thông Hải ngày ngày chiêu tập, làm chính có ơn yêu, người trở về làm ăn rất đông."
     },
     {
-      "pageNumber": 72,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-72.png"
+      "pageNumber": 17,
+      "markdown": "Tháng ấy, Bác La Đặc Mục Nhĩ của Nguyên cất binh phạm khuyết. Ban đầu, Ngự Sử Đại Phu La Đạt Tích, bản cũ chép Lão Đích Sa, cùng Tri Xu Mật Viện Sự Đồ Thấm Đặc Mục Nhĩ, bản cũ chép Thốc Kiên Thiếp Mộc Nhi, mắc tội với Thái Tử Nguyên. Thái Tử muốn giết, họ bèn chạy đến Đại Đồng, được Bác La che chở. Đế vì La Đạt Tích là cậu bên mẹ, nên muốn bỏ qua việc ấy, nhưng Thái Tử không chịu. Khi ấy Thừa Tướng Xước Tư Giám, bản cũ chép Sóc Tư Giám, Hoạn Giả Bố Mộc Bố Cáp, bản cũ chép Phác Bất Hoa, theo Thái Tử, nhất định muốn truy cứu đến cùng, đế không biết làm sao. Gặp lúc Khố Khố Đặc Mục Nhĩ đóng ở Thái Nguyên, cùng Bác La giao binh, nhiều lần đánh bại. Thái Tử đang dựa vào Khố Khố làm trọng, bèn hạ chiếu vu Bác La cùng bọn La Đạt Tích mưu bất quỹ, tước quan chức, đoạt binh, lệnh Khố Khố đem binh đánh. Bác La không nhận chiếu, bèn cất binh phạm cửa quan, đòi bắt Xước Tư Giám, Bố Mộc Bố Cáp giết đi. Đến đây lại hợp quân với Đồ Thấm Đặc Mục Nhĩ, lần nữa phạm kinh sư. Tiền quân đến Cư Dung Quan, Khố Khố sai bộ tướng Bạch Sách Châu, bản cũ chép Tỏa Trụ, đem vạn kỵ vào vệ, giao chiến ở Long Hổ Đài bất lợi, bèn phụng Thái Tử chạy về Thái Nguyên. Vì vậy Bác La vào triều, chiếu lấy làm Trung Thư Tả Thừa Tướng, vẫn dụ ông cùng Khố Khố Đặc Mục Nhĩ đều bỏ oán cũ, giúp thành đại huân, nhưng đều không nghe."
     },
     {
-      "pageNumber": 73,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-73.png"
+      "pageNumber": 18,
+      "markdown": "-   **Khảo dị:** Căn cứ _Nguyên sử Thuận Đế kỷ_, lần đầu từ tháng 4 đến tháng 7, lại hợp binh phạm khuyết, Khố Khố giao chiến bất lợi, bèn phụng Thái Tử chạy Thái Nguyên. _Tập lãm_ buộc vào tháng 4, tháng 5, nay căn cứ _Nguyên sử_ mà chép liên đới.\n    \n\nTháng 8, ngày Nhâm Thìn sóc, Thường Ngộ Xuân, Đặng Dũ tuần lược các châu huyện thượng lưu Giang Tây chưa theo, dẫn binh đánh các trại Sa Khanh, Ma Lĩnh, Ngưu Pha ở Tân Cán, bình được, bắt phản tướng Đặng Chí Minh đưa đến Kiến Khang, cùng anh là Khắc Minh đều bị giết.\n\nNgày Ất Mùi, lệnh Từ Đạt hội với Tham Chính Dương Cảnh tuần lược các lộ Kinh, Tương.\n\nNgày Mậu Tuất, Thường Ngộ Xuân, Đặng Dũ thu phục Cát An. Trước đó, Ngộ Xuân đóng ở Cát An, sai người nói với Nhiêu Đỉnh Thần: “Ta nay đi lấy Cám Châu, ngươi có thể ra thành.” Nói một câu rồi đi. Đỉnh Thần không dám ra, sai con nhỏ ra gặp Ngộ Xuân. Ngộ Xuân ngồi cho uống rượu, sai về bảo rằng: “Về nói với cha ngươi, sắp muốn làm gì? Ẩn không ra, ta đi đây, không thể vì ngươi mà ở lại. Hãy khéo tự tính.” Đỉnh Thần sợ, ngay đêm bỏ thành chạy. Hôm sau bèn hạ được, rồi dẫn binh tiến đến Cám Châu."
     },
     {
-      "pageNumber": 74,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-74.png"
+      "pageNumber": 19,
+      "markdown": "Tháng ấy, Trương Sĩ Thành sai người trực tiếp kể lỗi của Thừa Tướng Giang Chiết nhà Nguyên là Đạt Thực Đặc Mục Nhĩ, ép ông tự trình già bệnh để tránh ngôi. Lại nói chức Thừa Tướng không phải Sĩ Tín thì không thể. Sĩ Tín liền ép lấy phù ấn do ông giữ, tự làm Giang Chiết Hành Tỉnh Tả Thừa Tướng, dời Đạt Thực đến Gia Hưng, giam kín. Sĩ Thành lại gợi ý Hành Đài xin triều đình cho mình thật làm vương. Ngự Sử Đại Phu Nguyên là Bố Cáp Đặc Mục Nhĩ, bản cũ chép Phổ Hóa Thiếp Mộc Nhi, không theo. Họ bèn sai người đến Thiệu Hưng đòi ấn chương Hành Đài. Bố Cáp phong ấn, đặt trong kho, nói: “Đầu ta có thể chặt, ấn không thể trao.” Lại ép ông lên thuyền. Ông nói: “Ta có thể chết, không thể nhục.” Ung dung thay áo, làm thơ rồi uống thuốc độc mà chết. Đạt Thực nghe tin nói: “Đại phu còn chết, ta sống làm gì?” Cũng uống thuốc độc chết. Sĩ Thành bèn chuyên chiếm Giang Chiết, giao chính sự cho Sĩ Tín. Sĩ Tín đã làm Thừa Tướng Giang Chiết, bèn dựng nhiều nhà cửa, nuôi ca kỹ, phóng túng hoang dâm. Mỗi khi xuất quân không hỏi quân sự, chỉ mang theo cờ bạc, đá cầu, ôm phụ nữ uống tiệc. Ông sủng tín ba người Hoàng Kính Phu, Thái Ngạn Phu, Diệp Đức Tân, đều là hạng nịnh bợ gian tà, ngày ngày che lấp. Đương thời có lời sấm mười bảy chữ “Hoàng Thái Diệp Tây phong”. Tây phong là chỉ binh Kiến Khang. Thái Tổ nghe tin, nói với các bề tôi: “Ta việc gì cũng để tâm, pháp không nhẹ tha, mà còn có người lừa ta. Trương Cửu Tứ quanh năm không ra khỏi cửa, không xử lý chính sự, có thể không bại sao?” Cửu Tứ là tên nhỏ của Sĩ Thành."
     },
     {
-      "pageNumber": 75,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-75.png"
+      "pageNumber": 20,
+      "markdown": "-   **Khảo dị:** Hoàng, Thái, Diệp là ba họ; mượn chữ “thái” trong rau để chỉ họ Thái. _Minh sử Trương Sĩ Thành, Từ Vi truyện_ đều như vậy, mà tên họ ba người đều đủ trong _Sĩ Thành truyện_. Các sách phần nhiều chép là Vương, Thái, Diệp, còn Tất thị _Thông giám_ trước chép “Hoàng”, sau chép “Vương”, càng mâu thuẫn không hợp. Lời sấm 17 chữ thấy trong _Minh sử Ngũ hành chí_: “Thừa tướng làm sự nghiệp, chuyên dùng Hoàng Thái Diệp; một sớm gió tây nổi, khô héo cả.”\n    \n\nTháng 9, ngày Tân Tỵ, lệnh Trung Thư Tỉnh vẽ, nặn tượng công thần ở miếu Biện Hồ, Tưởng Tử Văn, đúng kỳ sai quan đến tế. Các miếu công thần ở Nam Xương, Khang Lang Sơn, Xử Châu, Kim Hoa, phủ Thái Bình cũng lệnh hữu ty đúng kỳ tế; người nào chưa được khen tặng thì luận công định xét tâu lên."
     },
     {
-      "pageNumber": 76,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-76.png"
+      "pageNumber": 21,
+      "markdown": "Ngày Giáp Thân, Từ Đạt, Dương Cảnh dẫn quân tiến đánh Giang Lăng. Cựu Bình Chương Hán là Khương Giác đến chỗ Đạt xin hàng, lại nói: “Người đáng chết là Giác mà thôi, trăm họ vô tội.” Đạt cho lời ấy là phải, hạ lệnh cấm binh quấy nhiễu. Các quận nghe tin, đều nghe gió quy phụ. Ngày Ất Dậu, sai Tỳ Tướng Phó Hữu Đức tuần lược Di Lăng; cựu thủ tướng Hán là Dương Dĩ Đức dẫn kỳ lão, dân chúng ra hàng. Bèn đổi lộ Giang Lăng thành Kinh Châu, Di Lăng thành Hiệp Châu. Rồi tuần lược Đàm Châu. Thổ tù Tương Hương là Dịch Hoa tập hợp trai tráng chiếm núi Hoàng Ngưu hơn mười năm; đến đây Đạt sai người chiêu hàng. Lại có cựu thủ tướng Quy Châu của Hán là Dương Hưng cũng đem thành hàng; Đạt lấy Hưng làm Thiên Hộ giữ thành châu.\n\nTháng ấy, em Phương Quốc Trân là Minh Thiện đánh Bình Dương. Ban đầu, thổ hào Ôn Châu là Chu Tông Đạo chiếm Bình Dương, nhiều lần bị Minh Thiện ép, bèn dẫn quân đến hàng Tham Quân Xử Châu là Hồ Thâm. Thâm đem binh cứu, đánh bại, rồi hạ Thụy An. Vì vậy mưu tiến binh Ôn Châu. Quốc Trân sợ, xin hằng năm nộp tuế tệ bạc hai vạn lượng. Thái Tổ chấp thuận, bèn dụ Thâm rút quân về.\n\nMùa đông, tháng 10, Thường Ngộ Xuân và quân chư tướng vây Cám Châu lâu chưa hạ. Thái Tổ nghe tin nói:"
     },
     {
-      "pageNumber": 77,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-77.png"
+      "pageNumber": 22,
+      "markdown": "> Hùng Thiên Thụy giữ cô thành nhỏ, như chim trong lồng, thú trong chuồng, còn làm gì được? Chỉ sợ ngày thành vỡ, sát thương quá nhiều mà thôi. Nên lấy việc bảo toàn sinh dân làm niệm. Xưa Đặng Vũ không ham giết chóc, con cháu đời đời thịnh, đó có thể làm phép. Trước đây trận Bà Dương, Hữu Lượng đã thua, bắt sống hàng binh của họ, đến nay vẫn dùng cho ta. Nếu được thành mà không có dân, sẽ dùng làm gì?\n\nKhi ấy Thiên Thụy chống giữ càng vững. Con ông là Nguyên Chấn lén ra dò thế binh; Ngộ Xuân cũng cưỡi vài kỵ binh ra. Nguyên Chấn bất chợt gặp, ban đầu không biết. Đến khi Ngộ Xuân trở về mới biết, lại đến đánh úp. Ngộ Xuân sai tráng sĩ vung song đao đánh. Nguyên Chấn phấn côn sắt chống lại, vừa đánh vừa lui. Ngộ Xuân nói: “Tráng nam tử vậy.” Bèn tha đi.\n\nTrương Sĩ Thành sai em là Sĩ Tín cướp Trường Hưng. Vĩnh Hưng Vệ Chỉ Huy Cảnh Bỉnh Văn, Chỉ Huy Đồng Tri Phí Tụ đánh bại, tiêu diệt tướng của họ là Tống Hưng Tổ.\n\nTháng 11, ngày Tân Dậu, đặt Hồ Quảng Đề Hình Án Sát Ty."
     },
     {
-      "pageNumber": 78,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-78.png"
+      "pageNumber": 23,
+      "markdown": "Trương Sĩ Tín giận vì thua ở Trường Hưng, lại tăng binh vào cướp, vây thành ấy. Khi ấy Thái Tổ lệnh Bình Chương Thang Hòa từ Thường Châu đến cứu. Ngày Tân Tỵ, cùng Sĩ Tín giao chiến, từ giờ tỵ đến giờ thân không dứt, giết hại tương đương. Cảnh Bỉnh Văn từ trong thành ra, trong ngoài đánh kẹp, đại phá, bắt hơn tám nghìn sĩ tốt mà về. Bỉnh Văn giữ Trường Hưng tất cả tám năm, lớn nhỏ mấy chục trận, đánh trận nào cũng thắng, cho nên Sĩ Thành rốt cuộc không làm gì được.\n\nTháng ấy, thổ quan Hồ Quảng Đàm Hậu, Hạ Khắc Vũ đến hàng.\n\nTháng 12, ngày Canh Dần sóc, Từ Đạt khắc Thần Châu. Khi ấy Thần Châu do cựu Tả Thừa Hán Chu Văn Quý chiếm giữ. Đạt trước sai Chỉ Huy Trương Bân đánh; bộ tướng của Văn Quý là Trương Xuyên chống ở Bạch Vân Hạp, Bân đánh bại. Văn Quý bỏ thành chạy, bèn khắc Thần Châu. Lại chia sai Phó Hữu Đức đánh Hành Châu; thủ tướng Đặng Tổ Thắng bỏ thành lui giữ Vĩnh Châu. Vì vậy Hành Châu cũng hạ.\n\nNgày Bính Thìn, Đặng Trọng Khiêm ở Tân Cán làm loạn, đánh úp phá châu trị, giết Tri Châu Vương Chân. Giang Tây Đại Đô Đốc Chu Văn Chính sai Tham Chính Hà Văn Huy, Chỉ Huy Tiết Hiển đánh. Trọng Khiêm là cháu gọi bằng chú bác của Chí Minh.\n\n-   **Khảo dị:** Vương Chân, _Tiềm Am sử cảo_ chép chữ “Chân” là “Trinh”."
     },
     {
-      "pageNumber": 79,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-79.png"
+      "pageNumber": 24,
+      "markdown": "Tháng ấy, Thái Tổ lại thông hiếu với Khố Khố Đặc Mục Nhĩ, gửi thư rằng: “Bác La phạm khuyết, là đại ác xưa nay. Đây chính là lúc các hạ nêu chính nghĩa, làm sáng đạo, không tính công lợi. Nhưng các hạ ở đất bốn mặt giao chiến Hà Nam, nối nghiệp mới dựng của Dĩnh Xuyên, mà Bác La cướp phạm không thôi, thuật lo biến thật không thể không xét. Các hạ sao tiếc một sứ giả vượt sông hẹn nhau? Đất ta tuy không rộng, binh ta tuy không mạnh, nhưng nghĩa _Xuân Thu_ thương giúp nước giao hảo, thường tha thiết mến mộ. Huống loạn thần tặc tử, ai cũng có thể giết, lại phân gì bên này bên kia? Khi anh hùng cùng gặp nhau, chính nên mở lòng thấy thành, cùng giúp thời gian, chớ tự ngờ cách.” Khố Khố nhận thư, giữ sứ giả, không báo đáp.\n\n-   **Khảo dị:** Thư gửi Khố Khố, Tất Giám buộc vào ngày Kỷ Tỵ tháng ấy. Xét tháng ấy Canh Dần sóc, không có ngày Kỷ Tỵ. Nghi chữ “Kỷ” là nhầm của chữ “Ất”, nay không ghi ngày.\n    \n\n## Thái Tổ — Nguyên Chí Chính năm thứ 25, Ất Tỵ, 1365"
     },
     {
-      "pageNumber": 80,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-80.png"
+      "pageNumber": 25,
+      "markdown": "Mùa xuân, tháng giêng, ngày Kỷ Tỵ, Bình Chương Thường Ngộ Xuân, Tham Chính Đặng Dũ khắc Cám Châu. Khi ấy Hùng Thiên Thụy bị vây tất cả năm tháng, lương hết, bèn sai con là Nguyên Chấn ra hàng. Không lâu sau Thiên Thụy cũng để trần vai đến quân môn, dâng hết đất đai. Ngộ Xuân đưa Thiên Thụy đến Ứng Thiên. Thái Tổ nghe Ngộ Xuân không giết, rất vui, sai sứ khen dụ rằng: “Ta nghe quân của người nhân thì vô địch, không phải tướng nhân thì không làm được. Nay tướng quân phá địch không giết, tin thắng đến, ta vì tướng quân mà mừng. Dù Tào Bân hạ Giang Nam cũng sao hơn được? Tướng quân có thể rộng tuyên uy phúc, bảo toàn sinh linh, ta rất nhờ cậy.” Trước đó Thiên Thụy chiếm Cám, thường tăng thuế, vét ngang tài sản của dân. Thái Tổ lệnh đều bãi bỏ, đồng thời miễn khoản thuế mùa thu năm trước chưa nộp. Nguyên Chấn vốn họ Điền, làm con nuôi Thiên Thụy, giỏi chiến, có tiếng. Ngộ Xuân mừng tài dũng của ông, tiến cử, trao chức Chỉ Huy, về sau lại trở về họ Điền.\n\n-   **Khảo dị:** Việc khắc Cám Châu, _Minh sử_ bản kỷ, _Tiềm Am sử cảo_ và các sách đều chép ngày Kỷ Tỵ tháng giêng. Năm ấy tháng giêng ngày Kỷ Mùi sóc, Kỷ Tỵ là ngày 11. Tất thị _Thông giám_ buộc vào ngày Kỷ Mùi, nghi sai. _Hữu Lượng truyện_ nói Thiên Thụy chống giữ năm tháng, _Đặng Dũ truyện_ cũng nói năm tháng mới hạ, đại khái Ngộ Xuân đến Cám từ tháng 9 năm trước. _Ngộ Xuân truyện_ chép sáu tháng, nay không theo."
     },
     {
-      "pageNumber": 81,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-81.png"
+      "pageNumber": 26,
+      "markdown": "Ngày Nhâm Thân, Ngộ Xuân tiến quân đến Nam An, sai thuộc hạ vượt núi phía nam chiêu dụ các quận Thiều Châu chưa hạ. Vì vậy cựu thủ tướng Thiều Châu của Hán là Trương Bỉnh Di và thủ tướng Nam Hùng là Tôn Vinh Tổ đều ghi sổ binh lương đến hàng. Ngộ Xuân lệnh Chỉ Huy Vương Dư giữ Nam Hùng, Bỉnh Di giữ Thiều Châu. Khi ấy Tả Tướng Quốc Từ Đạt cũng tuần lược lộ Bảo Khánh, khắc được. Vì vậy Tĩnh Châu Quân Dân An Phủ Ty và các Trưởng Quan Ty đều đến hàng; Hồ, Tương đều định. Đạt và Ngộ Xuân đều khải hoàn trở về.\n\nThăng Đặng Dũ làm Hữu Thừa Giang Tây Hành Tỉnh. Dũ khi ấy hai mươi tám tuổi. Trong các tướng khởi binh mà sớm quý, ngoài Lý Văn Trung thì Dũ là một người. Ông hành quân rất nghiêm, khéo vỗ về hàng phụ. Khi vừa từ Cám trở quân đến Cát An, Nhiêu Đỉnh Thần chạy chiếm An Phúc, Dũ sai binh đánh. Bộ tốt cướp hơn nghìn nam nữ. Phán Quan An Phúc Châu là Phan Khu nói với Dũ: “Tướng quân phụng dương thiên uy để trừ họa loạn. Đầu sỏ chưa diệt, mà lương dân trước chịu hại, không phải nghĩa điếu phạt.” Dũ lập tức kinh sợ tạ lỗi, vội hạ lệnh kẻ cướp dân thì chém, lục soát lớn trong quân, đưa hết con gái, trẻ nhỏ đã bắt ra. Khu nhân đó đóng họ trong nhà trống, tự ngồi ngoài nhà nấu cháo cho ăn. Có quân tốt mưu đêm cướp lấy, Dũ đánh roi để răn. Khu bèn hộ tống hết về nhà, dân rất vui. Dũ về đến Phú Châu, lại đánh sơn trại, bình được.\n\nTham Chính Hà Văn Huy, Chỉ Huy Tiết Hiển đánh Đặng Trọng Khiêm ở Tân Cán, chém đi."
     },
     {
-      "pageNumber": 82,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-82.png"
+      "pageNumber": 27,
+      "markdown": "Ngày Giáp Thân, Đại Đô Đốc Chu Văn Chính vì tội bị bắt đưa về. Ban đầu Văn Chính theo vượt sông có công, Thái Tổ hỏi muốn làm quan gì. Văn Chính đáp:\n\n> Thúc phụ thành đại nghiệp, lo gì không phú quý? Tước thưởng trước đến thân riêng, lấy gì phục chúng?\n\nThái Tổ khen lời ấy, càng yêu. Đến khi Giang Tây bình, công Văn Chính nhiều nhất. Thái Tổ thưởng các tướng, nghĩ lời trước của Văn Chính biết đại thể, việc ban công hãy còn đợi. Văn Chính bèn không chịu được, hơi oán. Tính vốn nóng gắt, đến đây càng bạo nộ vô thường, dùng Duyện Lại Vệ Khả Đạt, cướp con gái trong bộ. Án Sát Sứ Lý Ẩm Băng tâu ông kiêu xa, oán vọng; Thái Tổ sai sứ trách hỏi, Văn Chính sợ. Ẩm Băng lại nói ông có dị chí. Thái Tổ ngay ngày đó lên thuyền chạy gấp đến dưới thành Nam Xương, sai người gọi. Văn Chính vội ra đón. Thái Tổ khóc bảo: “Cháu làm gì vậy?” Bèn chở cùng về. Đến Ứng Thiên, Mã hậu cố sức giải cho, nói: “Đứa trẻ này chỉ tính cứng thôi, không có gì khác.” Quần thần xin đặt vào pháp. Thái Tổ nói: “Văn Chính vốn có tội, nhưng anh của ta chỉ có một đứa con này. Nếu đặt vào pháp thì tuyệt mất.” Tống Liêm tiến lời: “Chủ thượng thể nghĩa thân thân, đặt ở đất xa là tốt.” Bèn miễn quan Văn Chính, an trí ở Đồng Thành; không lâu sau mất. Con Văn Chính là Thủ Khiêm, khi ấy mới 4 tuổi. Thái Tổ vỗ về nói: “Cha cháu trái lời dạy, để lại lo cho ta. Ngày khác cháu lớn, ta sẽ phong tước cho, không vì cha cháu mà bỏ.” Lệnh Mã hậu nuôi."
     },
     {
-      "pageNumber": 83,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-83.png"
+      "pageNumber": 28,
+      "markdown": "Ngày Ất Dậu, duyệt tướng sĩ, lệnh Trấn Phủ dẫn quân sĩ chia đội tập chiến. Đội thắng được thưởng bạc mười lượng; người bị thương mà không lui cũng lấy dũng cảm mà thưởng, vẫn ban thuốc men. Dụ rằng: “Dao không thường cầm thì tất làm đứt tay; thuyền không thường điều khiển thì tất lật. Nếu cung ngựa không thường luyện mà muốn đánh trận, hiếm ai không bại, cho nên khiến các ngươi luyện. Nay dũng kiện như thế, gặp địch lo gì không thắng? Tước thưởng phú quý chỉ người có công mới được.” Rồi quay bảo Khởi Cư Chú Chiêm Đồng rằng: “Binh không quý nhiều mà quý tinh. Nhiều mà không tinh chỉ làm mệt hàng trận. Gần đây nghe trong quân mộ binh phần nhiều có kẻ hỗn tạp, ta thường thử họ, mong được tinh nhuệ để đợi dùng.” Lại bảo Đồng rằng: “Tôn Vũ giết hai sủng cơ của Ngô Vương để dạy binh, đó là lời hiếu kỳ của Tư Mã Thiên. Với quân chúng nước Ngô, há không có vài chục, vài trăm người để cùng Vũ luyện binh, mà lại đem cung nhân ra thử? Huống khi ấy Vũ muốn thử tài mình, cũng cần gì phải dùng đàn bà?”\n\nTháng 2, ngày Kỷ Sửu sóc, Trần Hữu Định xâm Xử Châu, Tham Quân Hồ Thâm dẫn binh đến cứu. Hữu Định nghe Thâm đến, trốn đi. Thâm đuổi đến Phổ Thành, thủ tướng chống đánh, Thâm đánh bại, bèn hạ Phổ Thành."
     },
     {
-      "pageNumber": 84,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-84.png"
+      "pageNumber": 29,
+      "markdown": "Ngày Tân Sửu, lệnh Thiên Hộ Hạ Dĩ Tùng giữ Lâm Giang, Trương Tín giữ Cát An, Đan An Nhân giữ Thụy Châu, Tống Bính giữ Nhiêu Châu, đều thuộc Giang Tây Hành Tỉnh tiết chế. Lại lệnh Tham Quân Chiêm Nguyên Hanh tổng chế các châu quận Thần, Nguyên, Khúc Tĩnh, Bảo Khánh, nghe Hồ Quảng Hành Tỉnh tiết chế.\n\nNgày Bính Ngọ, Trương Sĩ Thành sai Tư Đồ Lý Bá Thăng dẫn mã bộ thủy quân hai mươi vạn vượt Phổ Giang để báo thù Chư Toàn. Bá Thăng kẹp phản tướng Tạ Tái Hưng đánh Tân Thành của Chư Toàn, làm nhà trại, dựng kho, đặt sẵn quan thuộc châu huyện, tính kế giữ lâu tất hạ. Lại chia mấy vạn binh giữ góc bắc thành, chặn viện quân ta. Hành Tỉnh Tham Chính Hồ Đức Tế giữ vững vách lũy chống, báo gấp với Hành Tỉnh Tả Thừa Nghiêm Châu là Lý Văn Trung. Văn Trung lệnh Chỉ Huy Trương Bân đem binh ra Phổ Giang, từ xa làm thanh viện. Sĩ Thành lại dùng binh từ Đồng Lư ngược Điếu Đài, dòm Nghiêm Châu. Văn Trung lệnh thủy quân chống, chia các tướng giữ mọi nơi phòng bị, tự dẫn Chỉ Huy Chu Lượng Tổ chạy đến cứu. Ngày Đinh Tỵ, đóng quân cách Tân Thành hai mươi dặm. Đức Tế ngầm sai người báo thế giặc thịnh, nên tạm tránh mũi nhọn, đợi đại quân. Văn Trung nói: “Về đông thì họ thắng; về mưu thì ta thắng. Xưa Tạ Huyền dùng tám nghìn quân phá trăm vạn quân Phù Kiên. Binh cốt tinh, không cốt nhiều.” Bèn hạ lệnh:"
     },
     {
-      "pageNumber": 85,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-85.png"
+      "pageNumber": 30,
+      "markdown": "> Họ đông mà kiêu, ta ít mà sắc. Lấy sắc chống kiêu, một trận có thể thắng. Huống đồ quân nhu của họ chất như núi, đó là trời làm giàu cho các ngươi.\n\nKhích lệ đến sáng xuất quân. Khi quân đang ăn, lính báo địch đến. Văn Trung đem hết tinh nhuệ bày hai cánh trái phải, sai Nguyên Soái Từ Đại Hưng, Thang Khắc Minh chỉ huy Tả Quân; Nghiêm Đức, Vương Thiều chỉ huy Hữu Quân; còn tự đem Trung Quân đương xung địch. Gặp lúc Hồ Thâm sai Cảnh Thiên Bích đem viện quân đến, quân Văn Trung càng phấn khởi. Ông cùng các tướng nhắc lại ước thúc, rồi cầm ngang giáo, dẫn vài chục thiết kỵ từ chỗ cao phóng xuống, thẳng ra sau trận, xông vào trung kiên. Địch dùng tinh kỵ vây Văn Trung mấy lớp, giáo nhiều lần sát đầu gối. Văn Trung hô lớn, tự tay đánh chết vài kiêu tướng của họ, đến đâu quân đều ngã rạp. Tả Hữu Quân thừa thế, Đức Tế cũng dẫn tướng sĩ trong thành nổi trống reo hò mà ra. Quân Sĩ Thành đại tan, đuổi hơn mười dặm, chém đầu tính bằng vạn. Văn Trung lệnh thu binh, cùng ăn; sai Chu Lượng Tổ, Trương Phú đuổi diệt tàn khấu, đốt mấy chục doanh lũy, bắt ngụy Đồng Thiêm Hàn Khiêm và bọn ấy sáu trăm người, giáp sĩ ba nghìn, ngựa tám trăm; quân nhu, áo giáp, binh khí bỏ lại chất như núi, thu mười ngày không hết. Bá Thăng, Tái Hưng chỉ thoát thân. Thái Tổ nghe tin thắng rất vui, gọi Văn Trung, Đức Tế vào kinh, ban ngự y, danh mã; rồi cất Đức Tế làm Hành Tỉnh Hữu Thừa."
     },
     {
-      "pageNumber": 86,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-86.png"
+      "pageNumber": 31,
+      "markdown": "Tháng 3, ngày Tân Tỵ, Bình Chương Thường Ngộ Xuân đến Ứng Thiên. Thái Tổ ngự cửa Kích Môn, ban thưởng, úy lạo tướng sĩ.\n\n-   **Khảo dị:** Điều này căn cứ Tất thị _Thông giám_. _Minh sử_ bản kỷ chỉ có lời “tháng 4, ngày Canh Dần, lệnh Thường Ngộ Xuân tuần lược các lộ Tương, Hán”, mà không nói ông trở về Ứng Thiên. Chứng với bản truyện Ngộ Xuân thì nói từ Cám Châu trở về định An Lục, Tương Dương, dường như Ngộ Xuân không có việc trở về Ứng Thiên. Nay xét Ngộ Xuân tháng giêng bình Cám; nếu không về Ứng Thiên thì chuyến Tương Dương không nên chậm đến tháng 4. Đại khái khải hoàn về Ứng Thiên, tháng 3 đến nơi, tháng 4 lại xuất quân. Tất thị đại khái căn cứ thực lục, nay theo."
     },
     {
-      "pageNumber": 87,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-87.png"
+      "pageNumber": 32,
+      "markdown": "Ngày Quý Mùi, Khởi Cư Chú Tống Liêm xin về thăm quê Kim Hoa. Thái Tổ ban vàng lụa sai đi. Liêm hầu bên tả hữu, Thái Tổ từng gọi giảng _Xuân Thu_, _Tả thị truyện_. Liêm tiến lời: “_Xuân Thu_ là sách của Khổng Tử khen thiện chê ác. Nếu có thể tuân hành thì thưởng phạt đúng mức, thiên hạ có thể định.” Một ngày Thái Tổ ngự cửa Đoan Môn, miệng giải thích _Hoàng Thạch công tam lược_. Liêm nói: “_Thượng thư_, hai điển, ba mô, đại kinh đại pháp của đế vương đều đủ. Xin lưu tâm giảng minh.” Rồi khi dụ ban thưởng lại nói: “Được thiên hạ lấy lòng người làm gốc. Lòng người không vững, dù vàng lụa đầy kho thì dùng làm gì?” Thái Tổ đều khen phải. Đến đây Liêm về nhà, dâng biểu tạ, lại gửi thư cho Thế Tử, khuyên lấy hiếu hữu kính cung, tiến đức tu nghiệp. Thái Tổ xem thư rất vui, gọi Thái Tử đến, dụ ý thư, ban thư khen đáp, đồng thời lệnh Thái Tử viết thư đáp.\n\n-   **Khảo dị:** Căn cứ _Minh sử Liêm truyện_, hai việc giảng _Xuân Thu_ trở xuống đều buộc trước khi cáo về năm Ất Tỵ. Chứng với hành trạng trong văn tập, việc giảng _Xuân Thu_ là tháng 8 năm Nhâm Dần, tức năm Chí Chính thứ 22. Việc bàn _Tam lược_ là tháng giêng năm Ất Tỵ, tức tháng giêng năm này. _Tục văn hiến thông khảo_ của Vương Kỳ cũng buộc vào tháng giêng năm Chí Chính thứ 25. Liêm đến tháng 3 năm ấy cáo về, nay chép liên đới dưới việc cáo về."
     },
     {
-      "pageNumber": 88,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-88.png"
+      "pageNumber": 33,
+      "markdown": "Mùa hạ, tháng 4, ngày Kỷ Sửu sóc, Tham Quân Hồ Thâm tiến đánh Tùng Khê thuộc Kiến Ninh, khắc được, bắt thủ tướng của Trần Hữu Định là Trương Tử Ngọc. Thái Tổ nghe tin vui, nói: “Tử Ngọc là kiêu tướng; bắt được hắn thì Hữu Định mất mật. Thừa thế đánh, lý không có gì không thắng.” Thâm đã hạ Tùng Khê, để Nguyên Soái Lý Ngạn Văn yên tập dân chúng, nhân đó xin phát binh mạnh ba lộ Quảng Tín, Phủ Châu, Kiến Xương, mưu lấy Bát Mân.\n\n-   **Khảo dị:** _Kỷ sự bản mạt_ chép ngày Ất Sửu tháng 4. Xét tháng ấy Kỷ Sửu sóc, không có Ất Sửu. Chữ “Ất” phải là nhầm của chữ “Kỷ”, nay theo Tất thị _Thông giám_.\n    \n\nThái Tổ sai Chỉ Huy Quảng Tín Chu Lượng Tổ theo Duyên Sơn, Tả Thừa Kiến Xương Vương Phổ theo Sam Quan, hội với Thâm cùng tiến.\n\nNgày Canh Dần, lệnh Thường Ngộ Xuân tuần lược các lộ Tương, Hán. Thái Tổ từng cùng Từ Đạt bàn hình thế Tương, Hán rằng: “An Lục, Tương Dương nối liền Kinh, Thục, là yết hầu nam bắc, là đất anh hùng tất tranh. Nay bỏ không lấy, sẽ để lại lo sau. Huống Miện Dương mới theo, dân trong thành nhiều người là cựu tốt họ Trần, đất liền kề, dễ bị xúi động. Ví như cây, An Lục, Tương Dương là cành, Miện Dương là thân; thân nếu lung lay, cành lá còn gì? Nay nên tăng binh giữ Miện Dương, may ra không mất chỗ thích nghi.” Đến đây mới lệnh Ngộ Xuân đi lấy."
     },
     {
-      "pageNumber": 89,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-89.png"
+      "pageNumber": 34,
+      "markdown": "Tháng 5, ngày Canh Thân, Chỉ Huy Quảng Tín Vương Văn Anh dẫn quân đến Duyên Sơn, đóng ở Phật Mẫu Lĩnh, gặp binh của Trần Hữu Định, đánh cho chạy.\n\nNgày Ất Hợi, Bình Chương Thường Ngộ Xuân đánh An Lục, khắc được, bắt thủ tướng Nhậm Lượng, lấy Miện Dương Vệ Chỉ Huy Ngô Phục giữ An Lục. Ngày Kỷ Mão, tiến đánh Tương Dương.\n\n-   **Khảo dị:** _Minh sử_ bản kỷ chép Ất Mão, sai. Tháng ấy không có Ất Mão, nay căn cứ _Tiềm Am sử cảo_ chép Kỷ Mão.\n    \n\nThủ tướng nơi ấy bỏ thành trốn. Ngộ Xuân truy kích, bắt năm nghìn quân chúng; ngụy Thiêm Viện Trương Đức, La Minh đem Cốc Thành hàng, đưa đến Kiến Khang. Trước đó, Ngộ Xuân đã đi, Thái Tổ lại lệnh Giang Tây Hữu Thừa Đặng Dũ dẫn binh đi sau, dụ rằng:\n\n> Phàm được châu quận, ngươi nên đóng binh để vỗ về hàng phụ. Nếu Tương Dương chưa hạ, thì lệnh Ngộ Xuân chia binh, một nửa tập ở Miện Dương, một nửa tập ở Cảnh Lăng, ngươi ở Vũ Xương, khiến thanh viện tương ứng để ngăn giặc chạy."
     },
     {
-      "pageNumber": 90,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-90.png"
+      "pageNumber": 35,
+      "markdown": "Dũ phụng mệnh đi. Rồi trao Dũ làm Hồ Quảng Bình Chương, sai trấn Tương Dương. Lại điều Chiết Đông Đề Hình Án Sát Sứ Chương Dật làm Hồ Quảng Án Sát Thiêm Sự. Thái Tổ lại gửi thư dụ Dũ rằng: “Ngươi trấn Tương Dương, nên cẩn thận giữ pháp độ. Sơn trại đến quy phụ, binh dân đều giữ nguyên sổ cũ; tiểu hiệu trở xuống đều lệnh đồn lương, vừa cày vừa chiến. Đất ngươi trấn ở gần Khố Khố. Nếu ngươi gia ân cho dân, pháp thi hành trong quân, thì bộ thuộc của hắn đều sẽ mộ nghĩa đến quy phụ, như thoát miệng hổ đến với mẹ hiền. Ngươi hãy gắng.” Dũ bèn phát gai góc, lập quân phủ, dựng đồn luyện tốt, vỗ về chiêu lai, uy huệ rất rõ. Dật đến Hồ Quảng, vì Kinh, Tương mới bình, nhiều đất bỏ hoang, xin chia binh đồn điền, đồng thời khống chế phương bắc. Thái Tổ theo.\n\nTháng ấy, Nguyên Soái Chiết Đông Hà Thế Minh đánh bại binh Trương Sĩ Thành ở Tân Khê, lại đánh bại ở Sài Khê. Hồ Thâm và quân dưới quyền đến Phổ Thành, cũng đánh bại binh Trần Hữu Định ở phía nam Phổ Thành.\n\nTháng 6, ngày Đinh Dậu, khắc An Phúc. Nhiêu Đỉnh Thần bỏ thành chạy đến Trà Lăng. Trước đó Đặng Dũ sai binh đánh An Phúc, không thắng. Thái Tổ lại lệnh Nguyên Soái Vương Quốc Bảo hội với Giang Tây Tham Chính Hà Văn Huy đánh, đến đây mới hạ."
     },
     {
-      "pageNumber": 91,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-91.png"
+      "pageNumber": 36,
+      "markdown": "Ngày Nhâm Tý, Tham Quân Hồ Thâm tiến binh đánh Nhạc Thanh, khắc được, bắt Trấn Phủ Chu Thanh của Phương Quốc Trân và bọn ấy đưa đến Kiến Khang. Khi ấy Chu Lượng Tổ và quân dưới quyền đã đến Mân, Thâm bèn hội quân đánh Sùng An, Kiến Dương, khắc được, tiến đánh Kiến Ninh. Khi ấy tướng của Trần Hữu Định là Nguyễn Đức Nhu giữ thành cố thủ. Quân đóng dưới thành, Lượng Tổ muốn đánh. Thâm xem khí tượng bất lợi, bảo Lượng Tổ: “Thời trời chưa hợp, tướng tất có tai.” Lượng Tổ nói: “Đạo trời khó biết; khí núi sông biến đổi vô thường, đâu đủ làm chứng.” Ép Thâm tiến binh. Thâm vẫn giữ ý không thể. Đức Nhu đem bốn vạn binh đóng ở Cẩm Giang, ép sau trận Thâm. Lượng Tổ đốc chiến càng gấp. Thâm bất đắc dĩ, bèn dẫn binh nổi trống reo hò mà tiến, phá hai rào. Đức Nhu đem hết tinh nhuệ chặn quân Thâm, vây mấy lớp. Trời đã chiều, Thâm phá vây ra; phục binh bỗng nổi, ngựa vấp, bị bắt. Hữu Định vốn trọng Thâm, lấy lễ đãi. Thâm nhân đó hết lời khen Thái Tổ thần thánh uy vũ, thiên mệnh đã về, lại viện chuyện Bảo Dung về Hán để ví với Hữu Định. Hữu Định tuy không nghe, nhưng cũng không có ý giết Thâm. Gặp sứ Nguyên đến thúc ép, bèn bị hại. Thâm lâu làm việc ở quận quê, trị quân khoan nhân; dùng binh hơn mười năm chưa từng giết bừa một người. Thái Tổ từng hỏi Tống Liêm: “Thâm là người thế nào?” Liêm đáp: “Tài văn võ vậy.” Thái Tổ nói: “Đúng. Chiết Đông là một bức bình phong, ta đang dựa vào ông.” Khi đánh Mân có sao biến, Thái Tổ nói: “Đông Nam tất mất một lương tướng.” Đến đây Thâm quả ứng. Thái Tổ nghe báo, rất đau tiếc, sai sứ tế, truy phong Tấn Vân Quận Bá."
     },
     {
-      "pageNumber": 92,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-92.png"
+      "pageNumber": 37,
+      "markdown": "Ngày Ất Mão, hạ lệnh bắt dân trồng dâu. Phàm nông dân có ruộng từ năm mẫu đến mười mẫu, trồng dâu, gai, bông mỗi thứ nửa mẫu; từ mười mẫu trở lên thì gấp đôi. Người có ruộng nhiều thì theo tỉ lệ ấy. Sai hữu ty thân đến đốc suất; ai không như lệnh thì phạt. Không trồng dâu thì nộp lụa một tấm; không trồng gai và bông thì nộp vải gai, vải bông mỗi thứ một tấm.\n\nTháng ấy, lấy nho sĩ Đằng Nghị, Dương Huấn Văn làm Khởi Cư Chú. Dụ rằng: “Ta thấy dưới cửa đại thần nhà Nguyên, sĩ phần nhiều không tự xử bằng chính đạo, chỉ lo nịnh hót để cầu hợp tạm. Thấy người ấy làm điều sai, không cùng nhau sửa cứu; đến khi họ bại, rốt cuộc cũng mắc tội. Các ngươi theo màn Từ Tướng Quốc đã lâu mà không có lỗi, cho nên trao chức này. Nên tận lòng với việc mình làm, chớ a dua dung túng.” Lại nói: “Chức Khởi Cư không phải chỉ chuyên ghi chép mà thôi, cốt ở dâng trung nạp hối, khiến chúa không lỗi, rồi mới là tận chức. Bình thường những lời trăm quan nói với ta, một hai ngày sau ta vẫn nghiền ngẫm không thôi. Nay các ngươi ở bên tả hữu ta, không thể không nói hết.” Lại lệnh Nghị, Huấn Văn tập hợp việc làm của các vua vô đạo đời xưa như Hạ Kiệt, Thương Trụ, Tần Thủy Hoàng, Tùy Dạng Đế để dâng, nói: “Ta xem những điều này là muốn biết nguyên do họ mất nước loạn đời, để làm gương răn mà thôi.”\n\nMùa thu, tháng 7, ngày Đinh Tỵ sóc, lệnh hàng tướng Trương Đức Sơn về Tương Dương chiêu dụ các sơn trại chưa theo."
     },
     {
-      "pageNumber": 93,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-93.png"
+      "pageNumber": 38,
+      "markdown": "Ban đầu, cựu thủ tướng Hán là Chu An nghe Hữu Lượng mất, liền đem Vĩnh Tân quy hàng. Hành Tỉnh liền sai An giữ. Đến khi đánh Nhiêu Đỉnh Thần ở An Phúc, An nghi mà lại phản, vẫn kết các sơn trại chống giữ. Thái Tổ lệnh Bình Chương Thang Hòa dời quân đánh, khắc mười bảy trại, bắt hơn ba mươi ngụy quan, vây thành ấy.\n\n-   **Khảo dị:** Thang Hòa đánh sơn trại Vĩnh Tân, Tất Giám thuật vào tháng giêng, căn cứ tháng hạ lệnh. Thực ra Hòa tiến binh vào tháng 7. _Minh sử_ bản kỷ không chép. _Tiềm Am sử cảo_ cho là ngày Đinh Tỵ tháng 7; _Kỷ sự bản mạt_ cũng vậy, chỉ nối việc chém Chu An ở dưới, đó là thể chép gộp liên đới. Thực ra chém Chu An, khắc Vĩnh Tân đều là việc tháng 10 nhuận. Chứng với _Minh sử Thang Hòa truyện_, nói Hòa vây Vĩnh Tân tất cả năm tháng, thì lấy tháng 7 đánh, tháng 10 nhuận hạ, chính hợp với lời “năm tháng”. Vì vậy _Sử cảo_ riêng chép khắc Vĩnh Tân ở ngày Mậu Thìn tháng 10 nhuận, nay theo.\n    \n\nNgày Canh Giáp, đảng của cựu Tả Thừa Hán Chu Văn Quý lại đánh hạ Thần Khê. Tổng Chế Thần, Nguyên các châu, Tham Quân Chiêm Doãn Hanh sai binh đánh.\n\nNgày Giáp Tý, Thái Tổ lại gửi thư cho Khố Khố Đặc Mục Nhĩ nhà Nguyên, lệnh trả sứ giả ta là Uông Hà; không báo đáp.\n\nNgày Nhâm Ngọ, đặt Thái Sử Giám, lấy Lưu Cơ làm Thái Sử Lệnh."
     },
     {
-      "pageNumber": 94,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-94.png"
+      "pageNumber": 39,
+      "markdown": "-   **Khảo dị:** _Minh sử_ bản kỷ không chép. _Lịch chí_ thì bắt đầu ở Ngô nguyên niên dâng _Mậu Thân lịch_. Nhưng khi ấy Lưu Cơ làm Thái Sử Viện Sứ, không nói Thái Sử Lệnh. Chứng với _Chức quan chí_, nói đầu Minh đặt Thái Sử Giám; Ngô nguyên niên đổi Giám làm Viện, trật Chánh Tam Phẩm, tức Viện Sứ. Căn cứ đó, ban đầu gọi là Thái Sử Giám, đặt Thái Sử Lệnh; sau đổi làm Thái Sử Viện mới đặt Viện Sứ. Vì vậy _Tiềm Am sử cảo_ buộc việc đặt Thái Sử Giám vào ngày Nhâm Ngọ tháng 7 năm này. Tất thị _Thông giám_ cũng vậy, đại khái đều căn cứ _Hồng Vũ thực lục_. Còn _Cơ truyện_ nói Ngô nguyên niên lấy Cơ làm Thái Sử Lệnh, dâng _Mậu Thân đại thống lịch_, đó là chép gộp liên đới; thực ra Ngô nguyên niên đổi trao Cơ làm Thái Sử Viện Sứ, nay chia ra chép."
     },
     {
-      "pageNumber": 95,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-95.png"
+      "pageNumber": 40,
+      "markdown": "Tháng ấy, Bác La Đặc Mục Nhĩ và phe đảng của Nguyên bị giết. Trước đó Khố Khố Đặc Mục Nhĩ đem binh đánh Đại Đồng, chiếm được. Thái Tử Nguyên bèn thúc đại cử đánh Bác La. Bác La giam Hoàng Hậu, đòi người con gái mà Nguyên Đế yêu, Đế giận, muốn mưu trừ. Vì vậy con của Uy Thuận Vương là Hoa Thiện, bản cũ chép Hòa Thượng, nhận mật chỉ, bàn với sĩ nhân Từ Sĩ Bản, kết tráng sĩ Kim Nặc Hải, bản cũ chép Kim Bái Hải, và sáu người giấu dao trong áo, đứng trong hàng nghi vệ phía đông Diên Xuân môn. Gặp Bác La vào tâu việc, tráng sĩ xông tới chém trúng đầu ông. Sáu người bèn cùng giết ông. La Đạt Tích bị bắt, Đồ Thấm Đặc Mục Nhĩ trốn, rồi cũng bị bắt; đều bị giết. Hôm sau, sai sứ đem đầu Bác La đến Thái Nguyên, chiếu Thái Tử về kinh, đồng thời lệnh Khố Khố Đặc Mục Nhĩ hộ tòng vào triều.\n\nLệnh nuôi những sĩ tốt theo vượt sông bị thương phế tật; người chết thì đưa vợ con họ về.\n\nTháng 8, Chu Văn Quý lại đánh Thần Châu. Thiên Hộ Hà Đức dẫn khinh kỵ thẳng đến trại họ, đánh bại. Văn Quý chạy giữ Ma Dương. Đức đuổi đánh lại bại họ, Văn Quý trốn đi.\n\nTháng 9, ngày Bính Thìn sóc, đặt Quốc Tử Học, lấy học cung cũ lộ Tập Khánh làm nơi ấy.\n\nTháng ấy, Khố Khố Đặc Mục Nhĩ nhà Nguyên đến kinh sư. Chiếu trao Thái Úy, Trung Thư Tả Thừa Tướng, Lục Quân Quốc Trọng Sự, kiêm Tri Xu Mật Viện Sự."
     },
     {
-      "pageNumber": 96,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-96.png"
+      "pageNumber": 41,
+      "markdown": "Thục Minh Ngọc Trân sai Tham Chính Giang Nghiêm thông hiếu. Thái Tổ lệnh Đô Sự Tôn Dưỡng Hạo đáp lại. Khi ấy Ngọc Trân lấy Vân Nam bất lợi, các tướng bạo cướp không thể chế, Thái Tổ lại dùng thư răn.\n\nMùa đông, tháng 10, ngày Mậu Tuất, Thái Tổ vì Trương Sĩ Thành nhiều lần phạm biên, sắp cất binh đánh. Hạ lệnh rằng: “Sĩ Thành mở mối gây hấn nhiều bề, đánh úp An Phong của ta, cướp Chư Toàn của ta, liên binh gây họa, tội không thể thoát. Nay lệnh đại quân đến đánh, chỉ nhằm đầu sỏ ở đó. Quân dân chớ sợ hãi, chớ chạy trốn bừa làm bỏ phế nông nghiệp. Đã sắc cho đại tướng quân ước thúc quan binh, ai cướp bóc thì xử theo quân luật.” Ngày Tân Sửu, lệnh Tả Tướng Quốc Từ Đạt, Bình Chương Thường Ngộ Xuân, Hồ Mỹ, Đồng Tri Xu Mật Viện Phùng Quốc Thắng, Tả Thừa Hoa Cao dẫn mã bộ thủy quân, thủy lục cùng tiến, mưu lấy Hoài Đông, Thái Châu các nơi. Khi ấy quận huyện Sĩ Thành chiếm giữ, phía nam đến Thiệu Hưng, giáp cảnh Phương Quốc Trân; phía bắc có Thông, Thái, Cao Bưu, Hoài An, Từ, Túc, Hào, Tứ đến Tế Ninh, cách Sơn Đông. Thái Tổ mưu trước lấy các quận Thông, Thái, cắt cánh chim, rồi sau chuyên việc Chiết Tây, cho nên lệnh Đạt tổng binh lần lượt lấy."
     },
     {
-      "pageNumber": 97,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-97.png"
+      "pageNumber": 42,
+      "markdown": "Ngày Ất Tỵ, quân Từ Đạt tiến đến Thái Châu, Tuấn Hà, Thông Châu, gặp binh Sĩ Thành, đánh bại, đóng quân trên đập Hải An. Ngày Đinh Mùi, tiến binh vây Tân Thành Thái Châu, đánh bại viện binh Hoài Bắc của Sĩ Thành, bắt Nguyên Soái Vương Thành của họ. Ngày Kỷ Dậu, Sĩ Thành lại sai Lý Viện Phán ở Hoài An cứu Thái Châu. Thường Ngộ Xuân đánh bại, bắt Vạn Hộ Ngô Tụ và bọn ấy. Sai người dụ trong thành hàng; ngụy tướng Nghiêm Tái Hưng, Hạ Tư Trung, Trương Sĩ Tuấn chống giữ không hạ, bèn tăng binh vây.\n\nNhiêu Đỉnh Thần đã chạy đến Trà Lăng, lại hợp quần đạo Phổ Dương ở trại Nam Phong Sơn, thường ra cướp bóc. Ngày Quý Sửu, sai Nguyên Soái Vương Quốc Bảo đánh bại, Đỉnh Thần trốn đi."
     },
     {
-      "pageNumber": 98,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-98.png"
+      "pageNumber": 43,
+      "markdown": "Giặc Tín Châu là Tiêu Minh dẫn binh đánh Nhiêu Châu. Khi ấy Đào An từ Hoàng Châu dời sang giữ Nhiêu, tập hợp phụ lão, bàn rằng: “Lương thực đầy, thành vững, chỉ cần giữ chắc, vài ngày nữa viện binh đến có thể phá.” Nhân đó cùng Thiên Hộ Tống Bính thân dẫn quan lại, dân chúng chia giữ thành, chọn người dũng kiện làm du binh, ngày đêm tuần phòng, rồi xin cứu với Giang Tây Hành Tỉnh. An lên thành dụ giặc rằng: “Các ngươi vốn là dân ta, trái lại bị giặc dùng, chẳng phải lỡ kế sao?” Họ đều vâng vâng. Quân giặc lên thành, An lệnh bắn, tên rơi như mưa, giặc không dám áp sát vượt vào. Ba ngày sau, viện binh Hành Tỉnh đến, bèn đại phá. Tiêu Minh trốn đi; bắt ngụy Chiêu Thảo Đô Hải Vạn Hộ Viên Thắng, chém. Các tướng muốn giết sạch người theo giặc, An không cho, nói: “Dân bị ép mà thôi, sao lại giết?” Thái Tổ nghe tin, ban thơ khen đẹp; dân châu dựng sinh từ thờ ông."
     },
     {
-      "pageNumber": 99,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-99.png"
+      "pageNumber": 44,
+      "markdown": "-   **Khảo dị:** _Minh sử_ bản kỷ không chép. Chứng với _Đào An truyện_ thì cho là binh của Trần Hữu Định. Xét Hữu Định khi ấy chiếm Kiến Ninh, chưa chắc xa đến Nhiêu Châu để mưu lấy đất Giang Tây. Vì vậy các sách đều cho là giặc Tín Châu, gần đúng hơn. _Tiềm Am sử cảo_ cũng nói giặc Tín Châu Tiêu Minh. Đại khái Mân liền biên giới, Hữu Định đang mạnh, hoặc Tiêu Minh và bọn ấy mượn cờ hiệu ông để vào cướp, cũng chưa thể biết. Chứng với _Quốc sơ sự tích_ của Lưu Thìn chép ở đầu _Học sĩ tập_, cũng chỉ nói giặc đến đánh thành mà thôi. Lại _Minh sử cảo_ chép tháng 11, giặc Tín Châu hãm Vụ Nguyên; chứng với các sách tức là Tiêu Minh. Đây tất là sau khi thua ở Nhiêu rồi trốn. Nhiêu, Vụ liền nhau, cho nên lại cướp Vụ. Nay căn cứ _Tiềm Am sử cảo_ và Tất Giám."
     },
     {
-      "pageNumber": 100,
-      "imageUrl": "/data/image/articles/minhthonggiam-tienbien3/page-100.png"
+      "pageNumber": 45,
+      "markdown": "Tháng nhuận, ngày Ất Mão sóc, thủ tướng thủy trại Giang Âm là Khang Mậu Tài gấp sai người báo: “Trương Sĩ Thành dùng thủy quân bốn trăm thuyền ra Đại Giang, đóng ở cảng Phạm Thái, lại dùng thuyền nhỏ qua lại xuất hiện ở Cô Sơn giữa sông, xin chuẩn bị.” Thái Tổ đoán biết tình hình, dụ Đạt rằng: “Giặc ban đầu không có kế đánh Giang Âm, tiến thẳng thượng lưu, chẳng qua chia thủy quân đóng lại, đặt trá nghi ta, khiến binh lục chiến của ta quay về phòng thủy trại. Binh ta đã chia, họ lại sẽ bỏ đường nước theo đường bộ, đánh vào chỗ hư của ta. Đây là một kế trá. Lại nghe Thường Ngộ Xuân ra ngoài Hải An hơn bảy mươi dặm đánh giặc, quân giặc chẳng qua vạn người. Đây không phải có thế chống đại quân ta, chẳng qua muốn dụ họ vào sâu, rời Thái Châu đã xa, họ tất ngầm đem quân đến Hải An, khiến quân ta thế chia, đầu đuôi cách nhau không kịp cứu. Đây lại là một kế trá. Binh pháp nói điều khiển người mà không bị người điều khiển, nên xét kỹ. Sứ đến thì liền lệnh Ngộ Xuân đóng quân ở Hải An, cẩn thận giữ Tân Thành, lấy nhàn đợi mệt, lo gì không thắng? Thuyền giặc ven sông từ Thái Hưng về phía nam cũng nên phòng bị.” Ngày Kỷ Mùi, Thái Tổ thân đến thủy trại Giang Âm của Mậu Tài, dò xét quân tình.\n\nNgày Mậu Thìn, Bình Chương Thang Hòa khắc Vĩnh Tân, bắt Chu An đưa đến Kiến Khang, chém."
+    },
+    {
+      "pageNumber": 46,
+      "markdown": "Ngày Canh Thìn, Từ Đạt, Thường Ngộ Xuân khắc Thái Châu, bắt thủ tướng của Sĩ Thành là Nghiêm Tái Hưng và bọn ấy. Tin thắng đến, lệnh Đạt tùy nghi giữ thành, gấp thừa thắng tuần lược các quận huyện chưa hạ. Vì vậy sai Thiên Hộ Lưu Kiệt chia binh tuần lược Hưng Hóa. Thủ tướng của Sĩ Thành là Lý Thanh thua trận, đóng thành chống giữ. Sĩ Thành lại sai tướng cứu Thanh, Kiệt đánh chạy.\n\nTháng ấy, Nguyên phong Khố Khố Đặc Mục Nhĩ làm Hà Nam Vương. Khi ấy Ba Trát Nhĩ, bản cũ chép Bá Tát Lý, làm Hữu Thừa Tướng, là cựu thần nhiều triều, mà Khố Khố là hậu sinh ra muộn lại cùng làm tướng với ông; ở hai tháng liền xin về nam xem quân. Lúc ấy Trung Nguyên tuy không có việc, nhưng Giang, Hoài, Xuyên, Thục đều không thuộc Nguyên. Thái Tử nhiều lần xin ra đốc sư, Nguyên Đế khó xử, đến đây đặc biệt phong Khố Khố, lệnh tổng quản binh thiên hạ mà thay mình đi. Vì vậy Khố Khố chia tỉnh theo mình, quan thuộc đông thịnh gần như triều đình. Rồi trở về Hà Nam, muốn ở lều mộ hết tang. Tả hữu đều cho rằng đã nhận mệnh xuất sư, không thể dừng giữa chừng, bèn lại vượt bắc, ở Hoài Khánh, rồi dời đến Chương Đức.\n\nTháng 11, ngày Tân Mão, Từ Đạt tiến đánh Cao Bưu. Thái Tổ sợ ông vào sâu đất địch, không thể sách ứng các tướng, bèn lệnh Phùng Quốc Thắng dẫn bộ thuộc tiết chế Cao Bưu, khiến Đạt hồi quân Thái Châu, mưu lấy Hoài An, Hào, Tứ. Gặp lúc quân Sĩ Thành cướp Nghi Hưng, Đạt vượt sông đánh bại, bắt hơn ba nghìn sĩ tốt."
+    },
+    {
+      "pageNumber": 47,
+      "markdown": "Ngày Giáp Ngọ, Nguyên Soái Vương Quốc Bảo đón đánh Nhiêu Đỉnh Thần, đánh bại. Đỉnh Thần trúng nỏ chết, dư đảng bèn tan.\n\nTháng ấy, giặc Tín Châu Tiêu Minh từ Nhiêu Châu thua chạy, lại cướp Vụ Nguyên. Tri Châu Bạch Khiêm sức không chống nổi, ôm ấn ra cửa bắc, nhảy xuống nước chết.\n\nTháng 12, Trương Sĩ Thành sai tám vạn binh cướp An Cát. Ban đầu, Quảng Đức Dực Nguyên Soái Phí Tử Hiền theo Đặng Dũ hạ Vũ Khang, An Cát, bèn đắp thành giữ. Binh Sĩ Thành nhiều lần đến phạm, đều bị đánh bại mà đi. Đến đây, lệnh Trương Tả Thừa đem đại binh đến đánh, mà bộ thuộc của Tử Hiền chỉ ba nghìn người, giữ vững tường lũy chống lại, đặt xe nỏ trên thành, bắn chết hai kiêu tướng của họ. Ngày Ất Mão, giải vây đi. Tử Hiền nhờ công thăng Chỉ Huy Đồng Tri."
+    },
+    {
+      "pageNumber": 48,
+      "markdown": "-   **Khảo dị:** Tất thị _Thông giám_ nói Phí Tụ đánh bại binh Sĩ Thành cướp An Cát, sai. Chứng với _Minh sử Phí Tụ truyện_, nói Tụ theo đánh Hoài An, Hồ Châu, Bình Giang có công; cái gọi là theo đánh Hồ Châu là theo Cảnh Bỉnh Văn giữ Trường Hưng, chống binh Sĩ Thành nhiều lần cướp Trường Hưng, không phải An Cát. Tử Hiền là tướng chuyên giữ An Cát. Trong _Minh sử phụ Kim Hưng Vượng truyện_ nói Tử Hiền lấy Vũ Khang, An Cát, đắp thành giữ; Sĩ Thành nhiều lần đến phạm, đều đánh bại; sau cùng Trương Tả Thừa đem tám vạn binh đến đánh, Tử Hiền chỉ ba nghìn người, giữ rất vững, đặt xe nỏ trên thành, bắn chết hai kiêu tướng, tức chỉ việc này. _Kỷ sự bản mạt_, _Tiềm Am sử cảo_ đều chép là Tử Hiền. Nay đều căn cứ _Minh sử Tử Hiền truyện_ đưa vào. Việc Tử Hiền đánh bại binh Sĩ Thành, _Sử cảo_ buộc vào ngày Ất Mão tháng ấy, tức ngày mồng hai tháng 12. Tất Giám lầm chép tháng 12 ngày Canh Tý sóc; Canh Tý là ngày 17 tháng 11, đại khái năm ấy tháng 11 ngày Giáp Thân sóc. Binh Sĩ Thành lấy ngày Canh Tý tháng 11 đến đánh An Cát, đến ngày Ất Mão tháng 12 mới thua đi, nghĩa nên như vậy. Nhưng Canh Tý không phải tháng 12, càng không phải ngày sóc tháng 12, đó là chỗ sai nặng nhất. Nay căn cứ _Tiềm Am sử cảo_.\n    \n\nTả Thừa Tướng Từ Đạt từ Nghi Hưng hồi binh đánh Cao Bưu. Sĩ Thành sai Tả Thừa Từ Nghĩa theo đường biển vào Hoài cứu. Nghĩa oán Sĩ Thành vì cho rằng đẩy mình vào đất chết, bèn đóng ở Côn Sơn, Thái Thương các nơi ba tháng không tiến."
+    },
+    {
+      "pageNumber": 49,
+      "markdown": "Mùa hạ năm ấy, Tư Nam Tuyên Úy Sứ của Nguyên là Điền Nhân Trí sai Đô Sự Dương Sâm nạp khoản, đồng thời nộp ấn Tuyên Úy Sứ do Nguyên trao. Thái Tổ vui nói: “Nhân Trí ở nơi xa xôi hẻo lánh, đời đời làm trưởng khê động, mà có thể biết thiên mệnh, trước đến quy phụ, thật đáng khen.” Bèn vẫn cho làm Tư Nam Đạo Tuyên Úy Sứ, trao Sâm làm Tư Châu Đẳng Xứ Tuyên Phủ Sứ, cấp ấn bạc Tam Phẩm. Mùa thu năm ấy, Tư Châu Tuyên Phủ Sứ Điền Nhân Hậu cũng sai sứ dâng đất mình giữ; lệnh đổi Tuyên Phủ Ty làm Tư Nam Trấn Tây Đẳng Xứ Tuyên Úy Ty, cũng lấy Nhân Hậu làm Tuyên Úy Sứ.\n\n## Thái Tổ — Nguyên Chí Chính năm thứ 26, Bính Ngọ, 1366"
+    },
+    {
+      "pageNumber": 50,
+      "markdown": "Mùa xuân, tháng giêng, ngày Quý Mùi sóc, Trương Sĩ Thành dùng thủy quân đóng ở Quân Sơn, lại ra Mã Đà Sa, tất cả mấy trăm thuyền, sắp ngược dòng từ Giang Âm để dòm Trấn Giang. Xu Mật Viện Phán Ngô Lương cùng em là Chỉ Huy Ngô Trinh nghiêm binh chờ. Thái Tổ thân dẫn đại quân thủy lục cùng tiến. Đến Trấn Giang, Sĩ Thành đốt Qua Châu, cướp Tây Tân rồi trốn. Thái Tổ lệnh Lương hội với Đô Đốc Phó Sứ Khang Mậu Tài ra sông đuổi. Đến Phù Tử Môn, Sĩ Thành dùng năm trăm thuyền che cửa biển, thừa triều đến áp sát. Lương cùng Mậu Tài đốc các quân lực chiến, thuyền địch đầu đuôi mất nhau, bèn đại bại. Những kẻ bỏ thuyền lên bờ thì gặp một quân đã phục sẵn ở chân núi Giang Âm, đều bị đánh úp gần hết, bắt hai nghìn quân. Trận này, Mậu Tài dùng thủy trại chế thắng, còn Lương từ Giang Âm đến, vừa giữ vừa đánh. Thái Tổ đến úy lạo quân, đi khắp lũy trại, than rằng: “Lương là Ngô Khởi ngày nay.” Lương giữ Giang Âm mười năm, phòng ngự có phương, huấn tướng luyện binh thường như giặc sắp đến; lúc rảnh thì mời nho sĩ, hưng trường học, sửa đồn điền. Thái Tổ từng khen ông bảo vệ một phương, khiến ta không có nỗi lo nhìn về phía đông, lệnh Tống Liêm và các người làm thơ văn khen. Ngày Tân Mão, Thái Tổ trở về Ứng Thiên."
+    },
+    {
+      "pageNumber": 51,
+      "markdown": "-   **Khảo dị:** _Minh sử_ bản kỷ chỉ nói Khang Mậu Tài đuổi đánh bại Sĩ Thành, không nhắc Ngô Lương. Tất Giám cũng chỉ nói thủ tướng Ngô báo, thủ tướng tức Lương, nhưng cũng không nói việc ông đuổi Sĩ Thành. Chỉ _Kỷ sự bản mạt_ chuyên thuật công anh em Lương, đồng thời việc đuổi Sĩ Thành ở Phù Tử Môn cũng quy về Lương mà không nhắc Mậu Tài; hai bên đều mất. Nay tham khảo hai sách, ghi cả công của họ. Về việc Sĩ Thành ban đầu dòm Giang Âm, tuy Thái Tổ hạ lệnh thân chinh, nhưng Lương phòng ngự có phương, cho nên Sĩ Thành lập tức trốn; còn đuổi ở Phù Tử Môn thì công Mậu Tài nhiều hơn. Xem việc Thái Tổ đến Giang Âm, úy lạo quân, đi khắp lũy trại, ví công Lương với Ngô Khởi, thì công Lương vốn không thể bỏ.\n    \n\nTháng ấy, lệnh Trung Thư Tỉnh thu dùng những quan viên các ty bị đàn hặc bãi lui. Tỉnh thần Phó Hoàn nói: “Nay thiên hạ thay đổi, việc lớn đang nhiều; quan lại các ty nếu không tinh cần, sáng suốt, thì không đủ làm xong việc.” Thái Tổ nói:\n\n> Không phải vậy. Tài năng của người mỗi bên có dài ngắn, cho nên hiệu quả cũng có chậm nhanh. Người chất phác phần nhiều trì hoãn; kẻ hẹp hòi giảo hoạt phần nhiều khéo đối đáp. Kẻ khéo đối đáp tuy giỏi xử việc, nhưng hoặc tổn hại vì gấp gáp, không thể không có hại cho dân. Người trì hoãn tuy đối với việc có khi chưa kịp, nhưng đối với dân thì không có chỗ tổn."
+    },
+    {
+      "pageNumber": 52,
+      "markdown": "Vì vậy có người bị hặc lui vẫn được khởi dụng. Lại lệnh Án Sát Ty Thiêm Sự Chu Trinh và các người định xét việc án sát, điều trần những việc nên làm để dâng. Dụ rằng: “Cơ quan phong hiến, kỷ cương, cốt ở được người. Được người thì pháp trong, tệ bỏ; người ta nói là thần minh, có thể làm uy phúc. Quỷ mị có thể làm yêu họa; các ngươi có thể hưng lợi trừ hại, giúp nước làm giàu dân, đó tức là thần minh. Nếu âm tư trá ngụy, mọt nước hại dân, đó tức là quỷ mị. Phàm việc nên giữ đại thể, chớ mua danh chuộng thẳng. Nếu lấy xét nét làm danh, khắc nghiệt làm tài, thì chức phong hiến hỏng rồi.”\n\nTháng 2, ngày Quý Sửu sóc, Hồ Quảng Tham Chính Trương Bân đánh bại Chu Văn Quý ở Thần Châu.\n\nNgày Đinh Mão, Tứ Xuyên Dung Mỹ Động Tuyên Phủ Sứ Điền Quang Bảo sai em là Quang Thụ đem sắc ấn Tuyên Phủ do Nguyên trao đến quy phụ. Thái Tổ lấy Quang Bảo làm Tứ Xuyên Hành Tỉnh Tham Chính, kiêm Dung Mỹ Động Đẳng Xứ Quân Dân Tuyên Phủ Sứ, vẫn đặt An Phủ Nguyên Soái trị nơi ấy, đồng thời lập các Trưởng Quan Ty Thái Bình Đài, Nghi Ma Liêu và mười trại khác."
+    },
+    {
+      "pageNumber": 53,
+      "markdown": "Sơn tặc huyện Thanh Điền thuộc Xử Châu liên kết với Phúc Kiến, binh Trần Hữu Định đánh Khánh Nguyên. Khi ấy Chương Dật được trao chức Chiết Đông Án Sát Phó Sứ. Dật từ chối, xin vẫn làm Thiêm Sự. Đến nơi, gặp lúc Hồ Thâm vào Mân bị hãm, Xử Châu dao động. Dật tuyên bố chiếu chỉ, giết kẻ đầu phản, dư đảng đều định. Đến đây, gọi nghĩa binh bộ cũ chia đóng nơi yếu hại; giặc đến bèn đánh chạy.\n\nNgày Kỷ Tỵ, đặt Lưỡng Hoài Đô Chuyển Vận Diêm Sứ Ty, sở lĩnh tất cả hai mươi chín trường.\n\nBan đầu, Từ Đạt cứu Nghi Hưng. Thái Tổ lệnh Phùng Quốc Thắng thống binh vây Cao Bưu. Tướng của Trương Sĩ Thành là Du Đồng Thiêm giả sai người đến hàng, hẹn đẩy nữ tường làm ứng. Quốc Thắng tin, đêm sai Chỉ Huy Khang Thái dẫn vài trăm người trước vào thành; địch đóng cửa giết hết. Thái Tổ giận, gọi Quốc Thắng về, đánh đại trượng mười, lệnh đi bộ đến Cao Bưu. Quốc Thắng hổ thẹn, phẫn chí gắng đánh. Gặp lúc Từ Đạt từ Nghi Hưng trở về. Ngày Quý Dậu, Đạt xin lấy Chỉ Huy Tôn Hưng Tổ giữ Hải An, Thường Ngộ Xuân đốc thủy quân làm thanh viện cho Cao Bưu. Thái Tổ theo, lại sai sứ dụ Đạt rằng: “Sĩ Thành khởi từ Cao Bưu mà có Ngô, Việt, đó là sào huyệt của hắn. Đại quân đánh nơi ấy, hắn tất đến cứu. Nay nghe Từ Nghĩa đã vào biển, hoặc từ hồ Xạ Dương, hoặc từ góc Hồ Tử, hoặc ra Bảo Ứng đến Cao Bưu, không thể không phòng.” Lại lệnh Đạt đóng quân ở Thái Châu để phòng giặc dòm Hải An."
+    },
+    {
+      "pageNumber": 54,
+      "markdown": "Ngày Tân Tỵ, hạ lệnh cấm trồng lúa nếp. Đại lược nói: “Trước đây vì dân gian nấu rượu, rượu ngọt làm hao gạo, mạch, nên ban lệnh cấm rượu. Nay mùa xuân, giá gạo mạch hơi bình, nhưng không chặn nguồn mà muốn ngăn dòng thì không thể.” Bèn lệnh nông dân năm nay không được trồng nếp để chặn nguồn nấu rượu.\n\nTháng ấy, ngụy Hạ Minh Ngọc Trân mất, con là Thăng tự lập.\n\nTháng 3, ngày Canh Dần, Từ Đạt từ Thái Châu tiến binh, hội với Phùng Quốc Thắng đánh Cao Bưu. Ngày Bính Thân, khắc được, giết ngụy tướng Du Đồng Thiêm và bọn ấy, bắt tướng sĩ, lệnh đều đưa đi thú Miện Dương, Thần Châu, vẫn cấp áo lương. Ngày Đinh Mùi, Thái Tổ dụ Đạt, lệnh thừa thắng lấy Hoài An; binh mã còn lại đều lệnh Thường Ngộ Xuân thống lĩnh giữ Thái Châu, Hải An, làm ứng viện trên sông. Khi ấy Tôn Hưng Tổ giữ Hải An, phòng bị rất nghiêm. Gặp binh Sĩ Thành từ cửa biển đến xâm phạm, đánh bại, bắt ngụy Bành Nguyên Soái, thu được hơn hai trăm tướng sĩ.\n\nTháng ấy, lệnh Trung Thư Tỉnh nghiêm cấm việc tuyển cử. Phàm thuộc phủ mỗi năm tiến cử, người được hiền tài thì thưởng, tiến cử bừa và bỏ sót người hiền thì phạt."
+    },
+    {
+      "pageNumber": 55,
+      "markdown": "Ban đầu, Lý Tư Tề nhà Nguyên cùng Sát Hãn Đặc Mục Nhĩ cùng khởi nghĩa binh, tuổi tác địa vị ngang nhau. Đến đây Khố Khố Đặc Mục Nhĩ tổng lĩnh binh thiên hạ, gửi hịch điều động bốn quân Quan Trung. Bốn quân ấy là Tư Tề, Trương Lương Bật, Đồ Lỗ Bốc, bản cũ chép Thoát Liệt Bá, và Khổng Hưng. Tư Tề nhận hịch, nổi giận mắng rằng: “Ta cùng cha ngươi là người đồng hương, nay thằng trẻ còn mùi sữa, tóc vàng còn chưa rụng, lại muốn tổng binh điều ta sao?” Vì vậy Lương Bật đầu tiên chống mệnh. Khổng Hưng, Đồ Lỗ Bốc và bọn ấy cũng đều cậy công, ôm dị chí, xin riêng làm một quân, không ai chịu thuộc dưới. Khố Khố than rằng: “Ta phụng mệnh tổng lĩnh binh thiên hạ, mà trấn tướng đều không chịu điều khiển, còn bình giặc thế nào?” Bèn sai Quan Bảo Hòa Nhĩ Tề, bản cũ chép Hổ Lâm Xích, đem binh tây đánh Lương Bật ở Lộc Đài, mà Tư Tề hợp với Lương Bật. Từ đó đông tây kết binh không dứt.\n\nMùa hạ, tháng 4, ngày Bính Thìn, quân Từ Đạt đến Hoài An. Nghe thủy quân Từ Nghĩa tập hợp ở cảng Mã Loa, đêm dẫn binh đến đánh, phá trại ấy. Nghĩa theo biển trốn đi. Quân ta tiến áp dưới thành. Trung Thư Tả Thừa của Sĩ Thành là Mai Tư Tổ và bọn ấy niêm phong phủ khố, ghi sổ giáp binh, mở cửa đón hàng, đồng thời dâng bốn châu thuộc bộ. Thái Tổ khen ông biết mệnh, bảo dân, trao làm Đại Đô Đốc Phủ Phó Sứ, lệnh Chỉ Huy Thái Tiên, Hoa Vân Long giữ thành ấy.\n\nNgày Mậu Ngọ, Từ Đạt từ Hồ Tử Giác tiến binh đánh Hưng Hóa, khắc được, đất Hoài đều bình."
+    },
+    {
+      "pageNumber": 56,
+      "markdown": "Lệnh Bình Chương Hàn Chính lấy Hào Châu. Hào Châu từ khi Quách Tử Hưng bỏ đi, Tôn Đức Nhai cũng chết, tướng của Sĩ Thành là Lý Tế lén chiếm giữ. Thái Tổ lệnh Lý Thiện Trường viết thư chiêu dụ, không đáp. Thái Tổ nói: “Hào Châu là quê hương ta; nay bị Trương Sĩ Thành chiếm, thế là ta có nước mà không có nhà.” Liền lệnh Chính đốc Chỉ Huy Cố Thời dùng thang mây, pháo đá đánh thủy liêm động, nguyệt thành, lại đánh cửa tây. Trong thành không chống nổi. Ngày Canh Giáp, Tế và Tri Châu Mã Lân ra hàng, Thái Tổ rất vui. Ngày Nhâm Tuất, sai người mang thư dụ quan lại, dân chúng Túc Châu, lấy nghĩa thuộc về quê làng, không nỡ vội nổi binh. Phàm phụ lão ta nên nặng hiểu ý ấy. Khi ấy thủ tướng Lục Tụ là Nguyên Xu Mật Viện Đồng Tri. Từ khi Thác Khắc Thác đánh bại Chi Ma Lý ở Từ Châu, bọn Bành Đại chạy đến Hào."
     }
   ]
 }

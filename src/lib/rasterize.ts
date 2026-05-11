@@ -11,13 +11,14 @@
 import fs from 'fs';
 import path from 'path';
 import puppeteer from 'puppeteer';
+import TurndownService from 'turndown';
 
 // Root typography and page sizing (rem -> px). Images are rendered at 2x DPR.
 const ROOT_FONT_SIZE = 24; // 1rem = 16px
 const PAGE_WIDTH_REM = 32;
 const PAGE_HEIGHT_REM = 48;
-const PAD_X_REM = 2;
-const PAD_Y_REM = 2;
+const PAD_X_REM = 4;
+const PAD_Y_REM = 4;
 const FOOTER_HEIGHT_REM = 2;
 
 const PAGE_WIDTH = PAGE_WIDTH_REM * ROOT_FONT_SIZE; // 768px
@@ -28,7 +29,9 @@ const FOOTER_HEIGHT = FOOTER_HEIGHT_REM * ROOT_FONT_SIZE; // 64px
 const CONTENT_HEIGHT = PAGE_HEIGHT - FOOTER_HEIGHT - PAD_Y * 2;
 const DPR = 2;
 
-const OUTPUT_DIR = path.join(process.cwd(), 'public', 'data', 'image', 'articles');
+// Page images are stored outside /public so they cannot be hot-linked or
+// scraped directly. They are streamed through a token-gated API route.
+const OUTPUT_DIR = path.join(process.cwd(), 'data', 'page-images');
 
 /** CSS applied to every rendered page (must match reader appearance). */
 const PAGE_CSS = `
@@ -61,6 +64,7 @@ body {
   box-sizing: border-box;
   font-family: 'gg sans', 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1rem;
+  font-weight: 500;
   line-height: 1.375rem;
   color: #2d2d32;
   background: #fff;
@@ -160,21 +164,63 @@ export interface PageInfo {
   imageUrl: string;
 }
 
+export interface MarkdownPageInfo {
+  pageNumber: number;
+  markdown: string;
+}
+
+export interface RasterizeResult {
+  pages: PageInfo[];
+  markdownPages: MarkdownPageInfo[];
+}
+
+function createTurndown(): TurndownService {
+  const td = new TurndownService({
+    headingStyle: 'atx',
+    codeBlockStyle: 'fenced',
+    bulletListMarker: '-',
+    emDelimiter: '_',
+  });
+  td.addRule('strikethrough', {
+    filter: ['s', 'del'],
+    replacement: (c) => `~~${c}~~`,
+  });
+  td.addRule('table', {
+    filter: 'table',
+    replacement: (_c, node) => {
+      const el = node as HTMLElement;
+      const rows = Array.from(el.querySelectorAll('tr'));
+      if (rows.length === 0) return '';
+      const cellText = (cell: Element) =>
+        (cell.textContent || '').replace(/\s+/g, ' ').trim().replace(/\|/g, '\\|');
+      const lines: string[] = [];
+      rows.forEach((row, i) => {
+        const cells = Array.from(row.querySelectorAll('th,td')).map(cellText);
+        lines.push(`| ${cells.join(' | ')} |`);
+        if (i === 0) lines.push(`| ${cells.map(() => '---').join(' | ')} |`);
+      });
+      return `\n\n${lines.join('\n')}\n\n`;
+    },
+  });
+  return td;
+}
+
 /**
- * Rasterize an article's HTML content into 3:4 page images.
+ * Rasterize an article's HTML content into 3:4 page images AND per-page markdown.
  *
  * 1. Renders the full HTML in Puppeteer to measure block positions.
  * 2. Splits blocks into pages that fit within CONTENT_HEIGHT.
- * 3. Screenshots each page at 2× DPR.
- * 4. Saves PNGs to public/data/image/articles/{slug}/.
+ * 3. Screenshots each page at 2× DPR and saves to data/page-images/{slug}/.
+ * 4. Converts the SAME per-page HTML blocks to markdown, so search indices
+ *    line up exactly with rendered pages.
  *
- * @returns Array of page metadata (pageNumber + public imageUrl).
+ * @returns Pages (image metadata) and markdownPages (per-page markdown).
  */
 export async function rasterizeArticle(
   slug: string,
   htmlContent: string,
   totalPageCount?: number,
-): Promise<PageInfo[]> {
+): Promise<RasterizeResult> {
   // Ensure output directory exists
   const slugDir = path.join(OUTPUT_DIR, slug);
   fs.mkdirSync(slugDir, { recursive: true });
@@ -284,11 +330,25 @@ export async function rasterizeArticle(
 
       results.push({
         pageNumber: pageNum,
-        imageUrl: `/data/image/articles/${slug}/page-${pageNum}.png`,
+        // Token-gated API endpoint; the client appends ?t=<session token>.
+        imageUrl: `/api/articles/${slug}/page/${pageNum}/image`,
       });
     }
 
-    return results;
+    // ── Step 4: Convert each page's blocks to markdown ───────────────
+    const turndown = createTurndown();
+    const markdownPages: MarkdownPageInfo[] = pageBlocks.map((blocks, i) => {
+      const html = blocks.join('\n');
+      let md = '';
+      try {
+        md = turndown.turndown(html);
+      } catch {
+        md = html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+      }
+      return { pageNumber: i + 1, markdown: md };
+    });
+
+    return { pages: results, markdownPages };
   } finally {
     await browser.close();
   }

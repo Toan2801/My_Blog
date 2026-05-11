@@ -225,3 +225,232 @@
   .reader-arrow-prev { left: 4px; }
   .reader-arrow-next { right: 4px; }
 }
+
+/* ── Search overlay ──────────────────────────────────────────── */
+.reader-search-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 50;
+  padding-top: 60px;
+}
+
+.reader-search-panel {
+  width: min(640px, 92vw);
+  max-height: 75vh;
+  background: #1c1c1f;
+  color: #f4f4f6;
+  border-radius: 10px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.reader-search-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.reader-search-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: #f4f4f6;
+  font-size: 0.92rem;
+  padding: 8px 12px;
+  outline: none;
+}
+
+.reader-search-input:focus {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.reader-search-status {
+  padding: 8px 14px;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.reader-search-results {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.reader-search-hit {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.reader-search-hit:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.reader-search-hit-page {
+  font-weight: 600;
+  color: #9bd0ff;
+  flex-shrink: 0;
+  min-width: 70px;
+}
+
+.reader-search-hit-snippet {
+  flex: 1;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.4;
+}
+
+.reader-search-hit-count {
+  color: rgba(255, 255, 255, 0.5);
+  flex-shrink: 0;
+  font-size: 0.78rem;
+}
+
+/* ── HTML-mode page hosts (canvas-backed) ─────────────────────── */
+.reader-page-host {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  overflow: hidden;
+}
+
+.reader-page-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.reader-page-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b8b8be;
+  font-family: 'Times New Roman', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  pointer-events: none;
+}
+
+/* ── page-flip base styles (the lib ships these but doesn't bundle them
+       with the JS; loadFromHTML mode needs them so the shadow overlays
+       are positioned correctly during a flip). ──────────────────── */
+.stf__parent {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  transform: translateZ(0);
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+}
+
+.stf__block {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  perspective: 2000px;
+}
+
+.stf__item {
+  display: none;
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.stf__outerShadow,
+.stf__innerShadow,
+.stf__hardShadow,
+.stf__hardInnerShadow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+}
+
+/* ── Page-edge depth shadow ─────────────────────────────────────
+   Gives each visible page a soft drop on its outer (non-spine) side
+   so the page edge is recognizable while flipping — looks like real
+   paper sitting on the binding rather than a flat image. */
+.stf__item.--soft {
+  /* Subtle drop on all sides; stronger toward the outer edge. */
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.06),
+    0 0 1px rgba(0, 0, 0, 0.20);
+}
+
+/* Right-hand page: deeper shadow on the right (outer) edge. */
+.stf__item.--soft.--right {
+  box-shadow:
+    4px 2px 8px rgba(0, 0, 0, 0.18),
+    1px 0 2px rgba(0, 0, 0, 0.22);
+}
+
+/* Left-hand page: deeper shadow on the left (outer) edge. */
+.stf__item.--soft.--left {
+  box-shadow:
+    -4px 2px 8px rgba(0, 0, 0, 0.18),
+    -1px 0 2px rgba(0, 0, 0, 0.22);
+}
+
+/* Gutter shadow: subtle dark fade at the spine side of each page so
+   the binding reads as a slight valley between the two pages. */
+.reader-page-host::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 24px;
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+/* page-flip adds .--left / .--right to the same <div> that already has
+   .reader-page-host, so the pseudo-element selectors below chain them. */
+.reader-page-host.--right::after {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.22) 0%,
+    rgba(0, 0, 0, 0.05) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.reader-page-host.--left::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0.22) 0%,
+    rgba(0, 0, 0, 0.05) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}

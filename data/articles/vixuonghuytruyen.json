@@ -21,55 +21,117 @@
   "pages": [
     {
       "pageNumber": 1,
-      "imageUrl": "/data/image/articles/vixuonghuytruyen/page-1.png"
+      "imageUrl": "/api/articles/vixuonghuytruyen/page/1/image"
     },
     {
       "pageNumber": 2,
-      "imageUrl": "/data/image/articles/vixuonghuytruyen/page-2.png"
+      "imageUrl": "/api/articles/vixuonghuytruyen/page/2/image"
     },
     {
       "pageNumber": 3,
-      "imageUrl": "/data/image/articles/vixuonghuytruyen/page-3.png"
+      "imageUrl": "/api/articles/vixuonghuytruyen/page/3/image"
     },
     {
       "pageNumber": 4,
-      "imageUrl": "/data/image/articles/vixuonghuytruyen/page-4.png"
+      "imageUrl": "/api/articles/vixuonghuytruyen/page/4/image"
     },
     {
       "pageNumber": 5,
-      "imageUrl": "/data/image/articles/vixuonghuytruyen/page-5.png"
+      "imageUrl": "/api/articles/vixuonghuytruyen/page/5/image"
     },
     {
       "pageNumber": 6,
-      "imageUrl": "/data/image/articles/vixuonghuytruyen/page-6.png"
+      "imageUrl": "/api/articles/vixuonghuytruyen/page/6/image"
     },
     {
       "pageNumber": 7,
-      "imageUrl": "/data/image/articles/vixuonghuytruyen/page-7.png"
+      "imageUrl": "/api/articles/vixuonghuytruyen/page/7/image"
     },
     {
       "pageNumber": 8,
-      "imageUrl": "/data/image/articles/vixuonghuytruyen/page-8.png"
+      "imageUrl": "/api/articles/vixuonghuytruyen/page/8/image"
     },
     {
       "pageNumber": 9,
-      "imageUrl": "/data/image/articles/vixuonghuytruyen/page-9.png"
+      "imageUrl": "/api/articles/vixuonghuytruyen/page/9/image"
     },
     {
       "pageNumber": 10,
-      "imageUrl": "/data/image/articles/vixuonghuytruyen/page-10.png"
+      "imageUrl": "/api/articles/vixuonghuytruyen/page/10/image"
     },
     {
       "pageNumber": 11,
-      "imageUrl": "/data/image/articles/vixuonghuytruyen/page-11.png"
+      "imageUrl": "/api/articles/vixuonghuytruyen/page/11/image"
     },
     {
       "pageNumber": 12,
-      "imageUrl": "/data/image/articles/vixuonghuytruyen/page-12.png"
+      "imageUrl": "/api/articles/vixuonghuytruyen/page/12/image"
     },
     {
       "pageNumber": 13,
-      "imageUrl": "/data/image/articles/vixuonghuytruyen/page-13.png"
+      "imageUrl": "/api/articles/vixuonghuytruyen/page/13/image"
+    },
+    {
+      "pageNumber": 14,
+      "imageUrl": "/api/articles/vixuonghuytruyen/page/14/image"
+    }
+  ],
+  "markdownPages": [
+    {
+      "pageNumber": 1,
+      "markdown": "_Kim Điền dạ hỏa chú binh qua,_\n\n_Bạch diện cao quyền ánh ngọc kha._\n\n_Hủy gia từng trợ Thiên Quốc khởi,_\n\n_Thừa tuyên tá chính vị tha nga._\n\n_Đông vương bạt hỗ tàng thâm oán,_\n\n_Bắc phủ âm mưu khởi họa ba._\n\n_Nhất tịch đồng bào quy kiếp hỏa,_\n\n_Không lưu gian hiệu nhập ai ca._\n\n## 1\\. Xuất thân địa chủ\n\nVi Xương Huy (1826 - 1856), nguyên tên là Chí Chính, lại có tên là Chính, người thôn Kim Điền, huyện Quế Bình, tỉnh Quảng Tây, xuất thân nhà địa chủ. Nhà có hơn 260 mẫu ruộng nước, của cải tuy nhiều nhưng gốc gác chưa phải đại tộc lâu đời, nên thường bị các hào cường ở Kim Điền khinh rẻ. Nhà Tạ Khải Phát trong thôn có hiềm khích với họ Vi, ngày đêm cạnh tranh. Nhà họ Lam ở Giới Động lại thường cấu kết với sai dịch để ức hiếp, nhà họ Lưu ở Vương Mô bên kia sông thì cậy đông người, lại có thế lực trong nha môn, nhiều phen gây sự, bắt nạt Vi gia."
+    },
+    {
+      "pageNumber": 2,
+      "markdown": "Lúc nộp lương thảo, nhà họ Vi từng bị quan lại làm khó: đã nộp thuế mà không cấp giấy, rồi lại ép nộp thêm. Đàn bà trong nhà ra ngoài cũng bị đám thổ hào trêu ghẹo. Bởi thế, tuy nhà có tiền của, Xương Huy từ nhỏ đã thấy rõ cái nhục của kẻ có của mà không có thế, có ruộng mà không có công danh. Cha là Vi Nguyên Giới đau đớn vì việc ấy, muốn con học hành đỗ đạt để mở mày mở mặt với làng xóm.\n\nXương Huy hồi trẻ từng đọc sách, 2 lần dự thi đồng tử nhưng đều không đỗ. Về sau, Nguyên Giới bỏ tiền quyên cho con 1 suất giám sinh, lại treo biển ở cửa nhà. Có thuyết nói biển ấy ghi “Thành quân tiến sĩ”, có thuyết nói là “Đăng sĩ lang”. Bọn Tạ Khải Phát, Lam Nhữ Giám nhân đêm tối sai người cạo mất 2 chữ thành quân, chỉ để lại 2 chữ tiến sĩ. Sáng hôm sau, chúng liền vu cho cha con họ Vi mạo xưng tiến sĩ, bắt Nguyên Giới đem đến đoàn cục luận tội. Họ Vi phải bỏ ra 300 lạng bạc mới chuộc được người về. Sau việc ấy, họ Vi bị mang tiếng mạo xưng tiến sĩ, chịu lời cười chê của xóm làng. Nguyên Giới bèn bảo Xương Huy:\n\n> Tôi già vô dụng rồi rồi. Anh là người trẻ, tiền đồ còn dài. Việc hôm nay bị người ta lấn hiếp, anh nên lập chí mới được!\n\nTừ đó Xương Huy càng nung nấu ý muốn tìm 1 con đường khác để đổi phận nhà mình."
+    },
+    {
+      "pageNumber": 3,
+      "markdown": "Năm Đạo Quang thứ 27 (1847), Phùng Vân Sơn đến vùng Tử Kinh Sơn truyền giáo. Vân Sơn thấy họ Vi tuy khá giả mà nhiều phen bị hào cường áp bức, bèn đem lời khuyên giải, dụ họ vào hội. Năm thứ 28 (1848), Vân Sơn bị bắt rồi trên đường bị giải về nguyên quán lại trở về Tử Kinh Sơn, đi qua Kim Điền, ngủ nhờ ở nhà họ Vi. Nhân đó, Vân Sơn thuyết phục Xương Huy nhập hội. Xương Huy bèn lấy tiền nhà giúp Vân Sơn truyền giáo.\n\n![Mặt giả” của Phùng Vân Sơn | Nghiên Cứu Lịch Sử](https://nghiencuulichsu.com/wp-content/uploads/2017/08/ca4000397f684492924.jpg?w=584)\n\nCác vương gia buổi đầu Thái Bình Thiên Quốc\n\n## 2\\. Từ khi nhập hội đến Kim Điền khởi nghĩa\n\nTừ đó, Bái Thượng Đế hội cùng đoàn luyện địa phương ngày càng căng thẳng. Hội chúng bí mật chuẩn bị khởi nghĩa. Nhà Xương Huy ở Kim Điền trở thành nơi rèn đúc khí giới. Ông góp mấy trăm lạng bạc, dựng 12 lò rèn trong nhà. Bề ngoài nói là rèn nông cụ, bên trong lại bí mật rèn dao, giáo. Những chiếc bừa sắt được làm răng vừa to vừa dài; khi tháo ra, lắp cán vào, liền thành thương mâu dùng khi ra trận."
+    },
+    {
+      "pageNumber": 4,
+      "markdown": "Để gom nguyên liệu, nhà họ Vi đem nông cụ ra chợ bày bán, đồng thời thu mua đồng sắt cũ. Nông cụ cố ý làm thô nặng, không hợp dùng, nên ít ai mua; nhưng đồng sắt thì lại thu được nhiều. Tiếng lò rèn sợ lộ việc, Vi gia nuôi 1 đàn ngỗng trước cửa, lấy tiếng ngỗng kêu át tiếng búa. Vũ khí rèn xong thì bí mật đem giấu ở đầm Tê Ngưu phía tây thôn.\n\nTrong hội, Xương Huy thân với Tiêu Triều Quý. Tháng 8 năm thứ 29 (1949), Triều Quý giả thác Thiên huynh giáng phàm, sai Xương Huy cùng mình đi huyện Quý đón Hồng Tú Toàn. Trước mặt Tú Toàn, Triều Quý cũng hay nói tốt cho Xương Huy, bảo ông với bọn người Tú Toàn là chung một ruột.\n\n![undefined](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/%E8%90%A7%E6%9C%9D%E8%B4%B5.jpg/960px-%E8%90%A7%E6%9C%9D%E8%B4%B5.jpg)\n\nTượng của Tây vương Tiêu Triều Quý (1820 - 1852)\n\nTừ đó, địa vị của Xương Huy trong hệ thống thần quyền được xác lập. Ông được coi là con của Thiên phụ em của Thiên huynh, gọi là Chính bào. Xương Huy cũng tỏ ra tuyệt đối thuận phục Triều Quý, từng nói:\n\n> Em đây mọi việc đều nghe theo lời Thiên huynh dặn bảo."
+    },
+    {
+      "pageNumber": 5,
+      "markdown": "Bởi thế, Triều Quý đặt đại bản doanh khởi nghĩa tại nhà Xương Huy ở Kim Điền. Khởi nghĩa Kim Điền bùng lên ngay từ quê nhà họ Vi, lại nhờ gia sản và sự chuẩn bị của Xương Huy, nên trong buổi đầu triều Thanh thường xem ông là 1 trong các giặc đầu sỏ.\n\nNăm Hàm Phong nguyên niên (1851), khởi nghĩa Kim Điền nổ ra. Xương Huy được đặt làm Hữu quân chủ tướng, sau gia thêm chức Hậu hộ hựu phó quân sư. Tuy ông cũng có dự chiến trận, nhưng chiến công không rực rỡ như Tiêu Triều Quý, Phùng Vân Sơn. Trên đường từ Quảng Tây tiến về phía đông, phần nhiều lo lương hướng, coi việc hậu cần của toàn quân. Dưới quyền Dương Tú Thanh, ông cũng phụ trách nhiều việc hành chính thường ngày, gọi là thừa tuyên. Tháng 10, Hồng Tú Toàn tại Vĩnh An hạ chiếu phong thưởng. Đông, Tây, Nam, Bắc, Dực 5 vương đều được lập. Hơn 800 người khác cũng được ban quan tước. Xương Huy được phong Bắc vương, xưng Lục thiên tuế, đứng sau Dương Tú Thanh, Tiêu Triều Quý, Phùng Vân Sơn, đứng trước Thạch Đạt Khai. Sau khi Vân Sơn và Triều Quý lần lượt tử trận, Xương Huy trở thành nhân vật số 3 trong Thái Bình Thiên Quốc.\n\n## 3\\. Tham gia chinh chiến"
+    },
+    {
+      "pageNumber": 6,
+      "markdown": "Năm thứ 2 (1853), Thái Bình quân chiếm Kim Lăng, đổi làm Thiên Kinh, đặt nơi ấy làm kinh đô. Từ đó, Thiên vương Tú Toàn dần ở sâu trong cung, ít ra ngoài xử việc. Quân chính đại quyền phần lớn do Đông vương Dương Tú Thanh nắm. Xương Huy giúp Tú Thanh thi hành mệnh lệnh, gọi là hiệp lý thiên sự. Các tướng có việc quân thường bẩm với Xương Huy trước, rồi Xương Huy trình lên Tú Thanh để định đoạt. Năm thứ 4 (1854), được gia phong Lôi sư, Cao thiên nhân nhân.\n\nTrong mấy năm đầu ở Thiên Kinh, phép tắc của Thái Bình Thiên Quốc còn khá nghiêm ngặt. Tú Thanh là người quyết đoán chính sự, Xương Huy là người chấp hành. Vì thế, tuy không nổi danh bằng các tướng chuyên đánh trận, nhưng vẫn có công trong việc vận hành chính quyền mới lập. Lý Khai Phương từng nói Tiêu Triều Quý là người thông binh pháp bậc nhất, kế đó là Vi Chính. Lại nói La Đại Cương, Tiêu Triều Quý thường ra trận, Dương Tú Thanh ít ra trận, còn Vi Chính thì thỉnh thoảng có ra. Qua đó biết Xương Huy cũng từng thân lâm chiến trận, có năng lực nhất định."
+    },
+    {
+      "pageNumber": 7,
+      "markdown": "Tháng 6 năm thứ nhất (1851), Thái Bình quân từ Tượng Châu, Vũ Tuyên quay về Tử Kinh, Kim Điền. Dương Tú Thanh, Tiêu Triều Quý và Xương Huy cùng chỉ huy tiền quân, lấy Mạc thôn ở Tân Vu làm đại bản doanh, bày quân ở Bàn Long, An Chúng, Kim Điền, Tân Vu, chiếm giữ vùng bình nguyên giữa sông Tư Bàn và nước Bằng Hóa. Xương Huy đem hơn 2.000 quân đóng ở An Chúng, đối đầu với quân Thanh của Ô Lan Thái ở Nam Lộc. Ngày 12, quân Thanh lén vượt sông Tư Bàn đánh úp An Chúng. Xương Huy đem quân ra nghênh chiến ở bến sông. Vì biến đến quá gấp, doanh trại Thái Bình bị đốt, chết hơn 30 người, nhưng cũng giết được thiên tổng Vi Hữu Thanh của quân Thanh, coi như thắng nhỏ.\n\nTháng 8 ấy, Thái Bình quân đại phá quân Thanh ở Quan thôn, Bình Nam, rồi chia thủy lục 2 đường tiến về Vĩnh An. Tiêu Triều Quý, Xương Huy, Tần Nhật Cương và La Đại Cương thống lĩnh chủ lực đường bộ, từ vùng núi Đại Lê thuộc Đằng huyện tiến gấp lên phía bắc, dọc đường chiêu tập hội chúng, gom lương thảo, mở đường công thành, thế như chẻ tre, cuối cùng chiếm Vĩnh An. Song trong trận này, mưu lược phần nhiều do Triều Quý, công kiên phá địch phần nhiều nhờ Đại Cương; Xương Huy chủ yếu ở vai phụ tá."
+    },
+    {
+      "pageNumber": 8,
+      "markdown": "Năm thứ 3 (1853), đánh Kim Lăng, Xương Huy cũng dự trận. Trong lúc công thành dữ dội, ông xông lên trước dưới hỏa lực, lại chia 1 đội quân từ cửa Thủy Tây trèo thành mà vào, hô quân tiến đánh. Quân Thanh trên thành tan chạy. La Đại Cương, Tôn Dần Tam, Hoàng Sinh Tài, Hoàng Ngọc Côn đem quân tiếp ứng, Giang Ninh thất thủ. Sau trận ấy, Thiên Kinh được lập, cơ nghiệp Thái Bình bước vào thời cực thịnh.\n\n## 4\\. Ngoại giao với người Tây\n\nVề ngoại giao, Xương Huy từng tiếp xúc với người phương Tây. Tháng 3 năm thứ 3 (1853), công sứ Anh Bonham cùng thông dịch viên Medhurst từ Thượng Hải đến Thiên Kinh. Người tiếp đãi là Xương Huy và Thạch Đạt Khai, nhưng việc đàm phán chủ yếu do Xương Huy đảm nhận. Khi nghe người Anh nói họ cũng tin Thượng Đế và 10 điều răn, ông rất vui lòng. Nhưng ông lại nói Hồng Tú Toàn không chỉ là chủ của Thái Bình, mà cũng là chủ của người Anh, khiến phía Anh không hài lòng.\n\nKhi người Anh tuyên bố sẽ giữ trung lập trong nội chiến Trung Quốc, Xương Huy đáp:\n\n> Các ông nếu giúp người Mãn, thật là sai lớn. Nhưng dù có giúp họ cũng chẳng ích gì. Thiên phụ giúp chúng ta, không ai có thể chống lại được."
+    },
+    {
+      "pageNumber": 9,
+      "markdown": "Mùa đông năm ấy, sứ thần Pháp Bourboulon muốn tiếp xúc với Thái Bình Thiên Quốc. Lúc đầu do Tần Nhật Cương tiếp đãi. Vì quốc thư của Pháp không có chữ ký, ấn tín, lại gọi vua Hàm Phong là hoàng đế, đồng thời muốn hỏi đến tình hình giáo dân Thiên Chúa trong vùng Thái Bình cai quản, hai bên sinh tranh chấp lễ nghi. Xương Huy truyền lệnh bảo Bourboulon đến nghe khẩu dụ. Bourboulon cự tuyệt. Xương Huy lập tức đuổi ông ta ra khỏi đất Thái Bình.\n\n## 5\\. Từ mâu thuẫn tích tụ đến Thiên Kinh sự biến\n\nXương Huy vốn lanh lợi, biết quyền biến, nhưng cũng âm trầm, hay nhẫn nhịn để chờ thời. Sau khi định đô Thiên Kinh, Tú Thanh chuyên quyền, gần như lấn át Tú Toàn, lại nhiều lần mượn danh Thiên phụ hạ phàm để làm nhục các vương. Xương Huy bề ngoài hết sức cung thuận, trong lòng thì căm hận. Mỗi khi bàn việc với Tú Thanh, Xương Huy thường hạ mình nói:\n\n> Nếu không nhờ anh Tư dạy bảo, em đây ruột gan non nớt, gần như chẳng biết gì!\n\nNhưng càng nhịn nhục như thế, lòng oán lại càng sâu. Có lần anh của Xương Huy tranh nhà với anh của 1 người thiếp của Tú Thanh. Tú Thanh bảo Xương Huy nghị tội. Xương Huy chẳng những không bênh người nhà, lại chủ trương xử thật nặng để tỏ lòng không thiên vị."
+    },
+    {
+      "pageNumber": 10,
+      "markdown": "Năm thứ 4 (1854), Xương Huy sai Trương Tử Bằng đem thuyền đánh vùng Tương, Ngạc. Tử Bằng vì tranh thuyền với thủy doanh của Đường Chính Tài, đánh phạt nhiều chiến sĩ thủy doanh, làm quân tâm dao động. Tú Thanh nghe tin, lập tức đến Bắc vương phủ, đánh phạt Xương Huy rất nặng, lại phạt Tử Bằng 1.000 trượng, rồi trọng thưởng vàng lụa cho Chính Tài, gia phong hàm Thừa tướng để an ủi. Có thuyết nói bộ tướng của Xương Huy vì việc ấy oán trách Tú Thanh. Xương Huy nghe được, lập tức mắng bộ tướng ấy rồi giết đi, để tỏ ra mình không dám chống Đông vương. Cùng năm, Tú Thanh sai Xương Huy đem quân đánh Hồ Bắc. Lệnh đã ban nhiều ngày, lại ngầm bảo người dâng sớ xin giữ ông ở lại, rồi giả vờ không chuẩn. Đến khi gần đi, Tú Thanh đổi lệnh, sai Vi Tuấn và Hoàng Tái Hưng đi thay. Mùa thu, Tú Thanh lại sai Xương Huy đi Hồ Bắc, An Huy chủ trì quân sự. Khi ông đi đến Thái Thạch, lại truyền lệnh gọi về, đổi sai Thạch Đạt Khai. Những lần sai đi gọi lại ấy chẳng khác nào đem Bắc vương ra đùa giỡn. Tú Thanh lại nhiều lần mượn danh Thiên phụ làm nhục ông. Bề ngoài Xương Huy vẫn kính cẩn, trong lòng thì oán độc đã thành."
+    },
+    {
+      "pageNumber": 11,
+      "markdown": "Năm thứ 6 (1856), Thái Bình quân phá Giang Bắc đại doanh và Giang Nam đại doanh, Thiên Kinh được giải vây. Khi ấy, Xương Huy được sai đi Giang Tây đốc sư, dẫn Hoàng Văn Kim, Hồ Đỉnh Văn và các đạo quân chia 5 đường đánh Bố chính sứ Giang Tây Kỳ Linh, đại phá đối phương, chiếm phủ Nhiêu Châu. Nhưng đến tháng 6, khi đánh vùng Thụy Châu, ông liên tiếp bị Tăng Quốc Phiên đánh bại, đến cả kiệu vàng, lọng thêu cũng bị quân địch đoạt.\n\nCũng trong năm ấy, Tú Thanh ngày càng kiêu căng, ép Tú Toàn phong mình làm Vạn tuế ngang với Thiên vương. Tú Toàn không thể chịu thêm, bèn mật chiếu gọi Xương Huy vào kinh giết Tú Thanh. Tháng 7, ngày 26, Xương Huy đem 3.000 thân binh bí mật vào Thiên Kinh, có Trần Thừa Dung, Tần Nhật Cương cùng phối hợp. Sau khi về Bắc vương phủ nhận chiếu giết Dương, Xương Huy lập tức đem quân đánh úp phủ Đông vương, giết Tú Thanh cùng người trong phủ.\n\nViệc giết Tú Thanh ban đầu là theo mật chiếu của Thiên vương. Nhưng Xương Huy vì oán hận đã lâu, sau khi trừ Đông vương liền mở rộng tàn sát, giết nhiều thuộc hạ và thân tín của Tú Thanh, số người chết lên đến hàng vạn. Thiên Kinh vì thế chấn động. Tú Toàn muốn ngăn ông tiếp tục giết người vô tội. Xương Huy lại đáp:\n\n> Tôi vì ông trừ mối hại lớn, nay ông lại trách tôi để mua danh hay sao?"
+    },
+    {
+      "pageNumber": 12,
+      "markdown": "Thạch Đạt Khai khi ấy từ Hồng Sơn ở Hồ Bắc chạy về Thiên Kinh. Thấy Xương Huy giết quá nhiều người, tỏ ý bất bình. Xương Huy lập tức muốn hại cả Đạt Khai. Đạt Khai nghe tin, vội bỏ Thiên Kinh mà đi. Không bắt được người, Xương Huy liền giết gia quyến Đạt Khai còn ở kinh thành. Sau đó, ông càng đi xa, đem quân vây Thiên vương phủ, ép Tú Toàn giao Đạt Khai ra.\n\nĐến nước này, Tú Toàn không thể dung Vi Xương Huy nữa. Ông ta hạ chiếu giáng Xương Huy làm Bắc gian, kêu gọi quân dân trong thành bắt trị tội. Vì Xương Huy đã giết quá nhiều người, mất hết nhân tâm, chiếu vừa ban ra, thế lực của ông lập tức tan rã. Xương Huy phải lẩn trốn trong thành. Ngày 2 tháng 11 năm ấy, bị quân dân bắt được, giải đến Thiên vương phủ xử tử, khi ấy chỉ vừa 31 tuổi. Cùng lúc đó, Trần Thừa Dung, Tần Nhật Cương và hơn 200 người thuộc phe Xương Huy cũng bị giết. Cuộc biến Thiên Kinh tạm lắng, nhưng nguyên khí Thái Bình Thiên Quốc đã tổn thương rất nặng.\n\n## 6\\. Đánh giá"
+    },
+    {
+      "pageNumber": 13,
+      "markdown": "Xét công của Xương Huy với Thiên quốc, không thể nói là không to. Xương Huy và Đạt Khai đều là phú hộ, sau khi biết Thiên phụ, Thiên huynh thì không tiếc gia sản, cùng phò chân chúa, dẹp sạch yêu khí, từ khi khởi nghĩa không ngại khó nhọc, hết lòng mưu việc. Khởi nghĩa Kim Điền được mưu tính ngay tại quê nhà ông; nhà ông là nơi đặt đại bản doanh, rèn khí giới, cất giấu vũ khí. Ông góp tiền góp của, đem cả tông tộc theo quân, có công trong buổi dựng nghiệp. Khi Thái Bình quân còn lưu động, ông lo lương hướng, giúp giữ quân không tan. Khi vào Thiên Kinh thì thi hành chính lệnh, góp phần vào trật tự ban đầu của triều đình mới. Ông từng ra trận, từng tham dự đánh Kim Lăng, từng đốc sư Giang Tây, cũng từng tiếp sứ Anh, đuổi sứ Pháp, giữ thái độ cứng rắn trước ngoại bang.\n\nNhưng tội của Xương Huy lại càng nặng. Chí khí không thắng được lòng riêng, nhẫn nhục lâu ngày hóa thành thù độc. Giết Tú Thanh vốn là việc do Thiên vương mật chiếu, nhưng lạm sát vô độ, hại cả đồng liêu, giết cả gia quyến Đạt Khai, lại đem quân ép Thiên vương, thì đã từ công thần hóa thành loạn thần. Bởi vậy, đời Xương Huy khởi bằng 1 chữ công, kết bằng 1 chữ tội; tiếng Bắc vương không che nổi tiếng Bắc gian, thật là 1 nhân vật làm nên cơ nghiệp rồi cũng tự tay phá gãy cơ nghiệp ấy. Từ sau biến Thiên Kinh, Thái Bình Thiên Quốc tuy còn kéo dài nhiều năm, nhưng khí thế cực thịnh đã không còn nữa."
+    },
+    {
+      "pageNumber": 14,
+      "markdown": "Cha Xương Huy là Vi Nguyên Giới. Anh em có Chí Tuấn, tức Vi Tuấn, có truyện riêng, cùng Chí Tân, Chí Tiên, Chí Năng. Vợ có Diệp thị và Tào thị. Con là Thừa Nghiệp, về sau cư trú ở Tuyên Thành, An Huy.\n\n![韦昌辉- 维基百科，自由的百科全书](https://upload.wikimedia.org/wikipedia/commons/8/86/%E9%9F%A6%E6%98%8C%E8%BE%89.jpg)\n\nTượng của Bắc vương Vi Xương Huy"
     }
   ]
 }
