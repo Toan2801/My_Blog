@@ -61,6 +61,8 @@ npx tsx scripts/sync-pages-to-db.ts      # push pages + markdownPages from JSON 
 
 See [docs/migration-markdown-pages.md](docs/migration-markdown-pages.md) for the team's step-by-step guide to migrating an article to the new markdown-paged format.
 
+Article source content is stored as **Markdown** in each JSON's `content` field. See [docs/migration-html-to-markdown.md](docs/migration-html-to-markdown.md) for the HTML → Markdown migration that brought existing data to this shape and the conventions used for images, captions, and inline formatting.
+
 ## Project Structure
 
 - `src/app/`: Next.js App Router pages, layouts, and API routes

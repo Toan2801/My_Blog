@@ -12,6 +12,7 @@ import fs from 'fs';
 import path from 'path';
 import puppeteer from 'puppeteer';
 import TurndownService from 'turndown';
+import { renderArticleMarkdown, isLikelyHtml } from './markdown';
 
 // Root typography and page sizing (rem -> px). Images are rendered at 2x DPR.
 const ROOT_FONT_SIZE = 24; // 1rem = 16px
@@ -142,6 +143,18 @@ body {
   height: auto;
   max-height: 24rem;
   max-width: 100%;
+}
+
+.image-caption {
+  font-family: 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: rgb(44, 26, 14);
+  margin-top: 0.6rem;
+  padding-top: 0.6rem;
+  border-top: 2px solid rgb(160, 120, 58);
+  text-align: center;
+  width: 60%;
 }
 
 .page-footer {
@@ -487,10 +500,16 @@ function loadAssetDataUrl(relPath: string): string | null {
 
 export async function rasterizeArticle(
   slug: string,
-  htmlContent: string,
+  content: string,
   title: string = '',
   author: string = '',
 ): Promise<RasterizeResult> {
+  // The source of truth is now markdown. Convert to HTML up-front; if the
+  // input still has HTML tags (un-migrated legacy data), use it as-is.
+  const htmlContent = isLikelyHtml(content)
+    ? content
+    : renderArticleMarkdown(content);
+
   // Ensure output directory exists
   const slugDir = path.join(OUTPUT_DIR, slug);
   fs.mkdirSync(slugDir, { recursive: true });

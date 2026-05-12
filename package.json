@@ -30,6 +30,7 @@
     "gray-matter": "^4.0.3",
     "html2canvas": "^1.4.1",
     "lucide-react": "^1.8.0",
+    "markdown-it": "^14.1.0",
     "mongoose": "^9.4.1",
     "next": "16.2.3",
     "page-flip": "^2.0.7",
@@ -42,6 +43,7 @@
     "turndown": "^7.2.4"
   },
   "devDependencies": {
+    "@types/markdown-it": "^14.1.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
