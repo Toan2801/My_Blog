@@ -61,7 +61,12 @@ async function migrate() {
 
         try {
           console.log(`  ⏳ ${articleData.title}...`);
-          const { pages, markdownPages } = await rasterizeArticle(articleData.slug, articleData.content);
+          const { pages, markdownPages } = await rasterizeArticle(
+            articleData.slug,
+            articleData.content,
+            articleData.title,
+            articleData.author,
+          );
 
           // Update JSON file with page + markdown metadata
           articleData.pages = pages;

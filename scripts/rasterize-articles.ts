@@ -62,7 +62,12 @@ async function main() {
   for (const article of articlesToProcess) {
     try {
       console.log(`  ⏳ ${article.title} (${article.slug})...`);
-      const { pages, markdownPages } = await rasterizeArticle(article.slug, article.content);
+      const { pages, markdownPages } = await rasterizeArticle(
+        article.slug,
+        article.content,
+        article.title,
+        (article.author as string | undefined) ?? '',
+      );
 
       // Update the JSON file with page + markdown metadata
       article.pages = pages;

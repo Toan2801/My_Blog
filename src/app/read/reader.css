@@ -320,6 +320,22 @@
   line-height: 1.4;
 }
 
+.reader-search-hit-snippet code {
+  display: inline;
+  border-radius: 0.25rem;
+  font-size: 0.85em;
+  padding: 0 0.2em;
+  background: rgba(89, 112, 242, 0.18);
+  border: 1px solid rgba(151, 151, 159, 0.45);
+  font-family: inherit;
+  color: #d6dcff;
+}
+
+.reader-search-hit-snippet em {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.95);
+}
+
 .reader-search-hit-count {
   color: rgba(255, 255, 255, 0.5);
   flex-shrink: 0;

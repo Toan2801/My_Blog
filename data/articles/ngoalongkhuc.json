@@ -42,28 +42,68 @@
     {
       "pageNumber": 5,
       "imageUrl": "/api/articles/ngoalongkhuc/page/5/image"
+    },
+    {
+      "pageNumber": 6,
+      "imageUrl": "/api/articles/ngoalongkhuc/page/6/image"
+    },
+    {
+      "pageNumber": 7,
+      "imageUrl": "/api/articles/ngoalongkhuc/page/7/image"
+    },
+    {
+      "pageNumber": 8,
+      "imageUrl": "/api/articles/ngoalongkhuc/page/8/image"
+    },
+    {
+      "pageNumber": 9,
+      "imageUrl": "/api/articles/ngoalongkhuc/page/9/image"
+    },
+    {
+      "pageNumber": 10,
+      "imageUrl": "/api/articles/ngoalongkhuc/page/10/image"
     }
   ],
   "markdownPages": [
     {
       "pageNumber": 1,
-      "markdown": "(Cái mà ta ngưỡng mộ là tấm lòng tận tụy tinh trung báo cuốc đến chết mới thôi của một kẻ thất phu bình thường trong xã hội chứ không phải là một tên yêu đạo trong ngọn gió của La Quán Trung.)\n\nĐất Nam Dương mây chiều phủ lối,\n\nKẻ ẩn mình quen nỗi cô miên.\n\nNgày dài ôm mối ưu phiền,\n\nĐêm nghe sao rụng bên triền cỏ thu.\n\nLưu hoàng thúc ba phen dò hỏi,\n\nDặm đường xa tìm tới lều tiên.\n\nMột lời gió cuốn mây yên,\n\nGieo mưu giữ lấy ngôi yên nước nhà.\n\nVì cơ nghiệp sơn hà sắp đổ,\n\nĐem gan vàng lo chỗ long đong.\n\nBút son định chước hưng vong,\n\nGươm đâu sánh nổi tấm lòng vì dân.\n\nTrận Xích Bích sóng ngân lửa dậy,"
+      "markdown": "# NGOẠ LONG KHÚC\n\nToan Nguyen"
     },
     {
       "pageNumber": 2,
-      "markdown": "Ánh quạt lông lay mấy cánh thuyền.\n\nMột phen gió nổi triền miên,\n\nĐốt tan mộng bá bên miền Giang Đông.\n\nTừ bến cũ sang sông vào Thục,\n\nDựng cờ vàng mở cuộc chinh yên.\n\nTrăm năm gửi mối cơ duyên,\n\nThay người vá lại lời nguyền nước non.\n\nSớm phủ trướng lòng son chẳng đổi,\n\nTối canh khuya sửa cõi sơn hà.\n\nMột thân gánh nặng vua cha,\n\nDẫu cho tóc bạc vẫn là tôi trung.\n\nGiữ phép nước nghiêm như sắt lạnh,\n\nMở kho tàng cứu cảnh dân đen.\n\nÁo thường quên chuyện gấm ren,\n\nNhà không dư vải, lo bền quân nhu.\n\nThành Bạch Đế âm u gió lạnh,"
+      "markdown": ""
     },
     {
       "pageNumber": 3,
-      "markdown": "Lời thác cô nặng gánh sâu dày.\n\nNâng tay lĩnh mệnh từ nay,\n\nGiúp phò xã tắc trong ngoài vẹn yên\n\nCõi Nam phục đảo điên chướng khí,\n\nNgựa vượt ngàn vì chí bình yên.\n\nBảy lần thả kẻ tây phiên,\n\nLấy nhân mà kết mối yên cõi ngoài.\n\nMàn đêm tối bên ngoài rét lạnh,\n\nBiểu dâng vua nhắc mệnh tiên quân.\n\nMỗi câu thấm lệ trung thần,\n\nTấc son xin trọn với quân Hán nhà.\n\nSáu lần kéo binh ra ải bắc,\n\nGươm chưa mòn thác mặc gian lao.\n\nKỳ Sơn gió thổi xôn xao,\n\nLều quân thức trắng đêm sao bạc đầu.\n\nNon Vị Thủy sương mù giăng kín,"
+      "markdown": "# Mục lục\n\n"
     },
     {
       "pageNumber": 4,
-      "markdown": "Bóng cờ tàn in đỉnh quan san.\n\nCanh trường thao thức muôn vàn,\n\nBởi chưa khôi phục giang san cựu đồ.\n\nGò Ngũ Trượng mưa sầu phủ bệnh,\n\nNgọn tinh đăng gửi mệnh quay về.\n\nCỏ thu như đón người về,\n\nThân tàn hồn vẫn chưa hề nghỉ yên.\n\nMột đời gánh ưu phiền thiên hạ,\n\nNửa đời phò một dạ triều đình.\n\nCông danh chẳng bận cho mình,\n\nChỉ lo vẹn chữ trung trinh với đời.\n\nDẫu việc lớn mệnh trời chẳng thuận\n\nTấm lòng son nào phụ tiên quân.\n\nGầy hao bao nỗi gian truân\n\nHồn tàn vương vấn hai phần giang san.\n\nNghìn năm mực chưa khô nét bút,"
+      "markdown": "(Cái mà ta ngưỡng mộ là tấm lòng tận tụy tinh trung báo cuốc đến chết mới thôi của một kẻ thất phu bình thường trong xã hội chứ không phải là một tên yêu đạo trong ngọn gió của La Quán Trung.)\n\nĐất Nam Dương mây chiều phủ lối,\n\nKẻ ẩn mình quen nỗi cô miên.\n\nNgày dài ôm mối ưu phiền,\n\nĐêm nghe sao rụng bên triền cỏ thu.\n\nLưu hoàng thúc ba phen dò hỏi,\n\nDặm đường xa tìm tới lều tiên.\n\nMột lời gió cuốn mây yên,\n\nGieo mưu giữ lấy ngôi yên nước nhà.\n\nVì cơ nghiệp sơn hà sắp đổ,\n\nĐem gan vàng lo chỗ long đong.\n\nBút son định chước hưng vong,\n\nGươm đâu sánh nổi tấm lòng vì dân.\n\nTrận Xích Bích sóng ngân lửa dậy,\n\nÁnh quạt lông lay mấy cánh thuyền.\n\nMột phen gió nổi triền miên,"
     },
     {
       "pageNumber": 5,
-      "markdown": "Đền miếu xưa nghi ngút khói trầm.\n\nAi qua cúi mặt lặng câm,\n\nThương người hết dạ âm thầm quên thân."
+      "markdown": "Đốt tan mộng bá bên miền Giang Đông.\n\nTừ bến cũ sang sông vào Thục,\n\nDựng cờ vàng mở cuộc chinh yên.\n\nTrăm năm gửi mối cơ duyên,\n\nThay người vá lại lời nguyền nước non.\n\nSớm phủ trướng lòng son chẳng đổi,\n\nTối canh khuya sửa cõi sơn hà.\n\nMột thân gánh nặng vua cha,\n\nDẫu cho tóc bạc vẫn là tôi trung.\n\nGiữ phép nước nghiêm như sắt lạnh,\n\nMở kho tàng cứu cảnh dân đen.\n\nÁo thường quên chuyện gấm ren,\n\nNhà không dư vải, lo bền quân nhu.\n\nThành Bạch Đế âm u gió lạnh,\n\nLời thác cô nặng gánh sâu dày.\n\nNâng tay lĩnh mệnh từ nay,\n\nGiúp phò xã tắc trong ngoài vẹn yên\n\nCõi Nam phục đảo điên chướng khí,"
+    },
+    {
+      "pageNumber": 6,
+      "markdown": "Ngựa vượt ngàn vì chí bình yên.\n\nBảy lần thả kẻ tây phiên,\n\nLấy nhân mà kết mối yên cõi ngoài.\n\nMàn đêm tối bên ngoài rét lạnh,\n\nBiểu dâng vua nhắc mệnh tiên quân.\n\nMỗi câu thấm lệ trung thần,\n\nTấc son xin trọn với quân Hán nhà.\n\nSáu lần kéo binh ra ải bắc,\n\nGươm chưa mòn thác mặc gian lao.\n\nKỳ Sơn gió thổi xôn xao,\n\nLều quân thức trắng đêm sao bạc đầu.\n\nNon Vị Thủy sương mù giăng kín,\n\nBóng cờ tàn in đỉnh quan san.\n\nCanh trường thao thức muôn vàn,\n\nBởi chưa khôi phục giang san cựu đồ.\n\nGò Ngũ Trượng mưa sầu phủ bệnh,\n\nNgọn tinh đăng gửi mệnh quay về.\n\nCỏ thu như đón người về,"
+    },
+    {
+      "pageNumber": 7,
+      "markdown": "Thân tàn hồn vẫn chưa hề nghỉ yên.\n\nMột đời gánh ưu phiền thiên hạ,\n\nNửa đời phò một dạ triều đình.\n\nCông danh chẳng bận cho mình,\n\nChỉ lo vẹn chữ trung trinh với đời.\n\nDẫu việc lớn mệnh trời chẳng thuận\n\nTấm lòng son nào phụ tiên quân.\n\nGầy hao bao nỗi gian truân\n\nHồn tàn vương vấn hai phần giang san.\n\nNghìn năm mực chưa khô nét bút,\n\nĐền miếu xưa nghi ngút khói trầm.\n\nAi qua cúi mặt lặng câm,\n\nThương người hết dạ âm thầm quên thân."
+    },
+    {
+      "pageNumber": 8,
+      "markdown": ""
+    },
+    {
+      "pageNumber": 9,
+      "markdown": ""
+    },
+    {
+      "pageNumber": 10,
+      "markdown": ""
     }
   ]
 }

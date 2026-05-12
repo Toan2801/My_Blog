@@ -1,10 +1,29 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { Fragment, useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { PageFlip } from 'page-flip';
 import ReaderToolbar from './ReaderToolbar';
 import { derivePermutation, TILE_COLS, TILE_ROWS, TILE_COUNT } from '@/lib/tile-shuffle';
+
+/** Render a markdown snippet's inline syntax: `code`, _italic_, **bold**. */
+function renderInlineMarkdown(text: string): ReactNode {
+  const nodes: ReactNode[] = [];
+  let i = 0;
+  let key = 0;
+  // Order matters: longer/more-specific delimiters first.
+  const regex = /`([^`\n]+)`|\*\*([^*\n]+)\*\*|__([^_\n]+)__|_([^_\n]+)_|\*([^*\n]+)\*/g;
+  let m: RegExpExecArray | null;
+  while ((m = regex.exec(text)) !== null) {
+    if (m.index > i) nodes.push(<Fragment key={key++}>{text.slice(i, m.index)}</Fragment>);
+    if (m[1] !== undefined) nodes.push(<code key={key++}>{m[1]}</code>);
+    else if (m[2] !== undefined || m[3] !== undefined) nodes.push(<strong key={key++}>{m[2] ?? m[3]}</strong>);
+    else nodes.push(<em key={key++}>{m[4] ?? m[5]}</em>);
+    i = m.index + m[0].length;
+  }
+  if (i < text.length) nodes.push(<Fragment key={key++}>{text.slice(i)}</Fragment>);
+  return nodes;
+}
 
 interface Props {
   slug: string;
@@ -450,7 +469,7 @@ export default function CanvasReader({ slug, articleTitle }: Props) {
                       onClick={() => jumpToHit(hit.pageNumber)}
                     >
                       <span className="reader-search-hit-page">Trang {hit.pageNumber}</span>
-                      <span className="reader-search-hit-snippet">{hit.snippet}</span>
+                      <span className="reader-search-hit-snippet">{renderInlineMarkdown(hit.snippet)}</span>
                       {hit.count > 1 && (
                         <span className="reader-search-hit-count">×{hit.count}</span>
                       )}
