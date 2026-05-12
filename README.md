@@ -37,6 +37,11 @@ This repository contains a Next.js 16 application for publishing long-form histo
 | Name | Required | Purpose |
 | --- | --- | --- |
 | `MONGODB_URI` | Yes | Connects the app and migration script to MongoDB. |
+| `MONGODB_DB` | No | Explicit database name for the NextAuth adapter. |
+| `AUTH_SECRET` | Yes (prod) | NextAuth signing secret. Generate with `openssl rand -base64 32`. |
+| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | No | Enables Google SSO. Without them only Credentials sign-in works. |
+| `READER_TOKEN_SECRET` | Recommended | HMAC secret for canvas-reader tokens. Falls back to `MONGODB_URI` for dev. |
+| `ADMIN_EMAILS` | No | Comma-separated list of emails auto-promoted to admin on sign-in. Defaults to `admin@abc.com`. |
 | `NEXT_PUBLIC_SITE_URL` | No | Base URL used by redirect routes. Defaults to the deployed production URL when omitted. |
 
 ## Data and Storage
@@ -54,14 +59,18 @@ npm run dev
 npm run lint
 npm run build
 npm run migrate                          # full migration: JSON → DB + rasterize + markdownPages
+npm run migrate:users                    # seed admin@abc.com / Admin1234 (idempotent)
 npm run rasterize                        # re-rasterize all published articles (writes pages + markdownPages to JSON)
 npm run rasterize -- --slug=<slug>       # rasterize a single article
 npx tsx scripts/sync-pages-to-db.ts      # push pages + markdownPages from JSON to MongoDB (no re-rasterize)
+npm test                                 # run vitest suites
 ```
 
 See [docs/migration-markdown-pages.md](docs/migration-markdown-pages.md) for the team's step-by-step guide to migrating an article to the new markdown-paged format.
 
 Article source content is stored as **Markdown** in each JSON's `content` field. See [docs/migration-html-to-markdown.md](docs/migration-html-to-markdown.md) for the HTML → Markdown migration that brought existing data to this shape and the conventions used for images, captions, and inline formatting.
+
+Authentication, RBAC, the canvas reader's trial mode, and the admin book-master dashboard are documented in [docs/auth-and-admin.md](docs/auth-and-admin.md). After cloning, run `npm run migrate:users` to seed the mock admin account (`admin@abc.com` / `Admin1234`).
 
 ## Project Structure
 

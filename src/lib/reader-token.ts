@@ -1,45 +1,75 @@
 /**
- * Short-lived HMAC tokens that gate access to per-page image streams.
+ * Reader tokens — short-lived HMAC bearer tokens that gate per-page image streams.
  *
- * Goal is anti-scraping, not access control: tokens are bound to a slug and
- * expire after a short window, so harvesting all image URLs of every article
- * requires repeatedly hitting the reader page and rotating tokens, instead
- * of one cheap directory crawl.
+ * Two flavors:
+ *   - user:<userId>.<slug>.<expiry>     → authenticated reader, full book.
+ *   - trial:<sessionId>.<slug>.<expiry> → anonymous reader, capped at TRIAL_MAX_PAGES.
+ *
+ * Goal: access control AND anti-scraping. Tokens are signed (HMAC-SHA256) with
+ * READER_TOKEN_SECRET (falls back to MONGODB_URI for dev) so a leaked token
+ * for one user can't be reused for a different slug or past its expiry.
  */
 
 import crypto from 'crypto';
 
 const TOKEN_TTL_MS = 60 * 60 * 1000; // 1 hour
+export const TRIAL_MAX_PAGES = 5;
 const SECRET =
   process.env.READER_TOKEN_SECRET ||
   process.env.MONGODB_URI ||
   'history-blog-dev-secret-please-set-READER_TOKEN_SECRET';
 
+export type ReaderTokenKind = 'user' | 'trial';
+
+export interface ReaderTokenInfo {
+  kind: ReaderTokenKind;
+  subject: string; // userId or anonymous sessionId
+  slug: string;
+  expiresAt: number;
+}
+
 function sign(payload: string): string {
-  return crypto
-    .createHmac('sha256', SECRET)
-    .update(payload)
-    .digest('base64url');
+  return crypto.createHmac('sha256', SECRET).update(payload).digest('base64url');
 }
 
-export function issueReaderToken(slug: string): { token: string; expiresAt: number } {
-  const expiresAt = Date.now() + TOKEN_TTL_MS;
-  const payload = `${slug}.${expiresAt}`;
+function build(kind: ReaderTokenKind, subject: string, slug: string, expiresAt: number): string {
+  const payload = `${kind}:${subject}.${slug}.${expiresAt}`;
   const sig = sign(payload);
-  return { token: `${expiresAt}.${sig}`, expiresAt };
+  return `${kind}:${subject}.${expiresAt}.${sig}`;
 }
 
-export function verifyReaderToken(slug: string, token: string | null | undefined): boolean {
-  if (!token) return false;
-  const dot = token.indexOf('.');
-  if (dot < 0) return false;
-  const expiresAt = Number(token.slice(0, dot));
-  const provided = token.slice(dot + 1);
-  if (!Number.isFinite(expiresAt) || Date.now() > expiresAt) return false;
-  const expected = sign(`${slug}.${expiresAt}`);
+/** Issue a token for an authenticated user. */
+export function issueUserReaderToken(userId: string, slug: string): { token: string; expiresAt: number } {
+  const expiresAt = Date.now() + TOKEN_TTL_MS;
+  return { token: build('user', userId, slug, expiresAt), expiresAt };
+}
+
+/** Issue an anonymous trial token. `sessionId` should be a random per-visitor id. */
+export function issueTrialReaderToken(sessionId: string, slug: string): { token: string; expiresAt: number } {
+  const expiresAt = Date.now() + TOKEN_TTL_MS;
+  return { token: build('trial', sessionId, slug, expiresAt), expiresAt };
+}
+
+/** Returns null if the token is invalid/expired or doesn't match `slug`. */
+export function verifyReaderToken(slug: string, token: string | null | undefined): ReaderTokenInfo | null {
+  if (!token) return null;
+  // Format: kind:subject.expiresAt.sig
+  const m = token.match(/^(user|trial):([^.]+)\.(\d+)\.([A-Za-z0-9_-]+)$/);
+  if (!m) return null;
+  const [, kind, subject, expiresAtStr, sig] = m;
+  const expiresAt = Number(expiresAtStr);
+  if (!Number.isFinite(expiresAt) || Date.now() > expiresAt) return null;
+  const expected = sign(`${kind}:${subject}.${slug}.${expiresAt}`);
   try {
-    return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(provided));
+    if (!crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(sig))) return null;
   } catch {
-    return false;
+    return null;
   }
+  return { kind: kind as ReaderTokenKind, subject, slug, expiresAt };
+}
+
+/** Is the requested page within reach of the given token? */
+export function tokenAllowsPage(info: ReaderTokenInfo, pageNumber: number): boolean {
+  if (info.kind === 'user') return true;
+  return pageNumber >= 1 && pageNumber <= TRIAL_MAX_PAGES;
 }

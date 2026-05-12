@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getArticleBySlug } from '@/lib/data';
-import { verifyReaderToken } from '@/lib/reader-token';
+import { verifyReaderToken, TRIAL_MAX_PAGES } from '@/lib/reader-token';
 
 export const dynamic = 'force-dynamic';
 
@@ -33,9 +33,8 @@ export async function GET(
   }
 
   const token = request.nextUrl.searchParams.get('t');
-  if (!verifyReaderToken(slug, token)) {
-    return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
-  }
+  const info = verifyReaderToken(slug, token);
+  if (!info) return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
 
   const q = (request.nextUrl.searchParams.get('q') || '').trim();
   if (q.length < 2) {
@@ -47,7 +46,11 @@ export async function GET(
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }
 
-  const pages = article.markdownPages ?? [];
+  const allPages = article.markdownPages ?? [];
+  // Trial: search only within the trial page range.
+  const pages = info.kind === 'trial'
+    ? allPages.filter((p) => p.pageNumber <= TRIAL_MAX_PAGES)
+    : allPages;
   const re = new RegExp(escapeRegExp(q), 'gi');
 
   const hits: Array<{ pageNumber: number; snippet: string; count: number }> = [];

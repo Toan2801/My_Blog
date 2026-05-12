@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import { getArticleBySlug, getAllArticles } from '@/lib/data';
 import CanvasReader from '@/components/CanvasReader';
+import { auth } from '@/auth';
 import type { Metadata } from 'next';
 import '../reader.css';
 
@@ -50,11 +51,27 @@ function buildTocEntries(
   return entries;
 }
 
-export default async function ReadPage({ params }: Props) {
+interface SearchProps {
+  searchParams: Promise<{ trial?: string }>;
+}
+
+export default async function ReadPage({ params, searchParams }: Props & SearchProps) {
   const { slug } = await params;
+  const sp = searchParams ? await searchParams : {};
   const article = getArticleBySlug(slug);
 
   if (!article || article.status !== 'published') notFound();
+
+  const session = await auth();
+  const trialRequested = sp.trial === '1';
+  const trial = trialRequested && !session?.user?.id;
+
+  // Authenticated → full reader. Anonymous + no trial flag → bounce to login.
+  if (!session?.user?.id && !trialRequested) {
+    const cb = encodeURIComponent(`/read/${slug}`);
+    const { redirect } = await import('next/navigation');
+    redirect(`/login?callbackUrl=${cb}`);
+  }
 
   const tocEntries = buildTocEntries(article.markdownPages);
 
@@ -66,7 +83,12 @@ export default async function ReadPage({ params }: Props) {
         </div>
       </div>
     }>
-      <CanvasReader slug={slug} articleTitle={article.title} tocEntries={tocEntries} />
+      <CanvasReader
+        slug={slug}
+        articleTitle={article.title}
+        tocEntries={tocEntries}
+        trial={trial}
+      />
     </Suspense>
   );
 }

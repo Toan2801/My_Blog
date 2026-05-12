@@ -15,6 +15,8 @@ export interface IArticle extends Document {
   coverImage?: string;
   status: 'draft' | 'published';
   footnotes?: Array<{ id: string; num: number; content: string }>;
+  /** Set on successful rasterization. Compared against `updatedAt` to derive "Rasterized" vs "Unrasterized". */
+  rasterizedAt?: Date;
 }
 
 const ArticleSchema: Schema = new Schema({
@@ -43,7 +45,8 @@ const ArticleSchema: Schema = new Schema({
   markdownPages: [{
     pageNumber: { type: Number },
     markdown: { type: String }
-  }]
+  }],
+  rasterizedAt: { type: Date, default: null },
 }, {
   timestamps: true,
 });

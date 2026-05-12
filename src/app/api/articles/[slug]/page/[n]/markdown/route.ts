@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getArticleBySlug } from '@/lib/data';
-import { verifyReaderToken } from '@/lib/reader-token';
+import { verifyReaderToken, tokenAllowsPage } from '@/lib/reader-token';
 
 export const dynamic = 'force-dynamic';
 
@@ -23,8 +23,13 @@ export async function GET(
   }
 
   const token = request.nextUrl.searchParams.get('t');
-  if (!verifyReaderToken(slug, token)) {
-    return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
+  const info = verifyReaderToken(slug, token);
+  if (!info) return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
+  if (!tokenAllowsPage(info, pageNum)) {
+    return NextResponse.json(
+      { error: 'TrialLimitReached', message: 'Đăng nhập để đọc tiếp.' },
+      { status: 402 },
+    );
   }
 
   const article = getArticleBySlug(slug);

@@ -4,7 +4,13 @@
       "Bash(npx tsx *)",
       "Bash(node -e ' *)",
       "Bash(grep -iE \"^\\(marked|markdown-it|remark|unified|rehype\\)$\")",
-      "Bash(node -e \"let d=''; process.stdin.on\\('data',c=>d+=c\\).on\\('end',\\(\\)=>{const p=JSON.parse\\(d\\); console.log\\('installed:', p.version\\)}\\)\")"
+      "Bash(node -e \"let d=''; process.stdin.on\\('data',c=>d+=c\\).on\\('end',\\(\\)=>{const p=JSON.parse\\(d\\); console.log\\('installed:', p.version\\)}\\)\")",
+      "Bash(npx tsc *)",
+      "Bash(node scripts/_test-toc.mjs)",
+      "Bash(cat /tmp/.. 2>/dev/null; sleep 2; cat \"C:\\\\Users\\\\tn290\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-tn290-Documents-GitHub-My-Blog\\\\bbc5b59e-83a3-4148-9ddc-4529a7dc57ed\\\\tasks\\\\bcdzlcvqq.output\" 2>&1 | head -20)",
+      "Read(//c//**)",
+      "Bash(npm install *)",
+      "Bash(npx vitest *)"
     ]
   }
 }

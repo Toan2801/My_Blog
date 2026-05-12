@@ -30,6 +30,8 @@ interface Props {
   slug: string;
   articleTitle: string;
   tocEntries?: TocEntry[];
+  /** Anonymous trial mode: fetch the preview endpoint, capped to first 5 pages. */
+  trial?: boolean;
 }
 
 interface PageInfo {
@@ -51,7 +53,7 @@ const WINDOW_AHEAD = 3;
 const LOGICAL_W = 512;
 const LOGICAL_H = 768;
 
-export default function CanvasReader({ slug, articleTitle, tocEntries = [] }: Props) {
+export default function CanvasReader({ slug, articleTitle, tocEntries = [], trial = false }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const initialPage = parseInt(searchParams.get('page') || '1', 10);
@@ -87,11 +89,18 @@ export default function CanvasReader({ slug, articleTitle, tocEntries = [] }: Pr
 
   /* ── Fetch page metadata + session token ─────────────────────── */
   const fetchPages = useCallback(async (): Promise<{ pages: PageInfo[]; token: string }> => {
-    const res = await fetch(`/api/articles/${slug}/pages`);
+    const url = trial ? `/api/articles/${slug}/preview` : `/api/articles/${slug}/pages`;
+    const res = await fetch(url);
+    if (res.status === 401 && !trial) {
+      // Not signed in — bounce to login with return URL.
+      const cb = encodeURIComponent(`/read/${slug}`);
+      window.location.href = `/login?callbackUrl=${cb}`;
+      throw new Error('Unauthorized');
+    }
     if (!res.ok) throw new Error('Failed to load pages');
     const data = await res.json();
     return { pages: data.pages as PageInfo[], token: data.token as string };
-  }, [slug]);
+  }, [slug, trial]);
 
   /* ── Tile-unshuffle a page into its canvas ───────────────────── */
   const loadPageInto = useCallback(async (pageIdx: number) => {

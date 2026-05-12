@@ -4094,6 +4094,32 @@ figcaption.image-caption {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 
+.book-detail-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.book-detail-trial-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 12px 24px;
+  background: transparent;
+  color: var(--gold);
+  border: 1.5px solid var(--gold);
+  border-radius: var(--radius);
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.book-detail-trial-btn:hover {
+  background: var(--gold-pale);
+}
+
 @media (max-width: 720px) {
   .book-detail {
     grid-template-columns: 1fr;

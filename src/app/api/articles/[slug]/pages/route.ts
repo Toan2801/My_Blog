@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getArticleBySlug } from '@/lib/data';
-import { issueReaderToken } from '@/lib/reader-token';
+import { auth } from '@/auth';
+import { issueUserReaderToken } from '@/lib/reader-token';
 
-// Rate limit: simple in-memory tracker (per-process)
 const rateLimitMap = new Map<string, { count: number; reset: number }>();
-const RATE_LIMIT = 30; // requests per minute
+const RATE_LIMIT = 30;
 const RATE_WINDOW = 60_000;
 
 function checkRateLimit(ip: string): boolean {
@@ -21,58 +21,59 @@ function checkRateLimit(ip: string): boolean {
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ slug: string }> }
+  { params }: { params: Promise<{ slug: string }> },
 ) {
-  // Referer / Origin check
   const origin = request.headers.get('origin') || '';
   const referer = request.headers.get('referer') || '';
   const host = request.headers.get('host') || '';
-
   const isValidOrigin =
     origin.includes(host) ||
     referer.includes(host) ||
     origin === '' ||
     process.env.NODE_ENV === 'development';
+  if (!isValidOrigin) return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
 
-  if (!isValidOrigin) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
-  }
-
-  // Rate limiting
-  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-    request.headers.get('x-real-ip') || 'unknown';
-
+  const ip =
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+    request.headers.get('x-real-ip') ||
+    'unknown';
   if (!checkRateLimit(ip)) {
-    return NextResponse.json(
-      { error: 'Too many requests' },
-      { status: 429, headers: { 'Retry-After': '60' } }
-    );
+    return NextResponse.json({ error: 'Too many requests' }, {
+      status: 429,
+      headers: { 'Retry-After': '60' },
+    });
   }
 
   const { slug } = await params;
-
   const article = getArticleBySlug(slug);
   if (!article || article.status !== 'published') {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }
 
-  // Mint a short-lived token; the reader appends it to each image fetch.
-  // We DO NOT bake the token into the stored URLs (they're shared across
-  // sessions) — the client composes the final URL on request.
-  const { token, expiresAt } = issueReaderToken(slug);
+  // Auth: full book is gated to signed-in users.
+  const session = await auth();
+  if (!session?.user?.id) {
+    return NextResponse.json(
+      { error: 'Unauthorized', message: 'Vui lòng đăng nhập để đọc sách.' },
+      { status: 401 },
+    );
+  }
+
+  const { token, expiresAt } = issueUserReaderToken(session.user.id, slug);
   const pages = (article.pages ?? []).map((p) => ({
     pageNumber: p.pageNumber,
     imageUrl: p.imageUrl,
   }));
 
-  return NextResponse.json({
-    pages,
-    totalPages: pages.length,
-    title: article.title,
-    author: article.author,
-    token,
-    tokenExpiresAt: expiresAt,
-  }, {
-    headers: { 'Cache-Control': 'private, no-store' },
-  });
+  return NextResponse.json(
+    {
+      pages,
+      totalPages: pages.length,
+      title: article.title,
+      author: article.author,
+      token,
+      tokenExpiresAt: expiresAt,
+    },
+    { headers: { 'Cache-Control': 'private, no-store' } },
+  );
 }

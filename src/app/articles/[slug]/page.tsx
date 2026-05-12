@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getArticleBySlug, getAllArticles } from '@/lib/data';
 import Breadcrumb from '@/components/Breadcrumb';
+import { auth } from '@/auth';
 import type { Metadata } from 'next';
 
 interface Props { params: { slug: string } }
@@ -27,6 +28,9 @@ export default async function ArticleDetailPage({ params }: Props) {
 
   if (!article) notFound();
   if (article.status !== 'published') notFound();
+
+  const session = await auth();
+  const isAuthed = !!session?.user?.id;
 
   return (
     <article>
@@ -57,9 +61,23 @@ export default async function ArticleDetailPage({ params }: Props) {
             <h1 className="book-detail-title">{article.title}</h1>
             <p className="book-detail-author">{article.author}</p>
             <p className="book-detail-excerpt">{article.excerpt}</p>
-            <Link href={`/read/${slug}`} className="book-detail-read-btn">
-              📖 Đọc sách
-            </Link>
+            {isAuthed ? (
+              <Link href={`/read/${slug}`} className="book-detail-read-btn">
+                📖 Đọc sách
+              </Link>
+            ) : (
+              <div className="book-detail-cta-group">
+                <Link href={`/read/${slug}?trial=1`} className="book-detail-trial-btn">
+                  📖 Đọc thử
+                </Link>
+                <Link
+                  href={`/login?callbackUrl=${encodeURIComponent(`/read/${slug}`)}`}
+                  className="book-detail-read-btn"
+                >
+                  Đăng nhập để đọc tiếp
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>

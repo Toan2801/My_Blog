@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { SiteConfig } from '@/lib/types';
+import ProfileMenu from './ProfileMenu';
 
 export default function SiteHeader({ config }: { config: SiteConfig }) {
   const pathname = usePathname();
@@ -62,13 +63,16 @@ export default function SiteHeader({ config }: { config: SiteConfig }) {
               <a href="/api/articles/random" onClick={() => setMenuOpen(false)}>Ngẫu nhiên</a>
             </li>
           </ul>
-          <button
-            className="header-hamburger"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-          >
-            <span /><span /><span />
-          </button>
+          <div className="header-nav-actions">
+            <ProfileMenu />
+            <button
+              className="header-hamburger"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Toggle menu"
+            >
+              <span /><span /><span />
+            </button>
+          </div>
         </div>
       </nav>
     </>
