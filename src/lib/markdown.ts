@@ -3,9 +3,8 @@
  *
  * Article `content` is stored as markdown (since the html-to-markdown migration).
  * This module is the single source of truth for the markdown rendering rules,
- * shared by:
+ * used by:
  *   - The rasterizer (src/lib/rasterize.ts) — converts MD → HTML before paginating.
- *   - The article view page (src/components/ArticleBody.tsx) — renders the article body.
  *
  * Conventions:
  *   - Image captions follow the image as an italic line (`![alt](src)\n*caption*`),
