@@ -26,11 +26,37 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+/** Scan per-page markdown for h1/h2/h3 headings and pair each with the page number.
+ *  Pages 1 (cover) and 3 (auto-generated TOC) are skipped since their headings
+ *  are scaffolding, not real article sections.
+ */
+function buildTocEntries(
+  markdownPages?: Array<{ pageNumber: number; markdown: string }>,
+): Array<{ level: number; text: string; pageNumber: number }> {
+  const entries: Array<{ level: number; text: string; pageNumber: number }> = [];
+  if (!Array.isArray(markdownPages)) return entries;
+  for (const p of markdownPages) {
+    if (p.pageNumber === 1 || p.pageNumber === 3) continue;
+    const md = p.markdown || '';
+    const re = /^(#{1,3})\s+(.+?)\s*$/gm;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(md)) !== null) {
+      // Unescape any markdown-escaped char (e.g., `1\.` → `1.`).
+      const text = m[2].replace(/\\(.)/g, '$1').trim();
+      if (/^mục lục$/i.test(text)) continue;
+      entries.push({ level: m[1].length, text, pageNumber: p.pageNumber });
+    }
+  }
+  return entries;
+}
+
 export default async function ReadPage({ params }: Props) {
   const { slug } = await params;
   const article = getArticleBySlug(slug);
 
   if (!article || article.status !== 'published') notFound();
+
+  const tocEntries = buildTocEntries(article.markdownPages);
 
   return (
     <Suspense fallback={
@@ -40,7 +66,7 @@ export default async function ReadPage({ params }: Props) {
         </div>
       </div>
     }>
-      <CanvasReader slug={slug} articleTitle={article.title} />
+      <CanvasReader slug={slug} articleTitle={article.title} tocEntries={tocEntries} />
     </Suspense>
   );
 }

@@ -4,6 +4,7 @@ import { Fragment, useCallback, useEffect, useRef, useState, type ReactNode } fr
 import { useRouter, useSearchParams } from 'next/navigation';
 import { PageFlip } from 'page-flip';
 import ReaderToolbar from './ReaderToolbar';
+import ReaderSidebar, { type TocEntry } from './ReaderSidebar';
 import { derivePermutation, TILE_COLS, TILE_ROWS, TILE_COUNT } from '@/lib/tile-shuffle';
 
 /** Render a markdown snippet's inline syntax: `code`, _italic_, **bold**. */
@@ -28,6 +29,7 @@ function renderInlineMarkdown(text: string): ReactNode {
 interface Props {
   slug: string;
   articleTitle: string;
+  tocEntries?: TocEntry[];
 }
 
 interface PageInfo {
@@ -49,7 +51,7 @@ const WINDOW_AHEAD = 3;
 const LOGICAL_W = 512;
 const LOGICAL_H = 768;
 
-export default function CanvasReader({ slug, articleTitle }: Props) {
+export default function CanvasReader({ slug, articleTitle, tocEntries = [] }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const initialPage = parseInt(searchParams.get('page') || '1', 10);
@@ -58,6 +60,12 @@ export default function CanvasReader({ slug, articleTitle }: Props) {
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Sidebar starts open on desktop, closed on mobile. The CSS handles
+  // the responsive layout; this only seeds the initial state.
+  const [sidebarOpen, setSidebarOpen] = useState(() =>
+    typeof window === 'undefined' ? true : window.innerWidth >= 768,
+  );
 
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -395,9 +403,18 @@ export default function CanvasReader({ slug, articleTitle }: Props) {
         onPageChange={goToPage}
         onFullscreen={toggleFullscreen}
         onSearch={openSearch}
+        onToggleSidebar={tocEntries.length > 0 ? () => setSidebarOpen(o => !o) : undefined}
+        sidebarOpen={sidebarOpen}
       />
 
-      <div className="reader-viewport">
+      <div className={`reader-viewport ${sidebarOpen ? 'has-sidebar-open' : ''}`}>
+        <ReaderSidebar
+          entries={tocEntries}
+          currentPage={currentPage + 1}
+          open={sidebarOpen}
+          onClose={() => setSidebarOpen(false)}
+          onJumpToPage={goToPage}
+        />
         {loading && (
           <div className="reader-loading">
             <div className="reader-spinner" />

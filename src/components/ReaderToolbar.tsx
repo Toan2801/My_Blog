@@ -8,6 +8,8 @@ interface Props {
   onPageChange: (page: number) => void;
   onFullscreen: () => void;
   onSearch?: () => void;
+  onToggleSidebar?: () => void;
+  sidebarOpen?: boolean;
 }
 
 export default function ReaderToolbar({
@@ -18,6 +20,8 @@ export default function ReaderToolbar({
   onPageChange,
   onFullscreen,
   onSearch,
+  onToggleSidebar,
+  sidebarOpen,
 }: Props) {
   const handlePageInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -34,6 +38,17 @@ export default function ReaderToolbar({
         <button className="reader-btn" onClick={onBack} title="Quay lại">
           ← Quay lại
         </button>
+        {onToggleSidebar && (
+          <button
+            className="reader-btn"
+            onClick={onToggleSidebar}
+            title={sidebarOpen ? 'Ẩn mục lục' : 'Hiện mục lục'}
+            aria-pressed={sidebarOpen}
+            aria-label="Mục lục"
+          >
+            ☰
+          </button>
+        )}
         <span style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.5)', maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           {title}
         </span>
