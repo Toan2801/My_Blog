@@ -27,7 +27,7 @@ const PAD_X = PAD_X_REM * ROOT_FONT_SIZE; // 64px
 const PAD_Y = PAD_Y_REM * ROOT_FONT_SIZE; // 64px
 const FOOTER_HEIGHT = FOOTER_HEIGHT_REM * ROOT_FONT_SIZE; // 64px
 const CONTENT_HEIGHT = PAGE_HEIGHT - FOOTER_HEIGHT - PAD_Y * 2;
-const DPR = 2;
+const DPR = 1;
 
 // Page images are stored outside /public so they cannot be hot-linked or
 // scraped directly. They are streamed through a token-gated API route.
