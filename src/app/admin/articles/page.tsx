@@ -22,9 +22,6 @@ export default function AdminArticlesPage() {
                 </p>
                 <p className="admin-article-meta">{a.category} · {a.date} · {a.readingTime} phút đọc</p>
               </div>
-              <span className={`status-badge status-${a.status}`}>
-                {a.status === 'published' ? 'Đã đăng' : 'Nháp'}
-              </span>
               <div className="admin-actions">
                 <Link href={`/articles/${a.slug}`} target="_blank" className="btn-edit" style={{ textDecoration: 'none' }}>Xem</Link>
                 <Link href={`/admin/articles/${a.slug}/edit`} className="btn-edit" style={{ textDecoration: 'none' }}>Sửa</Link>

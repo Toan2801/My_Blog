@@ -7,7 +7,6 @@ export default function AdminDashboard() {
   const articles = getAllArticlesAdmin();
   const videos = getVideos();
   const published = articles.filter(a => a.status === 'published').length;
-  const drafts = articles.filter(a => a.status === 'draft').length;
   const featured = articles.find(a => a.featured);
 
   return (
@@ -32,11 +31,10 @@ export default function AdminDashboard() {
       </div>
 
       {/* Stats */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-4)', marginBottom: 'var(--space-6)' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-4)', marginBottom: 'var(--space-6)' }}>
         {[
-          { label: 'Đã xuất bản', value: published, color: 'var(--success)' },
-          { label: 'Bản nháp', value: drafts, color: 'var(--gold)' },
-          { label: 'Bài viết', value: articles.length, color: 'var(--ink)' },
+          { label: 'Bài viết đã đăng', value: published, color: 'var(--success)' },
+          { label: 'Tổng số bài viết', value: articles.length, color: 'var(--ink)' },
           { label: 'Video', value: videos.length, color: 'var(--blue-accent)' },
         ].map(s => (
           <div key={s.label} className="admin-card" style={{ textAlign: 'center' }}>
@@ -75,9 +73,6 @@ export default function AdminDashboard() {
                 <p className="admin-article-title">{a.title}</p>
                 <p className="admin-article-meta">{a.category} · {a.date}</p>
               </div>
-              <span className={`status-badge status-${a.status}`}>
-                {a.status === 'published' ? 'Đã đăng' : 'Nháp'}
-              </span>
               <div className="admin-actions">
                 <Link href={`/admin/articles/${a.slug}/edit`} className="btn-edit">Sửa</Link>
                 <DeleteArticleButton slug={a.slug} />

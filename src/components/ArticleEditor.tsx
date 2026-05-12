@@ -139,7 +139,7 @@ export default function ArticleEditor({ initialArticle, categories, seriesList, 
       series: form.series || null,
       seriesOrder: form.seriesOrder ? parseInt(form.seriesOrder) : null,
       featured: form.featured,
-      status: form.status,
+      status: 'published',
       date: form.date,
       readingTime: parseInt(form.readingTime) || 5,
       coverImage: form.coverImage || null,
@@ -191,12 +191,12 @@ export default function ArticleEditor({ initialArticle, categories, seriesList, 
 
           <div className="form-group">
             <label className="form-label">Phụ đề</label>
-            <input className="form-input" value={form.subtitle} onChange={e => update('subtitle', e.target.value)} placeholder="Phụ đề hoặc mô tả ngắn..." />
+            <textarea className="form-textarea" rows={5} value={form.subtitle} onChange={e => update('subtitle', e.target.value)} placeholder="Phụ đề hoặc mô tả ngắn..." style={{ minHeight: '120px' }} />
           </div>
 
           <div className="form-group">
             <label className="form-label">Tóm tắt (hiển thị ngoài danh sách) *</label>
-            <textarea className="form-textarea" value={form.excerpt} onChange={e => update('excerpt', e.target.value)} placeholder="2-3 câu giới thiệu bài viết..." required style={{ minHeight: '80px' }} />
+            <textarea className="form-textarea" rows={5} value={form.excerpt} onChange={e => update('excerpt', e.target.value)} placeholder="2-3 câu giới thiệu bài viết..." required style={{ minHeight: '120px' }} />
           </div>
 
           <div className="form-group">
@@ -257,13 +257,7 @@ export default function ArticleEditor({ initialArticle, categories, seriesList, 
           {/* Status & Actions */}
           <div className="admin-card">
             <p className="admin-card-title">Xuất Bản</p>
-            <div className="form-group">
-              <label className="form-label">Trạng thái</label>
-              <select className="sort-select" value={form.status} onChange={e => update('status', e.target.value)}>
-                <option value="draft">Bản nháp</option>
-                <option value="published">Đã xuất bản</option>
-              </select>
-            </div>
+            {/* Trạng thái mặc định là Đã xuất bản */}
             <div className="form-group" style={{ marginTop: 'var(--space-3)' }}>
               <label className="form-label">Ngày đăng</label>
               <input type="date" className="form-input" value={form.date} onChange={e => update('date', e.target.value)} />

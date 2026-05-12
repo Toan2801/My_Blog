@@ -42,7 +42,7 @@ export default function SeriesEditor({ series, articles }: Props) {
       const res = await fetch('/api/series', {
         method: isNew ? 'POST' : 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, status: 'published' }),
       });
 
       if (res.ok) {
@@ -144,13 +144,7 @@ export default function SeriesEditor({ series, articles }: Props) {
             </select>
           </div>
 
-          <div className="form-group" style={{ marginTop: 'var(--space-4)' }}>
-            <label className="form-label">Trạng thái</label>
-            <select className="sort-select" value={form.status} onChange={e => update('status', e.target.value)}>
-              <option value="draft">Bản nháp</option>
-              <option value="published">Đã xuất bản</option>
-            </select>
-          </div>
+            {/* Mặc định là Đã xuất bản */}
 
           <div style={{ marginTop: 'var(--space-6)', display: 'flex', gap: 'var(--space-3)' }}>
             <button type="submit" className="btn-primary" disabled={saving} style={{ flex: 1 }}>
