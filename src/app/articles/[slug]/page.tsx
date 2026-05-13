@@ -2,8 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getArticleBySlug, getAllArticles, getRelatedArticles, getSiteConfig, getAllSeries } from '@/lib/data';
 import { formatDate } from '@/lib/utils';
-import TableOfContents from '@/components/TableOfContents';
-import ArticleBody from '@/components/ArticleBody';
+// TableOfContents and ArticleBody removed to keep landing page clean
 import CommentSection from '@/components/CommentSection';
 import ZenToggle from '@/components/ZenToggle';
 import SupportQR from '@/components/SupportQR';
@@ -105,10 +104,7 @@ export default async function ArticleDetailPage({ params }: Props) {
       {/* Reading Layout */}
       <div className="container">
         <div className="article-reading-layout">
-          {/* TOC */}
-          <div className="article-sidebar">
-            <TableOfContents />
-          </div>
+          {/* TOC - Removed to keep it clean */}
 
           {/* Body */}
           <div>
@@ -148,7 +144,7 @@ export default async function ArticleDetailPage({ params }: Props) {
 
             <SupportQR qrImage={config.donation.qrImage} facebookUrl={config.facebook} />
 
-            <ArticleBody content={article.content} />
+            {/* ArticleBody removed as requested */}
 
 
             {article.series && (
