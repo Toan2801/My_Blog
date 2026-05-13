@@ -2,7 +2,9 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getArticleBySlug, getAllArticles, getRelatedArticles, getSiteConfig, getAllSeries } from '@/lib/data';
 import { formatDate } from '@/lib/utils';
-// TableOfContents and ArticleBody removed to keep landing page clean
+import ArticleBody from '@/components/ArticleBody';
+import TableOfContents from '@/components/TableOfContents';
+import { renderArticleMarkdown } from '@/lib/markdown';
 import CommentSection from '@/components/CommentSection';
 import ZenToggle from '@/components/ZenToggle';
 import SupportQR from '@/components/SupportQR';
@@ -104,10 +106,15 @@ export default async function ArticleDetailPage({ params }: Props) {
       {/* Reading Layout */}
       <div className="container">
         <div className="article-reading-layout">
-          {/* TOC - Removed to keep it clean */}
+          <aside className="article-sidebar">
+            {/* Display TOC on desktop only via CSS or simple media query logic if needed, 
+                but for now let's ensure it doesn't overlap */}
+            <div style={{ position: 'sticky', top: 'var(--space-10)' }}>
+              <TableOfContents />
+            </div>
+          </aside>
 
-          {/* Body */}
-          <div>
+          <div className="article-body-container" style={{ flex: 1, minWidth: 0 }}>
             {article.series && (
               <div className="series-nav-top admin-card" style={{ padding: 'var(--space-4)', marginBottom: 'var(--space-6)', borderLeft: '4px solid var(--gold)' }}>
                 <p style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--ink-muted)', marginBottom: '8px' }}>
@@ -143,8 +150,7 @@ export default async function ArticleDetailPage({ params }: Props) {
             )}
 
             <SupportQR qrImage={config.donation.qrImage} facebookUrl={config.facebook} />
-
-            {/* ArticleBody removed as requested */}
+            <ArticleBody content={renderArticleMarkdown(article.content)} />
 
 
             {article.series && (

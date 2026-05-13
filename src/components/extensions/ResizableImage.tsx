@@ -59,15 +59,15 @@ const ImageNodeView = (props: NodeViewRendererProps | any) => {
   }, [caption]);
 
   return (
-    <NodeViewWrapper 
-      className={`resizable-image-parent ${node.attrs.className || ''}`} 
+    <NodeViewWrapper
+      className={`resizable-image-parent ${node.attrs.className || ''}`}
       style={{ textAlign: node.attrs.textAlign || 'center', display: 'block', margin: '2.5rem 0' }}
     >
-      <div 
-        className={`resizable-image-wrapper ${selected ? 'is-selected' : ''}`} 
-        style={{ 
-          width: width, 
-          display: 'inline-block', 
+      <div
+        className={`resizable-image-wrapper ${selected ? 'is-selected' : ''}`}
+        style={{
+          width: width,
+          display: 'inline-block',
           position: 'relative',
           padding: '4px',
           border: selected ? '2px solid #a0783a' : '2px solid transparent',
@@ -83,7 +83,7 @@ const ImageNodeView = (props: NodeViewRendererProps | any) => {
           style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '4px' }}
         />
         {selected && (
-          <div 
+          <div
             className="resize-handle"
             onMouseDown={onMouseDown}
             style={{
@@ -103,12 +103,11 @@ const ImageNodeView = (props: NodeViewRendererProps | any) => {
         <textarea
           ref={textareaRef}
           className="image-caption-input"
-          placeholder="Nhập chú thích bài khảo cứu..."
           value={caption}
           onChange={handleCaptionChange}
           rows={1}
-          style={{ 
-            width: '100%', 
+          style={{
+            width: '100%',
             textAlign: 'center',
             marginTop: '12px',
             display: 'block',
@@ -172,11 +171,11 @@ export const ResizableImage = Image.extend({
     const captionText = HTMLAttributes['data-caption'];
     const widthVal = HTMLAttributes['data-width'] || '100%';
     const customClass = HTMLAttributes['class'] || '';
-    
+
     // Explicitly check for content to prevent empty renders
-    const captionTag = captionText ? ['div', { 
-      class: 'image-caption', 
-      style: 'font-family: serif; font-style: italic; font-size: 16px; color: #2c1a0e; margin-top: 10px; padding-top: 10px; border-top: 2px solid #a0783a; text-align: center; display: block; width: 100%;' 
+    const captionTag = captionText ? ['div', {
+      class: 'image-caption',
+      style: 'font-family: serif; font-style: italic; font-size: 16px; color: #2c1a0e; margin-top: 10px; padding-top: 10px; border-top: 2px solid #a0783a; text-align: center; display: block; width: 100%;'
     }, captionText] : ['span', { style: 'display:none' }];
 
     return [
@@ -187,9 +186,9 @@ export const ResizableImage = Image.extend({
         'data-caption': captionText || '',
         'data-width': widthVal,
       },
-      ['div', { 
-        class: 'resizable-image-content', 
-        style: `width: ${widthVal}; display: inline-block;` 
+      ['div', {
+        class: 'resizable-image-content',
+        style: `width: ${widthVal}; display: inline-block;`
       },
         ['img', { src, alt, title, style: 'width: 100%; height: auto; display: block; border-radius: 4px;' }],
         captionTag

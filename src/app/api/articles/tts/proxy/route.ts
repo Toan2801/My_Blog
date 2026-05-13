@@ -1,30 +1,34 @@
 import { NextResponse } from 'next/server';
 
 export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const url = searchParams.get('url');
+
+  if (!url) {
+    return NextResponse.json({ error: 'Missing URL' }, { status: 400 });
+  }
+
   try {
-    const { searchParams } = new URL(req.url);
-    const url = searchParams.get('url');
-
-    if (!url) return new Response('Missing URL', { status: 400 });
-
-    const res = await fetch(url, {
+    const response = await fetch(url, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
       }
     });
 
-    if (!res.ok) throw new Error('Failed to fetch audio source');
+    if (!response.ok) {
+      throw new Error(`Failed to fetch audio: ${response.statusText}`);
+    }
 
-    const arrayBuffer = await res.arrayBuffer();
-    
-    return new Response(arrayBuffer, {
+    const audioData = await response.arrayBuffer();
+
+    return new Response(audioData, {
       headers: {
         'Content-Type': 'audio/mpeg',
-        'Cache-Control': 'public, max-age=3600'
+        'Cache-Control': 'public, max-age=31536000, immutable'
       }
     });
   } catch (error) {
-    console.error('TTS Proxy Error:', error);
-    return new Response('Error fetching audio', { status: 500 });
+    console.error('Proxy Error:', error);
+    return NextResponse.json({ error: 'Failed to proxy audio' }, { status: 500 });
   }
 }

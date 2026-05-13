@@ -6,8 +6,8 @@ export async function POST(req: Request) {
     const { text } = await req.json();
     if (!text) return NextResponse.json({ error: 'No text provided' }, { status: 400 });
 
-    // Google TTS is synchronous and fast
-    const urls = googleTTS.getAllAudioUrls(text, {
+    // Limit text to 200 characters for a quick stable test, or use getAllAudioUrls
+    const urls = googleTTS.getAllAudioUrls(text.substring(0, 2000), {
       lang: 'vi',
       slow: false,
       host: 'https://translate.google.com',

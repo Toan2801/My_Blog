@@ -13,8 +13,14 @@ interface TocNode extends TocEntry {
   children: TocNode[];
 }
 
+export interface NoteEntry {
+  text: string;
+  pageNumber: number;
+}
+
 interface Props {
   entries: TocEntry[];
+  notes?: NoteEntry[];
   currentPage: number;
   /** True when the sidebar is visible (controlled by parent). */
   open: boolean;
@@ -41,6 +47,7 @@ function buildTree(entries: TocEntry[]): TocNode[] {
 
 export default function ReaderSidebar({
   entries,
+  notes = [],
   currentPage,
   open,
   onClose,
@@ -48,6 +55,7 @@ export default function ReaderSidebar({
 }: Props) {
   const tree = useMemo(() => buildTree(entries), [entries]);
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
+  const [activeTab, setActiveTab] = useState<'toc' | 'notes'>('toc');
 
   // Resizing logic
   const [isResizing, setIsResizing] = useState(false);
@@ -109,8 +117,6 @@ export default function ReaderSidebar({
     }
   };
 
-  if (entries.length === 0) return null;
-
   return (
     <>
       <div
@@ -120,7 +126,7 @@ export default function ReaderSidebar({
       />
       <aside
         className={`reader-sidebar ${open ? 'is-open' : ''} ${isResizing ? 'is-resizing' : ''}`}
-        aria-label="Mục lục"
+        aria-label="Menu đọc"
         aria-hidden={!open}
       >
         <div
@@ -129,29 +135,65 @@ export default function ReaderSidebar({
           title="Kéo để dãn rộng"
         />
         <div className="reader-sidebar-header">
-          <span className="reader-sidebar-title">Mục lục</span>
+          <div className="reader-sidebar-tabs">
+            <button 
+              className={`reader-sidebar-tab ${activeTab === 'toc' ? 'is-active' : ''}`}
+              onClick={() => setActiveTab('toc')}
+            >
+              Mục lục
+            </button>
+            <button 
+              className={`reader-sidebar-tab ${activeTab === 'notes' ? 'is-active' : ''}`}
+              onClick={() => setActiveTab('notes')}
+            >
+              Chú thích {notes.length > 0 && `(${notes.length})`}
+            </button>
+          </div>
           <button
             type="button"
             className="reader-sidebar-close"
             onClick={onClose}
-            aria-label="Đóng mục lục"
+            aria-label="Đóng"
           >
             ✕
           </button>
         </div>
         <nav className="reader-sidebar-nav">
-          <ul className="reader-toc-list">
-            {tree.map((node) => (
-              <TocNodeView
-                key={node.path}
-                node={node}
-                currentPage={currentPage}
-                onJump={handleJump}
-                collapsed={collapsed}
-                toggle={toggle}
-              />
-            ))}
-          </ul>
+          {activeTab === 'toc' ? (
+            <ul className="reader-toc-list">
+              {tree.map((node) => (
+                <TocNodeView
+                  key={node.path}
+                  node={node}
+                  currentPage={currentPage}
+                  onJump={handleJump}
+                  collapsed={collapsed}
+                  toggle={toggle}
+                />
+              ))}
+              {entries.length === 0 && (
+                <li className="reader-sidebar-empty">Không có mục lục</li>
+              )}
+            </ul>
+          ) : (
+            <ul className="reader-notes-list">
+              {notes.map((note, idx) => (
+                <li key={idx} className="reader-note-sidebar-item">
+                  <button 
+                    type="button" 
+                    className="reader-note-sidebar-link"
+                    onClick={() => handleJump(note.pageNumber)}
+                  >
+                    <span className="reader-note-sidebar-page">Trang {note.pageNumber}</span>
+                    <span className="reader-note-sidebar-text">{note.text}</span>
+                  </button>
+                </li>
+              ))}
+              {notes.length === 0 && (
+                <li className="reader-sidebar-empty">Không có chú thích</li>
+              )}
+            </ul>
+          )}
         </nav>
       </aside>
     </>

@@ -235,29 +235,42 @@ a:hover {
   margin-bottom: var(--space-6);
 }
 
-/* 2. Trích dẫn sử liệu (Cite) */
-.article-cite {
+/* 2. Trích dẫn sử liệu (Cite/Blockquote) - Giữ nguyên như cũ */
+blockquote, .article-cite {
   font-family: var(--font-serif);
-  font-size: 1.05rem;
+  font-size: 1.1rem; /* Tăng nhẹ kích thước cho dễ đọc */
   color: var(--ink-light);
-  line-height: 1.7;
-  padding: var(--space-4) var(--space-6);
-  margin: var(--space-5) 0;
-  border-left: 4px solid var(--gold);
+  line-height: 1.8;
+  padding: var(--space-5) var(--space-6);
+  margin: var(--space-6) 0;
+  border-left: 5px solid var(--gold);
   background: var(--paper-dark);
-  font-style: normal;
+  font-style: italic; /* Sapo thường để in nghiêng */
   position: relative;
+  display: block;
+  border-radius: 0 4px 4px 0;
 }
 
-.article-cite::before {
-  content: '“';
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 3rem;
-  color: var(--gold-pale);
-  font-family: var(--font-serif);
-  line-height: 1;
+blockquote::before, blockquote::after, .article-cite::before, .article-cite::after {
+  content: none !important;
+}
+
+blockquote p, .article-cite p {
+  background: transparent !important;
+  margin: 0;
+  padding: 0;
+}
+
+/* Inline Code - Sử dụng cho trích dẫn ngắn trong ngoặc kép */
+.article-body code {
+  font-family: var(--font-body); /* Cùng font với chữ thường */
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-size: 1.1rem;
+  color: inherit; /* Thừa hưởng màu từ văn bản gốc (ví dụ màu đỏ) */
+  font-style: italic; /* Chỉ in nghiêng */
+  border: none;
 }
 
 /* 3. Style tùy chỉnh (Custom Style 1) */
@@ -396,7 +409,8 @@ li {
    FOOTER
    ============================================ */
 .footer {
-  background: var(--ink); /* In light mode, ink is dark */
+  background: var(--ink);
+  color: var(--paper);
 }
 
 /* ============================================
@@ -581,7 +595,7 @@ li {
 .footer-inner {
   max-width: var(--container);
   margin: 0 auto;
-  padding: 0 var(--space-5);
+  padding: var(--space-8) var(--space-5);
 }
 
 .footer-top {
@@ -3917,3 +3931,86 @@ figcaption.image-caption {
     word-break: break-word !important;
   }
 }
+
+/* ============================================
+   ARTICLE DETAIL LAYOUT (Traditional)
+   ============================================ */
+.article-reading-layout {
+  display: flex;
+  gap: var(--space-8);
+  align-items: flex-start;
+  margin-top: var(--space-6);
+}
+
+.article-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.article-body-container {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 1024px) {
+  .article-reading-layout {
+    flex-direction: column;
+  }
+  .article-sidebar {
+    width: 100%;
+    position: static;
+    margin-bottom: var(--space-6);
+  }
+}
+
+/* Table of Contents Styling */
+.toc-container {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.toc-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--gold-pale);
+}
+
+.toc-title {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+}
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+}
+
+.toc-item {
+  margin-bottom: var(--space-2);
+}
+
+.toc-link {
+  font-size: 0.9rem;
+  color: var(--ink-light);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.toc-link:hover, .toc-link.active {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.toc-level-2 { padding-left: var(--space-3); }
+.toc-level-3 { padding-left: var(--space-5); }

@@ -34,6 +34,13 @@ export function renderArticleMarkdown(md: string): string {
 
   let html = renderer.render(md);
 
+  // Wrap 【Khảo dị】 blocks for special styling
+  html = html.replace(
+    /<li>\s*<p>\s*【Khảo dị】([\s\S]*?)<\/p>\s*<\/li>/g,
+    (_m, content: string) =>
+      `<li class="note-item"><div class="article-note"><span class="note-label">【Khảo dị】</span>${content}</div></li>`,
+  );
+
   // Pair `<p><img …></p>` immediately followed by `<p><em>caption</em></p>`
   // into the figure-style wrapper used elsewhere in the codebase.
   html = html.replace(

@@ -3,6 +3,7 @@
 import { Fragment, useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { PageFlip } from 'page-flip';
+import html2canvas from 'html2canvas';
 import ReaderToolbar from './ReaderToolbar';
 import ReaderSidebar, { type TocEntry } from './ReaderSidebar';
 import { derivePermutation, TILE_COLS, TILE_ROWS, TILE_COUNT } from '@/lib/tile-shuffle';
@@ -30,13 +31,15 @@ interface Props {
   slug: string;
   articleTitle: string;
   tocEntries?: TocEntry[];
+  notes?: Array<{ text: string; pageNumber: number }>;
   /** Anonymous trial mode: fetch the preview endpoint, capped to first 5 pages. */
   trial?: boolean;
 }
 
 interface PageInfo {
   pageNumber: number;
-  imageUrl: string;
+  imageUrl?: string;
+  html?: string;
 }
 
 interface SearchHit {
@@ -53,7 +56,7 @@ const WINDOW_AHEAD = 3;
 const LOGICAL_W = 512;
 const LOGICAL_H = 768;
 
-export default function CanvasReader({ slug, articleTitle, tocEntries = [], trial = false }: Props) {
+export default function CanvasReader({ slug, articleTitle, tocEntries = [], notes = [], trial = false }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const initialPage = parseInt(searchParams.get('page') || '1', 10);
@@ -63,8 +66,7 @@ export default function CanvasReader({ slug, articleTitle, tocEntries = [], tria
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Sidebar starts open on desktop, closed on mobile. The CSS handles
-  // the responsive layout; this only seeds the initial state.
+  // Sidebar starts open on desktop, closed on mobile.
   const [sidebarOpen, setSidebarOpen] = useState(() =>
     typeof window === 'undefined' ? true : window.innerWidth >= 768,
   );
@@ -76,6 +78,7 @@ export default function CanvasReader({ slug, articleTitle, tocEntries = [], tria
   const [searchTotal, setSearchTotal] = useState(0);
 
   const containerRef = useRef<HTMLDivElement>(null);
+  const renderContainerRef = useRef<HTMLDivElement>(null);
   const flipRef = useRef<PageFlip | null>(null);
   const pagesRef = useRef<PageInfo[]>([]);
   const tokenRef = useRef<string>('');
@@ -92,7 +95,6 @@ export default function CanvasReader({ slug, articleTitle, tocEntries = [], tria
     const url = trial ? `/api/articles/${slug}/preview` : `/api/articles/${slug}/pages`;
     const res = await fetch(url);
     if (res.status === 401 && !trial) {
-      // Not signed in — bounce to login with return URL.
       const cb = encodeURIComponent(`/read/${slug}`);
       window.location.href = `/login?callbackUrl=${cb}`;
       throw new Error('Unauthorized');
@@ -102,7 +104,7 @@ export default function CanvasReader({ slug, articleTitle, tocEntries = [], tria
     return { pages: data.pages as PageInfo[], token: data.token as string };
   }, [slug, trial]);
 
-  /* ── Tile-unshuffle a page into its canvas ───────────────────── */
+  /* ── Render HTML or Image into canvas ───────────────────── */
   const loadPageInto = useCallback(async (pageIdx: number) => {
     if (pageStatusRef.current[pageIdx] !== 'idle') return;
     const info = pagesRef.current[pageIdx];
@@ -110,54 +112,61 @@ export default function CanvasReader({ slug, articleTitle, tocEntries = [], tria
     if (!info || !canvas) return;
 
     pageStatusRef.current[pageIdx] = 'loading';
+
     try {
-      const url = `${info.imageUrl}?t=${encodeURIComponent(tokenRef.current)}`;
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const bytes = new Uint8Array(await res.arrayBuffer());
-      // Body is a scrambled PNG. The browser will still decode it as PNG
-      // bytes (it's structurally valid) — we just route through createImageBitmap.
-      const blob = new Blob([bytes], { type: 'image/png' });
-      const bitmap = await createImageBitmap(blob);
+      if (info.html) {
+        // Mode A: Dynamic HTML rendering via html2canvas
+        const renderRoot = renderContainerRef.current;
+        if (!renderRoot) throw new Error('renderRoot unavailable');
 
-      const permutation = await derivePermutation(
-        tokenRef.current,
-        slug,
-        info.pageNumber,
-      );
+        renderRoot.innerHTML = info.html;
+        
+        const h2cCanvas = await html2canvas(renderRoot, {
+          width: LOGICAL_W,
+          height: LOGICAL_H,
+          scale: window.devicePixelRatio || 2,
+          backgroundColor: '#ffffff',
+          logging: false,
+          useCORS: true,
+        });
 
-      // Size the canvas to the bitmap's native resolution so text stays crisp.
-      canvas.width = bitmap.width;
-      canvas.height = bitmap.height;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) throw new Error('canvas 2d unavailable');
+        canvas.width = h2cCanvas.width;
+        canvas.height = h2cCanvas.height;
+        const ctx = canvas.getContext('2d');
+        if (ctx) ctx.drawImage(h2cCanvas, 0, 0);
+        
+        renderRoot.innerHTML = ''; // Cleanup text
+        pageStatusRef.current[pageIdx] = 'ready';
+      } else if (info.imageUrl) {
+        // Mode B: Legacy Image Unshuffling
+        const url = `${info.imageUrl}?t=${encodeURIComponent(tokenRef.current)}`;
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const bytes = new Uint8Array(await res.arrayBuffer());
+        const blob = new Blob([bytes], { type: 'image/png' });
+        const bitmap = await createImageBitmap(blob);
 
-      const tileW = bitmap.width / TILE_COLS;
-      const tileH = bitmap.height / TILE_ROWS;
+        const permutation = await derivePermutation(tokenRef.current, slug, info.pageNumber);
 
-      // permutation[i] = original index that was placed at shuffled index i.
-      // So tile sitting at shuffled position i belongs at original position
-      // permutation[i] when reassembling.
-      for (let i = 0; i < TILE_COUNT; i++) {
-        const srcCol = i % TILE_COLS;
-        const srcRow = Math.floor(i / TILE_COLS);
-        const dstIdx = permutation[i];
-        const dstCol = dstIdx % TILE_COLS;
-        const dstRow = Math.floor(dstIdx / TILE_COLS);
-        ctx.drawImage(
-          bitmap,
-          srcCol * tileW,
-          srcRow * tileH,
-          tileW,
-          tileH,
-          dstCol * tileW,
-          dstRow * tileH,
-          tileW,
-          tileH,
-        );
+        canvas.width = bitmap.width;
+        canvas.height = bitmap.height;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) throw new Error('canvas 2d unavailable');
+
+        const tileW = bitmap.width / TILE_COLS;
+        const tileH = bitmap.height / TILE_ROWS;
+
+        for (let i = 0; i < TILE_COUNT; i++) {
+          const srcCol = i % TILE_COLS;
+          const srcRow = Math.floor(i / TILE_COLS);
+          const dstIdx = permutation[i];
+          const dstCol = dstIdx % TILE_COLS;
+          const dstRow = Math.floor(dstIdx / TILE_COLS);
+          ctx.drawImage(bitmap, srcCol * tileW, srcRow * tileH, tileW, tileH, dstCol * tileW, dstRow * tileH, tileW, tileH);
+        }
+        bitmap.close?.();
+        pageStatusRef.current[pageIdx] = 'ready';
       }
-      bitmap.close?.();
-      pageStatusRef.current[pageIdx] = 'ready';
     } catch (e) {
       pageStatusRef.current[pageIdx] = 'idle';
       console.error(`page ${pageIdx + 1} load failed`, e);
@@ -399,26 +408,45 @@ export default function CanvasReader({ slug, articleTitle, tocEntries = [], tria
   }, []);
 
   return (
-    <div
-      className="reader-layout"
-      onContextMenu={preventContext}
-      onDragStart={(e) => e.preventDefault()}
-    >
+    <>
+      {/* Hidden container for rendering HTML to Canvas */}
+      <div
+        ref={renderContainerRef}
+        className="reader-render-container"
+        style={{
+          position: 'fixed',
+          left: '-9999px',
+          top: 0,
+          width: LOGICAL_W,
+          height: LOGICAL_H,
+          background: '#fff',
+          visibility: 'hidden',
+          pointerEvents: 'none',
+        }}
+      />
+
+      <div
+        className="reader-layout"
+        onContextMenu={preventContext}
+        onDragStart={(e) => e.preventDefault()}
+      >
       <ReaderToolbar
         title={articleTitle}
         currentPage={currentPage + 1}
         totalPages={totalPages}
-        onBack={() => router.back()}
+        notesCount={notes.length}
+        onBack={() => router.push(`/series/${slug.split('-')[0]}`)}
         onPageChange={goToPage}
         onFullscreen={toggleFullscreen}
-        onSearch={openSearch}
-        onToggleSidebar={tocEntries.length > 0 ? () => setSidebarOpen(o => !o) : undefined}
+        onSearch={() => setSearchOpen(true)}
+        onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
         sidebarOpen={sidebarOpen}
       />
 
       <div className={`reader-viewport ${sidebarOpen ? 'has-sidebar-open' : ''}`}>
         <ReaderSidebar
           entries={tocEntries}
+          notes={notes}
           currentPage={currentPage + 1}
           open={sidebarOpen}
           onClose={() => setSidebarOpen(false)}
@@ -508,5 +536,6 @@ export default function CanvasReader({ slug, articleTitle, tocEntries = [], tria
         )}
       </div>
     </div>
+    </>
   );
 }

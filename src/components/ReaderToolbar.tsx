@@ -4,6 +4,7 @@ interface Props {
   title: string;
   currentPage: number;
   totalPages: number;
+  notesCount?: number;
   onBack: () => void;
   onPageChange: (page: number) => void;
   onFullscreen: () => void;
@@ -16,6 +17,7 @@ export default function ReaderToolbar({
   title,
   currentPage,
   totalPages,
+  notesCount = 0,
   onBack,
   onPageChange,
   onFullscreen,
@@ -42,11 +44,15 @@ export default function ReaderToolbar({
           <button
             className="reader-btn"
             onClick={onToggleSidebar}
-            title={sidebarOpen ? 'Ẩn mục lục' : 'Hiện mục lục'}
+            title={sidebarOpen ? 'Ẩn menu' : 'Hiện menu'}
             aria-pressed={sidebarOpen}
-            aria-label="Mục lục"
+            aria-label="Menu đọc"
+            style={{ position: 'relative' }}
           >
             ☰
+            {notesCount > 0 && (
+              <span className="reader-badge">{notesCount}</span>
+            )}
           </button>
         )}
         <span style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.5)', maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>

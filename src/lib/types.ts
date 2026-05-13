@@ -8,6 +8,7 @@ export interface ArticlePage {
   pageNumber: number;
   imageUrl: string;
   markdown?: string;
+  html?: string;
 }
 
 export interface ArticleMarkdownPage {
