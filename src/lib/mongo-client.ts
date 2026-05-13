@@ -15,10 +15,10 @@ if (!uri && process.env.NODE_ENV === 'production') {
   }
 
   if (process.env.NODE_ENV === 'development') {
-    if (!global._mongoClientPromise) {
-      global._mongoClientPromise = new MongoClient(uri, options).connect();
+    if (!(global as any)._mongoClientPromise) {
+      (global as any)._mongoClientPromise = new MongoClient(uri, options).connect();
     }
-    clientPromise = global._mongoClientPromise;
+    clientPromise = (global as any)._mongoClientPromise;
   } else {
     clientPromise = new MongoClient(uri, options).connect();
   }
