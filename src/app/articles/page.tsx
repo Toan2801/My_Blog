@@ -27,8 +27,7 @@ export default async function ArticlesPage({
   return (
     <div className="container">
       <Breadcrumb items={[{ label: 'Bài viết' }]} />
-      <div className="articles-with-sidebar">
-        <CategorySidebar categories={config.categories} activeCategory={category} />
+      <div className="articles-layout-wrapper">
         <ArticleListClient
           items={items}
           categories={config.categories}

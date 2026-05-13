@@ -16,5 +16,153 @@
   "readingTime": 8,
   "coverImage": null,
   "author": "Toan Nguyen",
-  "footnotes": []
+  "footnotes": [],
+  "pages": [
+    {
+      "pageNumber": 1,
+      "imageUrl": "/api/articles/vienthekhaithoidai/page/1/image"
+    },
+    {
+      "pageNumber": 2,
+      "imageUrl": "/api/articles/vienthekhaithoidai/page/2/image"
+    },
+    {
+      "pageNumber": 3,
+      "imageUrl": "/api/articles/vienthekhaithoidai/page/3/image"
+    },
+    {
+      "pageNumber": 4,
+      "imageUrl": "/api/articles/vienthekhaithoidai/page/4/image"
+    },
+    {
+      "pageNumber": 5,
+      "imageUrl": "/api/articles/vienthekhaithoidai/page/5/image"
+    },
+    {
+      "pageNumber": 6,
+      "imageUrl": "/api/articles/vienthekhaithoidai/page/6/image"
+    },
+    {
+      "pageNumber": 7,
+      "imageUrl": "/api/articles/vienthekhaithoidai/page/7/image"
+    },
+    {
+      "pageNumber": 8,
+      "imageUrl": "/api/articles/vienthekhaithoidai/page/8/image"
+    },
+    {
+      "pageNumber": 9,
+      "imageUrl": "/api/articles/vienthekhaithoidai/page/9/image"
+    },
+    {
+      "pageNumber": 10,
+      "imageUrl": "/api/articles/vienthekhaithoidai/page/10/image"
+    },
+    {
+      "pageNumber": 11,
+      "imageUrl": "/api/articles/vienthekhaithoidai/page/11/image"
+    },
+    {
+      "pageNumber": 12,
+      "imageUrl": "/api/articles/vienthekhaithoidai/page/12/image"
+    },
+    {
+      "pageNumber": 13,
+      "imageUrl": "/api/articles/vienthekhaithoidai/page/13/image"
+    },
+    {
+      "pageNumber": 14,
+      "imageUrl": "/api/articles/vienthekhaithoidai/page/14/image"
+    },
+    {
+      "pageNumber": 15,
+      "imageUrl": "/api/articles/vienthekhaithoidai/page/15/image"
+    },
+    {
+      "pageNumber": 16,
+      "imageUrl": "/api/articles/vienthekhaithoidai/page/16/image"
+    },
+    {
+      "pageNumber": 17,
+      "imageUrl": "/api/articles/vienthekhaithoidai/page/17/image"
+    },
+    {
+      "pageNumber": 18,
+      "imageUrl": "/api/articles/vienthekhaithoidai/page/18/image"
+    }
+  ],
+  "markdownPages": [
+    {
+      "pageNumber": 1,
+      "markdown": "# Viên Thế Khải thời đại\n\nToan Nguyen"
+    },
+    {
+      "pageNumber": 2,
+      "markdown": ""
+    },
+    {
+      "pageNumber": 3,
+      "markdown": "# Mục lục\n\n    - Chú thích — 13"
+    },
+    {
+      "pageNumber": 4,
+      "markdown": "Tân Hợi một tiếng súng ran,\\[1\\]\n\nVũ Xương lửa dậy ngập tràn trời thu.\\[2\\]\n\nĐại Thanh lâm cảnh mịt mù,\n\nCửu trùng nghiêng ngửa, cung khu luống sầu.\n\nNam Kinh cờ mới phất màu,\\[3\\]\n\nTôn công đứng lĩnh buổi đầu Dân nguyên.\\[4\\]\n\nSong xem thế nước đảo điên,\n\nBắc Dương binh lực còn nguyên thế hùng.\\[5\\]\n\nMuốn cho Nam Bắc hòa cùng,\n\nKhỏi cơn máu chảy, khỏi chồng xương khô,\n\nĐành đem chức vị cơ đồ,\n\nNhường cho Viên thị cầm cơ chấp quyền.\\[6\\]\n\nViên kia vốn kẻ binh biền,\n\nMột tay thao lược trấn miền Bắc Dương.\n\nNgoài đeo tiếng giữ triều cương,\n\nTrong ôm chí lớn khó lường ai hay.\n\nBấy giờ Thanh thất còn đây,\n\nẤu quân còn giữ bóng mây điện rồng.\\[7\\]"
+    },
+    {
+      "pageNumber": 5,
+      "markdown": "Viên bèn mặc cả đôi dòng,\n\nVừa lay họ Mãn, vừa mong lòng người.\n\nRằng: “nay loạn lạc khắp nơi,\n\nMuốn cho xã tắc yên đời binh đao,\n\nThì nên sớm liệu lối nào,\n\nKhiến vua thoái vị mà trao chính quyền.”\n\nNam Kinh nghe chuyện cũng yên,\n\nTôn công vì nghĩa đành quên lợi mình.\n\nMiễn sao dứt được Thanh đình,\n\nThì người lui bước giữ tình mai sau.\n\nMười hai tháng chạp năm nào,\n\nMột chương ngọc ấn đóng vào tờ thư.\\[8\\]\n\nNghìn năm vương đế bao đời,\n\nĐến đây khép lại một thời sử xanh.\n\nTừ đây chính cuộc vận hành,\n\nTôn công từ nhiệm, thôi đành ngai cao.\n\nViên kia liền được đón vào,\n\nBắc Kinh từ đó dạt dào gió mây."
+    },
+    {
+      "pageNumber": 6,
+      "markdown": "Miệng rằng giữ nước từ nay,\n\nMiệng rằng cộng trị dựng xây dân quyền.\n\nMà trong bụng dạ triền miên,\n\nChỉ mong nắm trọn uy quyền tối thiêng.\n\nQuốc dân đảng ấy một tên,\\[9\\]\n\nGiáo Nhân ông nọ bước lên nghị trường.\\[10\\]\n\nMuốn đem nội các làm cương,\n\nLấy quyền nghị viện buộc đương tổng tài.\\[11\\]\n\nBầu xong dân ý chẳng sai,\n\nĐảng nhà cách mệnh tương lai rạng ngời.\n\nNào ngờ giữa buổi sớm trời,\n\nMáu rơi Thượng Hải, người ơi thôi rồi.\\[12\\]\n\nTống công trúng đạn giữa nơi,\n\nHai hôm hấp hối lìa đời thảm thương.\n\nNgười đời bàn tán bên đường,\n\nRằng tay mưu chủ chính phường họ Viên.\n\nTừ đây chính cuộc ngả nghiêng,\n\nNghị trường chưa vững đã liền động căn."
+    },
+    {
+      "pageNumber": 7,
+      "markdown": "Tôn công nổi giận ngút ngần,\n\nHiệu người thảo phạt gian thần Bắc Kinh.\\[13\\]\n\nNăm mười ba nổi đao binh,\\[14\\]\n\nLần hai cách mệnh linh đình ô hô.\n\nGiang Tây trước đến Giang Tô,\n\nMấy nơi hưởng ứng dựng cờ chống Viên.\n\nNhưng vì thế yếu lực hèn,\n\nNam quân rời rạc, dưới trên chẳng đồng.\n\nBắc Dương vốn mạnh như rồng,\n\nMột phen quét sạch bụi hồng tan nhanh.\n\nTôn công lại phải cam đành,\n\nĐông Doanh lánh bước, ôm tình nước non.\\[15\\]\n\nTừ đây Viên lại chuyên quyền,\n\nBèn đem Quốc đảng xóa tên khỏi triều.\n\nQuốc hội chưa họp bao nhiêu,\n\nĐã thành cái bóng tiêu điều hớ hênh.\n\nHiến chương mới dựng chưa bền,\\[16\\]\n\nĐã theo sóng dữ cuốn liền xuống sâu."
+    },
+    {
+      "pageNumber": 8,
+      "markdown": "Viên bèn sửa đổi trước sau,\n\nThu quyền về một mối đầu bản thân.\n\nDanh là cộng quốc canh tân,\n\nThực là độc đoán dần dần dựng nên.\n\nQuan trường ai dám nói chen?\n\nBắc Kinh từ đó một phen nặng nề.\n\nTrên thì phép lệnh trăm bề,\n\nDưới thì quân lệnh dồn ghì bốn phương.\n\nThan ôi Dân quốc mở đường,\n\nChưa ra hình dạng đã vương đoạ đày.\\[17\\]\n\nMột người ham nắm quyền dài,\n\nKhiến bao máu đổ uổng hoài công danh.\n\nNăm sau thế giới chiến tranh,\\[18\\]\n\nCác phương cường quốc tranh giành xa xăm.\n\nNhật kia thừa dịp âm thầm,\n\nĐem hai mươi mốt điều ngầm ép trao.\\[19\\]\n\nKhoản thì đòi mỏ, đòi hào,\n\nKhoản đòi đường sắt, đòi tàu, đòi binh."
+    },
+    {
+      "pageNumber": 9,
+      "markdown": "Còn thêm mấy thứ linh tinh,\n\nMuốn cho Trung Quốc nghiêng mình thuộc bang.\n\nViên xem thế giặc hung hăng,\n\nNgoài đành nhún bước, trong càng hổ ngươi.\n\nPhần nhiều điều khoản thuận lời,\n\nMột phen quốc sỉ rụng rời lòng dân.\n\nTừ đây sĩ khí xa gần,\n\nNgười thương xã tắc, kẻ căm triều quyền.\n\nNhưng Viên chẳng chịu ngồi yên,\n\nLại toan bước nữa ngồi lên ngai rồng.\n\nNhững tay nịnh hót quen đường,\n\nDâng thư khuyên tiến, mở đường phục ngôi.\n\nRằng dân chưa hợp vận đời,\n\nChi bằng trở lại ngôi trời mới xong.\n\nViên nghe khoái chí trong lòng,\n\nGiấc mơ đế chế chất chồng đã lâu.\n\nCuối năm tuyết phủ thần châu,\n\nHồng Hiến niên hiệu bắt đầu dựng lên.\\[20\\]"
+    },
+    {
+      "pageNumber": 10,
+      "markdown": "Một phen thiên hạ đảo điên,\n\nMáu xương cách mệnh ưu phiền nước trôi.\n\nNgười ngay nghe chuyện bùi ngùi,\n\nBiết rằng dân quốc đến hồi nguy nan.\n\nVân Nam trước nhất kéo quan,\\[21\\]\n\nThái công đi trước, Đường quân theo cùng.\\[22\\]\n\nHộ quốc hai chữ nổi bùng,\n\nQuyết ngăn đế chế, cứu chung cộng hòa.\\[23\\]\n\nQuý Châu lại hưởng ứng ra,\n\nQuảng Tây các trấn cũng đà chuyển lay.\n\nTướng xưa dưới trướng bao ngày,\n\nNay nghe đại nghĩa đổi thay tấm lòng.\n\nCó người chẳng dám phản công,\n\nNhưng không chịu chết theo dòng họ Viên.\n\nBắc Dương từ mối quyền riêng,\n\nĐến khi mất nghĩa khó liền một tay.\n\nMộng vua chưa kịp dựng xây,\n\nĐã nghe bốn phía trống lay dậy trời."
+    },
+    {
+      "pageNumber": 11,
+      "markdown": "Viên kia thế đã rã rời,\n\nTháng ba đành phải bỏ ngôi thoái nhường.\\[24\\]\n\nThu hồi danh hiệu đế vương,\n\nCúi đầu nhận lại xưng bang cộng hòa.\n\nNhưng nào cứu được nghiệp nhà,\n\nUy danh đã đổ, lòng xa hết lòng.\n\nBệnh thêm, sức yếu, trí cùng,\n\nBao nhiêu mưu tính hóa không cuối đời.\n\nBước sang tháng sáu năm rồi,\\[25\\]\n\nXuôi tay nhắm mắt, chẳng lời trối trăng.\n\nNgười về với đất âm thầm,\n\nMột nền cộng quốc lỗi lầm bể dâu.\n\nTrung nguyên từ bấy về sau,\n\nQuân phiệt chia cánh, tranh nhau thư hùng.\\[26\\]\n\nThan ôi nghĩ chuyện vẫy vùng,\n\nViên công cũng bậc anh hùng một khi.\n\nTài cao, dũng lớn, quyền uy,\n\nMưu sâu cũng đủ hiểm nguy cho đời."
+    },
+    {
+      "pageNumber": 12,
+      "markdown": "Chỉ vì tham vọng hơn người,\n\nMuốn thâu quyền lực, quên lời non sông.\n\nDẹp xong nghiệp cũ nhà rồng,\n\nLại toan quay gót dựng vòng đế vương.\n\nCho nên nghĩ cũng có thương,\n\nMà chê một nỗi sai đường lầm mê.\n\nMột đời xoay chuyển sơn khê,\n\nRốt rồi tay trắng trở về hư không."
+    },
+    {
+      "pageNumber": 13,
+      "markdown": "### Chú thích\n\n\\[1\\] Tân Hợi: Cách mạng Tân Hợi năm 1911, cuộc cách mạng lật đổ triều Thanh, mở đường cho chế độ cộng hòa ở Trung Quốc.\n\n\\[2\\] Vũ Xương: Cuộc khởi nghĩa Vũ Xương ngày 10 tháng 10 năm 1911 là phát súng mở đầu thắng lợi cho Cách mạng Tân Hợi.\n\n\\[3\\] Nam Kinh: Một trong những trung tâm của lực lượng cách mạng; sau được chọn làm nơi đặt chính phủ lâm thời.\n\n\\[4\\] Tôn công: Tôn Dật Tiên, tức Tôn Trung Sơn, lãnh tụ cách mạng, được bầu làm Tổng thống lâm thời của Trung Hoa Dân Quốc đầu năm 1912. “Dân nguyên” là buổi đầu của nền dân quốc.\n\n\\[5\\] Bắc Dương binh lực: Quân đội Bắc Dương do Viên Thế Khải nắm giữ, là lực lượng quân sự mạnh nhất miền Bắc lúc bấy giờ.\n\n\\[6\\] Nhường cho Viên thị: Tôn Trung Sơn vì muốn tránh nội chiến Nam–Bắc nên chấp nhận nhường chức Tổng thống lâm thời cho Viên Thế Khải, với điều kiện buộc nhà Thanh thoái vị.\n\n\\[7\\] Ấu quân: Chỉ Phổ Nghi, vị hoàng đế cuối cùng của nhà Thanh, lên ngôi khi còn nhỏ."
+    },
+    {
+      "pageNumber": 14,
+      "markdown": "\\[8\\] Ngọc ấn, tờ thư: Gợi việc ban chiếu thoái vị của nhà Thanh đầu năm 1912, do Long Dụ Thái hậu nhân danh triều đình tuyên bố, chấm dứt chế độ quân chủ hơn 2000 năm ở Trung Quốc.\n\n\\[9\\] Quốc dân đảng: Lực lượng chính trị kế thừa và tập hợp nhiều tổ chức cách mạng, do Tôn Trung Sơn làm linh hồn chính trị.\n\n\\[10\\] Giáo Nhân: Tống Giáo Nhân, nhân vật chủ chốt của Quốc dân đảng, chủ trương xây dựng nội các chịu trách nhiệm trước nghị viện.\n\n\\[11\\] Tổng tài: Chỉ ngôi vị tổng thống, ở đây là Viên Thế Khải.\n\n\\[12\\] Máu rơi Thượng Hải: Tống Giáo Nhân bị ám sát năm 1913 tại ga xe lửa Thượng Hải, vụ việc gây chấn động chính trường.\n\n\\[13\\] Thảo phạt gian thần Bắc Kinh: Chỉ việc lực lượng cách mạng nổi dậy chống Viên Thế Khải sau vụ Tống Giáo Nhân bị ám sát và các hành vi chuyên quyền của Viên.\n\n\\[14\\] Năm mười ba: Năm 1913. Ý nói “Nhị thứ cách mệnh” hay “Cách mạng lần thứ hai”.\n\n\\[15\\] Đông Doanh: Cách gọi Nhật Bản theo lối cũ. Tôn Trung Sơn sau thất bại phải sang Nhật lưu vong.\n\n\\[16\\] Hiến chương mới dựng: Chỉ trật tự hiến chính non trẻ"
+    },
+    {
+      "pageNumber": 15,
+      "markdown": "của Trung Hoa Dân Quốc thời kỳ đầu, nhanh chóng bị Viên phá hoại.\n\n\\[18\\] Thế giới chiến tranh: Chỉ Chiến tranh thế giới thứ nhất bùng nổ năm 1914.\n\n\\[19\\] Hai mươi mốt điều: tối hậu thư của Nhật Bản ép Trung Quốc ký năm 1915, nhằm mở rộng quyền lợi chính trị, quân sự, kinh tế của Nhật tại Trung Quốc.\n\n\\[20\\] Hồng Hiến niên hiệu: Niên hiệu do Viên Thế Khải đặt khi tự xưng hoàng đế cuối năm 1915, mưu lập đế chế mới.\n\n\\[21\\] Vân Nam: Nơi phát động đầu tiên của phong trào chống đế chế Viên Thế Khải.\n\n\\[22\\] Thái công, Đường quân: Thái Ngạc và Đường Kế Nghiêu, hai nhân vật quan trọng trong phong trào Hộ quốc.\n\n\\[23\\] Hộ quốc: Phong trào Hộ quốc nổ ra để phản đối Viên Thế Khải xưng đế, bảo vệ thể chế cộng hòa.\n\n\\[24\\] Viên Thế Khải buộc phải hủy bỏ đế chế vào tháng 3 năm 1916 trước làn sóng phản đối rộng khắp trong nước\n\n\\[25\\] Viên Thế Khải chết vào tháng 6 năm 1916.\n\n\\[26\\] Quân phiệt chia cánh: Sau cái chết của Viên, Trung Quốc rơi vào thời kỳ quân phiệt phân tranh, trung ương suy yếu, các phe quân sự cát cứ khắp các địa phương."
+    },
+    {
+      "pageNumber": 16,
+      "markdown": ""
+    },
+    {
+      "pageNumber": 17,
+      "markdown": ""
+    },
+    {
+      "pageNumber": 18,
+      "markdown": ""
+    }
+  ]
 }

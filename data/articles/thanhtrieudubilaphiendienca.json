@@ -16,5 +16,137 @@
   "readingTime": 7,
   "coverImage": "/uploads/img-1778518123908.jpg",
   "author": "Toan Nguyen",
-  "footnotes": []
+  "footnotes": [],
+  "pages": [
+    {
+      "pageNumber": 1,
+      "imageUrl": "/api/articles/thanhtrieudubilaphiendienca/page/1/image"
+    },
+    {
+      "pageNumber": 2,
+      "imageUrl": "/api/articles/thanhtrieudubilaphiendienca/page/2/image"
+    },
+    {
+      "pageNumber": 3,
+      "imageUrl": "/api/articles/thanhtrieudubilaphiendienca/page/3/image"
+    },
+    {
+      "pageNumber": 4,
+      "imageUrl": "/api/articles/thanhtrieudubilaphiendienca/page/4/image"
+    },
+    {
+      "pageNumber": 5,
+      "imageUrl": "/api/articles/thanhtrieudubilaphiendienca/page/5/image"
+    },
+    {
+      "pageNumber": 6,
+      "imageUrl": "/api/articles/thanhtrieudubilaphiendienca/page/6/image"
+    },
+    {
+      "pageNumber": 7,
+      "imageUrl": "/api/articles/thanhtrieudubilaphiendienca/page/7/image"
+    },
+    {
+      "pageNumber": 8,
+      "imageUrl": "/api/articles/thanhtrieudubilaphiendienca/page/8/image"
+    },
+    {
+      "pageNumber": 9,
+      "imageUrl": "/api/articles/thanhtrieudubilaphiendienca/page/9/image"
+    },
+    {
+      "pageNumber": 10,
+      "imageUrl": "/api/articles/thanhtrieudubilaphiendienca/page/10/image"
+    },
+    {
+      "pageNumber": 11,
+      "imageUrl": "/api/articles/thanhtrieudubilaphiendienca/page/11/image"
+    },
+    {
+      "pageNumber": 12,
+      "imageUrl": "/api/articles/thanhtrieudubilaphiendienca/page/12/image"
+    },
+    {
+      "pageNumber": 13,
+      "imageUrl": "/api/articles/thanhtrieudubilaphiendienca/page/13/image"
+    },
+    {
+      "pageNumber": 14,
+      "imageUrl": "/api/articles/thanhtrieudubilaphiendienca/page/14/image"
+    },
+    {
+      "pageNumber": 15,
+      "imageUrl": "/api/articles/thanhtrieudubilaphiendienca/page/15/image"
+    },
+    {
+      "pageNumber": 16,
+      "imageUrl": "/api/articles/thanhtrieudubilaphiendienca/page/16/image"
+    }
+  ],
+  "markdownPages": [
+    {
+      "pageNumber": 1,
+      "markdown": "# Thanh triều dự bị lập hiến\n\nToan Nguyen"
+    },
+    {
+      "pageNumber": 2,
+      "markdown": ""
+    },
+    {
+      "pageNumber": 3,
+      "markdown": "# Mục lục\n\n    - Chú thích — 11"
+    },
+    {
+      "pageNumber": 4,
+      "markdown": "Ước điều giấy mực vừa xong,\n\nGiang sơn thêm một tầng chồng đớn đau.\\[1\\]\n\nTây An xa giá hồi chầu,\n\nMà uy thiên tử còn đâu nữa rồi.\\[2\\]\n\nBề ngoài nghi vệ sáng ngời,\n\nBề trong quốc thế rã rời xiêu linh.\n\nTriều thần kẻ sợ người kinh,\n\nMới toan bàn chuyện tự cường canh tân.\n\nTriều trung lúc ấy xoay vần,\n\nBiết rằng phép cũ khó ngăn sóng trào.\n\nMuốn còn giữ vững ngôi cao,\n\nPhải mang cái mới khoác vào áo xưa.\n\nDanh là Tân chính sớm trưa,\\[3\\]\n\nSửa sang học vụ, võ thư, luật hình.\n\nBớt phần khoa cử cựu kinh,\n\nMở đường tân học cho sinh khí về.\\[4\\]\n\nSong le cái gốc trăm bề,\n\nVẫn là giữ lấy quyền kia trong rèm."
+    },
+    {
+      "pageNumber": 5,
+      "markdown": "Đổi thay mặt chữ bên thềm,\n\nChưa toan chạm tới cái nền đế vương.\n\nBấy giờ sĩ khí bốn phương,\n\nTrông sang Nhật Bản mà thương nước mình.\\[5\\]\n\nNhật nhờ lập hiến đổi hình,\n\nMấy phen thắng trận, thanh danh lẫy lừng.\\[6\\]\n\nTriều Thanh mới thấy ngại ngùng,\n\nBiết rằng chẳng thể ngồi cùng cổ phong.\n\nNăm kia sứ bộ lên đường,\\[7\\]\n\nSang Âu, sang Nhật, xét tường hiến chương.\n\nXem người đặt viện nghị trường,\n\nXem người đổi việc triều cương thế nào.\n\nMong đem phép mới thanh cao,\n\nVề tô quốc thể, đỡ bao nỗi hèn.\n\nSứ thần về tấu trước đèn,\n\nXin nên lập hiến để bền xã tông.\n\nTriều đình nghe chuyện ấy xong,\n\nCũng đành thuận thế mà mong cứu đời."
+    },
+    {
+      "pageNumber": 6,
+      "markdown": "Tháng chín chiếu xuống khắp nơi,\\[8\\]\n\nRằng toan dự bị, đổi dời phép xưa.\n\nNghe như mây rẽ nắng đưa,\n\nMà trong lời hứa vẫn chưa thật lòng.\n\nSáu bộ cũ đổi ra mười,\\[9\\]\n\nTên quan, tên viện rườm lời mới thay.\n\nNgó ngoài thể chế đã bày,\n\nMà bên trong vẫn một tay nắm quyền.\n\nĐến năm con khỉ tiếp liền,\n\nHiến cương khâm định lại truyền bốn phương.\\[10\\]\n\nDanh là hiến pháp mở đường,\n\nThực là giữ chặt đế vương uy quyền.\n\nNào quyền thống lĩnh binh uyên,\n\nNào quyền bổ nhiệm các viên triều đình.\n\nNgoại giao, luật lệ, án hình,\n\nĐều về một mối cung đình nắm nguyên.\n\nThần dân cũng được nêu lên,\n\nVài điều quyền lợi ghi trên giấy tờ."
+    },
+    {
+      "pageNumber": 7,
+      "markdown": "Nhưng xem kỹ lại mới ngờ,\n\nHoa văn thì đẹp, thực cơ chẳng dày.\n\nLại còn định sẵn từ nay,\n\nChín năm chuẩn bị rồi ngày mới xong.\\[11\\]\n\nNghĩa là cứ hẹn hư không,\n\nĐể cho thiên hạ ngóng trông bấy chầy.\n\nVừa khi phép mới chửa tày,\n\nHai cung dì cháu cách ngày sa băng.\\[12\\]\n\nLưỡng đầu quyền lực ly tan,\n\nĐể cho chính cuộc lại càng ngả nghiêng.\n\nPhổ Nghi nối nghiệp ấu niên,\\[13\\]\n\nNgai vàng bé nhỏ, triều quyền về ai?\n\nThuần thân hoàng phụ ngoài đài,\\[14\\]\n\nTrong triều hoàng tộc nắm dài quyền binh.\n\nRồi sang năm nữa tới kinh,\n\nTư nghị các tỉnh dựng hình trước tiên.\\[15\\]\n\nSĩ thân, thương giả, chủ điền,\n\nNhân danh công luận bước lên nghị trường."
+    },
+    {
+      "pageNumber": 8,
+      "markdown": "Người mong góp sức mở đường,\n\nNgười mong nhân đó tỏ tường dân tâm.\n\nKhắp nơi ý kiến âm thầm,\n\nDần thành một mối xa gần đòi mau.\n\nRồi sang năm nữa về sau,\n\nTư chính viện mở giữa lầu Bắc Kinh.\\[16\\]\n\nNửa do triều tuyển công khanh,\n\nNửa do dân cử tạo hình nghị quan.\n\nTiếc thay viện ấy mở ban,\n\nChỉ lo bàn giúp, chẳng toan thực quyền.\n\nKhông quyền lập pháp đương nhiên,\n\nKhó lòng thỏa được nỗi niềm trông mong.\n\nBấy giờ sĩ luận như sông,\n\nĐồng thanh đòi mở cho xong hội đồng.\n\nTrương Khiên cất tiếng đầu dòng,\\[17\\]\n\nBao người tiếp bước, biểu dâng tức thì.\n\nMột lần chưa được chuẩn y,\n\nHai lần, ba lượt y xì chẳng thôi."
+    },
+    {
+      "pageNumber": 9,
+      "markdown": "Xe thư kéo đến đầy trời,\n\nKinh sư rung động, lòng người sục sôi.\\[18\\]\n\nTriều đình vẫn cứ dùng dằng,\n\nLấy câu dân trí chưa hòng mở mau.\n\nLại vin quốc khố thương đau,\n\nKhất lần Quốc hội để cầu yên thân.\n\nNhưng khi sức ép xa gần,\n\nDồn lên từng bận, từng phần chẳng nguôi.\n\nTriều đình mới chịu nhượng xuôi,\n\nRút từ chín xuống năm thôi hẹn kỳ.\\[19\\]\n\nNghe qua tưởng cũng hợp thì,\n\nAi ngờ chuyện cũ vẫn y nguyên vầy.\n\nĐến năm nội các dựng ngay,\\[20\\]\n\nDanh là cải cách, thực đầy cháu ông.\n\nKhánh vương đứng mũi cầm công,\\[21\\]\n\nHoàng thân quốc thích chen trong dãy hàng.\n\nNgười ngoài trông thấy bẽ bàng,\n\nBảo rằng nội các chỉ toàn nhà vương."
+    },
+    {
+      "pageNumber": 10,
+      "markdown": "Cho nên sĩ khí bốn phương,\n\nĐang từ lập hiến hóa đương bất bình.\n\nNửa tin, nửa ngại triều đình,\n\nBiết rằng cải cách hữu hình mà không.\n\nMột bên giấy bút như rồng,\n\nMột bên quyền cũ chất chồng chẳng suy.\n\nHiến chương chưa kịp thực thi,\n\nMà lòng thiên hạ đã lìa khỏi tay.\n\nThan ôi thế cuộc cuối ngày,\n\nMuốn khâu áo rách lại may chỉ hờ.\n\nKhông thay tận gốc cơ đồ,\n\nThì bao sửa đổi tựa hồ khói mây.\n\nDự bị lập hiến từ đây,\n\nDanh tuy là mới, thực đầy cũ xưa.\n\nCho nên sang đến giao mùa,\n\nĐã nghe tin dữ gió lùa vào kinh.\\[22\\]"
+    },
+    {
+      "pageNumber": 11,
+      "markdown": "### Chú thích\n\n\\[1\\] “Ước điều” chỉ các điều ước bất bình đẳng ký sau thất bại của nhà Thanh, đặc biệt là Tân Sửu điều ước năm 1901 sau biến cố Nghĩa Hòa Đoàn và liên quân tám nước.\n\n\\[2\\] “Tây An xa giá hồi chầu” nhắc việc Từ Hy thái hậu hồi kinh từ Tây An vào đầu năm 1902.\n\n\\[3\\] “Tân chính” là tên thường gọi của loạt cải cách cuối Thanh sau năm 1901, trong sử học thường gọi là Thanh mạt Tân chính.\n\n\\[4\\] Nhà Thanh tiến hành cải cách giáo dục, quân sự, pháp chế; đặc biệt bãi bỏ khoa cử năm 1905, mở rộng trường học mới và khuyến khích du học.\n\n\\[5\\] Sĩ phu cuối Thanh đặc biệt chú ý tới con đường canh tân của Nhật Bản sau Minh Trị Duy Tân.\n\n\\[6\\] “Mấy phen thắng trận” chủ yếu nhắc chiến thắng của Nhật trong Chiến tranh Thanh - Nhật 1894–1895 và Chiến tranh Nga - Nhật 1904–1905.\n\n\\[7\\] Năm 1905, triều Thanh phái đoàn đại thần ra nước ngoài khảo sát chính trị, hiến pháp và thể chế ở Nhật, châu Âu và một số nước khác.\n\n\\[8\\] Ngày 1 tháng 9 năm 1906, triều Thanh ban chiếu tuyên"
+    },
+    {
+      "pageNumber": 12,
+      "markdown": "bố “dự bị lập hiến”, hứa hẹn chuẩn bị tiến tới chế độ quân chủ lập hiến.\n\n\\[9\\] Trong quá trình cải tổ trung ương, cơ cấu hành chính được sửa đổi, nhiều nha môn và bộ viện được tổ chức lại theo mô hình mới.\n\n\\[10\\] “Hiến cương khâm định” là Khâm định hiến pháp đại cương ban hành năm 1908, văn kiện nền tảng của kế hoạch lập hiến cuối Thanh.\n\n\\[11\\] Theo kế hoạch ban đầu, nhà Thanh dự định chuẩn bị trong 9 năm rồi mới chính thức thi hành hiến chính.\n\n\\[12\\] “Hai cung dì cháu” là Quang Tự đế và Từ Hy thái hậu, đều qua đời vào tháng 11 năm 1908, chỉ cách nhau đúng một ngày.\n\n\\[13\\] Phổ Nghi lên ngôi cuối năm 1908, khi còn rất nhỏ.\n\n\\[14\\] “Thuần thân hoàng phụ” chỉ Thuần Thân vương Tái Phong, cha của Phổ Nghi, giữ vai trò nhiếp chính.\n\n\\[15\\] “Tư nghị các tỉnh” chỉ các Tư nghị cục được thành lập ở các tỉnh năm 1909, như một bước thử nghiệm nghị chính ở địa phương.\n\n\\[16\\] “Tư chính viện” thành lập ở Bắc Kinh năm 1910, cơ quan nghị chính trung ương mang tính tư vấn, không có thực quyền đầy đủ như nghị viện hiện đại."
+    },
+    {
+      "pageNumber": 13,
+      "markdown": "\\[17\\] Một trong những nhân vật tiêu biểu trong phong trào đòi mau chóng mở quốc hội.\n\n\\[18\\] Đoạn này nhắc các phong trào thỉnh nguyện lập hiến, sĩ thân nhiều tỉnh liên tiếp dâng biểu, tụ hội ở kinh sư, gây áp lực mạnh lên triều đình.\n\n\\[19\\] Trước áp lực chính trị ngày càng lớn, triều đình rút ngắn thời hạn từ 9 năm xuống 5 năm, hứa mở quốc hội sớm hơn.\n\n\\[20\\] Chỉ việc thành lập nội các mới năm 1911.\n\n\\[21\\] Khánh Thân vương Dịch Khuông, người đứng đầu nội các đầu tiên; do nội các có quá nhiều hoàng thân quốc thích nên bị dư luận gọi là “hoàng tộc nội các”.\n\n\\[22\\] “Tin dữ gió lùa vào kinh” là điềm dẫn tới Cách mạng Tân Hợi năm 1911, khiến toàn bộ kế hoạch dự bị lập hiến của nhà Thanh sụp đổ giữa chừng."
+    },
+    {
+      "pageNumber": 14,
+      "markdown": ""
+    },
+    {
+      "pageNumber": 15,
+      "markdown": ""
+    },
+    {
+      "pageNumber": 16,
+      "markdown": ""
+    }
+  ]
 }

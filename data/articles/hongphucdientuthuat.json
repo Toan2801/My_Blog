@@ -16,5 +16,297 @@
   "readingTime": 25,
   "coverImage": "/uploads/img-1778543359842.jpg",
   "author": "Toan Nguyen",
-  "footnotes": []
+  "footnotes": [],
+  "pages": [
+    {
+      "pageNumber": 1,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/1/image"
+    },
+    {
+      "pageNumber": 2,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/2/image"
+    },
+    {
+      "pageNumber": 3,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/3/image"
+    },
+    {
+      "pageNumber": 4,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/4/image"
+    },
+    {
+      "pageNumber": 5,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/5/image"
+    },
+    {
+      "pageNumber": 6,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/6/image"
+    },
+    {
+      "pageNumber": 7,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/7/image"
+    },
+    {
+      "pageNumber": 8,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/8/image"
+    },
+    {
+      "pageNumber": 9,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/9/image"
+    },
+    {
+      "pageNumber": 10,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/10/image"
+    },
+    {
+      "pageNumber": 11,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/11/image"
+    },
+    {
+      "pageNumber": 12,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/12/image"
+    },
+    {
+      "pageNumber": 13,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/13/image"
+    },
+    {
+      "pageNumber": 14,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/14/image"
+    },
+    {
+      "pageNumber": 15,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/15/image"
+    },
+    {
+      "pageNumber": 16,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/16/image"
+    },
+    {
+      "pageNumber": 17,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/17/image"
+    },
+    {
+      "pageNumber": 18,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/18/image"
+    },
+    {
+      "pageNumber": 19,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/19/image"
+    },
+    {
+      "pageNumber": 20,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/20/image"
+    },
+    {
+      "pageNumber": 21,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/21/image"
+    },
+    {
+      "pageNumber": 22,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/22/image"
+    },
+    {
+      "pageNumber": 23,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/23/image"
+    },
+    {
+      "pageNumber": 24,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/24/image"
+    },
+    {
+      "pageNumber": 25,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/25/image"
+    },
+    {
+      "pageNumber": 26,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/26/image"
+    },
+    {
+      "pageNumber": 27,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/27/image"
+    },
+    {
+      "pageNumber": 28,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/28/image"
+    },
+    {
+      "pageNumber": 29,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/29/image"
+    },
+    {
+      "pageNumber": 30,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/30/image"
+    },
+    {
+      "pageNumber": 31,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/31/image"
+    },
+    {
+      "pageNumber": 32,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/32/image"
+    },
+    {
+      "pageNumber": 33,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/33/image"
+    },
+    {
+      "pageNumber": 34,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/34/image"
+    },
+    {
+      "pageNumber": 35,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/35/image"
+    },
+    {
+      "pageNumber": 36,
+      "imageUrl": "/api/articles/hongphucdientuthuat/page/36/image"
+    }
+  ],
+  "markdownPages": [
+    {
+      "pageNumber": 1,
+      "markdown": "# Hồng Thiên Quý Phúc tự thuật\n\nToan Nguyen"
+    },
+    {
+      "pageNumber": 2,
+      "markdown": ""
+    },
+    {
+      "pageNumber": 3,
+      "markdown": "# Mục lục\n\n  - Bối cảnh — 4\n  - Trích dịch — 7\n    - 1. Ấu Thiên vương bỏ trốn — 8\n    - 2. Cuộc trốn chạy — 13\n    - Một cậu bé yêu thích đọc sách — 16\n    - Danh sách những người theo ra khỏi Nam Kinh (lược) — 18\n    - Bản tấu chương thỉnh an và thơ ca tụng buổi sớm do Hồng Thiên Quý Phúc tự viết — 19\n    - Bài thơ ca tụng anh Đường (Trương Gia Đồng) — 20\n  - 8. Ký ức về Thiên Quốc — 22\n    - 9. Hoàn cảnh trước khi bị bắt — 30"
+    },
+    {
+      "pageNumber": 4,
+      "markdown": "## Bối cảnh\n\nNgày 25 tháng 10 năm 1864, Ấu Thiên vương của Thái Bình Thiên Quốc, cậu thiếu niên 16 tuổi Hồng Thiên Quý Phúc -bị quân Thanh bắt giữ trong vùng núi hoang tại Thạch Thành. Ngay sau đó, cậu bé bị giải đến Nam Xương, tỉnh Giang Tây, chịu sự thẩm vấn của Tri phủ Nam Xương là Hứa Bản Ung và Tuần phủ Giang Tây Thẩm Bảo Trinh. Kể từ khi bị bắt, Hồng Thiên Quý Phúc đã để lại nhiều bản tự thuật, thơ và lời khai viết tay tại nhà giam Nam Xương cũng như trên đường áp giải. Những tài liệu này ngoài việc cung cấp một số sử liệu về những năm cuối cùng của Thiên Quốc, còn bộc lộ rõ sự nhu nhược, vô tri và thái độ khúm núm của cậu bé, khiến người ta phải kinh ngạc."
+    },
+    {
+      "pageNumber": 5,
+      "markdown": "Vào ngày trước khi hành hình, một quan viên thẩm vấn tên là Đường Giai Đồng đã lừa gạt cậu rằng nếu cung khai thì sẽ được ân xá, tương lai còn có thể về quê sinh sống và học hành thi cử như người bình thường. Hồng Thiên Quý Phúc vô cùng cảm kích và nghe lời răm rắp, cậu viết trong tờ khai rằng: \"Việc đánh chiếm giang sơn đó đều do Lão Thiên Vương làm, không liên quan gì đến cháu. Ngay cả sau khi cháu đăng cơ, mọi việc cũng đều do Trung Vương (Lý Tú Thành) và Can Vương (Hồng Nhân Can) làm.\" Cậu còn bày tỏ nguyện vọng được đi theo “Đường ca ca” về Hồ Nam để thi lấy bằng Tú tài, rồi lấy vợ sinh con.\n\nSo với việc nói cậu đang mơ một giấc mộng đẹp, chẳng bằng nói đó là một giấc mộng tàn. Triều đình nhà Thanh dĩ nhiên không hề có ý tha cho cậu, dù cậu có kém cỏi hay khúm núm đến đâu. Thẩm Bảo Trinh vì sợ để lâu sinh biến, đã xin chỉ thị của Từ Hy thái hậu để đem cậu ra chính pháp ngay tại địa phương thay vì giải về Bắc Kinh. Ông ta từng nói:\n\n> Hồng Phúc Điền (triều Thanh chép nhầm tên Hồng Thiên Quý Phúc) chỉ là đứa trẻ miệng còn hơi sữa, không đáng bận tâm. Nhưng Hồng Tú Toàn xưng vương hơn 10 năm, gieo họa khắp hơn 10 tỉnh, tàn dư vẫn còn, bọn gian tà còn dựa vào danh nghĩa ấy mà chiêu tập hung đồ."
+    },
+    {
+      "pageNumber": 6,
+      "markdown": "Chỉ một hôm sau khi viết xong bài thơ không vần “Theo giặc tóc dài lòng khó mở”, ngày 18 tháng 11 năm 1864, cậu thiếu niên còn đang trong giấc mơ dang dở là được về Hồ Nam đọc sách thi tú tài, đến 20 sẽ cưới vợ, đã bị trói đưa ra pháp trường, chịu hình lăng trì mà chết."
+    },
+    {
+      "pageNumber": 7,
+      "markdown": "## Trích dịch"
+    },
+    {
+      "pageNumber": 8,
+      "markdown": "### 1\\. Ấu Thiên vương bỏ trốn\n\nNgày 10 tháng 4 (năm Đồng Trị thứ 3 - 1864), phụ thân cháu phát bệnh. Hôm đó cụ còn ra điện ngồi, cháu còn trông thấy, nhưng về sau thì không còn gặp lại nữa. Ngày 19 thì cụ qua đời, sai nữ quan đến an táng. Chôn tại ngoài cửa Tân Thiên Môn, trên ngọn núi phía đông Ngự Lâm Uyển."
+    },
+    {
+      "pageNumber": 9,
+      "markdown": "![](https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Hong_Xiuquan.jpg/250px-Hong_Xiuquan.jpg)\n\nTranh vẽ được cho là Thiên vương Hồng Tú Toàn (1811 - 1864)"
+    },
+    {
+      "pageNumber": 10,
+      "markdown": "Ngày 16 tháng 6, vào giờ Ngọ, quan binh công phá thành trì, cháu đứng trên lầu nhìn thấy. Cháu liền xuống lầu, đi đến điện Vinh Quang, Trung Vương vào triều dẫn cháu ra. Ông ta từ Lũng Khẩu đến Phương Sơn thì bị bắt. Tôn Vương dẫn cháu từ trấn Thuần Hóa đến Quảng Đức, đều do Dưỡng Vương Cát Khánh Nguyên dẫn đường. Cát Khánh Nguyên dẫn chúng ta đi, định đưa ta đến Kiến Bình, đến khi phát hiện nhầm đường thì đã tới Quảng Đức, Chiêu Vương ở Tứ An, hôm đó Chiêu Vương liền lên gặp cháu. Sau vài ngày, Can Vương và Tuất Vương từ Hồ Châu đến gặp, Can Vương và Đổ Vương họp bàn rồi định đi Giang Tây hội với đại quân của Lý Thị Hiền (Thế Hiền). Khi ở thành núi Quảng Đức, Chiêu Vương dẫn ta ra, Dưỡng Vương mở đường, trên đường đi chúng tôi hoàn toàn không giao chiến, còn đạo quân của Hữu Vương thì có đánh, đạo quân của Đổ Vương cũng có đánh, tổng cộng ba đường quân, Đổ Vương tại Ninh Quách Đôn bị pháo bắn trúng mà chết, sau đó ba đường quân hợp lại thành một. Đến huyện Khai Hóa, cách thành không xa, Chiêu Vương định đem quân đi đánh, nhưng thấy đường khó đi nên quay lại. Sau đến Uy Bình, nghe nói ở đó có quan binh, Chiêu Vương, Hiệp Vương, Dưỡng Vương, Dương Vương đem quân đi đánh nhưng không lợi, rồi quay lại, đi theo một con đường khác, cháu không biết tên đất, đến một nơi có con sông lớn, gần Huy Châu, có quan binh chặn lại, đánh bại quan binh rồi vượt sông."
+    },
+    {
+      "pageNumber": 11,
+      "markdown": "![この方が、忠王＝李秀成さん。なお太平天国の天王＝洪秀全さんです。洪秀全さんは天京(いまの南京)の都にいました。 - Εικόνα του  Μουσείο Σουτσού, Σούζου - Tripadvisor](https://media-cdn.tripadvisor.com/media/photo-s/17/6a/9c/46/caption.jpg)\n\nTượng Trung vương Lý Tú Thành (1823 - 1864)"
+    },
+    {
+      "pageNumber": 12,
+      "markdown": "Đoàn người qua sông xong, Thủ Vương Phạm Nhữ Tăng chưa qua được, pháo thuyền quan binh lại đến, đánh tan quân của Thủ Vương, hơn vạn người chưa qua được sông. Sau đến một nơi gần Đồn Khê, lại có quan binh tới đuổi, Tôn Vương bảo cháu lên ngựa chạy gấp, còn họ ở phía sau giao chiến với các bác, nhưng các bác chưa đánh đã rút lui. Sau đó lên một ngọn núi lớn, ở trên núi nhìn thấy quan binh kéo đến đánh, dưới núi Dưỡng Vương và Dương Vương không giao chiến, ngựa đều mất hết, quan binh truy đuổi bảy tám dặm, đến Thạch Doanh Bàn thì thôi không đuổi nữa. Ngày hôm sau đi trên đường, lại gặp quan binh tới, cháu chạy lên núi, trên núi không có đường, Can Vương bọn họ quay lại phản kích đánh lui quan binh, cháu vượt núi mới gặp được Can Vương, lần đó rất nguy hiểm, chỉ cách quan binh một ngọn núi nhỏ. Đến huyện Khai Hóa, sáng hôm sau quan binh hơn nghìn người lại tới, vào trong thành, quân cờ hoa cùng các ngươi giao chiến thắng rồi rút. Đi tiếp đến gần Hà Khẩu, lại có quan binh đến, Hiệp Vương (đoạn sau bị thiếu)."
+    },
+    {
+      "pageNumber": 13,
+      "markdown": "### 2\\. Cuộc trốn chạy\n\n(Đây là kể về khi ở còn Thiên Kinh, trước khi mở đường máu rút chạy, không phải nối tiếp việc ở đoạn 1)\n\nTháng 6, cháu nghe thấy phía Lũng Khẩu có tiếng động, liền lên lầu xem, thì thấy quan binh đã vào thành, lên ngọn núi nhỏ trong thành, lại thấy Cố Vương Ngô Như Hiếu đem quân ra chống đánh nhưng không lợi, cháu liền xuống lầu, cùng Quang Vương, Minh Vương đến điện Vinh Quang. Cháu muốn ra khỏi triều nhưng nữ quan canh cửa không cho cháu ra, sau đó Trung Vương cùng hai người thị vệ Hoàng Hưởng Càn vào triều, Trung Vương nói có thể cứu cháu ra khỏi thành, cháu liền theo ông ta ra khỏi triều. Trung Vương cho ngựa trắng, cháu cưỡi ngựa đến phủ Trung Vương, Trung Vương liền hợp binh định đi cửa Thái Bình giao chiến. Đến gần cửa Thái Bình thì Trung Vương lại dẫn quân quay về, định ra cửa Đại Nam, nhưng sau lại suy nghĩ kỹ thấy ngoài cửa Nam có đài Vũ Hoa, chính là nơi nhiều doanh trại, nên quay đầu lên thành phía Tây, lại thấy ngoài cửa Tây toàn là nước, cũng không ra được. Cửa Đông, cửa Nam quan binh đều đã lên thành rồi, chúng cháu bèn đến Thanh Lương Sơn, các vương bàn đợi canh đầu sẽ xông ra cửa Thái Bình, Lũng Khẩu. Sau đó phá vây từ Lũng Khẩu ra, đi từ trấn Thuần Hóa thẳng đến Quảng Đức châu."
+    },
+    {
+      "pageNumber": 14,
+      "markdown": "Chưa tới châu thì trên đường gặp một con sông, có pháo thuyền chặn lại. Tôn Vương, Dưỡng Vương, Cự Vương cùng các vương đích thân dẫn quân giao chiến, quan binh thua, mới qua được sông, con trai Dưỡng Vương là Cát Liên Vượng chết trong trận. Đến Quảng Đức ngày thứ 2, Cự Vương Hồng Hòa Nguyên vì nhớ cha mà buồn, liền nuốt khói tự tử. Sau vài ngày, Ấu Tây Vương Tiêu Hữu Hòa cũng bị bệnh chết.\n\nỞ Nam Kinh, việc phong vương phong quan đều do Vương thứ huynh Dũng Vương Hồng Nhân Đạt, Thiên liêu bộ Lại Can Vương Hồng Nhân Cán, Thiên quan bộ Lại Úy Vương Chu Triệu Anh ba người tiến cử mà phong. Phàm việc phong tước, bổ quan đều do họ bàn định, soạn tấu rồi dâng lên, sau đó mới ban chiếu phong. Sau khi cháu lên ngôi, Thẩm Quế đề nghị phong 6 chủ soái, Trung Vương Lý Tú Thành làm đại chủ soái, Ký Vương Hoàng Kim Ái làm phó chủ soái, Cố Vương Ngô Như Hiếu làm chủ soái phương Đông, Lưu Phùng Lượng làm chủ soái phương Nam, Cát Khánh Nguyên làm chủ soái phương Bắc, còn chủ soái phương Tây thì cháu không nhớ rõ là ai. Thẩm Quế, Hoàng Kim Ái, Ngô Như Hiếu, Lưu Phùng Lượng đều chưa từng ra khỏi Nam Kinh.\n\nLão Thiên Vương chết, chôn ở trên núi phía đông Ngự Lâm Uyển ngoài cửa Tân Thiên Môn, không dùng quan tài, do nữ quan an táng."
+    },
+    {
+      "pageNumber": 15,
+      "markdown": "Cha của Lão Thiên Vương tên là Hồng Kính Dương, có một người mẹ kế vẫn ở Nam Kinh chưa ra ngoài. Lão Thiên Vương có 88 người vợ. Cháu có hai em trai, một là Quang Vương Hồng Thiên Quang, một là Minh Vương Hồng Thiên Minh. Lại có ba người bác, bác cả Tín Vương Hồng Nhân Phát nhảy xuống nước ở cửa Tây mà chết, bác hai là Dũng Vương Hồng Nhân Đạt không ra khỏi thành, đến Lũng Khẩu thì bị quan binh bắt. Trung Vương Lý Tú Thành dẫn hơn 100 người, từ Thạch Ngưu Thạch Mã đến Phương Sơn thì bị quan binh bắt. Độc Vương Nhân Chính Bá đến Dương Gia Bài cũng bị quan binh bắt.\n\nViệc ra khỏi Nam Kinh là do Tôn Vương dẫn cháu ra. Khi đó Tôn Vương dùng trường thương buộc dải lụa trắng dài, cháu cưỡi ngựa đi theo sát dải lụa trắng đó. Hai em cháu là Thiên Quang, Thiên Minh vẫn ở lại Nam Kinh chưa ra. Hữu Vương Lý Viễn Kế ở Dương Gia Bài bị quan binh giết. Tôn Vương Lưu Khánh Hán bị quan binh bắt rồi giết. Trong Nam Kinh có hơn 1000 vương chưa ra được.\n\nTrong Thiên triều có một con vẹt xanh, ở trong lồng bạc, biết nói. Con vẹt hát rằng:\n\n> Giang sơn của Á phụ, đời đời để con cháu ngồi, đời đời rộng lớn nâng con cháu ngồi."
+    },
+    {
+      "pageNumber": 16,
+      "markdown": "### Một cậu bé yêu thích đọc sách\n\nCháu có đọc qua các sách của Thiên triều như: Thập toàn đại cát thi, Tam tự kinh, Ấu học thi, Thiên tự chiếu, Tỉnh thế văn, Thái Bình cứu thế chiếu, Thái Bình cứu thế cáo, cùng các chiếu thư ban hành.\n\nMấy năm trước, lão tử (tức Hồng Tú Toàn) từng viết phiếu lệnh đòi cổ thư, Can Vương bèn dâng ở Hàng Châu hơn một vạn quyển sách cổ. Ông ấy không cho cháu xem, tự mình xem xong rồi đều đem đốt hết. Cháu thấy sách nhiều như vậy, lão tử không để ý nên lén lấy hơn 30 quyển, gồm: 4-5 quyển Nghệ hải châu trần, Tục Hoành giản lục hai quyển 42, 43, 2 quyển Sử ký hai quyển, 1 quyển Đế vương miếu thụy niên húy phổ, 1 quyển Định Hương đình bút đàm, lại có 1 quyển Bác vật tân biên của người Tây dương, cùng hơn 10 quyển sách khác.\n\nTừ khi đăng cơ, cháu viết phiếu xin 4 hòm sách cổ để trên lầu. Nhưng ông già luôn không cho người trong cung đọc cổ thư, lại gọi là “yêu thư”. Trong triều có một con vẹt biết nói, ngày nào cũng hát rằng: “Giang sơn của Á phụ, đời đời để con cháu ngồi, đời đời rộng lớn nâng con cháu ngồi.”\n\nCháu có bốn người vợ: một người họ Hầu, quê An Khánh; hai người họ Hoàng, quê Quảng Tây; một người họ Trương, quê Hồ Bắc."
+    },
+    {
+      "pageNumber": 17,
+      "markdown": "Cháu có hai em trai: Quang Vương Hồng Thiên Quang, Minh Vương Hồng Thiên Minh, cả hai đều 11 tuổi.\n\nLão tử ở tiền điện, cháu ở gian trên điện bên trái, Minh Vương ở gian dưới, sau đó Minh Vương chuyển sang ở phòng bên trái điện Kim Long, Quang Vương ở điện Kim Long, các mẹ và dì ở điện bên phải.\n\nNăm nay, vào canh tư, đêm 19 tháng 4, lão tử bệnh chết. Ngày 24, quần thần tôn cháu lên ngôi, gọi là Ấu Thiên Vương. Khi ra khỏi thành là do Trung Vương, Tôn Vương và Dưỡng Vương cứu cháu ra."
+    },
+    {
+      "pageNumber": 18,
+      "markdown": "### Danh sách những người theo ra khỏi Nam Kinh (lược)"
+    },
+    {
+      "pageNumber": 19,
+      "markdown": "### Bản tấu chương thỉnh an và thơ ca tụng buổi sớm do Hồng Thiên Quý Phúc tự viết\n\nTấu thỉnh an buổi sớm\n\n> Hài nhi Hồng Thiên Quý Phúc kính cẩn khấu thỉnh.\n> \n> Kính chúc cha an tâm ngự tọa hưởng phúc.\n> \n> Cha vạn tuế, vạn tuế, vạn vạn tuế. Con kính cẩn khấu thỉnh.\n> \n> Kính hỏi thánh thể của cha có an không, xin cha rộng lòng thánh hoài, mãi ngự thiên quốc muôn muôn năm.\n\nThỉnh an giờ Ngọ và Thỉnh an buổi tối (lược)"
+    },
+    {
+      "pageNumber": 20,
+      "markdown": "### Bài thơ ca tụng anh Đường (Trương Gia Đồng)\n\n_Chú thích: Anh Đồng là người đã áp giải em Phúc trên đường về nhà giam, và dùng lời ngon kẹo ngọt dụ dỗ em Phúc về một cuộc sống tươi đẹp sau này, sẽ thả em Phúc ra khỏi tù, lo cho em Phúc ăn học thành tài và lấy vợ sinh con xây dựng gia đình hạnh phúc. Em Phúc vì quá cảm động nên đã viết một bài thơ tặng anh Đồng_\n\n> Theo giặc Trường Mao lòng khó yên,\n> \n> Nay theo anh trở lại ngày về.\n> \n> Nay không làm giặc Trường Mao nữa,\n> \n> Hoàng đế Đại Thanh vạn vạn tuế.\n> \n> Nay theo được anh Đường,\n> \n> Đông bay tây chạy lắm nguy nan.\n> \n> Trở về đọc sách thi đỗ tú tài,\n> \n> Một lòng một dạ phò Đại Thanh.\n> \n> Lũ loạn thần tặc tử khó lòng thoát,\n> \n> Chỉ giữ trọn đạo làm em mà cung kính hòa thuận.\n> \n> Đa tạ ân dày của anh,\n\nNgày mồng 6 tháng 10 năm Giáp Tý, Hồng Quý Phúc viết."
+    },
+    {
+      "pageNumber": 21,
+      "markdown": "![Vị vua có số phận thảm nhất lịch sử TQ: Bị xử tử với hơn 1.000 nhát dao](https://danviet-24h.ex-cdn.com/files/upload/3-2021/images/2021-08-10/picture-5-1628587138-604-width498height376.png)\n\nTạo hình của Ấu thiên vương trong bộ phim truyền hình năm 2000"
+    },
+    {
+      "pageNumber": 22,
+      "markdown": "## 8\\. Ký ức về Thiên Quốc\n\nCháu năm nay 16 tuổi, sinh trưởng tại huyện Hoa, tỉnh Quảng Đông. Phụ thân là lão Thiên Vương Hồng Tú Toàn, năm nay 53 tuổi, có 88 người vợ. Cháu là con của bà hai họ Lại, tên là Liên Anh, nay đã hơn 40 tuổi. Cháu có hai em trai, đều 11 tuổi, một người tên Thiên Quang, được phong Quang Vương, là con của dì 12 họ Trần; một người tên Thiên Minh, được phong Minh Vương, là con của dì 19 họ Ngô. Ngoài ra còn có 2 chị và 3 em gái, đều khác mẹ. Cháu có 4 vợ, tuổi đều xấp xỉ cháu, một người họ Hầu, một họ Trương, hai người họ Hoàng, đều chưa sinh con. Cháu từ 5 năm tuổi theo cha đến Nam Kinh, 6 tuổi bắt đầu học chữ, do một người chị họ tên Thiên Kiều lớn hơn cháu 10 tuổi dạy học, không có thầy riêng.\n\nỞ Nam Kinh, vợ chồng năm người của cháu ở điện bên trái trong cung, phụ thân ở tiền điện, mẹ ruột ở điện bên phải, em Thiên Minh ở gian dưới của cháu, em Thiên Quang ở điện Kim Long, trong cung tổng cộng có 7, 8 điện. Can Vương Hồng Nhân Can là người họ hàng xa bên nội, đến Nam Kinh vào năm Kỷ Mùi (1859).\n\nCha cháu thường ăn đồ sống lạnh, từ khi đến Nam Kinh thì lấy rết làm món ngon, đem chiên dầu mà ăn."
+    },
+    {
+      "pageNumber": 23,
+      "markdown": "Năm nay từ ngày 10 tháng 4 thì phát bệnh, đến ngày 19 tháng 4 thì mất, bệnh gì cháu cũng không rõ. Thi thể không dùng quan tài, chỉ mặc áo vàng rồi chôn tại núi trong Ngự Lâm Uyển trong cung. Trong cung có hai khu Ngự Lâm Uyển trước sau, chỗ chôn cụ ở Ngự Lâm Uyển phía trước, cách tiền điện nơi cụ sinh thời cư trú hai tòa điện.\n\nVào ngày 24 tháng 4, Tín Vương Hồng Nhân Phát (bác cả), Dũng Vương Hồng Nhân Đạt (bác hai), Ấu Tây Vương Tiêu Hữu Hòa cùng nhau phò cháu lên ngôi Ấu Thiên Vương. Mọi việc triều chính đều do bốn người là Tín Vương Hồng Nhân Phát, Dũng Vương Hồng Nhân Đạt, Ấu Tây Vương Tiêu Hữu Hòa và Thẩm Quế (người huyện Hiệp, tỉnh An Huy) nắm giữ. Hồng Nhân Đạt còn quản ngân khố cùng việc phong quan, tiền lương. Binh quyền do Trung Vương Lý Tú Thành thống lĩnh."
+    },
+    {
+      "pageNumber": 24,
+      "markdown": "![](https://nghiencuulichsu.com/wp-content/uploads/2020/12/untitled.png?w=551)\n\nCan Vương Hồng Nhân Can (1822 – 1864)"
+    },
+    {
+      "pageNumber": 25,
+      "markdown": "Ngày mồng 6 tháng 6 lúc canh 5, cháu nằm mộng thấy quan binh phá sập tường thành, tràn vào trong, tỉnh dậy kể lại với hai em. Không ngờ đến chiều hôm đó, cháu đứng trên lầu nhìn thấy quan binh quả nhiên phá tường thành mà tiến vào.\n\nTrung Vương Lý Tú Thành cùng Tôn Vương Lưu Khánh Hán dẫn hơn 100 quân, 6, 7 trăm ngựa, vào đầu canh một hộ tống cháu phá cửa Thái Bình mà ra. Quan binh trên thành nhìn thấy liền đuổi theo đến chân núi, Lý Tú Thành quay lại chặn đánh, cùng Hồng Nhân Đạt đều bị bắt. Thẩm Quế, người mà ai cũng gọi là “Thẩm chân nhân”, cũng bị pháo bắn chết lúc ấy. Hồng Nhân Phát khi thành vỡ đã nhảy xuống nước mà chết.\n\nHai em cháu là Thiên Quang, Thiên Minh cùng mẹ và vợ đều còn ở trong thành Nam Kinh, không mang theo một người đàn bà nào ra ngoài, đồ đạc cũng không mang theo. Trong thành còn 7, 8 vạn người. Chị họ Thiên Kiều đã hứa gả cho người Quảng Đông tên Kim Vương Chung Nghĩa Tín mà chưa thành hôn, cũng còn ở trong thành.\n\nCháu từ Nam Kinh xuất phát qua trấn Thuần Hóa đến nơi không rõ tên, gặp quan binh giao chiến, hai bên đều tử trận nhiều, quân cháu chết còn nhiều hơn. Đến bờ sông, quan binh định đốt cầu phao, quân cháu tranh nhau vượt qua. Trên đường gặp quan binh, ngựa mất rất nhiều, quân trang cũng bỏ lại không ít."
+    },
+    {
+      "pageNumber": 26,
+      "markdown": "Đi 4, 5 ngày đến Châu Quảng Đức, Can Vương Hồng Nhân Can từ Hồ Châu đem quân đến, lại mang theo nhiều cống vật. Tức Vương Hồng Nhân Chính cũng từ Hồ Châu đến. Ấu Tây Vương Tiêu Hữu Hòa chết bệnh tại Quảng Đức.\n\nCháu ở Quảng Đức hơn nửa tháng, Can Vương Hồng Nhân Cán và Đỗ Vương Hoàng Văn Kim biết Thị Vương Lý Thế Hiền đã đến Giang Tây, nên vào tháng bảy (không nhớ ngày) dẫn bảy tám vạn quân hộ tống cháu đi Giang Tây hội quân. Liệt Vương Hoàng Tông Bảo dẫn quân Hoa Kỳ đi trước mở đường. Dưỡng Vương Cát Khánh Nguyên, Đỗ Vương Hoàng Văn Kim, Chiêu Vương Hoàng Văn Anh mỗi người dẫn quân chia ba đường. Cháu chỉ mặc áo dài đơn xanh trắng, đầu quấn khăn sa, chân đi giày, đi qua đâu cũng không biết tên đất.\n\nĐến Ninh Quốc Đồn gặp quan binh giao chiến, Đỗ Vương Hoàng Văn Kim bị đạn pháo bắn chết. Ba đường quân hợp lại làm một, đi qua huyện Di đến Uy Bình thì thua trận. Sau đến một nơi gần Huy Châu có sông lớn, đánh thắng quan binh rồi vượt qua. Khi qua sông, Thủ Vương Phạm Nhữ Tăng dẫn hơn một vạn người chưa kịp qua, bị pháo thuyền quan binh đánh tan. Lại đến gần Đồn Khê gặp quan binh, cháu cưỡi ngựa chạy trước, Tôn Vương Lưu Khánh Hán ở sau giao chiến, quan binh lui. Đến một ngọn núi lớn lại gặp địch, ngựa mất nhiều, quan binh đuổi 7, 8 dặm mới lui.\n\nHôm sau lại gặp quan binh, cháu chạy lên núi không có"
+    },
+    {
+      "pageNumber": 27,
+      "markdown": "đường, suýt bị bắt, may quân của Can Vương quay lại đánh đuổi được. Đến huyện Khai Hóa lại gặp địch, quân Hoa Kỳ của cháu thắng trận. Hôm đó đến gần cửa sông, Khải Vương Đàm Thể Nguyên dẫn quân giao chiến rồi chạy sang huyện Quang Trạch, đến Hoành Thôn mới hợp lại. Đến Đường Phường lại giao chiến, lần này quan binh thắng lớn, truy kích đến Dương Gia Bài. Đêm canh ba hôm đó quan binh bất ngờ kéo đến, đánh tan cháu.\n\nCháu một mình cưỡi la qua cầu chạy được vài dặm, thấy quan binh đến thì ngã xuống hố. Quan binh đi qua, cháu lên núi, đói 4 ngày, gặp một người mặc áo trắng không râu đưa cho cháu một cái bánh lớn bằng bát trà, nhận bánh xong người ấy biến mất. Cháu ăn bánh rồi ở thêm 2 ngày, đến ngày thứ 6 xuống núi, nhờ người cạo đầu, đến nhà họ Đường, người này bảo cháu đi gặt lúa. Khi bị hỏi, cháu nói dối là người Thụy Kim. Ở đó vài ngày rồi đi ra, đến Bạch Thủy trấn, đến Cao Điền gặp quan binh, bị lột áo, bắt gánh đồ, cuối cùng bị phát hiện và bắt giữ.\n\nCháu nghe Thị Vương Lý Thế Hiền đã đi Quảng Đông. Khang Vương Uông Hải Dương còn ở Thụy Kim, định đi Phúc Kiến, cháu không theo kịp. Khi bị đánh tan ở Dương Gia Bài, Hựu Vương Lý Viễn Kế bị giết. Can Vương Hồng Nhân Can vẫn ở phía sau cháu, có 3, 4 con trai, một tên Quỳ Nguyên, hơn cháu 2, 3 tuổi. Cháu từng thấy ở Thạch Thành cưỡi la."
+    },
+    {
+      "pageNumber": 28,
+      "markdown": "Trung Vương Lý Tú Thành có 2 con trai, một tên Vinh Quế (không phải con ruột, không rõ tung tích), một đứa 4 tuổi là con ruột, đã bị bắt ở Thạch Thành.\n\nTóc cháu do phụ thân khi còn sống bắt cắt, chỉ để lại như vậy, ai hầu trước mặt đều phải cắt, không cắt thì bị đánh, nhưng ý nghĩa ra sao cháu cũng không biết. Lời lễ bái tán tụng cháu đã viết riêng. Quân của cháu ở Thạch Thành chỉ còn hơn 2000 người, sau khi tan tác chắc đã theo Khang Vương Uông Hải Dương đi Phúc Kiến.\n\nNgày tháng cháu nói là theo lịch bên cháu, chậm hơn lịch Đại Thanh 10 ngày. Đông Vương Dương Tú Thanh bị Bắc Vương Vi Xương Huy giết năm thứ 6. Nam Vương Phùng Vân Sơn chết trước khi chiếm Nam Kinh. Tây Vương Tiêu Triều Quý chết ở Trường Sa do trúng pháo. Bắc Vương Vi Xương Huy giết Dương Tú Thanh xong cũng bị giết. Dực Vương Thạch Đạt Khai sau khi đi Tứ Xuyên thì không rõ tin tức. Ngoài ra còn có Phụ Vương Trần Đắc Tài, Sùng Vương Trần Đắc Long, Thiên tướng Mã Vinh Hòa đem quân đi Thiểm Tây, cũng không có tin.\n\nPhụ thân cháu không ăn thịt heo, cũng không cho uống rượu, nên trước kia cháu chỉ ăn thịt bò, nay thì đã ăn thịt heo và uống rượu. Hồng Nhân Cán rất thích uống rượu.\n\nCháu gọi thân mẫu là má, mẹ cháu và dì 4 họ Dư không hòa thuận, phụ thân từng giam cả hai lại một thời gian."
+    },
+    {
+      "pageNumber": 29,
+      "markdown": "Khi đó cháu còn nhỏ, không gặp được mẹ thường khóc. Khi phụ thân còn sống, các vương gặp cháu đều phải quỳ lạy, mẹ cháu cũng phải dập đầu lạy cháu.\n\nQuân Hoa Kỳ trước đây ở Thường Châu giao chiến với người Tây dương, thu được hai khẩu đại bác lớn như quả dưa."
+    },
+    {
+      "pageNumber": 30,
+      "markdown": "### 9\\. Hoàn cảnh trước khi bị bắt\n\nCháu là người Quảng Đông, từ nhỏ tên là Hồng Thiên Quý, mấy năm trước lão Thiên Vương cho cháu thêm chữ Phúc, nên gọi là Hồng Thiên Quý Phúc. Sau khi lên ngôi, trên ngọc tỷ có khắc ngang dưới tên hai chữ Chân chúa, khiến người ngoài gọi nhầm là Hồng Phúc Điền. Nay cháu 16 tuổi.\n\nLão Thiên Vương là cha cháu, ông có 88 người vợ, cháu là con của bà 2 họ Lại. Khi cháu 9 tuổi đã gả cho 4 vợ, từ đó không cho gặp mẹ và các chị em. Lão Thiên Vương có làm Thập cứu thi cho cháu học, đều nói về đạo lý nam nữ phải cách biệt không được gặp nhau, cháu còn nhớ được vài bài.\n\nSau khi 9 tuổi, nhớ mẹ và chị em, cháu đều nhân lúc lão Thiên Vương có việc ngự triều mà lén đi gặp họ. Lão Thiên Vương bắt cháu đọc sách Thiên Chúa giáo, không cho đọc cổ thư, gọi cổ thư là yêu thư, nhưng cháu cũng từng lén đọc hơn 30 quyển, nên vẫn nhớ được tên vài loại sách. Từ trước đến nay cháu chưa từng ra khỏi cửa thành.\n\nNăm nay ngày 19 tháng 4, lão Thiên Vương bệnh chết. Ngày 24, quần thần phò cháu lên ngôi, tế bái Thượng Đế, rồi nhận triều hạ chúc mừng. Mọi việc triều chính đều do Can Vương nắm giữ, binh quyền đều do Trung Vương quản, các chiếu chỉ ban ra đều do họ làm sẵn rồi bảo cháu chép lại, từ đó cháu được gọi là Ấu Thiên Vương."
+    },
+    {
+      "pageNumber": 31,
+      "markdown": "4 người vợ của cháu đều gọi là Ấu nương nương.\n\nNgày mồng 6 tháng 6 lúc canh 5, cháu mộng thấy quan binh phá sập tường thành, tràn vào trong. Đến buổi trưa, cháu cùng 4 Ấu nương nương đứng trên lầu nhìn thấy quan binh quả nhiên vào thành, cháu liền chạy xuống, các Ấu nương nương giữ lại không cho đi, cháu nói xuống xem rồi sẽ về, liền chạy thẳng đến phủ Trung Vương. Trung Vương dẫn cháu đi qua mấy cửa, đều không xông ra được, đến đầu canh một giả làm quan binh từ chỗ khuyết mà ra, mới ra được hơn 10 người thì bị quan binh phát giác, phía sau đều bị cắt đứt. Đến Quảng Đức Châu chỉ còn vài trăm người, bèn hẹn với Đỗ Vương chia đường đi Giang Tây tìm Khang Vương, Thị Vương, trên đường giao chiến liên tiếp, không thể kể hết số lần.\n\nĐến hôm tới Dương Gia Bài, cháu nói rằng đêm nay quan binh sẽ đến đánh, Can Vương cùng mọi người đều nói quan binh không đuổi kịp. Đến canh 3 thì 4 mặt bị vây, quân ta tan tác. Quan binh truy đuổi gấp, cháu qua cầu xuống ngựa, họ dìu cháu qua núi. Quan binh đuổi đến, cháu cùng hơn mười người bên cạnh chen nhau xuống hố. Quan binh xuống hố bắt hết mọi người, không rõ vì sao lại không nhìn thấy cháu.\n\nCháu đợi quan binh đuổi đi xa, một mình trốn vào núi, ẩn bốn ngày, đói khổ không chịu nổi, định tự vẫn. Bỗng thấy một người rất cao lớn, toàn thân trắng như tuyết, đưa cho"
+    },
+    {
+      "pageNumber": 32,
+      "markdown": "cháu một cái bánh, cháu định theo người đó nhưng ông ta bỗng biến mất. Cháu ăn bánh xong thì không còn đói nữa. Lại qua hai ngày, xuống núi đến nhà người họ Đường, cháu nói mình là người Hồ Bắc, họ Trương, làm thuê gặt lúa, họ cho cháu ăn. Ở đó có người cạo đầu, cháu cũng tiện cạo theo.\n\nỞ bốn ngày, người họ Đường bảo cháu về nhà. Cháu đi đến Bạch Thủy Tỉnh ở Quảng Xương, hỏi đường đi Kiến Xương, sợ nơi đó có quan binh nên quay lại. Có một người lính nói cháu là Trường Mao (tóc dài), liền lột quần áo. Lại đi đến địa giới Thụy Kim, có một lính bắt cháu gánh đồ, cháu nói không biết gánh, lại quay về đến địa giới Thạch Thành thì bị bắt giải vào doanh."
+    },
+    {
+      "pageNumber": 33,
+      "markdown": "![undefined](https://upload.wikimedia.org/wikipedia/commons/2/2f/Sing_Bo-ting.jpg)\n\nThẩm Bảo Trinh (1820 - 1879), người đương giữ chức Tuần phủ Giang Tây và quyết định hành hình Ấu Thiên vương"
+    },
+    {
+      "pageNumber": 34,
+      "markdown": "> ĐƯỜNG LÃO GIA ĐỐI ĐÃI VỚI CHÁU RẤT TỐT, MỌI ĐIỀU CHÁU ĐỀU NÓI HẾT VỚI ÔNG ẤY RỒI. VIỆC ĐÁNH CHIẾM GIANG SƠN ĐỀU DO LÃO THIÊN VƯƠNG LÀM, KHÔNG CAN HỆ GÌ ĐẾN CHÁU. KỂ CẢ SAU KHI CHÁU LÊN NGÔI, MỌI VIỆC CŨNG ĐỀU DO CAN VƯƠNG, TRUNG VƯƠNG HỌ LÀM CẢ. ĐẤT QUẢNG ĐÔNG KHÔNG TỐT, CHÁU CŨNG KHÔNG MUỐN TRỞ VỀ, CHỈ NGUYỆN THEO ĐƯỜNG LÃO GIA ĐẾN HỒ NAM HỌC HÀNH, MONG THI ĐỖ TÚ TÀI. LỜI ẤY LÀ THẬT LÒNG."
+    },
+    {
+      "pageNumber": 35,
+      "markdown": ""
+    },
+    {
+      "pageNumber": 36,
+      "markdown": ""
+    }
+  ]
 }

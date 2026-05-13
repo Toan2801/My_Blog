@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect, useCallback } from 'react';
 
 export interface TocEntry {
   level: number;
@@ -49,6 +49,49 @@ export default function ReaderSidebar({
   const tree = useMemo(() => buildTree(entries), [entries]);
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
 
+  // Resizing logic
+  const [isResizing, setIsResizing] = useState(false);
+
+  const startResizing = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsResizing(true);
+  }, []);
+
+  const stopResizing = useCallback(() => {
+    setIsResizing(false);
+  }, []);
+
+  const resize = useCallback((e: MouseEvent) => {
+    if (isResizing) {
+      const newWidth = Math.max(200, Math.min(800, e.clientX));
+      const layout = document.querySelector('.reader-layout') as HTMLElement;
+      if (layout) {
+        layout.style.setProperty('--sidebar-width', `${newWidth}px`);
+      } else {
+        document.documentElement.style.setProperty('--sidebar-width', `${newWidth}px`);
+      }
+    }
+  }, [isResizing]);
+
+  useEffect(() => {
+    if (isResizing) {
+      window.addEventListener('mousemove', resize);
+      window.addEventListener('mouseup', stopResizing);
+      document.body.style.cursor = 'col-resize';
+      document.body.style.userSelect = 'none';
+    } else {
+      window.removeEventListener('mousemove', resize);
+      window.removeEventListener('mouseup', stopResizing);
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+    }
+    return () => {
+      window.removeEventListener('mousemove', resize);
+      window.removeEventListener('mouseup', stopResizing);
+    };
+  }, [isResizing, resize, stopResizing]);
+
+
   const toggle = (path: string) => {
     setCollapsed((prev) => {
       const next = new Set(prev);
@@ -76,10 +119,15 @@ export default function ReaderSidebar({
         aria-hidden="true"
       />
       <aside
-        className={`reader-sidebar ${open ? 'is-open' : ''}`}
+        className={`reader-sidebar ${open ? 'is-open' : ''} ${isResizing ? 'is-resizing' : ''}`}
         aria-label="Mục lục"
         aria-hidden={!open}
       >
+        <div
+          className="reader-sidebar-resizer"
+          onMouseDown={startResizing}
+          title="Kéo để dãn rộng"
+        />
         <div className="reader-sidebar-header">
           <span className="reader-sidebar-title">Mục lục</span>
           <button

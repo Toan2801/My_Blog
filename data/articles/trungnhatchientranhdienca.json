@@ -16,5 +16,121 @@
   "readingTime": 6,
   "coverImage": "/uploads/img-1778542724803.jpg",
   "author": "Toan Nguyen",
-  "footnotes": []
+  "footnotes": [],
+  "pages": [
+    {
+      "pageNumber": 1,
+      "imageUrl": "/api/articles/trungnhatchientranhdienca/page/1/image"
+    },
+    {
+      "pageNumber": 2,
+      "imageUrl": "/api/articles/trungnhatchientranhdienca/page/2/image"
+    },
+    {
+      "pageNumber": 3,
+      "imageUrl": "/api/articles/trungnhatchientranhdienca/page/3/image"
+    },
+    {
+      "pageNumber": 4,
+      "imageUrl": "/api/articles/trungnhatchientranhdienca/page/4/image"
+    },
+    {
+      "pageNumber": 5,
+      "imageUrl": "/api/articles/trungnhatchientranhdienca/page/5/image"
+    },
+    {
+      "pageNumber": 6,
+      "imageUrl": "/api/articles/trungnhatchientranhdienca/page/6/image"
+    },
+    {
+      "pageNumber": 7,
+      "imageUrl": "/api/articles/trungnhatchientranhdienca/page/7/image"
+    },
+    {
+      "pageNumber": 8,
+      "imageUrl": "/api/articles/trungnhatchientranhdienca/page/8/image"
+    },
+    {
+      "pageNumber": 9,
+      "imageUrl": "/api/articles/trungnhatchientranhdienca/page/9/image"
+    },
+    {
+      "pageNumber": 10,
+      "imageUrl": "/api/articles/trungnhatchientranhdienca/page/10/image"
+    },
+    {
+      "pageNumber": 11,
+      "imageUrl": "/api/articles/trungnhatchientranhdienca/page/11/image"
+    },
+    {
+      "pageNumber": 12,
+      "imageUrl": "/api/articles/trungnhatchientranhdienca/page/12/image"
+    },
+    {
+      "pageNumber": 13,
+      "imageUrl": "/api/articles/trungnhatchientranhdienca/page/13/image"
+    },
+    {
+      "pageNumber": 14,
+      "imageUrl": "/api/articles/trungnhatchientranhdienca/page/14/image"
+    }
+  ],
+  "markdownPages": [
+    {
+      "pageNumber": 1,
+      "markdown": "# Trung Nhật chiến tranh\n\nToan Nguyen"
+    },
+    {
+      "pageNumber": 2,
+      "markdown": ""
+    },
+    {
+      "pageNumber": 3,
+      "markdown": "# Mục lục\n\n    - Chú thích — 10"
+    },
+    {
+      "pageNumber": 4,
+      "markdown": "Lư Câu trăng lạnh bên cầu,\n\nĐêm nghe súng nổ dậy sầu Bắc phương.\\[1\\]\n\nVạn Bình mây phủ bốn phương,\n\nQuân canh giữ ải bỏ đồn xỉn say.\n\nChỉ vì một cớ đêm này,\n\nGiặc vin do đó đòi ngay mở thành.\n\nQuân Hoa quyết giữ cửa thành,\n\nMột phen súng nổ tan tành cõi yên.\n\nTin bay chấn địa động thiên,\n\nThiên Tân đất Bắc lửa liền bốc lên.\\[2\\]\n\nHai mươi chín lộ mưa tên,\n\nGươm thô súng cũ giữ yên góc thành.\\[3\\]\n\nTướng quân trước thế vây quanh,\n\nĐành lui giữ gốc để dành tính sau.\n\nBắc phương từ buổi nát nhàu,\n\nQuốc Cộng đành gác mối sầu một phen.\\[4\\]\n\nBỏ qua tranh chấp nhỏ nhen\n\nCùng nhau cứu lấy dân đen nước nhà."
+    },
+    {
+      "pageNumber": 5,
+      "markdown": "Tháng Tám biển lửa chan hòa,\n\nHải thành khói phủ cửa nhà đảo điên.\\[5\\]\n\nTưởng công dốc sức xuất binh,\n\nQuyết đem tinh nhuệ liều mình giữ đô.\n\nPháo thuyền địch áp thành đô,\n\nMáy bay dội lửa cơ đồ đảo điên.\n\nPhố phường chấn động triền miên,\n\nTừng nhà gạch nát não phiền khắp nơi.\n\nTrăm ngày giao chiến chẳng ngơi,\n\nNhật quân tăng viện ngoài khơi kéo về.\n\nQua thu thế trận não nề,\n\nThân Thành rốt cuộc đành về tay ai.\n\nDọc sông giặc tiến miệt mài,\n\nNam Kinh chốc lát phủ đầy khói sương.\\[6\\]\n\nChính quyền dời gót lên đường,\n\nTứ Xuyên tạm dựng hậu phương chống thù.\\[7\\]\n\nCòn trong khói lửa mây mù,\n\nNam Kinh cố thủ giữa phường sắt gang."
+    },
+    {
+      "pageNumber": 6,
+      "markdown": "Cuối năm khói phủ trời quang,\n\nĐô thành thất thủ, khăn tang ngập trời.\\[8\\]\n\nTần Hoài từ ấy tơi bời,\n\nNhục chung đổ xuống một trời bi ai.\n\nSang xuân chiến sự kéo dài,\n\nĐài Nhi Trang bỗng một ngày lập công.\\[9\\]\n\nLý công bày trận giữa vòng,\n\nXe tăng giặc cháy đỏ đồng cỏ chen.\n\nMột phen rửa hận bao phen,\n\nSong rồi Từ thuỷ khó bền cục xa.\\[10\\]\n\nHoàng Hà cuộn nước phù sa,\n\nCó phen phá đập để mà chặn quân.\\[11\\]\n\nNước tràn đồng nội muôn phần,\n\nCứu nguy chiến tuyến, lê dân lệ nhòa.\n\nVũ Hán rồi lại chan hòa,\n\nBao quân hội tụ để mà giữ sông.\\[12\\]\n\nBa trấn đứng chặn giữa dòng,\n\nMột vùng thành lũy chất chồng máu xương."
+    },
+    {
+      "pageNumber": 7,
+      "markdown": "Nửa năm lửa phủ chiến trường,\n\nTan mưu tốc thắng của phường xâm lăng.\n\nCửa Nam khói cuộn mịt giăng,\n\nQuảng Châu thất thủ ven giang nghẹn lời.\\[13\\]\n\nHậu phương vẫn gắng vun bồi,\n\nNgười gom gạo, kẻ ra nơi chiến hào.\n\nNgười đi đánh tỉa ngoài hào,\n\nNgười lo tải đạn vượt bao suối ngàn.\n\nNăm ba chín lửa Hồ Nam,\n\nTrường Sa đất ấy mở màn chiến công.\\[14\\]\n\nTiết công giữ đất giữ thành,\n\nNhử quân vào chỗ tung hoành đánh ra.\n\nMột phen tiếng dậy gần xa,\n\nKhiến cho kháng chiến thêm đà bền gan.\n\nRồi sang tiếp đó niên gian,\n\nBách Đoàn một trận phá tan giặc thù.\\[15\\]\n\nĐường ray cầu cống chiến khu,\n\nBao quân du kích quyết thu nhịp cầu."
+    },
+    {
+      "pageNumber": 8,
+      "markdown": "Nhật quân giận dữ càng sâu,\n\nLàng quê lại chịu thêm mầu lửa hung.\n\nĐến khi thế giới bốn bề,\n\nLửa lan khắp bể kéo về Á Đông.\\[16\\]\n\nSơn Thành giữa lửa đèo sông,\n\nĐêm ngày chịu trận vẫn không chịu hàng.\\[17\\]\n\nMáy bay giặc dội mấy hàng,\n\nHầm sâu phố núi mơ màng khói bom.\n\nĐồng Minh rồi cũng hợp cùng,\n\nMở đường Vân Miến không ngừng chở sang.\\[18\\]\n\nXe đi vượt núi chuyển hàng,\n\nGạo bom chở tới muôn vàn tuyến xa.\n\nĐất Hoa gồng gánh can qua,\n\nTrước sau vẫn quyết chưa sa chí bền.\n\nSáng năm bốn bốn vận liền,\n\nNhật tung đại chiến lửa chèn trung châu.\\[19\\]\n\nTrung nguyên lại bạc mái đầu,\n\nBao thành bị nối một mầu khói tro."
+    },
+    {
+      "pageNumber": 9,
+      "markdown": "Song dù thế giặc hung to,\n\nKháng quân vẫn giữ cơ đồ chẳng lay.\n\nTiếp năm sau nữa qua đây,\n\nQuân dân phản kích đêm ngày khắp nơi.\\[20\\]\n\nTừ Tây, từ Bắc nơi nơi,\n\nGiặc kia thế đã rã rời dần đi.\n\nLiêu Đông chợt động binh kỳ,\n\nHồng quân phương Bắc bất nghì tiến sang.\\[21\\]\n\nNhật hoàng thế trận bẽ bàng,\n\nĐành thôi xuống chiếu đầu hàng đồng minh.\\[22\\]\n\nTừ đêm súng nổ bên cầu,\n\nTám năm máu lửa bạc đầu núi sông.\n\nLư Câu trăng cũ còn trông,\n\nNgàn thu còn nhắc chữ đồng tâm son."
+    },
+    {
+      "pageNumber": 10,
+      "markdown": "### Chú thích\n\n\\[1\\] Sự biến Lư Câu Kiều bùng nổ đêm mồng 7 tháng 7 năm 1937, gần Lư Câu Kiều và Vạn Bình thành, thường được xem là mốc mở đầu cuộc Chiến tranh Trung – Nhật toàn diện.\n\n\\[2\\] Sau biến cố ấy, chiến sự nhanh chóng lan ra Bắc Bình và Thiên Tân, khiến toàn cục Hoa Bắc rung chuyển.\n\n\\[3\\] Lực lượng chống giữ chủ yếu buổi đầu là Tập đoàn quân 29. Trong giai đoạn này nổi bật có Tống Triết Nguyên.\n\n\\[4\\] Sau Tây An sự biến, Quốc dân đảng và Cộng sản đảng Trung Quốc tạm gác nội chiến, lập Mặt trận thống nhất kháng Nhật.\n\n\\[5\\] Trận Thượng Hải năm 1937 là một trong những trận lớn và khốc liệt nhất giai đoạn đầu chiến tranh.\n\n\\[6\\] Sau khi Thượng Hải thất thủ, quân Nhật theo đường Trường Giang tiến về Nam Kinh.\n\n\\[7\\] Chính quyền Quốc dân đảng dần rút sâu vào nội địa, lấy Trùng Khánh làm trung tâm kháng chiến lâu dài.\n\n\\[8\\] Nam Kinh thất thủ cuối năm 1937, kéo theo một thảm họa cực lớn, trở thành một trong những trang đau đớn nhất của lịch sử cận đại Trung Quốc."
+    },
+    {
+      "pageNumber": 11,
+      "markdown": "\\[9\\] Đài Nhi Trang năm 1938 là một thắng lợi nổi bật của quân Trung Quốc, gắn với tên tuổi Lý Tông Nhân.\n\n\\[10\\] Dù thắng ở Đài Nhi Trang, cục diện lớn tại Từ Châu vẫn không giữ được lâu, quân Trung Quốc phải tiếp tục lui để bảo toàn lực lượng.\n\n\\[11\\] Năm 1938, phía Trung Quốc cho phá đê Hoàng Hà để cản bước quân Nhật. Việc ấy có tác dụng quân sự nhưng gây tai họa rất lớn cho dân thường.\n\n\\[12\\] Trận Vũ Hán kéo dài nhiều tháng trong năm 1938. Tuy thành mất, nhưng mục tiêu “đánh nhanh thắng nhanh” của Nhật bị phá vỡ đáng kể.\n\n\\[13\\] Quảng Châu thất thủ năm 1938, làm đường thông thương ven biển của Trung Quốc bị siết chặt hơn.\n\n\\[14\\] Trường Sa lần thứ nhất năm 1939 là một thắng lợi quan trọng khác của phía Trung Quốc, gắn với tên tuổi Tiết Nhạc.\n\n\\[15\\] Bách Đoàn đại chiến năm 1940 là chiến dịch lớn của lực lượng cộng sản ở miền bắc Trung Quốc, đánh mạnh vào đường sắt, cầu cống và hệ thống liên lạc của quân Nhật.\n\n\\[16\\] Sau khi chiến tranh lan rộng ở châu Á – Thái Bình Dương, mặt trận Trung Quốc càng gắn chặt với cục diện chiến tranh thế giới."
+    },
+    {
+      "pageNumber": 12,
+      "markdown": "\\[17\\] Trùng Khánh nhiều năm bị oanh tạc dữ dội, nhưng vẫn là biểu tượng cho ý chí kháng chiến của chính quyền Trung Quốc.\n\n\\[18\\] Công lộ Vân Miến là một tuyến tiếp vận rất quan trọng để đưa vật tư vào Trung Quốc trong thời chiến.\n\n\\[19\\] Năm 1944, Nhật mở một cuộc tiến công quy mô rất lớn xuống vùng trung nam Trung Quốc, thường được xem là chiến dịch lớn nhất của Nhật trên chiến trường Trung Quốc.\n\n\\[20\\] Sang năm 1945, cục diện chiến tranh đổi khác rõ rệt, quân Nhật dần suy sụp, còn các lực lượng Trung Quốc bắt đầu phản công ở nhiều nơi.\n\n\\[21\\] Tháng 8 năm 1945, Hồng quân Liên Xô tiến công đạo quân Quan Đông của Nhật ở vùng đông bắc Á châu, làm thế chiến lược của Nhật sụp nhanh hơn.\n\n\\[22\\] Tháng 8 năm 1945, Nhật Bản tuyên bố đầu hàng, chiến tranh Trung – Nhật chính thức kết thúc."
+    },
+    {
+      "pageNumber": 13,
+      "markdown": ""
+    },
+    {
+      "pageNumber": 14,
+      "markdown": ""
+    }
+  ]
 }

@@ -16,5 +16,105 @@
   "readingTime": 4,
   "coverImage": "/uploads/img-1778518253086.jpg",
   "author": "Toan Nguyen",
-  "footnotes": []
+  "footnotes": [],
+  "pages": [
+    {
+      "pageNumber": 1,
+      "imageUrl": "/api/articles/tanhoikachmenhdienca/page/1/image"
+    },
+    {
+      "pageNumber": 2,
+      "imageUrl": "/api/articles/tanhoikachmenhdienca/page/2/image"
+    },
+    {
+      "pageNumber": 3,
+      "imageUrl": "/api/articles/tanhoikachmenhdienca/page/3/image"
+    },
+    {
+      "pageNumber": 4,
+      "imageUrl": "/api/articles/tanhoikachmenhdienca/page/4/image"
+    },
+    {
+      "pageNumber": 5,
+      "imageUrl": "/api/articles/tanhoikachmenhdienca/page/5/image"
+    },
+    {
+      "pageNumber": 6,
+      "imageUrl": "/api/articles/tanhoikachmenhdienca/page/6/image"
+    },
+    {
+      "pageNumber": 7,
+      "imageUrl": "/api/articles/tanhoikachmenhdienca/page/7/image"
+    },
+    {
+      "pageNumber": 8,
+      "imageUrl": "/api/articles/tanhoikachmenhdienca/page/8/image"
+    },
+    {
+      "pageNumber": 9,
+      "imageUrl": "/api/articles/tanhoikachmenhdienca/page/9/image"
+    },
+    {
+      "pageNumber": 10,
+      "imageUrl": "/api/articles/tanhoikachmenhdienca/page/10/image"
+    },
+    {
+      "pageNumber": 11,
+      "imageUrl": "/api/articles/tanhoikachmenhdienca/page/11/image"
+    },
+    {
+      "pageNumber": 12,
+      "imageUrl": "/api/articles/tanhoikachmenhdienca/page/12/image"
+    }
+  ],
+  "markdownPages": [
+    {
+      "pageNumber": 1,
+      "markdown": "# Tân Hợi Kách mệnh diễn ca\n\nToan Nguyen"
+    },
+    {
+      "pageNumber": 2,
+      "markdown": ""
+    },
+    {
+      "pageNumber": 3,
+      "markdown": "# Mục lục\n\n"
+    },
+    {
+      "pageNumber": 4,
+      "markdown": "Dự văn lập hiến cái này,\n\nDanh tuy đổi mới, ruột rày vẫn xưa.\n\nTriều đình chắp vá đón đưa,\n\nChỉ tô mặt gấm, chưa chừa bệnh căn.\n\nNội đình hoàng tộc chen chân,\n\nNgười ngoài trông thấy thêm phần bất minh.\n\nLòng dân đã ngán triều đình,\n\nLại thêm bảo lộ nơi thành Tứ Xuyên.\n\nBao người góp của xây nên,\n\nĐường tàu chưa thấy, quyền liền bị thâu.\n\nTriều đình định lấy về sau,\n\nĐem cầm cho khách ngoại châu vay tiền.\n\nSĩ thân, thương hộ đảo điên,\n\nKẻ đi thỉnh nguyện, người liền bãi công.\n\nTứ Xuyên khí thế như sông,\n\nBảo lộ một cuộc dậy đồng dậy thôn.\n\nVì lo dập loạn Tây Xuyên,\n\nTriều đình triệt bớt quân miền Hồ, Tương."
+    },
+    {
+      "pageNumber": 5,
+      "markdown": "Nào ngờ chính chốn nam phương,\n\nMầm cách mạng đã âm thầm bén sâu.\n\nVăn học xã nhóm từ lâu,\n\nCộng tiến hội cũng chí cầu diệt Thanh.\n\nTân quân đất Sở tinh nhanh,\n\nNgầm thông chí sĩ, quyết giành một phen.\n\nNgày kia biến cố nổi lên,\n\nBom rơi lộ dấu, sự liền vỡ ra.\n\nQuan quân lùng bắt gần xa,\n\nNếu không khởi nghĩa ắt là mất thân.\n\nMười tháng mười, buổi chiều hôm,\n\nVũ Xương súng nổ, trống dồn canh khuya.\n\nMột phen gươm súng vỡ òa,\n\nCờ quân cách mạng phất lòa cửa doanh.\n\nĐốc quân kinh hãi bỏ thành,\n\nQuân triều tan tác, dân binh hưởng lời.\n\nQua đêm thành đã đổi ngôi,\n\nSáng ra chính cuộc đã thôi giấu hình."
+    },
+    {
+      "pageNumber": 6,
+      "markdown": "Hồ Bắc quân chính dựng thành,\n\nQuốc dân quân phủ xưng danh nước nhà.\n\nLê Nguyên Hồng được tôn ra,\n\nGiữ quyền đô đốc để mà yên quân.\n\nMột khi điểm lửa đã bừng,\n\nCác nơi nam bắc dần dần ứng theo.\n\nHồ Nam, Thiểm tỉnh, Giang Tây,\n\nSơn Tây, Vân Quý cũng lay cột rường.\n\nGiang Tô, Phúc Kiến, Chiết Giang\n\nCả thêm hai Quảng cờ vàng bị thay.\n\nBao nhiêu tỉnh lỵ trong ngoài\n\nLần lần tuyên bố thoát tay Mãn triều.\n\nThanh đình nghe báo hãi hùng,\n\nCầu Viên Thế Khải ra dùng lĩnh binh.\n\nLão này vốn tướng Bắc Dương,\n\nTài quen quyền biến, mưu trường rất sâu.\n\nNgày đầu lĩnh chức cầm đầu,\n\nNgoài lo dẹp loạn, trong cầu lợi riêng."
+    },
+    {
+      "pageNumber": 7,
+      "markdown": "Vừa mang quân xuống nam thiên,\n\nVừa ngầm mặc cả hai bên thế cờ.\n\nTrong khi đó khắp hải hồ,\n\nTôn Văn nghe tiếng cơ đồ chuyển lay.\n\nTừ nơi hải ngoại về ngay,\n\nĐón cơn cách mạng dựng xây tân đồ.\n\nNam Kinh nhóm họp quần hùng,\n\nCộng hòa bèn định, cờ tung giữa trời.\n\nĐầu năm Tân Hợi qua rồi,\n\nTháng giêng mùng một, tại nơi họp bàn\n\nTiên sinh làm lễ đăng quang,\n\nLâm thời tổng thống nơi thành Nam Kinh.\n\nBao năm bôn tẩu linh đinh,\n\nĐến nay chí lớn đã thành một phen.\n\nNhưng rồi thế cuộc chưa yên,\n\nBắc Dương quân mạnh, Thanh đình chưa tan.\n\nMuốn cho xã tắc vẹn toàn,\n\nĐành đem quyền vị liệu toan đổi hòa."
+    },
+    {
+      "pageNumber": 8,
+      "markdown": "Tôn Văn hiểu việc quốc gia,\n\nBiết rằng muốn tránh can qua kéo dài,\n\nBèn đem ngôi vị nhường ngay,\n\nMiễn Viên ép được triều này thoái vương.\n\nViên kia vốn sẵn tâm trường,\n\nNhận lời đôi phía, liệu đường tiến thân.\n\nMột bên uy hiếp triều thần,\n\nMột bên mặc cả với quân cộng hòa.\n\nĐến ngày chính cuộc mở ra,\n\nLong Dụ thái hậu thuận đà bước lên.\n\nThay tiểu hoàng đế ký tên\n\nSáu năm thiên tử xuống đền rời ngôi.\n\nChiếu truyền ký đã xong rồi\n\nĐại Thanh cơ nghiệp một thời cũng vong\n\nCấm thành lạnh lẽo sương trong,\n\nMột triều đế chế thôi xong giữa đời.\n\nThan ôi cách mệnh một hồi,\n\nPhá tan đế thống ngàn đời Trung Hoa."
+    },
+    {
+      "pageNumber": 9,
+      "markdown": "Song chưa đổi hết sơn hà,\n\nChỉ thay ngôi báu, chưa qua nạn quyền.\n\nBởi vì quân phiệt còn nguyên,\n\nBắc Nam thế lực chưa yên mối đầu.\n\nDân quyền tuy đã xướng câu,\n\nĐường dài dân quốc vẫn sâu gập ghềnh.\n\nTân Hợi một tiếng rung thành,\n\nKhai sinh dân quốc, khép mành Mãn Thanh.\n\nSử xanh còn để công danh,\n\nDù cho để hoạ chiến tranh sau này."
+    },
+    {
+      "pageNumber": 10,
+      "markdown": ""
+    },
+    {
+      "pageNumber": 11,
+      "markdown": ""
+    },
+    {
+      "pageNumber": 12,
+      "markdown": ""
+    }
+  ]
 }

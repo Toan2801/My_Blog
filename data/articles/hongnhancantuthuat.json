@@ -16,5 +16,201 @@
   "readingTime": 19,
   "coverImage": "/uploads/img-1778514186481.jpg",
   "author": "Toan Nguyen",
-  "footnotes": []
+  "footnotes": [],
+  "pages": [
+    {
+      "pageNumber": 1,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/1/image"
+    },
+    {
+      "pageNumber": 2,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/2/image"
+    },
+    {
+      "pageNumber": 3,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/3/image"
+    },
+    {
+      "pageNumber": 4,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/4/image"
+    },
+    {
+      "pageNumber": 5,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/5/image"
+    },
+    {
+      "pageNumber": 6,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/6/image"
+    },
+    {
+      "pageNumber": 7,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/7/image"
+    },
+    {
+      "pageNumber": 8,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/8/image"
+    },
+    {
+      "pageNumber": 9,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/9/image"
+    },
+    {
+      "pageNumber": 10,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/10/image"
+    },
+    {
+      "pageNumber": 11,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/11/image"
+    },
+    {
+      "pageNumber": 12,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/12/image"
+    },
+    {
+      "pageNumber": 13,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/13/image"
+    },
+    {
+      "pageNumber": 14,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/14/image"
+    },
+    {
+      "pageNumber": 15,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/15/image"
+    },
+    {
+      "pageNumber": 16,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/16/image"
+    },
+    {
+      "pageNumber": 17,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/17/image"
+    },
+    {
+      "pageNumber": 18,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/18/image"
+    },
+    {
+      "pageNumber": 19,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/19/image"
+    },
+    {
+      "pageNumber": 20,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/20/image"
+    },
+    {
+      "pageNumber": 21,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/21/image"
+    },
+    {
+      "pageNumber": 22,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/22/image"
+    },
+    {
+      "pageNumber": 23,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/23/image"
+    },
+    {
+      "pageNumber": 24,
+      "imageUrl": "/api/articles/hongnhancantuthuat/page/24/image"
+    }
+  ],
+  "markdownPages": [
+    {
+      "pageNumber": 1,
+      "markdown": "# Hồng Nhan Can tự thuật\n\nToan Nguyen"
+    },
+    {
+      "pageNumber": 2,
+      "markdown": ""
+    },
+    {
+      "pageNumber": 3,
+      "markdown": "# Mục lục\n\n"
+    },
+    {
+      "pageNumber": 4,
+      "markdown": "Năm Giáp Tý, ngày Trùng Dương, tôi thất lợi ở phía nam huyện Quảng Xương, tỉnh Dự \\[chú: nên viết là tỉnh Cám\\], rồi bị viên quan doanh họ Trần đội chóp đỏ bắt được, đem ra xét hỏi. Vừa lúc có hai tên lính đã hàng làm chứng rằng tôi là Can vương; lại trên đường đi, có nhiều trai gái già trẻ bị bắt, vừa trông thấy đã biết tôi là Can vương nhưng không dám gọi, chỉ âm thầm rơi lệ mà thôi. Thỉnh thoảng có người nói nhỏ khuyên tôi thay đổi y phục; lại có kẻ lỡ lời gọi tôi là Thiên tuế. Tôi thầm nghĩ liệu chừng khó mà giấu được nữa; nhưng một khi thẳng thắn nhận mình là ai, tất không thể sống sót để bảo vệ Chúa thượng, lấy gì ngước lên phụng đáp thánh ý của lão Thiên vương đã phó thác ấu chúa cho tôi? Trong lúc trằn trọc nghĩ suy, buồn thương không xiết, nước mắt tuôn rơi; tuy nhiên chi lúc ấy đã có người làm chứng, nên tôi bèn nói thẳng, không giấu giếm.\n\nViên quan doanh họ Trần liền sai thuộc hạ dùng dây trói hai tay tôi lại, nói rằng nếu tôi bắt nộp Thiên vương thì sẽ lập tức thả ra, lại thưởng bạc 1000 lượng, bảo đảm cho được đội chóp đỏ... Tôi khóc mà nói:"
+    },
+    {
+      "pageNumber": 5,
+      "markdown": "> Khuyên Chúa đầu thành vốn không phải đạo làm bề tôi thờ vua, huống chi lại nói đến chuyện bắt nộp ư? Huống chi thân tôi là vương đệ của thiên hoàng, vương thúc của ấu chúa đương kim, là khai triều tinh trung quân sư, Tổng chưởng đại chính quân quốc trong ngoài, sao có thể chịu nhục như thế? Việc đã đến nước này, muốn giết thì cứ giết, tôi quyết không thể vâng lời được.\n\nViên quan doanh họ Trần thấy tôi không khuất phục, bèn giả dùng lễ, đổi sang vẻ mặt vui vẻ, mời tôi ngồi ghế trên. Tôi liền thẳng lời quở rằng:\n\n> Đã dùng dây trói để đối đãi với quân tử, lại còn đem lễ giả mà mời ngồi, sao mà trá ngụy đến thế?\n\nRồi hắn truyền lệnh giải tôi đến dưới trướng Tịch đại nhân. Tôi đi thẳng vào, ngồi xuống phía ngoài giữa triều. Viên quan doanh họ Trần ấy vào trong bẩm báo. Một lát sau, Tịch đại nhân ra gặp, lấy lễ mà đối đãi. Tôi nói:\n\n> Đủ thấy đại nhân dưới trướng đây có lượng lớn, vượt hơn mọi người, có thể lấy quân tử mà đãi quân tử; nay tôi có chết cũng chết được minh bạch rồi.\n\nBèn được cởi trói đứng dậy, tôi cũng lấy lễ mà đáp lại. Tịch đại nhân nói: “Nay bắt được một người, không chịu nhận là Hựu vương; nếu ta nếu giết hắn chỉ khiến hắn chết uổng mà không rõ danh phận."
+    },
+    {
+      "pageNumber": 6,
+      "markdown": "Chi bằng ngươi cứ thẳng thắn nhận là tốt.”"
+    },
+    {
+      "pageNumber": 7,
+      "markdown": "![洪仁玕为什么能受到洪秀全的重用？为何后来遭到了冷露？-趣历史网](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8CJHjn0mqq91VWlIAi4saeglVz_ZLz3ZslQ&s)\n\nTạo hình Hồng Nhân Can trong bộ phim Thái Bình Thiên Quốc (2000)"
+    },
+    {
+      "pageNumber": 8,
+      "markdown": "Tôi đáp:"
+    },
+    {
+      "pageNumber": 9,
+      "markdown": "> Không phải tôi muốn mua danh, chỉ vì trung thần không thờ hai vua, liệt nữ không lấy hai chồng; nước còn thì cùng còn, nước mất thì cùng mất mà thôi. Trước đây khi tôi ở Quảng Đức châu, các đồng liêu cùng phò ấu Thiên vương đến đó, trưởng tử của tôi cũng tới. Có người chúc mừng rằng: ‘Tự quân của điện hạ cũng đã đến, đủ thấy Thiên tuế hồng phúc, thật là việc vui phi thường.’ Tôi quở rằng: ‘Điều ta mừng là mừng nó phụng Chúa thượng mà đến. Nếu Chúa thượng không đến, dù nó có đến, ta tất cũng giận nó! Đó là việc thuộc bổn phận của nó, có gì đáng chúc mừng?’ Nay tôi thẳng thắn nhận mình là vương tước đại thần của Thiên triều, chỉ biết bổn phận làm bề tôi, không biết người khác tự xử thế nào. Huống chi năm trước, tôi đích thân nhận di chiếu của lão Thiên vương sai tôi phụ tá việc trong ngoài, rằng: ‘Trẫm yêu chú có văn tài, từng xem rộng các nước, thông đạt thiên văn, phong thổ; chú nên chú thuật các điều lệ Lục bộ cùng những việc có ích, về sau phải hết lòng phò tá ấu chúa, chớ quên mệnh của Trẫm, khâm thử.’ Tôi liền quỳ tạ thánh ân, tâu rằng: ‘Nếu em quả có chỗ dùng được, vốn nên phò vua của em, cũng nên phò ấu chúa. Huống chi năm nay em đã hơn 40 rồi, nếu được trời giúp cho sống lâu, tất sẽ cúc cung tận tụy; xin Chúa hãy rộng lòng, đừng để lòng em như bị lửa đốt.’ Nay nhớ lại lời chiếu trước kia, tiếng vẫn còn văng vẳng bên tai, bỗng phụ di mệnh, khiến mất dấu nơi ở của ấu chúa, không thể theo hầu bảo vệ; tự vỗ ngực hỏi mình không còn gì để đối diện với lão Thiên vương, thật là tội lỗi vậy, sao còn dám bán chúa cầu vinh! Dù giải tôi đến Bắc Kinh, hoặc giết tôi để trọn tiết bề tôi của tôi, tôi cũng không còn điều gì ân hận."
+    },
+    {
+      "pageNumber": 10,
+      "markdown": "Tôi từ nhỏ đọc sách, thô thiển biết được đại nghĩa trong Xuân Thu. Trước kia, Thiên vương khi 31 tuổi đã để râu tóc, đi khắp thiên hạ, cùng tôi trù hoạch đại kế, muốn trước hết định Nam Kinh làm căn bản khai cơ, dựa vào thế Trường Giang, nắm lấy yết hầu Trấn Giang, khống chế thượng du An Khánh; trước lấy 7 tỉnh miền Nam, sau đánh Xuyên, Thiểm rồi tiến về phía đông, thì đại sự thành vậy. Không ngờ sau khi định đỉnh vào năm Quý Sửu, tuy cùng giữ Trấn Giang, An Khánh, nhưng chưa định xong phương Nam đã lập tức quét lên phương Bắc, tựa như để lỡ thời cơ. Đến năm Kỷ Mùi, năm thứ 9 (1859), vì mẹ già 72 tuổi qua đời, tôi làm trọn đạo làm con rồi mới vào Thiên Kinh, để trọn đạo bề tôi, đạo em. Ngày 13 tháng 3 đến kinh, được phong Can Thiên Phúc, kế đó phong Can Thiên Nghĩa, Hộ Kinh chủ tướng. Ngày 1 tháng 4, đổi phong làm Cửu môn Ngự lâm Khai triều Tinh trung Quân sư Can vương, ban Phúc Thiên tuế cùng Bát thiên tuế; khi vào triều ra ngoài được bắn 8 phát pháo; vợ tôi được phong Vương nương, con được phong Tự quân, phủ gọi là Thiên phủ, gọi là điện; lại riêng ban một đạo long chương phượng chiếu rằng:"
+    },
+    {
+      "pageNumber": 11,
+      "markdown": "> Ý Trẫm chiếu cho chú Can biết: kính Cha kính Anh thì chẳng bao giờ sai; Lão phụ Đại huynh ban cho vinh quang, được lên thiên đường hưởng thiên phúc, phúc cho con, phúc cho cháu, phúc không cùng. Trẫm nghĩ chú vì Trẫm mà chịu nhục đã nhiều lần; quả nhiên chí đồng với Nam vương, càng lâu càng bền, thật là quân sư nhà trung thần trong cơn bản đãng, có thể làm phép tắc cho muôn đời. Nay chỉ báo đáp bằng vương tước Can Thiên phủ, con cháu thế tập, vĩnh viễn vinh quang. Chú hãy kính cẩn giữ ngôi vị của mình, chớ quên mệnh của Trẫm, khâm tai.\n\nNhưng vì ban đầu tôi mới đến, các bề tôi chưa biết công lao từ thuở nhỏ tôi đã phò vua, nên không phục việc tước vị của tôi lại đặt trên họ. Đến khi thánh chiếu ban xuống nói rõ, lại thấy tôi lên triều luận đạo, nói năng đường hoàng, mọi điều mà văn thần coi trọng không gì không khiến họ thán phục, bấy giờ họ đều nói rằng: “Khổng Minh tiến thân mà Quan, Trương không phục; Hàn Tín làm tướng mà Phàn Khoái có lời. Những chuyện ấy không đủ để ngăn trở điện hạ.”\n\nTôi sợ quân tâm tản loạn, dâng bản nhiều lần xin từ chức, nhưng được chiếu rằng: “Sóng gió tạm nổi, lâu rồi sẽ tự yên.” Tôi có làm các sách Lý lịch, Thiên văn lý thế, Tư chính tân thiên, mọi người đều tâm phục. Rốt cuộc, miệng lưỡi võ quan vẫn sôi nổi."
+    },
+    {
+      "pageNumber": 12,
+      "markdown": "Tôi thấy trong các tướng chỉ có Trần Ngọc Thành trung dũng vượt hẳn mọi người, bèn bảo tấu xin phong vương tước; có chiếu cho phép, phong ông ta làm Anh vương, chiếu rõ rằng việc trong không quyết được thì hỏi Can vương, việc ngoài không quyết được thì hỏi Anh vương, trong ngoài đều không quyết được thì hỏi Thiên vương. Lòng người bèn hòa hợp, nghiêm cẩn tuân theo, đều chịu tiết chế. Trước lễ vạn thọ của Thiên vương, lại phong Lý Tú Thành làm Trung vương, Lý Thế Hiền làm Thị vương. Trung vương liền dâng bẩm xin chỉ giáo kế sách xuất chinh; tôi lấy bốn điều cốt yếu về binh pháp mà đáp, cuối cùng nói: “Kế sách hiện nay không thể viết rõ ra giấy mực; xin hãy cẩn thận suy xét mà thi hành là được.”\n\nSau đó ông ta liền từ Giang Phố về kinh, ba lần đến phủ tôi xin chỉ giáo kế sách nên đánh lấy nơi nào. Tôi thấy lòng ông ta cầu học tha thiết, bèn đáp rằng:"
+    },
+    {
+      "pageNumber": 13,
+      "markdown": "> Trước đây bản quân sư ở Việt Đông, biết bốn mặt Thiên Kinh bị vây, bèn không tránh gian hiểm sống chết, đi thẳng đến Thiên Kinh, chỉ muốn có cách cứu nơi ấy mà thôi, há phải tham lộc vị mà đến sao! Nay kinh đô bị vây, chỉ còn một tuyến đường Giang Bắc vận lương về kinh, làm sao có thể cùng địch tranh dài ngắn? Kế ngày nay là có thể bí mật đem quân đi xa, đánh vào chỗ trống sau lưng của chúng. Bên ngoài chúng không còn quân thừa để cứu, tất phải xin quân đang vây kinh đến cứu. Liệu khi chúng đã rời kinh khá xa, ta liền rút quân ngầm trở về, hẹn cùng Anh vương, Trung vương, Thị vương hợp sức giải vây kinh thành. Như thế tất có thế như nước từ trên cao đổ xuống.\n\nTrung vương nói: “Nếu quả như vậy, đủ thấy diệu toán của điện hạ. Nếu sau khi giải vây, lại sẽ tiến thủ thế nào?”"
+    },
+    {
+      "pageNumber": 14,
+      "markdown": "![太平天国李秀成：这个忠王并不忠](https://img.allhistory.com/5ecba5aed7f8a70001fafffb.jpg?imageView2/2/w/824/|imageMogr2/strip/interlace/1/quality/75/format/jpg)\n\nTrung vương Lý Tú Thành (1823 - 1864)"
+    },
+    {
+      "pageNumber": 15,
+      "markdown": "Tôi nói:\n\n> Có, chỉ cần chỉ điểm một chút là biết. Xin chú hãy suy nghĩ: Thiên Kinh của ta, phía nam cách Vân, Quý, Lưỡng Việt, phía tây cách Xuyên, Thiểm, phía bắc đến Trường Thành, đều xa khoảng 6, 7 nghìn dặm; chỉ có phía đông đến Tô, Hàng và biển lớn thì chưa đầy nghìn dặm. Thừa thắng xuôi xuống, một tiếng trống là có thể thành công. Khi ấy đất rộng kho nhiều, tôi có được vàng một triệu, mua dùng hai mươi chiếc tàu hỏa luân qua lại Trường Giang, trên thông Kinh, Sở, dưới thông Việt; phái một đạo quân từ Giang Tây tiến vào Lưỡng Hồ, phái một đạo quân từ Giang Bắc tiến vào Kinh, Tương. Nếu lấy được Vũ Xương, thì Trường Giang đã là bảo chướng của Thiên Kinh ta, phương Nam có thể truyền hịch mà định. Sau đó thao luyện binh mã, an phủ lương dân, từ Xuyên, Thiểm tiến về phía đông, thì không còn lương để ứng cứu Bắc Kinh, thế của chúng tất nguy, việc của ta thành vậy. Chú hãy lưu tâm điều đó, chớ quên.\n\nTrung vương liền về phủ, dâng bẩm tạ ơn chỉ giáo; tối hôm sau lại đến bẩm xin rút binh mã ở hai nơi Phố Khẩu, Giang Phố. Tôi nói:"
+    },
+    {
+      "pageNumber": 16,
+      "markdown": "> Nếu rút hai đường này, binh đi rồi, thì con đường một tuyến đã đứt, lương ở Giang Bắc không thể vào kinh, thế tất gấp bách. Nếu mời quân của Anh vương ở An tỉnh đi, lại e An tỉnh có việc nguy cấp. Nếu theo cao kiến của chú mà rút quân, chưa biết lương hướng trong kinh đủ chống đỡ được bao lâu? Liệu chú tất đã tính kỹ rồi.\n\nTrung vương nói:\n\n> Tôi tất tuân theo trường sách của Điện hạ, đánh xa vào chỗ trống, xin anh rộng lònga chớ lo. Tôi thề báo ơn tri ngộ của vương thượng. Nếu lo thiếu lương, có thể hỏi Tán vương, đủ chống đỡ 3 năm.\n\nVề phủ rồi, lại dâng bẩm xin rộng lòng đừng nghi. Tôi phê rằng: “Nói được như thế, làm được như thế, việc việc đều nên.” Ông ta lại sai người đích thân đến tạ, nghiêm cẩn tuân theo 10 chữ ấy mà làm. Bèn sắm sửa mũ tua, hiệu y, giả trang theo dáng binh địch, đi thẳng một đường, không hề để lộ. Đến thẳng cổng thành Hàng Châu, quan địa phương ra đón, nói rằng binh bại của quan lão gia nào đó trở về thành, mọi người cũng tin là thật. Đến gần cửa, quân ta muốn ra tay cướp ngựa, bèn bị phát giác mà đóng cổng thành. Không thể tiến thẳng vào, bèn đào đất mà vào, trong thành đại loạn rồi tan rã, chỉ có nội thành cố thủ không hạ."
+    },
+    {
+      "pageNumber": 17,
+      "markdown": "Liệu quân vây kinh đã rút, bèn hẹn Thị vương đang đánh Hồ Châu quay cờ về giải vây kinh, lấy khói lửa làm hiệu. Anh vương từ Thái Bình quan đánh lấy Thượng Hà Đầu quan mà xuống; Thị vương đánh vào sau lưng Yến Tử Sơn mà vào; Trung vương quét dẹp một dải hạ lộ Thuần Hóa trấn. Ngày 26 tháng 3 năm Canh Thân (1860), bèn đại giải vây kinh thành, hội nghị kế sách tiến thủ. Anh vương xin giải vây An tỉnh, Thị vương bàn lấy Phúc Kiến, chỉ có Trung vương giữ việc tuân theo lời bàn trước của tôi, tiến lấy Tô, Thường, rồi sau đó chia binh tiến lấy nam bắc Trường Giang, hai đường thẳng đến Hồ Bắc rồi hội về. Bàn định rồi tâu Chúa, quả đúng như lời đã bàn. Bèn đại phá Đan Dương, Thường Châu, các quận huyện tỉnh Tô. Chỉ có huyện Thượng Hải chưa hạ, vì vướng có dương hành, sợ làm tổn thương hòa hảo.\n\nThiên vương biết tôi ở ngoài biển 4 năm, quen rõ tính tình, tập tục của người Tây các nước; người Tây cũng biết tôi hiểu cử chỉ, lễ nghi của họ cùng thiên văn, địa dư, lịch số, vật lý, tất có thể hòa hợp bàn định thỏa đáng các điều khoản thông thương, hòa hảo. Bèn giáng chiếu sai tôi đến Tô Châu mời người Tây đến hội, khá có thể theo như đã bàn. Nhưng Trung vương từ khi binh mạnh tướng nhiều, lấy Thượng Hải dễ như vật trong lòng bàn tay, không còn theo lời bàn, nói rằng giang sơn của Thiên vương ta có thể đánh mà được, không thể bàn mà được."
+    },
+    {
+      "pageNumber": 18,
+      "markdown": "Người Tây biết không thể hòa, bèn bỏ đi, nhưng vẫn có nhiều kẻ bảo vệ dương hành. Trung vương bèn phát binh tiến lấy, thấy đó là thành trống, bèn cướp lấy đồ vật trong các lầu Tây, bị quân Tây mai phục nổi lên đánh, xuất kỳ bất ý, thua chạy về Tô thành. Đến lúc ấy mới bắt đầu tin lời bàn của tôi, mà rốt cuộc vẫn không chịu nhận sai.\n\nNăm Tân Dậu, năm thứ 11 (1861), các vương đều chiếm giữ cương thổ, tự tiện chi dùng lương hướng, chiêu binh để tự củng cố, mưu thăng đại tước, khiến việc điều động, điểm binh không linh hoạt, An tỉnh ít được cứu viện. Ngày 1 tháng Giêng, vâng chiếu chiêu binh vượt sông; lại được chiếu giao Tôn vương Lưu Khánh Hán thống lĩnh quân đi Hoàng Mai, Quảng Tế, để giải vây An tỉnh; tôi vâng chỉ trở về triều nắm chính sự. Tháng 11 mùa đông, An tỉnh thất thủ, bản chương ấy chạm giận Thiên vương, bèn lần lượt tước bỏ chức Quân sư, Tổng tài, vương tước của tôi; sau lại nghĩ các tước khác trái mệnh, chậm cứu viện, nên luận tội giáng cấp có sai khác, thăng phục nguyên tước cho tôi, nhưng không phục chức Quân sư, để nêu rõ răn đe.\n\nMùa xuân năm Nhâm Tuất (1862), vì Chương vương gian hoạt, nắm giữ trong ngoài, mọi việc đều giấu bề trên mà tự chuyên, khiến lương hướng ở các đô huyện ngoài tỉnh thiếu người lo, Thiên vương biếm Chương vương ra Tô, Chiết để thúc lương cứu kinh, bãi quyền nắm triều chính của y, rồi vẫn phục chức Quân sư cho tôi, tổng chưởng triều chính."
+    },
+    {
+      "pageNumber": 19,
+      "markdown": "Chỉ có điều trước kia Chương vương lấy sự mềm mỏng gian hoạt mà hòa hợp mọi người, đến lúc ấy, mọi người không coi y là trọng, đóng thành không nạp, một hạt thóc cũng không lấy được. Tôi liền sai các phủ đệ, lầu gác trong kinh đều trồng lúa, đậu, quyên vàng mua thóc, phân phái năm đại quân mỗi đội giữ đầu thành; các anh em, các tước ngày đêm siêng nhọc, vừa chiến đấu vừa phòng giữ, vừa cày cấy vừa đọc sách, dựa vào Thiên vương như núi Thái Sơn, không hề có chút lòng tự nguy, tự sợ. Trong đó, lương thực nhờ siêng cày, tự tiết kiệm, cũng đủ tự nuôi, tự giữ. Nhưng khổ nỗi viện binh các nơi đều cho rằng ngoài kinh không có lương, án binh bất động. Bấy giờ được Thiên vương hạ chiếu, sai tôi cùng Tuất vương Hồng Nhân Chính, Lại vương Lại Quế Phương, Dự vương Lý An Bang, bốn người ra khỏi kinh, thúc binh giải vây. Ngày 16 tháng 11 năm Quý Hợi (1863) ra khỏi kinh, đến Vô Tích, Thường Châu, cùng Hộ vương Trần Khôn Thư, Nhiên vương Trần Thời Vĩnh hội nghị, đồng thời gửi văn thúc giục các nơi Kim Đàn, Cú (văn bản khuyết), Nghi Hưng, Quảng Đức, Hồ Châu, sai Thị vương, Đổ vương ngoài việc giữ đất, thì từ Thái Bình quan xuống đánh Đầu quan rồi Đan Dương, Cú Dung, tức từ cầu Thạch Phụ lấy Hạ quan, trước lấy được đường thủy để thông vận tào, thì lương kinh có chỗ nhờ. Tên Tăng Cửu kia dù giữ các nơi Vũ Hoa Đài, liệu cũng không ngại."
+    },
+    {
+      "pageNumber": 20,
+      "markdown": "Không ngờ Thị vương vì Lật Dương nội biến, Nghi Hưng cũng biến, Đổ vương vì Ô Trấn nội biến, bèn cắt đứt Hàng, Gia, bị áp chế ngay bên khuỷu nách, không thể cứu kinh. Mà Đan Dương không chịu (văn bản khuyết), muốn đánh xuống Giang Âm, Vô Tích, lấy đủ binh lương, thừa thắng cứu kinh. Tuy giết chết tên đầu sỏ quỷ Tây (văn bản khuyết) Đốn, hơn nghìn quỷ binh, lấy được vô số pháo Tây, rốt cuộc được mất ngang nhau, cuối cùng không có việc gì cứu được kinh thành. Nội biến ở Đan, Thường ngày càng sinh, Thường Châu mất trước, bèn muốn rút hết binh Đan Dương, hội hợp Quảng Đức, Hồ Châu để cứu kinh khốn. Ngày 18 tháng 4 đến Hồ Châu đại hội đồng liêu, mới biết Thị vương, Thính vương, Vinh vương, Khang vương đã lui giữ Hàng, Gia cùng thượng du Giang Tây. Vì thế cùng Đổ vương thề rằng quân ở ngoài thành đều nguyện cứu trợ kinh sư, chỉ thường hận ngoài kinh không có lương, muốn đợi lúa mới tháng 8 nổi lên.\n\nKhông ngờ ngày 19 tháng 4, lão Thiên vương thăng thiên; ngày 24, ấu Thiên vương kế thống đăng cơ; đến ngày mùng 6 tháng 6, bị quan binh công phá mở thành lũy, tràn vào trong kinh. Trung vương vào nghênh tiếp ấu Thiên vương, từ (văn bản khuyết) Lũng (văn bản khuyết) phi chạy mà ra, đi thẳng đến Quảng Đức châu. Các bề tôi vào chầu yết, buồn vui lẫn lộn, tình cá nước sâu nặng, cùng bàn kế hay để đánh giữ, hội hợp đại đội các tỉnh, muốn lại hưng đại"
+    },
+    {
+      "pageNumber": 21,
+      "markdown": "nghiệp. Không ngờ quân không còn chí chiến đấu, đuổi xa thì binh sĩ mệt mỏi; tại Ninh Quốc, Đổ vương bị thương rồi thăng thiên, lòng người lo sợ. (văn bản khuyết) Uy Bình vì Hiệp vương binh biến, không thể vượt sông, bèn chuyển bỏ sang thượng lưu mà qua, qua được nửa chừng thì bị chặn. Mấy ngày liền mệt nhọc, đến khi xa giá dừng ở các nơi Thạch Lĩnh, Dương Gia Bài, lúc canh ba trăng lặn, chợt nghe trống tù và đồng loạt vang lên; người không kịp mặc giáp, ngựa không kịp thắng yên, ai nấy tự chạy về phía trước. Tôi từng bước không rời bảo vệ ấu Thiên vương tiến lên, chỉ vì người ngựa chen chúc, miệng luôn gọi mọi người nhường cho chúa thượng đi trước, lại luôn gọi mọi người quay đầu chống địch. Nhưng loạn quân không còn chí chiến đấu, chỉ đành kêu than biết làm sao. Đến Ngọc Sơn khẩu, đường hẹp lại gặp cầu, trước bị chặn, sau bị đuổi. Riêng tôi ở phía sau, trên cầu, ngựa ngã ngang, tôi rơi xuống; mọi người từ trên cầu đi qua, khiến đầu tôi bị thương chảy máu. Rồi tôi từ trên cầu thúc ngựa nhảy qua, một mình chạy vào nơi hoang vắng, thật lòng muốn đuổi kịp ấu chúa, vượt núi mà trốn. Vì người đông, đường hẹp, đến sáng thì bị bắt.\n\nNay đội ơn đại nhân nể tôi là kẻ còn thuộc một mạch người đọc sách, không lập tức đem giết, lại còn lấy lễ hậu mà đối đãi, khiến tôi hổ thẹn đến không còn chốn dung thân!"
+    },
+    {
+      "pageNumber": 22,
+      "markdown": "Tôi nghĩ con người sinh trong trời đất, hai chữ trung và hiếu, tất phải trọn được một chữ mới có thể thành người. Tôi đã không thể trọn hiếu, nay lại không thể trọn trung; trên thì phụ lời phó thác của lão Thiên vương, lại khiến sự sống chết của ấu Thiên vương chưa biết ra sao; dưới thì không thể tiết chế các vương, còn mặt mũi nào sống lén thêm một khắc nào nữa! Còn nơi ấu Thiên vương dừng xa giá, tự có Hoàng thiên an bài. Nếu tôi biết được, tất đã cùng ở với Người rồi, há lại có thể bị nghi là (văn bản khuyết), dùng lời dối trá để lừa người hay sao? Xin xét rõ tình thực, không cần nói rườm rà thêm nữa."
+    },
+    {
+      "pageNumber": 23,
+      "markdown": ""
+    },
+    {
+      "pageNumber": 24,
+      "markdown": ""
+    }
+  ]
 }

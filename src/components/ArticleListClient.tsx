@@ -143,60 +143,50 @@ export default function ArticleListClient({ items, categories, initialCategory, 
         ) : (
           <div className="article-list">
             {filtered.map(item => {
-              if (item.isSeries) {
-                return (
-                  <article key={item.slug} className="article-card series-card-item" style={{ borderLeft: '4px solid var(--gold)' }}>
-                    <div className="article-card-meta">
-                      <span className="series-badge" style={{ background: 'var(--gold)', color: 'white' }}>SERIES DÀI KỲ</span>
-                    </div>
-                    <Link href={`/series/${item.slug}`} className="article-card-title">
-                      {item.title}
-                    </Link>
-                    {item.coverImage && (
-                      <Link href={`/series/${item.slug}`}>
-                        <div className="article-card-image" style={{ height: '200px', background: 'var(--parchment, #f5f0e8)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                          <img src={item.coverImage} alt={item.title} style={{ objectFit: 'contain', height: '100%', width: '100%' }} />
-                        </div>
-                      </Link>
-                    )}
-                    <p className="article-card-excerpt">{item.description}</p>
-                    <Link href={`/series/${item.slug}`} className="read-more" style={{ display: 'inline-block', marginTop: 'var(--space-2)' }}>
-                      Xem trọn bộ →
-                    </Link>
-                  </article>
-                );
-              }
+              const isSeries = item.isSeries;
+              const linkPrefix = isSeries ? '/series/' : '/articles/';
+              const category = item.category || (isSeries ? 'Series' : '');
+              const date = !isSeries ? formatDate(item.date) : '';
+              const readingTime = !isSeries ? `${item.readingTime} phút đọc` : '';
+              const excerpt = isSeries ? item.description : item.excerpt;
 
-              const article = item;
               return (
-                <article key={article.slug} className="article-card">
+                <article key={item.slug} className={`article-card ${isSeries ? 'series-card-item' : ''}`}>
                   <div className="article-card-meta">
-                    {article.category && <span className="category-badge">{article.category}</span>}
-                    <span className="article-date">{formatDate(article.date)}</span>
-                    <span className="article-reading-time">{article.readingTime} phút đọc</span>
-                    {article.featured && <span className="series-badge">★ Nổi bật</span>}
+                    <span className={`category-badge ${isSeries ? 'series-badge-gold' : ''}`}>
+                      {isSeries ? 'SERIES DÀI KỲ' : category}
+                    </span>
+                    {date && <span className="article-date">{date}</span>}
+                    {readingTime && <span className="article-reading-time">{readingTime}</span>}
+                    {!isSeries && item.featured && <span className="featured-badge">★ Nổi bật</span>}
                   </div>
-                  <Link href={`/articles/${article.slug}`} className="article-card-title">
-                    {article.title}
+                  
+                  <Link href={`${linkPrefix}${item.slug}`} className="article-card-title">
+                    {item.title}
                   </Link>
-                  {article.coverImage && (
-                    <Link href={`/articles/${article.slug}`}>
-                      <div className="article-card-image" style={{ height: '200px', background: 'var(--parchment, #f5f0e8)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <img src={article.coverImage} alt={article.title} style={{ objectFit: 'contain', height: '100%', width: '100%' }} />
+
+                  {item.coverImage && (
+                    <Link href={`${linkPrefix}${item.slug}`}>
+                      <div className="article-card-image">
+                        <img src={item.coverImage} alt={item.title} loading="lazy" />
                       </div>
                     </Link>
                   )}
-                  <p className="article-card-excerpt">{article.excerpt}</p>
-                  {article.tags.length > 0 && (
-                    <div className="article-tags">
-                      {article.tags.map(tag => (
-                        <span key={tag} className="tag-chip">#{tag}</span>
-                      ))}
-                    </div>
-                  )}
-                  <Link href={`/articles/${article.slug}`} className="read-more" style={{ display: 'inline-block', marginTop: 'var(--space-2)' }}>
-                    Đọc tiếp →
-                  </Link>
+
+                  <p className="article-card-excerpt">
+                    {excerpt.length > 200 ? excerpt.substring(0, 200) + '...' : excerpt}
+                  </p>
+
+                  <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginTop: 'var(--space-2)' }}>
+                    <Link href={`${linkPrefix}${item.slug}`} className="read-more">
+                      {isSeries ? 'Xem trọn bộ →' : 'Đọc tiếp →'}
+                    </Link>
+                    {!isSeries && item.pages && item.pages.length > 0 && (
+                      <Link href={`/read/${item.slug}`} className="read-more" style={{ color: 'var(--ink)', background: 'var(--parchment-dark, #e8e2d8)', padding: '2px 10px', borderRadius: '4px', fontSize: '0.8rem' }}>
+                        📖 Đọc sách
+                      </Link>
+                    )}
+                  </div>
                 </article>
               );
             })}

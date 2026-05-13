@@ -57,17 +57,37 @@ export default async function SeriesLandingPage({ params }: { params: { slug: st
         <p className="section-label">Các phần ({articles.length})</p>
         <div className="series-book-grid">
           {articles.map((article, index) => (
-            <Link key={article.slug} href={`/articles/${article.slug}`} className="book-cover-card">
-              {article.coverImage ? (
-                <img src={article.coverImage} alt={article.title} className="book-cover-image" />
-              ) : (
-                <div className="book-cover-image" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', color: 'var(--ink-muted)', fontFamily: 'var(--font-serif)' }}>
-                  {String(index + 1).padStart(2, '0')}
-                </div>
+            <div key={article.slug} style={{ position: 'relative' }}>
+              <Link href={`/articles/${article.slug}`} className="book-cover-card">
+                {article.coverImage ? (
+                  <img src={article.coverImage} alt={article.title} className="book-cover-image" />
+                ) : (
+                  <div className="book-cover-image" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', color: 'var(--ink-muted)', fontFamily: 'var(--font-serif)' }}>
+                    {String(index + 1).padStart(2, '0')}
+                  </div>
+                )}
+                <span className="book-cover-title">{article.title}</span>
+                <span className="book-cover-meta">{article.readingTime} phút đọc</span>
+              </Link>
+              {article.pages && article.pages.length > 0 && (
+                <Link 
+                  href={`/read/${article.slug}`}
+                  className="btn-primary"
+                  style={{ 
+                    position: 'absolute', 
+                    top: '10px', 
+                    right: '10px', 
+                    padding: '4px 8px', 
+                    fontSize: '0.7rem',
+                    borderRadius: '4px',
+                    textDecoration: 'none',
+                    zIndex: 2
+                  }}
+                >
+                  📖 Đọc
+                </Link>
               )}
-              <span className="book-cover-title">{article.title}</span>
-              <span className="book-cover-meta">{article.readingTime} phút đọc</span>
-            </Link>
+            </div>
           ))}
         </div>
       </section>

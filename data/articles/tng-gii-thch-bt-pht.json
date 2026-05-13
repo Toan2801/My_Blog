@@ -16,5 +16,153 @@
   "readingTime": 9,
   "coverImage": null,
   "author": "Toan Nguyen",
-  "footnotes": []
+  "footnotes": [],
+  "pages": [
+    {
+      "pageNumber": 1,
+      "imageUrl": "/api/articles/tng-gii-thch-bt-pht/page/1/image"
+    },
+    {
+      "pageNumber": 2,
+      "imageUrl": "/api/articles/tng-gii-thch-bt-pht/page/2/image"
+    },
+    {
+      "pageNumber": 3,
+      "imageUrl": "/api/articles/tng-gii-thch-bt-pht/page/3/image"
+    },
+    {
+      "pageNumber": 4,
+      "imageUrl": "/api/articles/tng-gii-thch-bt-pht/page/4/image"
+    },
+    {
+      "pageNumber": 5,
+      "imageUrl": "/api/articles/tng-gii-thch-bt-pht/page/5/image"
+    },
+    {
+      "pageNumber": 6,
+      "imageUrl": "/api/articles/tng-gii-thch-bt-pht/page/6/image"
+    },
+    {
+      "pageNumber": 7,
+      "imageUrl": "/api/articles/tng-gii-thch-bt-pht/page/7/image"
+    },
+    {
+      "pageNumber": 8,
+      "imageUrl": "/api/articles/tng-gii-thch-bt-pht/page/8/image"
+    },
+    {
+      "pageNumber": 9,
+      "imageUrl": "/api/articles/tng-gii-thch-bt-pht/page/9/image"
+    },
+    {
+      "pageNumber": 10,
+      "imageUrl": "/api/articles/tng-gii-thch-bt-pht/page/10/image"
+    },
+    {
+      "pageNumber": 11,
+      "imageUrl": "/api/articles/tng-gii-thch-bt-pht/page/11/image"
+    },
+    {
+      "pageNumber": 12,
+      "imageUrl": "/api/articles/tng-gii-thch-bt-pht/page/12/image"
+    },
+    {
+      "pageNumber": 13,
+      "imageUrl": "/api/articles/tng-gii-thch-bt-pht/page/13/image"
+    },
+    {
+      "pageNumber": 14,
+      "imageUrl": "/api/articles/tng-gii-thch-bt-pht/page/14/image"
+    },
+    {
+      "pageNumber": 15,
+      "imageUrl": "/api/articles/tng-gii-thch-bt-pht/page/15/image"
+    },
+    {
+      "pageNumber": 16,
+      "imageUrl": "/api/articles/tng-gii-thch-bt-pht/page/16/image"
+    },
+    {
+      "pageNumber": 17,
+      "imageUrl": "/api/articles/tng-gii-thch-bt-pht/page/17/image"
+    },
+    {
+      "pageNumber": 18,
+      "imageUrl": "/api/articles/tng-gii-thch-bt-pht/page/18/image"
+    }
+  ],
+  "markdownPages": [
+    {
+      "pageNumber": 1,
+      "markdown": "# Tưởng Giới Thạch bắt phạt\n\nToan Nguyen"
+    },
+    {
+      "pageNumber": 2,
+      "markdown": ""
+    },
+    {
+      "pageNumber": 3,
+      "markdown": "# Mục lục\n\n    - Chú thích — 12"
+    },
+    {
+      "pageNumber": 4,
+      "markdown": "Quảng Châu trống giục sang canh,\n\nCờ xanh cờ trắng rợp thành sớm trưa.\\[1\\]\n\nBao năm gió bụi nắng mưa,\n\nNay đem chí cũ mà khua kiếm hùng.\n\nTôn Văn tuy đã về không,\\[2\\]\n\nĐể lời còn vọng giữa lòng nước non.\n\nHậu sinh nối chí tiền nhân,\n\nQuyết đem Bắc phạt mở đường nhất chương.\n\nHoàng Phố một dải thao trường,\\[3\\]\n\nRèn nên tướng sĩ can trường bấy lâu.\n\nTưởng lang nắm giữ quân đầu,\\[4\\]\n\nCờ đề cách mạng, khí hầu ngất mây.\n\nNgày kia xuất trận từ đây,\\[5\\]\n\nNhắm lên Hồ Bắc, Hồ Nam tiến dần.\n\nRằng nay muốn cứu lê dân,\n\nPhải trừ quân phiệt chia phân nước nhà.\n\nMột đường chiêng trống vang xa,\n\nHai đường truyền hịch khắp tòa châu quân."
+    },
+    {
+      "pageNumber": 5,
+      "markdown": "Kẻ thì mở cổng xin hàng,\n\nNgười còn giữ lũy toan đường chống ngăn.\n\nBội Phu Ngô thị đầu tiên,\\[6\\]\n\nTừng xưng hùng cứ một miền đã lâu.\n\nNào ngờ thế cuộc đổi màu,\n\nBinh phong Quốc đảng như dầu bén khô.\n\nHạ Khẩu rồi đến Vũ Xương,\\[7\\]\n\nPháo rung thành lũy, giáo gươm sáng lòa.\n\nDân nghe cờ nghĩa kéo qua,\n\nNhiều nơi gánh nước đón ra bên đường.\n\nCó người khóc giữa khói sương:\n\n“Bao năm chinh chiến, nay mong yên nhà.”\n\nLại đem kho thóc mở ra,\n\nGiúp quân Bắc phạt vượt qua hiểm nghèo.\n\nTừng đoàn binh mã đi theo,\n\nDưới cờ cách mạng khí reo dậy trời.\n\nMột bên quân phiệt rã rời,\n\nMột bên sĩ khí sáng ngời đang lên."
+    },
+    {
+      "pageNumber": 6,
+      "markdown": "Ngô quân mấy bận cố bền,\n\nSong rồi thế trận ngả nghiêng từng hồi.\n\nCầu sông, bến chợ, thành ngoài,\n\nChỗ thì cờ trắng , chỗ thời bỏ thây.\n\nHồ Nam lại tới Giang Tây,\\[8\\]\n\nTin quân thắng trận truyền bay mỗi ngày.\n\nCác bên quân phiệt đó đây,\n\nNghe cơn sóng lớn cũng lay dạ lòng.\n\nCó người trở giáo quay cờ,\n\nCó người giữ thế đợi chờ hơn thua.\n\nMột trời chính cuộc sớm trưa,\n\nKhói binh dày đặc như mưa cuối mùa.\n\nBấy giờ trong đảng cũng vừa,\n\nNgoài tuy chung sức, trong chưa thuận lòng.\\[9\\]\n\nMột bên chủ thuyết công nông,\n\nMột bên toan giữ quyền quân về mình.\n\nVũ Hán rồi lại Nam Kinh,\\[10\\]\n\nHai nơi ý kiến bất bình kỵ nghi."
+    },
+    {
+      "pageNumber": 7,
+      "markdown": "Danh là cùng dựng đại kỳ,\n\nKỳ trung mối rạn tan ly ngấm ngầm.\n\nNhưng khi trước mặt đao binh,\n\nQuân còn phải tiến cho thành đại công.\n\nGiang Nam đất rộng mênh mông,\n\nMuốn lên phương bắc phải thông lối này.\n\nThượng Hải bến nước gió xoay,\n\nThương thuyền chen chúc, cờ bay rợp trời.\\[11\\]\n\nDân công, học giới nhiều nơi,\n\nĐón làn Bắc phạt như người đợi xuân.\n\nSong trong biến cuộc xoay vần,\n\nMáu đào lại nhuộm mấy lần phố đông.\\[12\\]\n\nMột phen rạn vỡ bên trong,\n\nTừ đây Quốc đảng chia dòng hẳn ra.\n\nTưởng gia khi ấy tay đà\n\nNắm phần quân chính, quyết mà tiến nhanh.\n\nNam Kinh dựng lại đô thành,\\[13\\]\n\nLấy làm chính phủ điều hành chiến chinh."
+    },
+    {
+      "pageNumber": 8,
+      "markdown": "Bấy giờ quân phiệt Bắc Kinh,\n\nKẻ thì thủ thế, kẻ rình viện nhau.\n\nTác Lâm Trương thị tuyến đầu,\\[14\\]\n\nVẫn còn giữ đất mấy châu thịnh cường.\n\nNhưng bao thế lực dọc đường,\n\nTrải qua mấy trận đã thường mỏi hao.\n\nPhùng quân, Diêm đảng lao chao,\\[15\\]\n\nKẻ theo, người ngả, ra vào khó phân.\n\nThiên hạ xem cuộc xoay vần,\n\nBiết rằng quân phiệt đã gần buổi suy.\n\nTừ khi Bắc phạt khởi kỳ,\n\nKhí thiêng một dải dồn vì chiến công.\n\nTừ Châu tiếp đến Sơn Đông,\\[16\\]\n\nTin quân tiến chiếm mấy vùng truyền đi.\n\nĐạn vang chen lẫn ngựa phi,\n\nCờ bay trên lũy, bụi che mặt thành.\n\nBắc phương gió cuốn mây giăng,\n\nTàn binh Phụng hệ cũng đành lùi chân."
+    },
+    {
+      "pageNumber": 9,
+      "markdown": "Về sau giữa buổi hành quân,\n\nTrương công gặp nạn, thân lần cũng toang.\\[17\\]\n\nĐường về xứ Phụng chưa tròn,\n\nXe kia vừa chuyển, mệnh còn bỗng tan.\n\nMột phen sét đánh ngang đàng,\n\nKhiến cho thế cuộc lại càng đổi thay.\n\nHọc Lương công tử lên thay,\\[18\\]\n\nXét cơ đại cuộc, chuyển ngay hướng cờ.\n\nBiết rằng giữ mãi chẳng chờ,\n\nBèn đem Đông Bắc quy về Nam Kinh.\n\nTừ đây chính cục định hình,\n\nDanh là thống nhất sơn thành đại cơ.\\[19\\]\n\nBắc Kinh đổi lại tên xưa,\n\nMấy năm phân liệt cũng vừa khép trang.\n\nThan ôi một cuộc chinh cường,\n\nMới gom tạm được biên cương rã rời.\n\nBao năm quân phiệt chia ngôi,\n\nĐến đây mới tạm lui rồi bóng đen."
+    },
+    {
+      "pageNumber": 10,
+      "markdown": "Nhưng trong một mối nối liền,\n\nMầm chia lại nảy sinh bên nội tình.\\[20\\]\n\nNgoài thì thu lại đế kinh,\n\nTrong thì ngọn lửa bất bình chưa nguôi.\n\nNước non tuy đã đổi đời,\n\nMà cơn sóng dữ vẫn chờ ngày sau.\n\nBắc phạt khép lại nhịp cầu,\n\nNối từ loạn lạc qua màu tân triêu.\n\nĐọc trang sử cũ càng nhiều,\n\nCàng thương chí lớn, càng phiền nước đau.\n\nMuốn yên thiên hạ dài lâu,\n\nKhông riêng thắng trận là cầu được đâu.\n\nPhải đem pháp độ bền sâu,\n\nPhải đem dân khí dìu nhau vững nền.\n\nBằng không sau cuộc chinh yên,\n\nLại sinh mối loạn ở miền khác thôi.\n\nBắc chinh một áng mây trôi,\n\nNửa là dựng nước, nửa đòi trả oan."
+    },
+    {
+      "pageNumber": 11,
+      "markdown": "Hai năm gươm giáo dọc ngang,\n\nCuối cùng cũng tạm mở trang hợp quần.\n\nTừ đây Nam Bắc hợp phần,\n\nTrên danh thu lại giang sơn một nhà.\n\nNhưng nghe cuối gió đầu xa,\n\nVẫn còn ẩn hiện can qua chưa tàn."
+    },
+    {
+      "pageNumber": 12,
+      "markdown": "### Chú thích\n\n\\[1\\] Quảng Châu là căn cứ chính của Quốc dân đảng trong giai đoạn chuẩn bị Bắc phạt. Sau khi Quốc dân đảng được cải tổ từ năm 1924, thành phố này trở thành trung tâm quân sự - chính trị của phong trào cách mạng miền Nam.)\n\n\\[2\\] “Tôn công” là Tôn Trung Sơn. Ông qua đời năm 1925, trước khi chiến dịch Bắc phạt chính thức bắt đầu, nhưng di sản chính trị và tổ chức của ông là nền tảng trực tiếp cho cuộc chinh phạt này.)\n\n\\[3\\] “Hoàng Phố” là Trường Quân sự Hoàng Phố (Whampoa Military Academy), thành lập năm 1924 tại Quảng Châu. Đây là lò đào tạo sĩ quan quan trọng nhất của Quốc dân đảng trước Bắc phạt.)\n\n\\[4\\] “Tưởng công” là Tưởng Giới Thạch. Sau khi Tôn Trung Sơn mất, ông nổi lên thành lãnh tụ quân sự chủ chốt của Quốc dân đảng và là tổng chỉ huy chiến dịch Bắc phạt.\n\n\\[5\\] Bắc phạt bắt đầu năm 1926, nhằm tiêu diệt các thế lực quân phiệt lớn đang chia cắt Trung Quốc. Đây là bước ngoặt chấm dứt dần thời kỳ quân phiệt Bắc Dương.\n\n\\[6\\] Ngô Bội Phu, một trong những quân phiệt mạnh nhất miền Bắc - Trung thời ấy. Ông là đối thủ lớn trong giai đoạn đầu của chiến dịch."
+    },
+    {
+      "pageNumber": 13,
+      "markdown": "\\[7\\] Trong quá trình tiến quân, lực lượng cách mạng tiến vào vùng trung du Trường Giang; Vũ Hán trở thành một trung tâm cực kỳ quan trọng. Britannica ghi rõ đến đầu xuân 1927, quân cách mạng đã ở thế chuẩn bị đánh Nam Kinh và Thượng Hải, cho thấy đà tiến rất mạnh từ miền Trung lên phía Đông.\n\n\\[8\\] Hồ Nam, Hồ Bắc, Giang Tây là các chiến trường trọng yếu của giai đoạn đầu Bắc phạt. Việc chiếm được các khu vực này tạo đà cho Quốc dân đảng tiến sang hạ lưu Trường Giang.\n\n\\[9\\] Trong nội bộ Quốc dân đảng lúc ấy có mâu thuẫn ngày càng sâu giữa cánh hữu của Tưởng Giới Thạch và lực lượng thiên tả, cùng với sự hiện diện của Đảng Cộng sản trong Mặt trận thống nhất lần thứ nhất.)\n\n\\[10\\] Năm 1927, xuất hiện thế đối lập giữa chính quyền Vũ Hán của phe Quốc dân đảng cánh tả và lực lượng của Tưởng Giới Thạch ở phía đông nam, sau đó là Nam Kinh. Đây là bước ngoặt chính trị lớn trong lúc chiến dịch vẫn đang diễn ra.\n\n\\[11\\] Thượng Hải là trung tâm kinh tế lớn nhất Trung Quốc lúc đó. Việc chiếm được thành phố này mang ý nghĩa quân sự, tài chính và biểu tượng cực lớn đối với Quốc dân đảng. Britannica nêu rằng đến tháng 3 năm 1927, quân cách mạng đã chiếm được Thượng Hải và Nam Kinh."
+    },
+    {
+      "pageNumber": 14,
+      "markdown": "\\[12\\] Câu “máu đào lại nhuộm mấy lần phố đông” nhắc tới cuộc thanh trừng cộng sản tại Thượng Hải vào tháng 4 năm 1927, thường gọi là Biến cố Thượng Hải hay Thảm sát Thượng Hải. Sự kiện này đánh dấu sự tan vỡ thực sự của Mặt trận thống nhất lần thứ nhất.\n\n\\[13\\] Sau bước ngoặt 1927, Nam Kinh trở thành trung tâm chính quyền của phe Tưởng Giới Thạch. Britannica cho biết đến ngày 10 tháng 10 năm 1928, Quốc dân đảng chính thức lập lại Chính phủ Quốc dân với thủ đô tại Nam Kinh.\n\n\\[14\\] Trương Tác Lâm, lãnh tụ quân phiệt Phụng hệ, kiểm soát Mãn Châu và có ảnh hưởng lớn ở miền Bắc. Ông là đối thủ cuối cùng có thực lực lớn trên đường tiến tới Bắc Kinh.\n\n\\[15\\] “Phùng” là Phùng Ngọc Tường, “Diêm” là Diêm Tích Sơn. Trong giai đoạn cuối Bắc phạt, các lực lượng của họ tham gia hoặc ngả theo phe Quốc dân đảng, góp phần cô lập các quân phiệt còn lại. Britannica ghi rõ trong đợt tiến công năm 1928, quân của Phùng Ngọc Tường và Diêm Tích Sơn cùng phối hợp với lực lượng Quốc dân đảng.\n\n\\[16\\] Các địa danh như Từ Châu, Sơn Đông gắn với đợt tiến quân cuối lên miền Bắc. Đây là giai đoạn quyết định trước khi quân Quốc dân đảng áp sát và chiếm Bắc Kinh.\n\n\\[17\\] Trương Tác Lâm bị ám sát vào đầu tháng 6 năm 1928 khi rút về Mãn Châu; Britannica cho biết ông chết vì vụ nổ do một số sĩ quan Nhật Bản sắp đặt, dù không có sự cho"
+    },
+    {
+      "pageNumber": 15,
+      "markdown": "phép chính thức của chính phủ Nhật.\n\n\\[18\\] Trương Học Lương, con trai Trương Tác Lâm. Sau khi kế vị, ông dần ngả về phía Nam Kinh và sau đó công nhận chính quyền Quốc dân đảng. Đây là bước then chốt giúp hoàn tất sự thống nhất Trung Quốc trên danh nghĩa.\n\n\\[19\\] Việc “thống nhất” năm 1928 chủ yếu là thống nhất trên danh nghĩa chính trị, vì nhiều khu vực vẫn do các thế lực địa phương kiểm soát mạnh. Tuy vậy, đây vẫn được xem là dấu mốc kết thúc cuộc Bắc phạt và thời kỳ quân phiệt Bắc Dương với tư cách trung ương cũ. Bắc Kinh cũng bị đổi tên thành Beiping/Bắc Bình.\n\n\\[20\\] Dù Bắc phạt thành công, mâu thuẫn nội bộ giữa Quốc dân đảng, cộng sản, các quân phiệt quy phụ và vấn đề Nhật Bản ở Mãn Châu vẫn còn nguyên. Britannica nhấn mạnh rằng sau thống nhất, Trung Quốc vẫn tiếp tục đối diện với chia rẽ nội bộ và áp lực từ Nhật ở Đông Bắc."
+    },
+    {
+      "pageNumber": 16,
+      "markdown": ""
+    },
+    {
+      "pageNumber": 17,
+      "markdown": ""
+    },
+    {
+      "pageNumber": 18,
+      "markdown": ""
+    }
+  ]
 }

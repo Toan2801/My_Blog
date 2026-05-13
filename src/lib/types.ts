@@ -7,6 +7,7 @@ export interface Footnote {
 export interface ArticlePage {
   pageNumber: number;
   imageUrl: string;
+  markdown?: string;
 }
 
 export interface ArticleMarkdownPage {
