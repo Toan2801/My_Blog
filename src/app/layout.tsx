@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import './discord-theme.css';
 import './auth.css';
 import { getSiteConfig } from '@/lib/data';
-import SiteHeader from '@/components/SiteHeader';
-import Footer from '@/components/Footer';
 import ReadingProgress from '@/components/ReadingProgress';
 import AuthProvider from '@/components/AuthProvider';
+import DiscordShell from '@/components/DiscordShell';
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = getSiteConfig();
@@ -24,9 +24,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body suppressHydrationWarning>
         <AuthProvider>
           <ReadingProgress />
-          <SiteHeader config={config} />
-          <main>{children}</main>
-          <Footer config={config} />
+          <DiscordShell config={config}>
+            {children}
+          </DiscordShell>
         </AuthProvider>
       </body>
     </html>

@@ -3,13 +3,20 @@ import { getSiteConfig, getAllArticles, getAllSeries } from '@/lib/data';
 import { getVideos } from '@/lib/video-data';
 import { formatDate } from '@/lib/utils';
 import type { Metadata } from 'next';
-import TiltCard from '@/components/TiltCard';
-import HeroSlider from '@/components/HeroSlider';
-import HomeSidebar from '@/components/HomeSidebar';
 
 export const metadata: Metadata = {
   title: 'Trang Chủ',
 };
+
+function timeAgo(dateStr: string) {
+  const diff = Date.now() - new Date(dateStr).getTime();
+  const days = Math.floor(diff / 86400000);
+  if (days < 1) return 'Hôm nay';
+  if (days === 1) return 'Hôm qua';
+  if (days < 7) return `${days} ngày trước`;
+  if (days < 30) return `${Math.floor(days / 7)} tuần trước`;
+  return formatDate(dateStr);
+}
 
 export default function HomePage() {
   const config = getSiteConfig();
@@ -17,209 +24,243 @@ export default function HomePage() {
   const allSeries = getAllSeries();
   const videos = getVideos();
 
-  // Standalone articles (not part of a series)
-  const regularArticles = allArticles.filter(a => !a.series);
+  // Published content
+  const published = allArticles.filter(a => a.status === 'published');
+  const regularArticles = published.filter(a => !a.series);
 
-  // Featured series by type
+  // Featured series
   const featuredSeriesArticles = allSeries.filter(s => s.featured && s.type === 'articles' && s.status === 'published');
   const featuredSeriesTranslations = allSeries.filter(s => s.featured && s.type === 'translation' && s.status === 'published');
 
-  // Fill remaining slots (max 6 per section) with standalone featured articles
-  const remainingArticleSlots = Math.max(0, 6 - featuredSeriesArticles.length);
-  const remainingTranslationSlots = Math.max(0, 6 - featuredSeriesTranslations.length);
+  // Featured standalone
+  const featuredOriginals = regularArticles.filter(a => a.type === 'articles' && a.featured).slice(0, Math.max(0, 6 - featuredSeriesArticles.length));
+  const featuredTranslations = regularArticles.filter(a => a.type === 'translation' && a.featured).slice(0, Math.max(0, 6 - featuredSeriesTranslations.length));
 
-  const featuredOriginals = regularArticles.filter(a => a.type === 'articles' && a.featured).slice(0, remainingArticleSlots);
-  const featuredTranslations = regularArticles.filter(a => a.type === 'translation' && a.featured).slice(0, remainingTranslationSlots);
-
-  const showFeaturedOriginals = featuredOriginals.length > 0 || featuredSeriesArticles.length > 0;
-  const showFeaturedTranslations = featuredTranslations.length > 0 || featuredSeriesTranslations.length > 0;
-
-  // Hero slides from featured articles
-  const heroSlides = allArticles
-    .filter(a => a.featured && a.status === 'published')
-    .slice(0, 5)
-    .map(a => ({
-      title: a.title,
-      slug: a.slug,
-      category: a.category,
-      excerpt: a.excerpt?.substring(0, 120) || '',
-      coverImage: a.coverImage,
-    }));
-
-  // Recent articles for sidebar
-  const recentArticles = allArticles
-    .filter(a => a.status === 'published')
+  // Recent articles for "Latest" section
+  const recentArticles = published
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 5)
-    .map(a => ({ slug: a.slug, title: a.title, date: a.date }));
+    .slice(0, 12);
 
-  const imgBoxStyle: React.CSSProperties = {
-    height: '180px',
-    overflow: 'hidden',
-    background: 'var(--paper-dark)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  };
-
-  const imgStyle: React.CSSProperties = {
-    width: '100%',
-    height: '100%',
-    objectFit: 'contain',
-    transition: 'transform 0.5s ease',
-  };
+  // Categories from config
+  const categories = ['Tất cả', ...config.categories];
 
   return (
     <>
-      {/* Hero Slider */}
-      <HeroSlider slides={heroSlides} />
-
-      <div className="container" style={{ paddingTop: 0 }}>
-        {/* Main + Sidebar layout */}
-        <div className="home-main-sidebar">
-          <div>
-            {/* Featured Articles Section */}
-            {showFeaturedOriginals && (
-              <section style={{ marginBottom: 'var(--space-10)' }}>
-                <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', color: 'var(--ink)', marginBottom: 'var(--space-6)', paddingBottom: 'var(--space-3)', borderBottom: '2px solid var(--gold)' }}>Bài viết nổi bật</h2>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 'var(--space-6)' }}>
-                  {featuredSeriesArticles.map(series => (
-                    <TiltCard key={series.slug}>
-                      <div className="admin-card" style={{ padding: 0, height: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-                        {series.coverImage && (
-                          <Link href={`/series/${series.slug}`} style={imgBoxStyle}>
-                            <img src={series.coverImage} alt={series.title} style={imgStyle} />
-                          </Link>
-                        )}
-                        <div style={{ padding: 'var(--space-5)', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                          <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--gold)', letterSpacing: '0.1em', marginBottom: '4px' }}>Series</span>
-                          <h3 style={{ fontSize: '1.2rem', fontFamily: 'var(--font-serif)', color: 'var(--ink)', marginBottom: 'var(--space-3)' }}>
-                            <Link href={`/series/${series.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>{series.title}</Link>
-                          </h3>
-                          <p style={{ fontSize: '0.85rem', color: 'var(--ink-light)', lineHeight: '1.6', flex: 1, marginBottom: 'var(--space-4)' }}>
-                            {series.description.length > 120 ? series.description.substring(0, 120) + '...' : series.description}
-                          </p>
-                          <Link href={`/series/${series.slug}`} className="btn-secondary" style={{ fontSize: '0.8rem', padding: '6px 14px', alignSelf: 'flex-start' }}>
-                            Xem trọn bộ
-                          </Link>
-                        </div>
-                      </div>
-                    </TiltCard>
-                  ))}
-                  {featuredOriginals.map(article => (
-                    <TiltCard key={article.slug}>
-                      <div className="admin-card" style={{ padding: 0, height: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-                        {article.coverImage && (
-                          <Link href={`/articles/${article.slug}`} style={imgBoxStyle}>
-                            <img src={article.coverImage} alt={article.title} style={imgStyle} />
-                          </Link>
-                        )}
-                        <div style={{ padding: 'var(--space-5)', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                          <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--gold)', letterSpacing: '0.1em', marginBottom: '4px' }}>{article.category}</span>
-                          <h3 style={{ fontSize: '1.2rem', fontFamily: 'var(--font-serif)', color: 'var(--ink)', marginBottom: 'var(--space-3)' }}>
-                            <Link href={`/articles/${article.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>{article.title}</Link>
-                          </h3>
-                          <p style={{ fontSize: '0.85rem', color: 'var(--ink-light)', lineHeight: '1.6', flex: 1, marginBottom: 'var(--space-4)' }}>
-                            {article.excerpt.length > 120 ? article.excerpt.substring(0, 120) + '...' : article.excerpt}
-                          </p>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
-                            <span style={{ fontSize: '0.78rem', color: 'var(--ink-muted)' }}>{formatDate(article.date)}</span>
-                            <Link href={`/articles/${article.slug}`} className="btn-secondary" style={{ fontSize: '0.8rem', padding: '6px 14px' }}>
-                              Đọc tiếp
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    </TiltCard>
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {/* Featured Translations Section */}
-            {showFeaturedTranslations && (
-              <section style={{ marginBottom: 'var(--space-10)' }}>
-                <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', color: 'var(--ink)', marginBottom: 'var(--space-6)', paddingBottom: 'var(--space-3)', borderBottom: '2px solid var(--gold)' }}>Bài dịch nổi bật</h2>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 'var(--space-6)' }}>
-                  {featuredSeriesTranslations.map(series => (
-                    <TiltCard key={series.slug}>
-                      <div className="admin-card" style={{ padding: 0, height: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-                        {series.coverImage && (
-                          <Link href={`/series/${series.slug}`} style={imgBoxStyle}>
-                            <img src={series.coverImage} alt={series.title} style={imgStyle} />
-                          </Link>
-                        )}
-                        <div style={{ padding: 'var(--space-5)', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                          <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--gold)', letterSpacing: '0.1em', marginBottom: '4px' }}>Series</span>
-                          <h3 style={{ fontSize: '1.2rem', fontFamily: 'var(--font-serif)', color: 'var(--ink)', marginBottom: 'var(--space-3)' }}>
-                            <Link href={`/series/${series.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>{series.title}</Link>
-                          </h3>
-                          <p style={{ fontSize: '0.85rem', color: 'var(--ink-light)', lineHeight: '1.6', flex: 1, marginBottom: 'var(--space-4)' }}>
-                            {series.description.length > 120 ? series.description.substring(0, 120) + '...' : series.description}
-                          </p>
-                          <Link href={`/series/${series.slug}`} className="btn-secondary" style={{ fontSize: '0.8rem', padding: '6px 14px', alignSelf: 'flex-start' }}>
-                            Xem trọn bộ
-                          </Link>
-                        </div>
-                      </div>
-                    </TiltCard>
-                  ))}
-                  {featuredTranslations.map(article => (
-                    <TiltCard key={article.slug}>
-                      <div className="admin-card" style={{ padding: 0, height: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-                        {article.coverImage && (
-                          <Link href={`/articles/${article.slug}`} style={imgBoxStyle}>
-                            <img src={article.coverImage} alt={article.title} style={imgStyle} />
-                          </Link>
-                        )}
-                        <div style={{ padding: 'var(--space-5)', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                          <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--gold)', letterSpacing: '0.1em', marginBottom: '4px' }}>{article.category}</span>
-                          <h3 style={{ fontSize: '1.2rem', fontFamily: 'var(--font-serif)', color: 'var(--ink)', marginBottom: 'var(--space-3)' }}>
-                            <Link href={`/articles/${article.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>{article.title}</Link>
-                          </h3>
-                          <p style={{ fontSize: '0.85rem', color: 'var(--ink-light)', lineHeight: '1.6', flex: 1, marginBottom: 'var(--space-4)' }}>
-                            {article.excerpt.length > 120 ? article.excerpt.substring(0, 120) + '...' : article.excerpt}
-                          </p>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
-                            <span style={{ fontSize: '0.78rem', color: 'var(--ink-muted)' }}>{formatDate(article.date)}</span>
-                            <Link href={`/articles/${article.slug}`} className="btn-secondary" style={{ fontSize: '0.8rem', padding: '6px 14px' }}>
-                              Đọc tiếp
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    </TiltCard>
-                  ))}
-                </div>
-              </section>
-            )}
-          </div>
-
-          {/* Sidebar */}
-          <HomeSidebar
-            recentArticles={recentArticles}
-            categories={config.categories}
-            quoteBlock={config.quoteBlock}
-          />
-        </div>
-
-        {/* Multimedia Section */}
-        {videos.length > 0 && (
-          <section className="multimedia-section">
-            <p className="section-label">Video</p>
-            <div className="multimedia-grid">
-              {videos.slice(0, 4).map(v => (
-                <a key={v.id} href={v.url} target="_blank" rel="noopener noreferrer" className="multimedia-card">
-                  <div className="multimedia-card-body">
-                    <p className="multimedia-card-title">{v.title}</p>
-                    {v.description && <p style={{ fontSize: '0.8rem', color: 'var(--ink-muted)', marginTop: '4px', lineHeight: 1.5 }}>{v.description.substring(0, 80)}</p>}
-                  </div>
-                </a>
-              ))}
-            </div>
-          </section>
-        )}
+      {/* Info Banner */}
+      <div className="dc-banner">
+        <svg className="dc-banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="16" x2="12" y2="12" />
+          <line x1="12" y1="8" x2="12.01" y2="8" />
+        </svg>
+        <span className="dc-banner-text">
+          Chào mừng đến <strong>{config.blogTitle}</strong>! Khám phá các bài viết và bài dịch về lịch sử.
+        </span>
       </div>
+
+      {/* Filter chips */}
+      <div className="dc-filters">
+        {categories.map((cat, i) => (
+          <Link
+            key={cat}
+            href={cat === 'Tất cả' ? '/articles' : `/articles?category=${encodeURIComponent(cat)}`}
+            className={`dc-chip${i === 0 ? ' active' : ''}`}
+          >
+            {cat}
+          </Link>
+        ))}
+      </div>
+
+      {/* Featured Articles */}
+      {(featuredSeriesArticles.length > 0 || featuredOriginals.length > 0) && (
+        <>
+          <h2 className="dc-section-header">Bài viết nổi bật</h2>
+          <div className="dc-post-grid" style={{ marginBottom: 32 }}>
+            {featuredSeriesArticles.map(series => (
+              <Link key={series.slug} href={`/series/${series.slug}`} className="dc-post-card">
+                <div className="dc-post-card-meta-top">
+                  <span className="dc-post-category">Series</span>
+                </div>
+                {series.coverImage && (
+                  <div className="dc-post-thumb">
+                    <img src={series.coverImage} alt={series.title} />
+                  </div>
+                )}
+                <div className="dc-post-body">
+                  <h3 className="dc-post-title">{series.title}</h3>
+                  <p className="dc-post-excerpt">
+                    {series.description.length > 100 ? series.description.substring(0, 100) + '...' : series.description}
+                  </p>
+                </div>
+                <div className="dc-post-footer">
+                  <span className="dc-post-stat">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" /></svg>
+                    Series
+                  </span>
+                </div>
+              </Link>
+            ))}
+            {featuredOriginals.map(article => (
+              <Link key={article.slug} href={`/articles/${article.slug}`} className="dc-post-card">
+                <div className="dc-post-card-meta-top">
+                  <span className="dc-post-category">{article.category || 'Bài viết'}</span>
+                  <span className="dc-post-time">{timeAgo(article.date)}</span>
+                </div>
+                {article.coverImage && (
+                  <div className="dc-post-thumb">
+                    <img src={article.coverImage} alt={article.title} />
+                  </div>
+                )}
+                <div className="dc-post-body">
+                  <h3 className="dc-post-title">{article.title}</h3>
+                  <p className="dc-post-excerpt">
+                    {article.excerpt.length > 100 ? article.excerpt.substring(0, 100) + '...' : article.excerpt}
+                  </p>
+                  {article.tags.length > 0 && (
+                    <div className="dc-post-tags">
+                      {article.tags.slice(0, 3).map(tag => (
+                        <span key={tag} className="dc-post-tag">{tag}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <div className="dc-post-footer">
+                  <span className="dc-post-stat">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+                    {article.readingTime} phút
+                  </span>
+                  <span className="dc-post-author-avatar">
+                    {(article.author || config.authorName).slice(0, 1).toUpperCase()}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* Featured Translations */}
+      {(featuredSeriesTranslations.length > 0 || featuredTranslations.length > 0) && (
+        <>
+          <h2 className="dc-section-header">Bài dịch nổi bật</h2>
+          <div className="dc-post-grid" style={{ marginBottom: 32 }}>
+            {featuredSeriesTranslations.map(series => (
+              <Link key={series.slug} href={`/series/${series.slug}`} className="dc-post-card">
+                <div className="dc-post-card-meta-top">
+                  <span className="dc-post-category">Series</span>
+                </div>
+                {series.coverImage && (
+                  <div className="dc-post-thumb">
+                    <img src={series.coverImage} alt={series.title} />
+                  </div>
+                )}
+                <div className="dc-post-body">
+                  <h3 className="dc-post-title">{series.title}</h3>
+                  <p className="dc-post-excerpt">
+                    {series.description.length > 100 ? series.description.substring(0, 100) + '...' : series.description}
+                  </p>
+                </div>
+                <div className="dc-post-footer">
+                  <span className="dc-post-stat">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" /></svg>
+                    Series
+                  </span>
+                </div>
+              </Link>
+            ))}
+            {featuredTranslations.map(article => (
+              <Link key={article.slug} href={`/articles/${article.slug}`} className="dc-post-card">
+                <div className="dc-post-card-meta-top">
+                  <span className="dc-post-category">{article.category || 'Bài dịch'}</span>
+                  <span className="dc-post-time">{timeAgo(article.date)}</span>
+                </div>
+                {article.coverImage && (
+                  <div className="dc-post-thumb">
+                    <img src={article.coverImage} alt={article.title} />
+                  </div>
+                )}
+                <div className="dc-post-body">
+                  <h3 className="dc-post-title">{article.title}</h3>
+                  <p className="dc-post-excerpt">
+                    {article.excerpt.length > 100 ? article.excerpt.substring(0, 100) + '...' : article.excerpt}
+                  </p>
+                  {article.tags.length > 0 && (
+                    <div className="dc-post-tags">
+                      {article.tags.slice(0, 3).map(tag => (
+                        <span key={tag} className="dc-post-tag">{tag}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <div className="dc-post-footer">
+                  <span className="dc-post-stat">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+                    {article.readingTime} phút
+                  </span>
+                  <span className="dc-post-author-avatar">
+                    {(article.author || config.authorName).slice(0, 1).toUpperCase()}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* Recent / Latest Posts */}
+      <h2 className="dc-section-header">Bài viết mới nhất</h2>
+      <div className="dc-post-grid" style={{ marginBottom: 32 }}>
+        {recentArticles.map(article => (
+          <Link key={article.slug} href={`/articles/${article.slug}`} className="dc-post-card">
+            <div className="dc-post-card-meta-top">
+              <span className="dc-post-category">{article.category || article.type === 'translation' ? 'Bài dịch' : 'Bài viết'}</span>
+              <span className="dc-post-time">{timeAgo(article.date)}</span>
+            </div>
+            {article.coverImage && (
+              <div className="dc-post-thumb">
+                <img src={article.coverImage} alt={article.title} />
+              </div>
+            )}
+            <div className="dc-post-body">
+              <h3 className="dc-post-title">{article.title}</h3>
+              <p className="dc-post-excerpt">
+                {article.excerpt.length > 100 ? article.excerpt.substring(0, 100) + '...' : article.excerpt}
+              </p>
+              {article.tags.length > 0 && (
+                <div className="dc-post-tags">
+                  {article.tags.slice(0, 3).map(tag => (
+                    <span key={tag} className="dc-post-tag">{tag}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="dc-post-footer">
+              <span className="dc-post-stat">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+                {article.readingTime} phút
+              </span>
+              <span className="dc-post-author-avatar">
+                {(article.author || config.authorName).slice(0, 1).toUpperCase()}
+              </span>
+            </div>
+          </Link>
+        ))}
+      </div>
+
+      {/* Videos Section */}
+      {videos.length > 0 && (
+        <>
+          <h2 className="dc-section-header">Video</h2>
+          <div className="dc-video-grid">
+            {videos.slice(0, 4).map(v => (
+              <a key={v.id} href={v.url} target="_blank" rel="noopener noreferrer" className="dc-video-card">
+                <p className="dc-video-card-title">{v.title}</p>
+                {v.description && <p className="dc-video-card-desc">{v.description.substring(0, 80)}</p>}
+              </a>
+            ))}
+          </div>
+        </>
+      )}
     </>
   );
 }

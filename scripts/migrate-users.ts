@@ -16,8 +16,8 @@ import User from '../src/models/User';
 dotenv.config({ path: '.env.local' });
 
 const MONGODB_URI = process.env.MONGODB_URI;
-const ADMIN_EMAIL = 'admin@abc.com';
-const ADMIN_PASSWORD = 'Admin1234';
+const ADMIN_EMAIL = 'tn29012005@gmail.com';
+const ADMIN_PASSWORD = '123456';
 
 async function main() {
   if (!MONGODB_URI) {
