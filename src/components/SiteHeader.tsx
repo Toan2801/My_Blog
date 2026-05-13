@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SiteConfig } from '@/lib/types';
 import Navigation from './Navigation';
+import ProfileMenu from './ProfileMenu';
 
 export default function SiteHeader({ config }: { config: SiteConfig }) {
   const pathname = usePathname();
@@ -30,6 +31,7 @@ export default function SiteHeader({ config }: { config: SiteConfig }) {
           <Link href="/videos" className={`nav-link-premium ${pathname.startsWith('/videos') ? 'active' : ''}`}>Video</Link>
           <Link href="/contact" className={`nav-link-premium ${pathname.startsWith('/contact') ? 'active' : ''}`}>Liên hệ</Link>
           <a href="/api/articles/random" className="nav-link-premium">✨ Ngẫu nhiên</a>
+          <ProfileMenu />
         </div>
       </nav>
     </header>

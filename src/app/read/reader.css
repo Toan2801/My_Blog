@@ -1,0 +1,665 @@
+/* ============================================
+   BOOK READER — Page-flip reading mode
+   ============================================ */
+
+.reader-layout {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  background: #1a1a1a;
+  color: #fff;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Toolbar */
+.reader-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 0 16px;
+  background: #111;
+  border-bottom: 1px solid #333;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.reader-toolbar-left,
+.reader-toolbar-center,
+.reader-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reader-toolbar-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.reader-btn {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-family: var(--font-ui, sans-serif);
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.reader-btn:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.reader-btn.active {
+  background: rgba(198,138,43,0.3);
+  border-color: rgba(198,138,43,0.5);
+}
+
+.reader-page-indicator {
+  font-family: var(--font-ui, sans-serif);
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.7);
+  white-space: nowrap;
+}
+
+.reader-page-input {
+  width: 40px;
+  text-align: center;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  border-radius: 3px;
+  padding: 2px 4px;
+  font-size: 0.82rem;
+  font-family: var(--font-ui, sans-serif);
+}
+
+/* Viewport */
+.reader-viewport {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 16px;
+}
+
+/* ── Sidebar / Table of Contents ────────────────────────────── */
+.reader-sidebar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 280px;
+  background: #141414;
+  border-right: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  z-index: 20;
+  transform: translateX(-100%);
+  transition: transform 0.2s ease;
+  font-family: var(--font-ui, sans-serif);
+  color: rgba(255,255,255,0.9);
+}
+
+.reader-sidebar.is-open {
+  transform: translateX(0);
+}
+
+.reader-sidebar-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 19;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.reader-sidebar-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.reader-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #2a2a2a;
+  flex-shrink: 0;
+}
+
+.reader-sidebar-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+}
+
+.reader-sidebar-close {
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.6);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.reader-sidebar-close:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+
+.reader-sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+
+.reader-toc-list,
+.reader-toc-children {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.reader-toc-item {
+  margin: 0;
+}
+
+.reader-toc-row {
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+}
+
+.reader-toc-toggle {
+  flex-shrink: 0;
+  width: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.55);
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.7rem;
+  transition: color 0.15s;
+}
+
+.reader-toc-toggle:hover {
+  color: #fff;
+}
+
+.reader-toc-toggle-placeholder {
+  cursor: default;
+}
+
+.reader-toc-chevron {
+  display: inline-block;
+  transition: transform 0.15s;
+  line-height: 1;
+}
+
+.reader-toc-chevron.is-collapsed {
+  transform: rotate(-90deg);
+}
+
+.reader-toc-link {
+  flex: 1;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.78);
+  text-align: left;
+  font-family: inherit;
+  font-size: 0.86rem;
+  line-height: 1.4;
+  padding: 6px 12px 6px 4px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.reader-toc-link:hover {
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+}
+
+.reader-toc-link.is-active {
+  background: rgba(198,138,43,0.18);
+  color: #f5d68b;
+}
+
+.reader-toc-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reader-toc-page {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Indentation per level */
+.reader-toc-item.reader-toc-level-1 > .reader-toc-row { padding-left: 8px; font-weight: 600; }
+.reader-toc-item.reader-toc-level-2 > .reader-toc-row { padding-left: 20px; }
+.reader-toc-item.reader-toc-level-3 > .reader-toc-row { padding-left: 36px; font-size: 0.95em; }
+
+/* Desktop: docked sidebar shifts the book area. */
+@media (min-width: 768px) {
+  .reader-viewport.has-sidebar-open .reader-book-container,
+  .reader-viewport.has-sidebar-open .reader-arrow {
+    transform: translateX(140px);
+    transition: transform 0.2s ease;
+  }
+  .reader-sidebar-backdrop {
+    display: none;
+  }
+}
+
+/* Mobile: full-height overlay drawer with backdrop. */
+@media (max-width: 767.98px) {
+  .reader-sidebar {
+    width: 84vw;
+    max-width: 320px;
+  }
+}
+
+/* ── Book container (StPageFlip renders its canvas here) ──── */
+.reader-book-container {
+  /* StPageFlip sizes this container automatically.
+     The container holds a <canvas> that renders the flip animation. */
+  position: relative;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,0.2),
+    0 8px 32px rgba(0,0,0,0.3);
+  border-radius: 3px;
+}
+
+/* StPageFlip's internal canvas fills the container */
+.reader-book-container canvas {
+  display: block;
+}
+
+/* Page navigation arrows */
+.reader-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  width: 44px;
+  height: 64px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, opacity 0.15s;
+  z-index: 5;
+}
+
+.reader-arrow:hover {
+  background: rgba(0,0,0,0.7);
+}
+
+.reader-arrow-prev {
+  left: 16px;
+}
+
+.reader-arrow-next {
+  right: 16px;
+}
+
+.reader-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Loading overlay */
+.reader-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: rgba(0,0,0,0.6);
+  z-index: 20;
+}
+
+.reader-loading-text {
+  font-family: var(--font-ui, sans-serif);
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+}
+
+.reader-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255,255,255,0.2);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: reader-spin 0.8s linear infinite;
+}
+
+@keyframes reader-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Error state */
+.reader-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+  font-family: var(--font-ui, sans-serif);
+  color: rgba(255,255,255,0.7);
+}
+
+/* Print prevention */
+@media print {
+  .reader-layout {
+    display: none !important;
+  }
+  body::after {
+    content: 'In ấn không được hỗ trợ trong chế độ đọc.';
+    display: block;
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2rem;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .reader-toolbar {
+    height: 40px;
+    padding: 0 8px;
+  }
+  .reader-btn {
+    padding: 4px 10px;
+    font-size: 0.75rem;
+  }
+  .reader-viewport {
+    padding: 8px;
+  }
+  .reader-arrow {
+    width: 32px;
+    height: 48px;
+    font-size: 1.1rem;
+  }
+  .reader-arrow-prev { left: 4px; }
+  .reader-arrow-next { right: 4px; }
+}
+
+/* ── Search overlay ──────────────────────────────────────────── */
+.reader-search-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 50;
+  padding-top: 60px;
+}
+
+.reader-search-panel {
+  width: min(640px, 92vw);
+  max-height: 75vh;
+  background: #1c1c1f;
+  color: #f4f4f6;
+  border-radius: 10px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.reader-search-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.reader-search-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: #f4f4f6;
+  font-size: 0.92rem;
+  padding: 8px 12px;
+  outline: none;
+}
+
+.reader-search-input:focus {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.reader-search-status {
+  padding: 8px 14px;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.reader-search-results {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.reader-search-hit {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.reader-search-hit:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.reader-search-hit-page {
+  font-weight: 600;
+  color: #9bd0ff;
+  flex-shrink: 0;
+  min-width: 70px;
+}
+
+.reader-search-hit-snippet {
+  flex: 1;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.4;
+}
+
+.reader-search-hit-snippet code {
+  display: inline;
+  border-radius: 0.25rem;
+  font-size: 0.85em;
+  padding: 0 0.2em;
+  background: rgba(89, 112, 242, 0.18);
+  border: 1px solid rgba(151, 151, 159, 0.45);
+  font-family: inherit;
+  color: #d6dcff;
+}
+
+.reader-search-hit-snippet em {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.reader-search-hit-count {
+  color: rgba(255, 255, 255, 0.5);
+  flex-shrink: 0;
+  font-size: 0.78rem;
+}
+
+/* ── HTML-mode page hosts (canvas-backed) ─────────────────────── */
+.reader-page-host {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  overflow: hidden;
+}
+
+.reader-page-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.reader-page-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b8b8be;
+  font-family: 'Times New Roman', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  pointer-events: none;
+}
+
+/* ── page-flip base styles (the lib ships these but doesn't bundle them
+       with the JS; loadFromHTML mode needs them so the shadow overlays
+       are positioned correctly during a flip). ──────────────────── */
+.stf__parent {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  transform: translateZ(0);
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+}
+
+.stf__block {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  perspective: 2000px;
+}
+
+.stf__item {
+  display: none;
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.stf__outerShadow,
+.stf__innerShadow,
+.stf__hardShadow,
+.stf__hardInnerShadow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+}
+
+/* ── Page-edge depth shadow ─────────────────────────────────────
+   Gives each visible page a soft drop on its outer (non-spine) side
+   so the page edge is recognizable while flipping — looks like real
+   paper sitting on the binding rather than a flat image. */
+.stf__item.--soft {
+  /* Subtle drop on all sides; stronger toward the outer edge. */
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.06),
+    0 0 1px rgba(0, 0, 0, 0.20);
+}
+
+/* Right-hand page: deeper shadow on the right (outer) edge. */
+.stf__item.--soft.--right {
+  box-shadow:
+    4px 2px 8px rgba(0, 0, 0, 0.18),
+    1px 0 2px rgba(0, 0, 0, 0.22);
+}
+
+/* Left-hand page: deeper shadow on the left (outer) edge. */
+.stf__item.--soft.--left {
+  box-shadow:
+    -4px 2px 8px rgba(0, 0, 0, 0.18),
+    -1px 0 2px rgba(0, 0, 0, 0.22);
+}
+
+/* Gutter shadow: subtle dark fade at the spine side of each page so
+   the binding reads as a slight valley between the two pages. */
+.reader-page-host::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 24px;
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+/* page-flip adds .--left / .--right to the same <div> that already has
+   .reader-page-host, so the pseudo-element selectors below chain them. */
+.reader-page-host.--right::after {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.22) 0%,
+    rgba(0, 0, 0, 0.05) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.reader-page-host.--left::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0.22) 0%,
+    rgba(0, 0, 0, 0.05) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}

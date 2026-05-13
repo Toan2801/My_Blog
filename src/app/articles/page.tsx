@@ -1,8 +1,8 @@
 import { getAllArticles, getAllSeries, getSiteConfig } from '@/lib/data';
 import ArticleListClient from '@/components/ArticleListClient';
+import CategorySidebar from '@/components/CategorySidebar';
+import Breadcrumb from '@/components/Breadcrumb';
 import type { Metadata } from 'next';
-import TiltCard from '@/components/TiltCard';
-import Link from 'next/link';
 
 export const metadata: Metadata = { title: 'Bài viết' };
 
@@ -25,19 +25,10 @@ export default async function ArticlesPage({
   ];
 
   return (
-    <>
-      <div className="container">
-        {/* Dynamic Category Navigator - Moved from homepage */}
-        <section className="era-navigator" style={{ marginBottom: 'var(--space-10)' }}>
-          {config.categories.slice(0, 4).map(cat => (
-            <TiltCard key={cat}>
-              <Link href={`/articles?category=${encodeURIComponent(cat)}`} className="era-card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-                <span className="era-name">{cat}</span>
-                <span className="era-period">Xem thêm</span>
-              </Link>
-            </TiltCard>
-          ))}
-        </section>
+    <div className="container">
+      <Breadcrumb items={[{ label: 'Bài viết' }]} />
+      <div className="articles-with-sidebar">
+        <CategorySidebar categories={config.categories} activeCategory={category} />
         <ArticleListClient
           items={items}
           categories={config.categories}
@@ -45,6 +36,6 @@ export default async function ArticlesPage({
           initialSearch={search}
         />
       </div>
-    </>
+    </div>
   );
 }

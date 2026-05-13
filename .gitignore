@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated page images (rasterized articles) — old location, kept ignored
+# in case anyone still has the dir on disk; current output is data/page-images/.
+/public/data/image/articles/
+/data/page-images/

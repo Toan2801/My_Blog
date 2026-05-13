@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import Article from '../src/models/Article';
 import SiteConfig from '../src/models/SiteConfig';
+import { rasterizeArticle } from '../src/lib/rasterize';
 
 dotenv.config({ path: '.env.local' });
 
@@ -46,6 +47,42 @@ async function migrate() {
         await Article.deleteOne({ slug: articleData.slug });
         await Article.create(articleData);
         console.log(`- Đã tải lên thành công: ${articleData.title}`);
+      }
+    }
+
+    // Rasterize articles into page images
+    console.log('\n📖 Đang rasterize bài viết thành trang sách...');
+    if (fs.existsSync(ARTICLES_DIR)) {
+      const articleFiles = fs.readdirSync(ARTICLES_DIR).filter(f => f.endsWith('.json'));
+      for (const file of articleFiles) {
+        const raw = fs.readFileSync(path.join(ARTICLES_DIR, file), 'utf-8');
+        const articleData = JSON.parse(raw);
+        if (articleData.status !== 'published' || !articleData.content) continue;
+
+        try {
+          console.log(`  ⏳ ${articleData.title}...`);
+          const { pages, markdownPages } = await rasterizeArticle(
+            articleData.slug,
+            articleData.content,
+            articleData.title,
+            articleData.author,
+          );
+
+          // Update JSON file with page + markdown metadata
+          articleData.pages = pages;
+          articleData.markdownPages = markdownPages;
+          fs.writeFileSync(path.join(ARTICLES_DIR, file), JSON.stringify(articleData, null, 2), 'utf-8');
+
+          // Update MongoDB document too
+          await Article.updateOne(
+            { slug: articleData.slug },
+            { $set: { pages, markdownPages } },
+          );
+
+          console.log(`  ✅ ${pages.length} trang (ảnh + markdown).`);
+        } catch (err) {
+          console.error(`  ❌ Lỗi khi rasterize ${articleData.slug}:`, err);
+        }
       }
     }
 

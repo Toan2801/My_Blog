@@ -14,6 +14,7 @@ export default function AdminDashboard() {
       <div className="admin-header">
         <h1 className="admin-page-title">Tổng quan</h1>
         <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
+          <Link href="/admin/books" className="btn-edit" style={{ textDecoration: 'none' }}>📚 Quản lý sách</Link>
           <Link href="/admin/series" className="btn-edit" style={{ textDecoration: 'none' }}>Quản lý Series</Link>
           <Link href="/admin/videos" className="btn-edit" style={{ textDecoration: 'none' }}>Quản lý Video</Link>
           <Link href="/admin/articles/new" className="btn-primary" style={{ textDecoration: 'none' }}>+ Bài viết mới</Link>
