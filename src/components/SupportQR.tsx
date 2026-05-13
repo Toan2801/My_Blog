@@ -50,7 +50,7 @@ export default function SupportQR({ qrImage, facebookUrl }: Props) {
         flexDirection: 'row',
         alignItems: 'center',
         gap: 'var(--space-5)',
-        maxWidth: '800px',
+        width: '100%',
         zIndex: 1,
         flexWrap: 'wrap',
         justifyContent: 'center'
@@ -75,7 +75,7 @@ export default function SupportQR({ qrImage, facebookUrl }: Props) {
           />
         </div>
 
-        <div style={{ maxWidth: '500px', textAlign: 'left' }}>
+        <div style={{ flex: '1', minWidth: '300px', textAlign: 'left' }}>
           <h3 style={{
             margin: '0 0 var(--space-2)',
             color: 'var(--gold)',

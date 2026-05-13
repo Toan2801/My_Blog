@@ -1880,11 +1880,8 @@ li {
 
 /* Article Reading Layout */
 .article-reading-layout {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: var(--space-8);
+  display: block;
   padding: var(--space-7) 0;
-  align-items: start;
 }
 
 /* Table of Contents */
