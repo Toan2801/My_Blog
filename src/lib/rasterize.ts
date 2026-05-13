@@ -13,6 +13,7 @@ import path from 'path';
 import puppeteer from 'puppeteer';
 import TurndownService from 'turndown';
 import { renderArticleMarkdown, isLikelyHtml } from './markdown';
+import { writeRasterizedArticleData } from './raster-data';
 
 // Root typography and page sizing (rem -> px). Images are rendered at 2x DPR.
 const ROOT_FONT_SIZE = 24; // 1rem = 16px
@@ -920,6 +921,7 @@ export async function rasterizeArticle(
       return { pageNumber, markdown: md };
     });
 
+    await writeRasterizedArticleData(slug, { pages: results, markdownPages });
     return { pages: results, markdownPages };
   } finally {
     await browser.close();

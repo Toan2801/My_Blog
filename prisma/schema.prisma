@@ -80,8 +80,6 @@ model Article {
   status        String    @default("draft")
   readingTime   Int       @default(0)
   footnotes     Json?
-  pages         Json?
-  markdownPages Json?
   rasterizedAt  DateTime?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt

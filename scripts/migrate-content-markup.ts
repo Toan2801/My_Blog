@@ -2,8 +2,9 @@
  * migrate-content-markup.ts — One-shot data migration.
  *
  * Converts quoted text to inline code, and italicizes blockquote contents,
- * in BOTH the HTML `content` field and every per-page entry in
- * `markdownPages[]`. Idempotent: re-running is a no-op.
+ * in BOTH the HTML `content` field and every per-page entry in the
+ * raster manifest stored under `storage/page-images/<slug>/manifest.json`.
+ * Idempotent: re-running is a no-op.
  *
  * Usage:
  *   npx tsx scripts/migrate-content-markup.ts                 # all articles
@@ -17,6 +18,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import { getRasterizedManifestPath } from '../src/lib/raster-data';
 
 const ARTICLES_DIR = path.join(process.cwd(), 'data', 'articles');
 
@@ -113,9 +115,14 @@ function main() {
     const newContent = migrateHtml(beforeContent);
     let contentChanged = newContent !== beforeContent;
 
+    const manifestPath = getRasterizedManifestPath(data.slug);
+    const manifest = fs.existsSync(manifestPath)
+      ? JSON.parse(fs.readFileSync(manifestPath, 'utf-8'))
+      : null;
+
     let mdChangedCount = 0;
-    if (Array.isArray(data.markdownPages)) {
-      for (const p of data.markdownPages) {
+    if (manifest && Array.isArray(manifest.markdownPages)) {
+      for (const p of manifest.markdownPages) {
         const before: string = p.markdown ?? '';
         const after = migrateMarkdown(before);
         if (after !== before) {
@@ -134,6 +141,9 @@ function main() {
     data.content = newContent;
     if (!dryRun) {
       fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
+      if (manifest && mdChangedCount > 0) {
+        fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n', 'utf-8');
+      }
     }
     updated++;
     console.log(`  ${dryRun ? '(dry)' : '✓'} ${data.slug} — html:${contentChanged ? 'changed' : 'same'}, md:${mdChangedCount} pages`);

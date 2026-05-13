@@ -14,15 +14,18 @@ export interface ArticleMarkdownPage {
   markdown: string;
 }
 
+export type ArticleType = 'articles' | 'translation';
+
+export type ArticleStatus = 'draft' | 'published';
+
 export interface Article {
   id: string;
   slug: string;
   title: string;
   subtitle: string;
   excerpt: string;
-  content: string;
   category?: string;
-  type: 'articles' | 'translation';
+  type: ArticleType;
   tags: string[];
   series: string | null;
   seriesOrder: number | null;
@@ -30,11 +33,18 @@ export interface Article {
   featured: boolean;
   author: string;
   coverImage: string | null;
-  status: 'draft' | 'published';
+  status: ArticleStatus;
   readingTime: number;
+}
+
+export interface EditableArticle extends Article {
+  content: string;
   footnotes?: Footnote[];
-  pages?: ArticlePage[];
-  markdownPages?: ArticleMarkdownPage[];
+}
+
+export interface RasterizedArticleAssets {
+  pages: ArticlePage[];
+  markdownPages: ArticleMarkdownPage[];
 }
 
 export interface Series {

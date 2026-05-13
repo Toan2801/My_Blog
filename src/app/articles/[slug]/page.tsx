@@ -1,16 +1,11 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getArticleBySlug, getAllArticles } from '@/lib/data';
+import { getArticleBySlug } from '@/lib/data';
 import Breadcrumb from '@/components/Breadcrumb';
 import { auth } from '@/auth';
 import type { Metadata } from 'next';
 
 interface Props { params: { slug: string } }
-
-export async function generateStaticParams() {
-  const articles = await getAllArticles();
-  return articles.map(a => ({ slug: a.slug }));
-}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;

@@ -1,20 +1,15 @@
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
-import { getArticleBySlug, getAllArticles } from '@/lib/data';
+import { getArticleBySlug } from '@/lib/data';
+import { readRasterizedArticleData } from '@/lib/raster-data';
 import CanvasReader from '@/components/CanvasReader';
 import { auth } from '@/auth';
 import type { Metadata } from 'next';
+import type { ArticleMarkdownPage } from '@/lib/types';
 import '../reader.css';
 
 interface Props {
   params: { slug: string };
-}
-
-export async function generateStaticParams() {
-  const articles = await getAllArticles();
-  return articles
-    .filter(a => a.status === 'published')
-    .map(a => ({ slug: a.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -32,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  *  are scaffolding, not real article sections.
  */
 function buildTocEntries(
-  markdownPages?: Array<{ pageNumber: number; markdown: string }>,
+  markdownPages?: ArticleMarkdownPage[],
 ): Array<{ level: number; text: string; pageNumber: number }> {
   const entries: Array<{ level: number; text: string; pageNumber: number }> = [];
   if (!Array.isArray(markdownPages)) return entries;
@@ -58,9 +53,12 @@ interface SearchProps {
 export default async function ReadPage({ params, searchParams }: Props & SearchProps) {
   const { slug } = await params;
   const sp = searchParams ? await searchParams : {};
-  const article = await getArticleBySlug(slug);
+  const [article, rasterData] = await Promise.all([
+    getArticleBySlug(slug),
+    readRasterizedArticleData(slug),
+  ]);
 
-  if (!article || article.status !== 'published') notFound();
+  if (!article || article.status !== 'published' || !rasterData) notFound();
 
   const session = await auth();
   const trialRequested = sp.trial === '1';
@@ -73,7 +71,7 @@ export default async function ReadPage({ params, searchParams }: Props & SearchP
     redirect(`/login?callbackUrl=${cb}`);
   }
 
-  const tocEntries = buildTocEntries(article.markdownPages);
+  const tocEntries = buildTocEntries(rasterData.markdownPages);
 
   return (
     <Suspense fallback={

@@ -42,18 +42,16 @@ If an article relies on visual treatment that can't be expressed in Markdown, ca
 Run from the repository root.
 
 ```bash
-# 1. (Re-run for safety — idempotent.) Add <code> and <em> to HTML and markdownPages.
+# 1. (Re-run for safety — idempotent.) Add <code> and <em> to HTML and any
+#    existing raster manifest markdownPages.
 npx tsx scripts/migrate-content-markup.ts
 
 # 2. Convert each article's `content` field from HTML to Markdown.
 npx tsx scripts/migrate-html-to-markdown.ts
 
 # 3. Re-rasterize all articles. The rasterizer now reads markdown, converts to HTML,
-#    paginates, and writes the per-page PNGs + markdownPages.
+#    paginates, and writes the per-page PNGs + manifest.json.
 npm run rasterize
-
-# 4. Push the refreshed pages + markdownPages to MongoDB.
-npx tsx scripts/sync-pages-to-db.ts
 ```
 
 ### Targeted run (single article)
@@ -62,7 +60,6 @@ npx tsx scripts/sync-pages-to-db.ts
 npx tsx scripts/migrate-content-markup.ts --slug=<slug>
 npx tsx scripts/migrate-html-to-markdown.ts --slug=<slug>
 npm run rasterize -- --slug=<slug>
-npx tsx scripts/sync-pages-to-db.ts
 ```
 
 ### Dry runs
@@ -104,7 +101,7 @@ The migrations write back into the same JSON files. To roll back:
 - `git restore data/articles/` (if changes are not yet committed).
 - Or restore from your `data/articles/` backup taken before the migrations.
 
-The `Article` Mongoose schema didn't change (`content` is still `String`), so MongoDB rollback is just `npx tsx scripts/migrate.ts` against an older JSON snapshot.
+The article schema still keeps `content` as the source field, so rollback is just restoring the JSON source content and rerunning the import/rasterization flow.
 
 ## Troubleshooting
 
@@ -113,5 +110,5 @@ The `Article` Mongoose schema didn't change (`content` is still `String`), so Mo
 | Markdown shows literal `\_` or `\.` inside text | Turndown's standard escaping. Renders correctly. | Ignore — pure cosmetics. |
 | Image renders without caption | Caption line not directly under `![…](…)` (extra blank line, or wrong italic syntax). | Edit the markdown so caption is on the next line, wrapped in `*…*` or `_…_`. |
 | Caption appears as a separate paragraph instead of figcaption | Same as above. | Same fix. |
-| Search returns 0 hits for known phrase | `markdownPages` not regenerated after migration. | Re-run `npm run rasterize` (or `sync-pages-to-db.ts` if PNGs are fine). |
+| Search returns 0 hits for known phrase | `markdownPages` in the raster manifest were not regenerated after migration. | Re-run `npm run rasterize`. |
 | Article view page shows raw markdown | Stale build; HMR not picking up the new `ArticleBody`. | Restart `npm run dev`. |

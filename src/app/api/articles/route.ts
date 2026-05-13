@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { saveArticle, deleteArticle, getAllArticlesAdmin } from '@/lib/data';
-import { Article } from '@/lib/types';
+import { EditableArticle } from '@/lib/types';
 import { execFile } from 'child_process';
 import path from 'path';
 
@@ -16,7 +16,7 @@ function triggerRasterize(slug: string) {
 
 export async function POST(req: NextRequest) {
   try {
-    const article: Article = await req.json();
+    const article: EditableArticle = await req.json();
     if (!article.slug || !article.title) {
       return NextResponse.json({ error: 'Thiếu tiêu đề hoặc slug' }, { status: 400 });
     }
@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
   try {
-    const article: Article = await req.json();
+    const article: EditableArticle = await req.json();
     if (!article.slug || !article.title) {
       return NextResponse.json({ error: 'Thiếu tiêu đề hoặc slug' }, { status: 400 });
     }

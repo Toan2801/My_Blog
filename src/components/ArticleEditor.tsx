@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { Article, Footnote, Series } from '@/lib/types';
+import { EditableArticle, Footnote, Series } from '@/lib/types';
 import dynamic from 'next/dynamic';
 import { RichTextEditorRef } from './RichTextEditor';
 
@@ -12,7 +12,7 @@ const RichTextEditor = dynamic(() => import('./RichTextEditor'), {
 });
 
 interface Props {
-  initialArticle?: Partial<Article>;
+  initialArticle?: Partial<EditableArticle>;
   categories: string[];
   seriesList: Series[];
   isEdit?: boolean;
@@ -109,7 +109,7 @@ export default function ArticleEditor({ initialArticle, categories, seriesList, 
     setSaving(true);
     setMsg('');
 
-    const article: Article = {
+    const article: EditableArticle = {
       id: initialArticle?.id || Date.now().toString(),
       slug: form.slug || form.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
       title: form.title,

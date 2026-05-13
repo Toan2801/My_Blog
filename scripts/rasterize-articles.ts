@@ -6,11 +6,14 @@
  *   npx tsx scripts/rasterize-articles.ts --slug=abc    # single article
  */
 
-import 'dotenv/config';
+import { config } from 'dotenv';
 import { rasterizeArticle } from '../src/lib/rasterize';
-import prisma from '../src/lib/prisma';
+
+config({ path: '.env.local' });
+config();
 
 async function main() {
+  const { default: prisma } = await import('../src/lib/prisma');
   const args = process.argv.slice(2);
   const slugArg = args.find(a => a.startsWith('--slug='))?.split('=')[1];
 
@@ -18,7 +21,15 @@ async function main() {
     ? { slug: slugArg, status: 'published' }
     : { status: 'published' };
 
-  const articles = await prisma.article.findMany({ where });
+  const articles = await prisma.article.findMany({
+    where,
+    select: {
+      slug: true,
+      title: true,
+      author: true,
+      content: true,
+    },
+  });
 
   if (articles.length === 0) {
     console.log(slugArg ? `Không tìm thấy bài viết: ${slugArg}` : 'Không có bài viết published nào.');
@@ -47,10 +58,9 @@ async function main() {
       await prisma.article.update({
         where: { slug: article.slug },
         data: {
-          pages: pages as never,
-          markdownPages: markdownPages as never,
           rasterizedAt: new Date(),
         },
+        select: { slug: true },
       });
 
       console.log(`  ✅ ${pages.length} trang (ảnh + markdown) đã tạo thành công.`);

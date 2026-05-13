@@ -1,4 +1,5 @@
-import { getAllArticles, getAllSeries, getSiteConfig } from '@/lib/data';
+import { getAllSeries, getSiteConfig } from '@/lib/data';
+import { getCachedArticleSummaries } from '@/lib/cache';
 import ArticleListClient from '@/components/ArticleListClient';
 import type { Metadata } from 'next';
 import TiltCard from '@/components/TiltCard';
@@ -12,7 +13,7 @@ export default async function TranslationsPage({
   searchParams: Promise<{ category?: string; search?: string }>;
 }) {
   const { category, search } = await searchParams;
-  const allArticles = await getAllArticles();
+  const allArticles = await getCachedArticleSummaries();
   const allSeries = await getAllSeries();
   const config = await getSiteConfig();
 

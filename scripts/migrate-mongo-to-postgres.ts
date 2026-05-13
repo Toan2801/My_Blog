@@ -6,7 +6,8 @@
  * What it migrates:
  *   - Users (with passwordHash and role)
  *   - NextAuth accounts, sessions, verification tokens
- *   - Articles (with all fields, footnotes, pages, markdownPages)
+ *   - Articles (with content/editor fields in PostgreSQL)
+ *   - Rasterized page data written to storage/page-images/<slug>/manifest.json
  *   - Series
  *   - Site config
  *   - Videos
@@ -27,6 +28,7 @@ import { MongoClient, ObjectId } from 'mongodb';
 import { PrismaClient } from '../src/generated/prisma/client';
 import { PrismaNeon } from '@prisma/adapter-neon';
 import { neonConfig } from '@neondatabase/serverless';
+import { writeRasterizedArticleData } from '../src/lib/raster-data';
 import ws from 'ws';
 neonConfig.webSocketConstructor = ws;
 
@@ -208,8 +210,6 @@ async function main() {
         status: a.status ?? 'draft',
         readingTime: a.readingTime ?? 0,
         footnotes: a.footnotes ?? undefined,
-        pages: a.pages ?? undefined,
-        markdownPages: a.markdownPages ?? undefined,
         rasterizedAt: a.rasterizedAt ? new Date(a.rasterizedAt) : null,
         createdAt: a.createdAt ? new Date(a.createdAt) : new Date(),
         updatedAt: a.updatedAt ? new Date(a.updatedAt) : new Date(),
@@ -219,6 +219,12 @@ async function main() {
         update: data,
         create: { slug: a.slug, ...data },
       });
+      if (Array.isArray(a.pages) || Array.isArray(a.markdownPages)) {
+        await writeRasterizedArticleData(a.slug, {
+          pages: Array.isArray(a.pages) ? a.pages : [],
+          markdownPages: Array.isArray(a.markdownPages) ? a.markdownPages : [],
+        });
+      }
       articleCount++;
     } catch (e) {
       console.warn(`  ⚠ Skipped article ${a.slug}: ${e}`);

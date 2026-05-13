@@ -49,8 +49,8 @@ This repository contains a Next.js 16 application for publishing long-form histo
 - Source content for migrations lives in `data/articles/*.json` and `data/config.json`.
 - Uploaded files are written to `public/uploads/` by the upload API routes.
 - The app expects `public/uploads/` to remain writable during local development.
-- Rasterized page images are written to `data/page-images/{slug}/page-N.png`. This directory sits **outside** `public/` on purpose — images are served through a token-gated API route (`/api/articles/[slug]/page/[n]/image`) so they cannot be hot-linked or scraped. The directory is gitignored; treat it as a build artifact, not source.
-- Each article document also carries a `markdownPages` array (one markdown blob per rasterized page). This powers in-reader search and must stay in sync with the `pages` array.
+- Rasterized page images are written to `storage/page-images/{slug}/page-N.png`. This directory sits **outside** `public/` on purpose — images are served through a token-gated API route (`/api/articles/[slug]/page/[n]/image`) so they cannot be hot-linked or scraped. The directory is gitignored; treat it as a build artifact, not source.
+- Each rasterized article directory also carries `storage/page-images/{slug}/manifest.json`, which stores the generated `pages` and `markdownPages` arrays used by the reader and in-reader search.
 
 ## Useful Commands
 
@@ -58,11 +58,10 @@ This repository contains a Next.js 16 application for publishing long-form histo
 npm run dev
 npm run lint
 npm run build
-npm run migrate                          # full migration: JSON → DB + rasterize + markdownPages
+npm run migrate                          # full migration: JSON → DB
 npm run migrate:users                    # seed admin@abc.com / Admin1234 (idempotent)
-npm run rasterize                        # re-rasterize all published articles (writes pages + markdownPages to JSON)
+npm run rasterize                        # re-rasterize all published articles (writes PNGs + manifest.json to storage/page-images)
 npm run rasterize -- --slug=<slug>       # rasterize a single article
-npx tsx scripts/sync-pages-to-db.ts      # push pages + markdownPages from JSON to MongoDB (no re-rasterize)
 npm test                                 # run vitest suites
 ```
 

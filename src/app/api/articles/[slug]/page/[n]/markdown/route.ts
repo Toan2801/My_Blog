@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getArticleBySlug } from '@/lib/data';
+import { readRasterizedArticleData } from '@/lib/raster-data';
 import { verifyReaderToken, tokenAllowsPage } from '@/lib/reader-token';
 
 export const dynamic = 'force-dynamic';
@@ -32,12 +33,15 @@ export async function GET(
     );
   }
 
-  const article = await getArticleBySlug(slug);
-  if (!article || article.status !== 'published') {
+  const [article, rasterData] = await Promise.all([
+    getArticleBySlug(slug),
+    readRasterizedArticleData(slug),
+  ]);
+  if (!article || article.status !== 'published' || !rasterData) {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }
 
-  const page = (article.markdownPages ?? []).find((p) => p.pageNumber === pageNum);
+  const page = rasterData.markdownPages.find((p) => p.pageNumber === pageNum);
   if (!page) {
     return NextResponse.json({ error: 'Page not found' }, { status: 404 });
   }

@@ -3,7 +3,18 @@ import prisma from '@/lib/prisma';
 import BooksMaster, { type BookRow } from './BooksMaster';
 
 async function getBooks(): Promise<BookRow[]> {
-  const docs = await prisma.article.findMany({ orderBy: { updatedAt: 'desc' } });
+  const docs = await prisma.article.findMany({
+    select: {
+      slug: true,
+      title: true,
+      author: true,
+      category: true,
+      status: true,
+      rasterizedAt: true,
+      updatedAt: true,
+    },
+    orderBy: { updatedAt: 'desc' },
+  });
   return docs.map((d) => {
     const updatedAt = d.updatedAt;
     const rasterizedAt = d.rasterizedAt ?? null;

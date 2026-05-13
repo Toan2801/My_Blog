@@ -16,7 +16,10 @@ export async function POST(
 ) {
   const { slug } = await params;
 
-  const article = await prisma.article.findUnique({ where: { slug } });
+  const article = await prisma.article.findUnique({
+    where: { slug },
+    select: { slug: true },
+  });
   if (!article) return NextResponse.json({ error: 'NotFound' }, { status: 404 });
 
   const script = path.join(process.cwd(), 'scripts', 'rasterize-articles.ts');
@@ -34,7 +37,11 @@ export async function POST(
   });
 
   const now = new Date();
-  await prisma.article.update({ where: { slug }, data: { rasterizedAt: now } });
+  await prisma.article.update({
+    where: { slug },
+    data: { rasterizedAt: now },
+    select: { slug: true },
+  });
 
   return NextResponse.json({ ok: true, slug, rasterizedAt: now.toISOString() });
 }

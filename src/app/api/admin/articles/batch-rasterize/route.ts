@@ -43,7 +43,11 @@ export async function POST(req: Request) {
     try {
       await rasterizeOne(slug);
       const now = new Date();
-      await prisma.article.update({ where: { slug }, data: { rasterizedAt: now } });
+      await prisma.article.update({
+        where: { slug },
+        data: { rasterizedAt: now },
+        select: { slug: true },
+      });
       results.push({ slug, ok: true, rasterizedAt: now.toISOString() });
     } catch (e) {
       results.push({ slug, ok: false, error: (e as Error).message });

@@ -1,5 +1,7 @@
 # Migration Guide: `markdownPages` + Token-Gated Images
 
+> Current note: `pages` and `markdownPages` are no longer stored on the database `Article` row. They now live in `storage/page-images/<slug>/manifest.json` beside the rasterized PNGs. Any older references in this guide to syncing generated page data back into MongoDB/PostgreSQL are historical and should be read as `re-run npm run rasterize` instead.
+
 This guide walks the team through migrating articles to the new data shape introduced in commit `f6166fc` ("feat: implement search functionality in CanvasReader with token-gated image access").
 
 It applies whenever you:
@@ -12,10 +14,10 @@ It applies whenever you:
 
 ## What changed
 
-1. **New per-page markdown.** Each article now stores a `markdownPages: Array<{ pageNumber, markdown }>` field alongside `pages`. The reader's search feature reads this to find matches.
+1. **New per-page markdown.** Each rasterized article now stores `pages` and `markdownPages` in `storage/page-images/<slug>/manifest.json`. The reader's search feature reads this manifest to find matches.
 2. **Page image URLs moved.** `pages[].imageUrl` is now `/api/articles/<slug>/page/<n>/image` (token-gated API) instead of `/data/image/articles/<slug>/page-N.png` (static file).
-3. **Image output directory moved.** PNGs are written to `data/page-images/<slug>/` (outside `public/`, gitignored) instead of `public/data/image/articles/<slug>/`.
-4. **New script.** [scripts/sync-pages-to-db.ts](../scripts/sync-pages-to-db.ts) pushes `pages` + `markdownPages` from JSON files into MongoDB **without** re-rasterizing — useful when one developer rasterizes and others just need the DB updated.
+3. **Image output directory moved.** PNGs are written to `storage/page-images/<slug>/` (outside `public/`, gitignored) instead of `public/data/image/articles/<slug>/`.
+4. **Raster data is static.** Re-rasterizing regenerates both the PNGs and `manifest.json`; there is no separate DB sync step for generated page data anymore.
 
 The JSON shape now looks like:
 

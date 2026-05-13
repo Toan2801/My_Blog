@@ -1,5 +1,32 @@
 import prisma from './prisma';
-import type { Article, SiteConfig, Series } from './types';
+import type { Article, EditableArticle, SiteConfig, Series } from './types';
+import { invalidateArticleCache, invalidateSeriesCache, invalidateConfigCache } from './cache';
+import { deleteRasterizedArticleData } from './raster-data';
+
+const ARTICLE_SELECT = {
+  id: true,
+  slug: true,
+  title: true,
+  subtitle: true,
+  excerpt: true,
+  category: true,
+  type: true,
+  tags: true,
+  series: true,
+  seriesOrder: true,
+  date: true,
+  featured: true,
+  author: true,
+  coverImage: true,
+  status: true,
+  readingTime: true,
+} as const;
+
+const EDITABLE_ARTICLE_SELECT = {
+  ...ARTICLE_SELECT,
+  content: true,
+  footnotes: true,
+} as const;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function dbToArticle(a: any): Article {
@@ -9,7 +36,6 @@ function dbToArticle(a: any): Article {
     title: a.title,
     subtitle: a.subtitle ?? '',
     excerpt: a.excerpt,
-    content: a.content,
     category: a.category ?? undefined,
     type: (a.type as 'articles' | 'translation') ?? 'articles',
     tags: a.tags ?? [],
@@ -21,9 +47,15 @@ function dbToArticle(a: any): Article {
     coverImage: a.coverImage ?? null,
     status: a.status as 'draft' | 'published',
     readingTime: a.readingTime ?? 0,
+  };
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function dbToEditableArticle(a: any): EditableArticle {
+  return {
+    ...dbToArticle(a),
+    content: a.content ?? '',
     footnotes: a.footnotes ?? undefined,
-    pages: a.pages ?? undefined,
-    markdownPages: a.markdownPages ?? undefined,
   };
 }
 
@@ -56,27 +88,43 @@ export async function saveSiteConfig(config: SiteConfig): Promise<void> {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     create: { id: 1, data: config as any },
   });
+  invalidateConfigCache();
 }
 
 export async function getAllArticles(): Promise<Article[]> {
   const rows = await prisma.article.findMany({
     where: { status: 'published' },
+    select: ARTICLE_SELECT,
     orderBy: { date: 'desc' },
   });
   return rows.map(dbToArticle);
 }
 
 export async function getAllArticlesAdmin(): Promise<Article[]> {
-  const rows = await prisma.article.findMany({ orderBy: { date: 'desc' } });
+  const rows = await prisma.article.findMany({
+    select: ARTICLE_SELECT,
+    orderBy: { date: 'desc' },
+  });
   return rows.map(dbToArticle);
 }
 
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
-  const row = await prisma.article.findUnique({ where: { slug } });
+  const row = await prisma.article.findUnique({
+    where: { slug },
+    select: ARTICLE_SELECT,
+  });
   return row ? dbToArticle(row) : null;
 }
 
-export async function saveArticle(article: Article): Promise<void> {
+export async function getArticleForEditBySlug(slug: string): Promise<EditableArticle | null> {
+  const row = await prisma.article.findUnique({
+    where: { slug },
+    select: EDITABLE_ARTICLE_SELECT,
+  });
+  return row ? dbToEditableArticle(row) : null;
+}
+
+export async function saveArticle(article: EditableArticle): Promise<void> {
   const data = {
     title: article.title,
     subtitle: article.subtitle ?? null,
@@ -95,20 +143,19 @@ export async function saveArticle(article: Article): Promise<void> {
     readingTime: article.readingTime ?? 0,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     footnotes: article.footnotes ? (article.footnotes as any) : undefined,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    pages: article.pages ? (article.pages as any) : undefined,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    markdownPages: article.markdownPages ? (article.markdownPages as any) : undefined,
   };
   await prisma.article.upsert({
     where: { slug: article.slug },
     update: data,
     create: { slug: article.slug, ...data },
   });
+  invalidateArticleCache();
 }
 
 export async function deleteArticle(slug: string): Promise<void> {
   await prisma.article.delete({ where: { slug } }).catch(() => {});
+  await deleteRasterizedArticleData(slug).catch(() => {});
+  invalidateArticleCache();
 }
 
 export async function getCategories(): Promise<string[]> {
@@ -129,6 +176,7 @@ export function getRelatedArticles(current: Article, all: Article[], limit = 3):
 export async function getArticlesBySeries(seriesName: string): Promise<Article[]> {
   const rows = await prisma.article.findMany({
     where: { series: seriesName, status: 'published' },
+    select: ARTICLE_SELECT,
     orderBy: { seriesOrder: 'asc' },
   });
   return rows.map(dbToArticle);
@@ -178,8 +226,10 @@ export async function saveSeries(series: Series): Promise<void> {
     update: data,
     create: { slug: series.slug, ...data },
   });
+  invalidateSeriesCache();
 }
 
 export async function deleteSeries(slug: string): Promise<void> {
   await prisma.series.delete({ where: { slug } }).catch(() => {});
+  invalidateSeriesCache();
 }

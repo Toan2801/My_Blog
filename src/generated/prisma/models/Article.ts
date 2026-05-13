@@ -99,8 +99,6 @@ export type ArticleCountAggregateOutputType = {
   status: number
   readingTime: number
   footnotes: number
-  pages: number
-  markdownPages: number
   rasterizedAt: number
   createdAt: number
   updatedAt: number
@@ -181,8 +179,6 @@ export type ArticleCountAggregateInputType = {
   status?: true
   readingTime?: true
   footnotes?: true
-  pages?: true
-  markdownPages?: true
   rasterizedAt?: true
   createdAt?: true
   updatedAt?: true
@@ -294,8 +290,6 @@ export type ArticleGroupByOutputType = {
   status: string
   readingTime: number
   footnotes: runtime.JsonValue | null
-  pages: runtime.JsonValue | null
-  markdownPages: runtime.JsonValue | null
   rasterizedAt: Date | null
   createdAt: Date
   updatedAt: Date
@@ -343,8 +337,6 @@ export type ArticleWhereInput = {
   status?: Prisma.StringFilter<"Article"> | string
   readingTime?: Prisma.IntFilter<"Article"> | number
   footnotes?: Prisma.JsonNullableFilter<"Article">
-  pages?: Prisma.JsonNullableFilter<"Article">
-  markdownPages?: Prisma.JsonNullableFilter<"Article">
   rasterizedAt?: Prisma.DateTimeNullableFilter<"Article"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Article"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Article"> | Date | string
@@ -369,8 +361,6 @@ export type ArticleOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   readingTime?: Prisma.SortOrder
   footnotes?: Prisma.SortOrderInput | Prisma.SortOrder
-  pages?: Prisma.SortOrderInput | Prisma.SortOrder
-  markdownPages?: Prisma.SortOrderInput | Prisma.SortOrder
   rasterizedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -398,8 +388,6 @@ export type ArticleWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.StringFilter<"Article"> | string
   readingTime?: Prisma.IntFilter<"Article"> | number
   footnotes?: Prisma.JsonNullableFilter<"Article">
-  pages?: Prisma.JsonNullableFilter<"Article">
-  markdownPages?: Prisma.JsonNullableFilter<"Article">
   rasterizedAt?: Prisma.DateTimeNullableFilter<"Article"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Article"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Article"> | Date | string
@@ -424,8 +412,6 @@ export type ArticleOrderByWithAggregationInput = {
   status?: Prisma.SortOrder
   readingTime?: Prisma.SortOrder
   footnotes?: Prisma.SortOrderInput | Prisma.SortOrder
-  pages?: Prisma.SortOrderInput | Prisma.SortOrder
-  markdownPages?: Prisma.SortOrderInput | Prisma.SortOrder
   rasterizedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -458,8 +444,6 @@ export type ArticleScalarWhereWithAggregatesInput = {
   status?: Prisma.StringWithAggregatesFilter<"Article"> | string
   readingTime?: Prisma.IntWithAggregatesFilter<"Article"> | number
   footnotes?: Prisma.JsonNullableWithAggregatesFilter<"Article">
-  pages?: Prisma.JsonNullableWithAggregatesFilter<"Article">
-  markdownPages?: Prisma.JsonNullableWithAggregatesFilter<"Article">
   rasterizedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Article"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Article"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Article"> | Date | string
@@ -484,8 +468,6 @@ export type ArticleCreateInput = {
   status?: string
   readingTime?: number
   footnotes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  pages?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  markdownPages?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   rasterizedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -510,8 +492,6 @@ export type ArticleUncheckedCreateInput = {
   status?: string
   readingTime?: number
   footnotes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  pages?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  markdownPages?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   rasterizedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -536,8 +516,6 @@ export type ArticleUpdateInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   readingTime?: Prisma.IntFieldUpdateOperationsInput | number
   footnotes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  pages?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  markdownPages?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   rasterizedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -562,8 +540,6 @@ export type ArticleUncheckedUpdateInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   readingTime?: Prisma.IntFieldUpdateOperationsInput | number
   footnotes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  pages?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  markdownPages?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   rasterizedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -588,8 +564,6 @@ export type ArticleCreateManyInput = {
   status?: string
   readingTime?: number
   footnotes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  pages?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  markdownPages?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   rasterizedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -614,8 +588,6 @@ export type ArticleUpdateManyMutationInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   readingTime?: Prisma.IntFieldUpdateOperationsInput | number
   footnotes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  pages?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  markdownPages?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   rasterizedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -640,8 +612,6 @@ export type ArticleUncheckedUpdateManyInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   readingTime?: Prisma.IntFieldUpdateOperationsInput | number
   footnotes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  pages?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  markdownPages?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   rasterizedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -674,8 +644,6 @@ export type ArticleCountOrderByAggregateInput = {
   status?: Prisma.SortOrder
   readingTime?: Prisma.SortOrder
   footnotes?: Prisma.SortOrder
-  pages?: Prisma.SortOrder
-  markdownPages?: Prisma.SortOrder
   rasterizedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -777,8 +745,6 @@ export type ArticleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   status?: boolean
   readingTime?: boolean
   footnotes?: boolean
-  pages?: boolean
-  markdownPages?: boolean
   rasterizedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -803,8 +769,6 @@ export type ArticleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   status?: boolean
   readingTime?: boolean
   footnotes?: boolean
-  pages?: boolean
-  markdownPages?: boolean
   rasterizedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -829,8 +793,6 @@ export type ArticleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   status?: boolean
   readingTime?: boolean
   footnotes?: boolean
-  pages?: boolean
-  markdownPages?: boolean
   rasterizedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -855,14 +817,12 @@ export type ArticleSelectScalar = {
   status?: boolean
   readingTime?: boolean
   footnotes?: boolean
-  pages?: boolean
-  markdownPages?: boolean
   rasterizedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ArticleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "slug" | "title" | "subtitle" | "excerpt" | "content" | "category" | "type" | "tags" | "series" | "seriesOrder" | "date" | "featured" | "author" | "coverImage" | "status" | "readingTime" | "footnotes" | "pages" | "markdownPages" | "rasterizedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["article"]>
+export type ArticleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "slug" | "title" | "subtitle" | "excerpt" | "content" | "category" | "type" | "tags" | "series" | "seriesOrder" | "date" | "featured" | "author" | "coverImage" | "status" | "readingTime" | "footnotes" | "rasterizedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["article"]>
 
 export type $ArticlePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Article"
@@ -886,8 +846,6 @@ export type $ArticlePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     status: string
     readingTime: number
     footnotes: runtime.JsonValue | null
-    pages: runtime.JsonValue | null
-    markdownPages: runtime.JsonValue | null
     rasterizedAt: Date | null
     createdAt: Date
     updatedAt: Date
@@ -1332,8 +1290,6 @@ export interface ArticleFieldRefs {
   readonly status: Prisma.FieldRef<"Article", 'String'>
   readonly readingTime: Prisma.FieldRef<"Article", 'Int'>
   readonly footnotes: Prisma.FieldRef<"Article", 'Json'>
-  readonly pages: Prisma.FieldRef<"Article", 'Json'>
-  readonly markdownPages: Prisma.FieldRef<"Article", 'Json'>
   readonly rasterizedAt: Prisma.FieldRef<"Article", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Article", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Article", 'DateTime'>

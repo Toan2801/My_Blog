@@ -1,11 +1,11 @@
 import { notFound } from 'next/navigation';
-import { getArticleBySlug, getSiteConfig, getAllSeries } from '@/lib/data';
+import { getArticleForEditBySlug, getSiteConfig, getAllSeries } from '@/lib/data';
 import ArticleEditor from '@/components/ArticleEditor';
 import RasterizeButton from '@/components/RasterizeButton';
 
 export default async function EditArticlePage({ params }: { params: { slug: string } }) {
   const { slug } = await params;
-  const article = await getArticleBySlug(slug);
+  const article = await getArticleForEditBySlug(slug);
   if (!article) notFound();
   const config = await getSiteConfig();
 

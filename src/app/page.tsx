@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { getSiteConfig, getAllArticles, getAllSeries } from '@/lib/data';
+import { getSiteConfig, getAllSeries } from '@/lib/data';
+import { getCachedArticleSummaries } from '@/lib/cache';
 import { getVideos } from '@/lib/video-data';
 import { formatDate } from '@/lib/utils';
 import type { Metadata } from 'next';
@@ -20,7 +21,7 @@ function timeAgo(dateStr: string) {
 
 export default async function HomePage() {
   const config = await getSiteConfig();
-  const allArticles = await getAllArticles();
+  const allArticles = await getCachedArticleSummaries();
   const allSeries = await getAllSeries();
   const videos = await getVideos();
 
