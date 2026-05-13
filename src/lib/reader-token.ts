@@ -70,6 +70,6 @@ export function verifyReaderToken(slug: string, token: string | null | undefined
 
 /** Is the requested page within reach of the given token? */
 export function tokenAllowsPage(info: ReaderTokenInfo, pageNumber: number): boolean {
-  if (info.kind === 'user') return true;
-  return pageNumber >= 1 && pageNumber <= TRIAL_MAX_PAGES;
+  // Everyone with a valid signed token can read any page.
+  return true;
 }

@@ -32,7 +32,7 @@ export async function GET(
   const { token, expiresAt } = issueTrialReaderToken(sessionId, slug);
   const allPages = article.pages ?? [];
   const totalPages = allPages.length;
-  const pages = allPages.slice(0, TRIAL_MAX_PAGES).map((p) => ({
+  const pages = allPages.map((p) => ({
     pageNumber: p.pageNumber,
     imageUrl: p.imageUrl,
   }));

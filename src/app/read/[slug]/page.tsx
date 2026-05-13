@@ -63,15 +63,7 @@ export default async function ReadPage({ params, searchParams }: Props & SearchP
   if (!article || article.status !== 'published') notFound();
 
   const session = await auth();
-  const trialRequested = sp.trial === '1';
-  const trial = trialRequested && !session?.user?.id;
-
-  // Authenticated → full reader. Anonymous + no trial flag → bounce to login.
-  if (!session?.user?.id && !trialRequested) {
-    const cb = encodeURIComponent(`/read/${slug}`);
-    const { redirect } = await import('next/navigation');
-    redirect(`/login?callbackUrl=${cb}`);
-  }
+  const trial = !session?.user?.id;
 
   const tocEntries = buildTocEntries(article.markdownPages);
 
