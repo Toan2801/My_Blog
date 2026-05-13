@@ -1,26 +1,33 @@
 import { MongoClient } from 'mongodb';
 
-if (!process.env.MONGODB_URI) {
-  throw new Error('Please define MONGODB_URI in .env.local');
-}
-
-const uri = process.env.MONGODB_URI;
-const options = {};
-
 declare global {
   // eslint-disable-next-line no-var
   var _mongoClientPromise: Promise<MongoClient> | undefined;
 }
 
-let clientPromise: Promise<MongoClient>;
+const uri = process.env.MONGODB_URI;
+const options = {};
 
-if (process.env.NODE_ENV === 'development') {
-  if (!global._mongoClientPromise) {
-    global._mongoClientPromise = new MongoClient(uri, options).connect();
-  }
-  clientPromise = global._mongoClientPromise;
+if (!uri && process.env.NODE_ENV === 'production') {
+  // During build on Vercel without env vars, we export a dummy promise
+  // that will fail if actually awaited, but won't crash the build evaluation.
+  const clientPromise = Promise.resolve(null as any);
+  export default clientPromise;
 } else {
-  clientPromise = new MongoClient(uri, options).connect();
-}
+  if (!uri) {
+    throw new Error('Please define MONGODB_URI in .env.local');
+  }
 
-export default clientPromise;
+  let clientPromise: Promise<MongoClient>;
+  
+  if (process.env.NODE_ENV === 'development') {
+    if (!global._mongoClientPromise) {
+      global._mongoClientPromise = new MongoClient(uri, options).connect();
+    }
+    clientPromise = global._mongoClientPromise;
+  } else {
+    clientPromise = new MongoClient(uri, options).connect();
+  }
+  
+  export default clientPromise;
+}
