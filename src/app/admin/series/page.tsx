@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { getAllSeries } from '@/lib/data';
 
-export default function AdminSeriesPage() {
-  const allSeries = getAllSeries();
+export default async function AdminSeriesPage() {
+  const allSeries = await getAllSeries();
 
   return (
     <>

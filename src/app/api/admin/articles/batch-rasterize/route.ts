@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 import { execFile } from 'child_process';
 import path from 'path';
-import dbConnect from '@/lib/mongoose';
-import Article from '@/models/Article';
+import prisma from '@/lib/prisma';
 
 interface Body {
   slugs?: string[];
@@ -38,14 +37,13 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'EmptyBatch' }, { status: 400 });
   }
 
-  await dbConnect();
   const results: Array<{ slug: string; ok: boolean; error?: string; rasterizedAt?: string }> = [];
 
   for (const slug of slugs) {
     try {
       await rasterizeOne(slug);
       const now = new Date();
-      await Article.updateOne({ slug }, { $set: { rasterizedAt: now } });
+      await prisma.article.update({ where: { slug }, data: { rasterizedAt: now } });
       results.push({ slug, ok: true, rasterizedAt: now.toISOString() });
     } catch (e) {
       results.push({ slug, ok: false, error: (e as Error).message });

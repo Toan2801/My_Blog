@@ -8,15 +8,15 @@ import AuthProvider from '@/components/AuthProvider';
 import DiscordShell from '@/components/DiscordShell';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const config = getSiteConfig();
+  const config = await getSiteConfig();
   return {
     title: { default: config.blogTitle, template: `%s · ${config.blogTitle}` },
     description: config.blogDescription,
   };
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const config = getSiteConfig();
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const config = await getSiteConfig();
 
   return (
     <html lang="vi" suppressHydrationWarning>

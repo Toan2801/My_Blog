@@ -19,9 +19,9 @@ export async function POST(req: NextRequest) {
     writeFileSync(join(uploadDir, filename), buffer);
 
     const url = `/uploads/${filename}`;
-    const config = getSiteConfig();
+    const config = await getSiteConfig();
     config.donation.qrImage = url;
-    saveSiteConfig(config);
+    await saveSiteConfig(config);
 
     return NextResponse.json({ success: true, url });
   } catch (e) {

@@ -6,54 +6,29 @@
  *   npx tsx scripts/rasterize-articles.ts --slug=abc    # single article
  */
 
-import fs from 'fs';
-import path from 'path';
+import 'dotenv/config';
 import { rasterizeArticle } from '../src/lib/rasterize';
-
-const DATA_DIR = path.join(process.cwd(), 'data');
-const ARTICLES_DIR = path.join(DATA_DIR, 'articles');
-
-interface ArticleJson {
-  slug: string;
-  title: string;
-  content: string;
-  status: string;
-  pages?: Array<{ pageNumber: number; imageUrl: string }>;
-  markdownPages?: Array<{ pageNumber: number; markdown: string }>;
-  [key: string]: unknown;
-}
+import prisma from '../src/lib/prisma';
 
 async function main() {
   const args = process.argv.slice(2);
   const slugArg = args.find(a => a.startsWith('--slug='))?.split('=')[1];
 
-  if (!fs.existsSync(ARTICLES_DIR)) {
-    console.error('Thư mục data/articles không tồn tại.');
-    process.exit(1);
-  }
+  const where = slugArg
+    ? { slug: slugArg, status: 'published' }
+    : { status: 'published' };
 
-  const files = fs.readdirSync(ARTICLES_DIR).filter(f => f.endsWith('.json'));
+  const articles = await prisma.article.findMany({ where });
 
-  if (files.length === 0) {
-    console.log('Không có bài viết nào.');
+  if (articles.length === 0) {
+    console.log(slugArg ? `Không tìm thấy bài viết: ${slugArg}` : 'Không có bài viết published nào.');
     process.exit(0);
   }
 
-  const articlesToProcess: ArticleJson[] = [];
-
-  for (const file of files) {
-    const raw = fs.readFileSync(path.join(ARTICLES_DIR, file), 'utf-8');
-    const article = JSON.parse(raw) as ArticleJson;
-
-    if (slugArg && article.slug !== slugArg) continue;
-    if (article.status !== 'published') continue;
-    if (!article.content || article.content.trim().length === 0) continue;
-
-    articlesToProcess.push(article);
-  }
+  const articlesToProcess = articles.filter(a => a.content && a.content.trim().length > 0);
 
   if (articlesToProcess.length === 0) {
-    console.log(slugArg ? `Không tìm thấy bài viết: ${slugArg}` : 'Không có bài viết published nào.');
+    console.log('Không có bài viết nào có nội dung.');
     process.exit(0);
   }
 
@@ -66,14 +41,17 @@ async function main() {
         article.slug,
         article.content,
         article.title,
-        (article.author as string | undefined) ?? '',
+        article.author ?? '',
       );
 
-      // Update the JSON file with page + markdown metadata
-      article.pages = pages;
-      article.markdownPages = markdownPages;
-      const filePath = path.join(ARTICLES_DIR, `${article.slug}.json`);
-      fs.writeFileSync(filePath, JSON.stringify(article, null, 2), 'utf-8');
+      await prisma.article.update({
+        where: { slug: article.slug },
+        data: {
+          pages: pages as never,
+          markdownPages: markdownPages as never,
+          rasterizedAt: new Date(),
+        },
+      });
 
       console.log(`  ✅ ${pages.length} trang (ảnh + markdown) đã tạo thành công.`);
     } catch (err) {
@@ -81,6 +59,7 @@ async function main() {
     }
   }
 
+  await prisma.$disconnect();
   console.log('\n🎉 Hoàn tất rasterize!\n');
 }
 

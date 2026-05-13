@@ -1,11 +1,9 @@
 import NextAuth, { type DefaultSession } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import Google from 'next-auth/providers/google';
-import { MongoDBAdapter } from '@auth/mongodb-adapter';
+import { PrismaAdapter } from '@auth/prisma-adapter';
 import bcrypt from 'bcryptjs';
-import dbConnect from '@/lib/mongoose';
-import User, { type UserRole } from '@/models/User';
-import clientPromise from '@/lib/mongo-client';
+import prisma from '@/lib/prisma';
 import authConfig from '@/auth.config';
 
 declare module 'next-auth' {
@@ -20,9 +18,9 @@ declare module 'next-auth' {
   }
 }
 
-// JWT augmentation lives in the `next-auth` module in v5 beta.
+export type UserRole = 'admin' | 'user';
 
-/** Env-var allowlist: emails on this list are auto-promoted to admin on first sign-in. */
+/** Env-var allowlist: emails on this list are auto-promoted to admin on every sign-in. */
 function adminEmails(): Set<string> {
   return new Set(
     (process.env.ADMIN_EMAILS || 'admin@abc.com')
@@ -34,7 +32,7 @@ function adminEmails(): Set<string> {
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   ...authConfig,
-  adapter: MongoDBAdapter(clientPromise, { databaseName: process.env.MONGODB_DB }),
+  adapter: PrismaAdapter(prisma),
   session: { strategy: 'jwt' },
   providers: [
     Credentials({
@@ -48,31 +46,27 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const password = String(credentials?.password || '');
         if (!email || !password) return null;
 
-        await dbConnect();
-        const u = await User.findOne({ email });
+        const u = await prisma.user.findUnique({ where: { email } });
         if (!u || !u.passwordHash) return null;
 
         const ok = await bcrypt.compare(password, u.passwordHash);
         if (!ok) return null;
 
-        return { id: u._id.toString(), email: u.email, name: u.name, image: u.image, role: u.role };
+        return { id: u.id, email: u.email, name: u.name, image: u.image, role: u.role as UserRole };
       },
     }),
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      // Link Google sign-in to an existing Credentials account if the email matches.
       allowDangerousEmailAccountLinking: true,
     }),
   ],
   callbacks: {
     async signIn({ user }) {
-      // Promote allow-listed emails to admin on every sign-in (idempotent).
       if (!user.email) return true;
       const email = user.email.toLowerCase();
       if (adminEmails().has(email)) {
-        await dbConnect();
-        await User.updateOne({ email }, { $set: { role: 'admin' } });
+        await prisma.user.updateMany({ where: { email }, data: { role: 'admin' } });
       }
       return true;
     },
@@ -83,11 +77,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         t.role = (user as { role?: UserRole }).role ?? 'user';
       }
       if (!t.role && t.email) {
-        await dbConnect();
-        const u = await User.findOne({ email: String(t.email).toLowerCase() });
+        const u = await prisma.user.findUnique({ where: { email: String(t.email).toLowerCase() } });
         if (u) {
-          t.id = u._id.toString();
-          t.role = u.role;
+          t.id = u.id;
+          t.role = u.role as UserRole;
         }
       }
       return token;

@@ -11,7 +11,7 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const articles = getAllArticles();
+  const articles = await getAllArticles();
   return articles
     .filter(a => a.status === 'published')
     .map(a => ({ slug: a.slug }));
@@ -19,7 +19,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = await getArticleBySlug(slug);
   if (!article) return { title: 'Không tìm thấy' };
   return {
     title: `Đọc: ${article.title}`,
@@ -58,7 +58,7 @@ interface SearchProps {
 export default async function ReadPage({ params, searchParams }: Props & SearchProps) {
   const { slug } = await params;
   const sp = searchParams ? await searchParams : {};
-  const article = getArticleBySlug(slug);
+  const article = await getArticleBySlug(slug);
 
   if (!article || article.status !== 'published') notFound();
 

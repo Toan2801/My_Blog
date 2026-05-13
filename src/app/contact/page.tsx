@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = { title: 'Liên Hệ' };
 
-export default function ContactPage() {
-  const config = getSiteConfig();
+export default async function ContactPage() {
+  const config = await getSiteConfig();
   const { donation } = config;
 
   return (

@@ -12,9 +12,9 @@ export default async function ArticlesPage({
   searchParams: Promise<{ category?: string; search?: string }>;
 }) {
   const { category, search } = await searchParams;
-  const allArticles = getAllArticles();
-  const allSeries = getAllSeries();
-  const config = getSiteConfig();
+  const allArticles = await getAllArticles();
+  const allSeries = await getAllSeries();
+  const config = await getSiteConfig();
 
   const standaloneArticles = allArticles.filter(a => a.type === 'articles' && !a.series);
   const seriesItems = allSeries.filter(s => s.type === 'articles');

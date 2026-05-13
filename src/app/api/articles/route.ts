@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
     if (!article.slug || !article.title) {
       return NextResponse.json({ error: 'Thiếu tiêu đề hoặc slug' }, { status: 400 });
     }
-    saveArticle(article);
+    await saveArticle(article);
 
     // Trigger rasterization in the background for published articles
     if (article.status === 'published' && article.content) {
@@ -39,7 +39,7 @@ export async function PUT(req: NextRequest) {
     if (!article.slug || !article.title) {
       return NextResponse.json({ error: 'Thiếu tiêu đề hoặc slug' }, { status: 400 });
     }
-    saveArticle(article);
+    await saveArticle(article);
 
     // Re-rasterize on update for published articles
     if (article.status === 'published' && article.content) {
@@ -56,11 +56,11 @@ export async function DELETE(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const slug = searchParams.get('slug');
   if (!slug) return NextResponse.json({ error: 'Cần slug' }, { status: 400 });
-  deleteArticle(slug);
+  await deleteArticle(slug);
   return NextResponse.json({ success: true });
 }
 
 export async function GET() {
-  const articles = getAllArticlesAdmin();
+  const articles = await getAllArticlesAdmin();
   return NextResponse.json(articles);
 }

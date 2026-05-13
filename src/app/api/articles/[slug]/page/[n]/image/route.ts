@@ -8,7 +8,7 @@ import { shufflePngTiles } from '@/lib/tile-shuffle-server';
 
 export const dynamic = 'force-dynamic';
 
-const PAGE_IMAGE_ROOT = path.join(process.cwd(), 'data', 'page-images');
+const PAGE_IMAGE_ROOT = path.join(process.cwd(), 'storage', 'page-images');
 
 const rateLimitMap = new Map<string, { count: number; reset: number }>();
 const RATE_LIMIT = 240;
@@ -73,7 +73,7 @@ export async function GET(
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }
 
-  const article = getArticleBySlug(safeSlug);
+  const article = await getArticleBySlug(safeSlug);
   if (!article || article.status !== 'published') {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }

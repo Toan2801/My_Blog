@@ -38,7 +38,7 @@ const DPR = 1;
 
 // Page images are stored outside /public so they cannot be hot-linked or
 // scraped directly. They are streamed through a token-gated API route.
-const OUTPUT_DIR = path.join(process.cwd(), 'data', 'page-images');
+const OUTPUT_DIR = path.join(process.cwd(), 'storage', 'page-images');
 
 /** CSS applied to every rendered page (must match reader appearance). */
 const PAGE_CSS = `

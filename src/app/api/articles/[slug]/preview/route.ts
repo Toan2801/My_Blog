@@ -23,7 +23,7 @@ export async function GET(
   if (!isValidOrigin) return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
 
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = await getArticleBySlug(slug);
   if (!article || article.status !== 'published') {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }

@@ -4,7 +4,7 @@ import { getAllArticles } from '@/lib/data';
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  const articles = getAllArticles();
+  const articles = await getAllArticles();
   if (articles.length === 0) {
     return NextResponse.redirect(new URL('/articles', process.env.NEXT_PUBLIC_SITE_URL || 'https://my-blog-taupe-zeta.vercel.app'));
   }

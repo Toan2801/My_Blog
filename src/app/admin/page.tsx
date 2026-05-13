@@ -3,9 +3,9 @@ import { getAllArticlesAdmin, getSiteConfig } from '@/lib/data';
 import { getVideos } from '@/lib/video-data';
 import DeleteArticleButton from '@/components/DeleteArticleButton';
 
-export default function AdminDashboard() {
-  const articles = getAllArticlesAdmin();
-  const videos = getVideos();
+export default async function AdminDashboard() {
+  const articles = await getAllArticlesAdmin();
+  const videos = await getVideos();
   const published = articles.filter(a => a.status === 'published').length;
   const drafts = articles.filter(a => a.status === 'draft').length;
   const featured = articles.find(a => a.featured);

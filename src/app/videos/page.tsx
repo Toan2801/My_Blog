@@ -17,8 +17,8 @@ function getEmbedUrl(url: string) {
   return url;
 }
 
-export default function VideoPage() {
-  const videos = getVideos();
+export default async function VideoPage() {
+  const videos = await getVideos();
 
   return (
     <div className="video-page container py-12">

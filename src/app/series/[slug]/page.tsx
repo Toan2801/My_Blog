@@ -7,7 +7,7 @@ import SupportQR from '@/components/SupportQR';
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const { slug } = await params;
-  const series = getSeriesBySlug(slug);
+  const series = await getSeriesBySlug(slug);
   if (!series) return { title: 'Không tìm thấy series' };
   return {
     title: `${series.title} - Series`,
@@ -17,11 +17,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 export default async function SeriesLandingPage({ params }: { params: { slug: string } }) {
   const { slug } = await params;
-  const series = getSeriesBySlug(slug);
+  const series = await getSeriesBySlug(slug);
   if (!series) notFound();
 
-  const articles = getArticlesBySeries(series.title);
-  const config = getSiteConfig();
+  const articles = await getArticlesBySeries(series.title);
+  const config = await getSiteConfig();
 
   return (
     <div className="container" style={{ marginTop: 'var(--space-6)', marginBottom: 'var(--space-10)' }}>

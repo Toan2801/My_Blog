@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { getAllArticlesAdmin } from '@/lib/data';
 import DeleteArticleButton from '@/components/DeleteArticleButton';
 
-export default function AdminArticlesPage() {
-  const articles = getAllArticlesAdmin();
+export default async function AdminArticlesPage() {
+  const articles = await getAllArticlesAdmin();
 
   return (
     <>

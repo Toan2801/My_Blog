@@ -41,7 +41,7 @@ export async function GET(
     return NextResponse.json({ hits: [], total: 0 });
   }
 
-  const article = getArticleBySlug(slug);
+  const article = await getArticleBySlug(slug);
   if (!article || article.status !== 'published') {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }

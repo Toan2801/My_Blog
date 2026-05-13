@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 import { execFile } from 'child_process';
 import path from 'path';
-import dbConnect from '@/lib/mongoose';
-import Article from '@/models/Article';
+import prisma from '@/lib/prisma';
 
 /**
  * Admin-only: rasterize one article. The route runs the rasterize script and
@@ -17,8 +16,7 @@ export async function POST(
 ) {
   const { slug } = await params;
 
-  await dbConnect();
-  const article = await Article.findOne({ slug });
+  const article = await prisma.article.findUnique({ where: { slug } });
   if (!article) return NextResponse.json({ error: 'NotFound' }, { status: 404 });
 
   const script = path.join(process.cwd(), 'scripts', 'rasterize-articles.ts');
@@ -36,7 +34,7 @@ export async function POST(
   });
 
   const now = new Date();
-  await Article.updateOne({ slug }, { $set: { rasterizedAt: now } });
+  await prisma.article.update({ where: { slug }, data: { rasterizedAt: now } });
 
   return NextResponse.json({ ok: true, slug, rasterizedAt: now.toISOString() });
 }

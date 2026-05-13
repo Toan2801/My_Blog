@@ -1,0 +1,124 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── NextAuth v5 required tables ──────────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  passwordHash  String?
+  role          String    @default("user")
+  accounts      Account[]
+  sessions      Session[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
+// ─── Content models ───────────────────────────────────────────────────────────
+
+model Article {
+  id            String    @id @default(cuid())
+  slug          String    @unique
+  title         String
+  subtitle      String?
+  excerpt       String
+  content       String
+  category      String?
+  type          String    @default("articles")
+  tags          String[]
+  series        String?
+  seriesOrder   Int?
+  date          String
+  featured      Boolean   @default(false)
+  author        String
+  coverImage    String?
+  status        String    @default("draft")
+  readingTime   Int       @default(0)
+  footnotes     Json?
+  pages         Json?
+  markdownPages Json?
+  rasterizedAt  DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Series {
+  slug        String   @id
+  title       String
+  description String
+  coverImage  String?
+  type        String   @default("articles")
+  category    String?
+  status      String   @default("draft")
+  featured    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SiteConfig {
+  id   Int  @id @default(1)
+  data Json
+}
+
+model Video {
+  id          String   @id
+  title       String
+  url         String
+  description String
+  createdAt   DateTime @default(now())
+}
+
+model Comment {
+  id          String   @id @default(cuid())
+  articleSlug String
+  author      String
+  text        String
+  createdAt   DateTime @default(now())
+
+  @@index([articleSlug])
+}

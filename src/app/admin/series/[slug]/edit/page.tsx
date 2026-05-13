@@ -4,7 +4,7 @@ import SeriesEditor from '@/components/SeriesEditor';
 
 export default async function EditSeriesPage({ params }: { params: { slug: string } }) {
   const { slug } = await params;
-  const series = getSeriesBySlug(slug);
+  const series = await getSeriesBySlug(slug);
   if (!series) notFound();
 
   return (

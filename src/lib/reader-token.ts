@@ -6,8 +6,8 @@
  *   - trial:<sessionId>.<slug>.<expiry> → anonymous reader, capped at TRIAL_MAX_PAGES.
  *
  * Goal: access control AND anti-scraping. Tokens are signed (HMAC-SHA256) with
- * READER_TOKEN_SECRET (falls back to MONGODB_URI for dev) so a leaked token
- * for one user can't be reused for a different slug or past its expiry.
+ * READER_TOKEN_SECRET so a leaked token for one user can't be reused for a
+ * different slug or past its expiry.
  */
 
 import crypto from 'crypto';
@@ -16,7 +16,6 @@ const TOKEN_TTL_MS = 60 * 60 * 1000; // 1 hour
 export const TRIAL_MAX_PAGES = 5;
 const SECRET =
   process.env.READER_TOKEN_SECRET ||
-  process.env.MONGODB_URI ||
   'history-blog-dev-secret-please-set-READER_TOKEN_SECRET';
 
 export type ReaderTokenKind = 'user' | 'trial';

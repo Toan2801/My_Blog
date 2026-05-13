@@ -18,11 +18,11 @@ function timeAgo(dateStr: string) {
   return formatDate(dateStr);
 }
 
-export default function HomePage() {
-  const config = getSiteConfig();
-  const allArticles = getAllArticles();
-  const allSeries = getAllSeries();
-  const videos = getVideos();
+export default async function HomePage() {
+  const config = await getSiteConfig();
+  const allArticles = await getAllArticles();
+  const allSeries = await getAllSeries();
+  const videos = await getVideos();
 
   // Published content
   const published = allArticles.filter(a => a.status === 'published');

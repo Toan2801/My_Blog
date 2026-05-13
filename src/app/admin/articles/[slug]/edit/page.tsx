@@ -5,9 +5,9 @@ import RasterizeButton from '@/components/RasterizeButton';
 
 export default async function EditArticlePage({ params }: { params: { slug: string } }) {
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = await getArticleBySlug(slug);
   if (!article) notFound();
-  const config = getSiteConfig();
+  const config = await getSiteConfig();
 
   return (
     <>
@@ -15,7 +15,7 @@ export default async function EditArticlePage({ params }: { params: { slug: stri
         <h1 className="admin-page-title">Chỉnh sửa bài viết</h1>
         <RasterizeButton slug={slug} />
       </div>
-      <ArticleEditor initialArticle={article} categories={config.categories} seriesList={getAllSeries()} isEdit />
+      <ArticleEditor initialArticle={article} categories={config.categories} seriesList={await getAllSeries()} isEdit />
     </>
   );
 }

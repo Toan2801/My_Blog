@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { getSiteConfig } from '@/lib/data';
 
 export default function DonationPage() {
   const [qrPreview, setQrPreview] = useState<string | null>(null);

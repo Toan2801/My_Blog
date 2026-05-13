@@ -1,112 +1,185 @@
-import fs from 'fs';
-import path from 'path';
-import { Article, SiteConfig, Series } from './types';
+import prisma from './prisma';
+import type { Article, SiteConfig, Series } from './types';
 
-const DATA_DIR = path.join(process.cwd(), 'data');
-const ARTICLES_DIR = path.join(DATA_DIR, 'articles');
-const SERIES_DIR = path.join(DATA_DIR, 'series');
-const CONFIG_PATH = path.join(DATA_DIR, 'config.json');
-
-export function getSiteConfig(): SiteConfig {
-  const raw = fs.readFileSync(CONFIG_PATH, 'utf-8');
-  return JSON.parse(raw);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function dbToArticle(a: any): Article {
+  return {
+    id: a.id,
+    slug: a.slug,
+    title: a.title,
+    subtitle: a.subtitle ?? '',
+    excerpt: a.excerpt,
+    content: a.content,
+    category: a.category ?? undefined,
+    type: (a.type as 'articles' | 'translation') ?? 'articles',
+    tags: a.tags ?? [],
+    series: a.series ?? null,
+    seriesOrder: a.seriesOrder ?? null,
+    date: a.date,
+    featured: a.featured ?? false,
+    author: a.author,
+    coverImage: a.coverImage ?? null,
+    status: a.status as 'draft' | 'published',
+    readingTime: a.readingTime ?? 0,
+    footnotes: a.footnotes ?? undefined,
+    pages: a.pages ?? undefined,
+    markdownPages: a.markdownPages ?? undefined,
+  };
 }
 
-export function saveSiteConfig(config: SiteConfig): void {
-  fs.writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2), 'utf-8');
+const DEFAULT_CONFIG: SiteConfig = {
+  blogTitle: '',
+  blogSubtitle: '',
+  blogDescription: '',
+  authorName: '',
+  authorBio: '',
+  authorEmail: '',
+  authorAvatar: '',
+  featuredArticleSlug: '',
+  quoteBlock: { text: '', author: '' },
+  suggestedReading: [],
+  categories: [],
+  donation: { text: '', qrImage: null },
+};
+
+export async function getSiteConfig(): Promise<SiteConfig> {
+  const row = await prisma.siteConfig.findUnique({ where: { id: 1 } });
+  if (!row) return DEFAULT_CONFIG;
+  return row.data as unknown as SiteConfig;
 }
 
-export function getAllArticles(): Article[] {
-  if (!fs.existsSync(ARTICLES_DIR)) return [];
-  const files = fs.readdirSync(ARTICLES_DIR).filter(f => f.endsWith('.json'));
-  return files
-    .map(f => {
-      const raw = fs.readFileSync(path.join(ARTICLES_DIR, f), 'utf-8');
-      const data = JSON.parse(raw) as Article;
-      if (!data.type) data.type = 'articles';
-      return data;
-    })
-    .filter(a => a.status === 'published')
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+export async function saveSiteConfig(config: SiteConfig): Promise<void> {
+  await prisma.siteConfig.upsert({
+    where: { id: 1 },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    update: { data: config as any },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    create: { id: 1, data: config as any },
+  });
 }
 
-export function getAllArticlesAdmin(): Article[] {
-  if (!fs.existsSync(ARTICLES_DIR)) return [];
-  const files = fs.readdirSync(ARTICLES_DIR).filter(f => f.endsWith('.json'));
-  return files
-    .map(f => {
-      const raw = fs.readFileSync(path.join(ARTICLES_DIR, f), 'utf-8');
-      const data = JSON.parse(raw) as Article;
-      if (!data.type) data.type = 'articles';
-      return data;
-    })
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+export async function getAllArticles(): Promise<Article[]> {
+  const rows = await prisma.article.findMany({
+    where: { status: 'published' },
+    orderBy: { date: 'desc' },
+  });
+  return rows.map(dbToArticle);
 }
 
-export function getArticleBySlug(slug: string): Article | null {
-  const filePath = path.join(ARTICLES_DIR, `${slug}.json`);
-  if (!fs.existsSync(filePath)) return null;
-  const raw = fs.readFileSync(filePath, 'utf-8');
-  const data = JSON.parse(raw) as Article;
-  if (!data.type) data.type = 'articles';
-  return data;
+export async function getAllArticlesAdmin(): Promise<Article[]> {
+  const rows = await prisma.article.findMany({ orderBy: { date: 'desc' } });
+  return rows.map(dbToArticle);
 }
 
-export function saveArticle(article: Article): void {
-  if (!fs.existsSync(ARTICLES_DIR)) fs.mkdirSync(ARTICLES_DIR, { recursive: true });
-  const filePath = path.join(ARTICLES_DIR, `${article.slug}.json`);
-  fs.writeFileSync(filePath, JSON.stringify(article, null, 2), 'utf-8');
+export async function getArticleBySlug(slug: string): Promise<Article | null> {
+  const row = await prisma.article.findUnique({ where: { slug } });
+  return row ? dbToArticle(row) : null;
 }
 
-export function deleteArticle(slug: string): void {
-  const filePath = path.join(ARTICLES_DIR, `${slug}.json`);
-  if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+export async function saveArticle(article: Article): Promise<void> {
+  const data = {
+    title: article.title,
+    subtitle: article.subtitle ?? null,
+    excerpt: article.excerpt,
+    content: article.content,
+    category: article.category ?? null,
+    type: article.type ?? 'articles',
+    tags: article.tags ?? [],
+    series: article.series ?? null,
+    seriesOrder: article.seriesOrder ?? null,
+    date: article.date,
+    featured: article.featured ?? false,
+    author: article.author,
+    coverImage: article.coverImage ?? null,
+    status: article.status ?? 'draft',
+    readingTime: article.readingTime ?? 0,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    footnotes: article.footnotes ? (article.footnotes as any) : undefined,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    pages: article.pages ? (article.pages as any) : undefined,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    markdownPages: article.markdownPages ? (article.markdownPages as any) : undefined,
+  };
+  await prisma.article.upsert({
+    where: { slug: article.slug },
+    update: data,
+    create: { slug: article.slug, ...data },
+  });
 }
 
-export function getCategories(): string[] {
-  const config = getSiteConfig();
+export async function deleteArticle(slug: string): Promise<void> {
+  await prisma.article.delete({ where: { slug } }).catch(() => {});
+}
+
+export async function getCategories(): Promise<string[]> {
+  const config = await getSiteConfig();
   return config.categories;
 }
 
 export function getRelatedArticles(current: Article, all: Article[], limit = 3): Article[] {
   return all
-    .filter(a => a.slug !== current.slug && (a.category === current.category || a.tags.some(t => current.tags.includes(t))))
+    .filter(
+      (a) =>
+        a.slug !== current.slug &&
+        (a.category === current.category || a.tags.some((t) => current.tags.includes(t))),
+    )
     .slice(0, limit);
 }
-export function getArticlesBySeries(seriesName: string): Article[] {
-  const all = getAllArticles();
-  return all
-    .filter(a => a.series === seriesName)
-    .sort((a, b) => (a.seriesOrder || 0) - (b.seriesOrder || 0));
+
+export async function getArticlesBySeries(seriesName: string): Promise<Article[]> {
+  const rows = await prisma.article.findMany({
+    where: { series: seriesName, status: 'published' },
+    orderBy: { seriesOrder: 'asc' },
+  });
+  return rows.map(dbToArticle);
 }
 
-export function getAllSeries(): Series[] {
-  if (!fs.existsSync(SERIES_DIR)) return [];
-  const files = fs.readdirSync(SERIES_DIR).filter(f => f.endsWith('.json'));
-  return files.map(f => {
-    const raw = fs.readFileSync(path.join(SERIES_DIR, f), 'utf-8');
-    const data = JSON.parse(raw) as Series;
-    if (!data.type) data.type = 'articles';
-    return data;
+export async function getAllSeries(): Promise<Series[]> {
+  const rows = await prisma.series.findMany();
+  return rows.map((s) => ({
+    slug: s.slug,
+    title: s.title,
+    description: s.description,
+    coverImage: s.coverImage ?? null,
+    type: (s.type as 'articles' | 'translation') ?? 'articles',
+    category: s.category ?? undefined,
+    status: s.status as 'draft' | 'published',
+    featured: s.featured ?? false,
+  }));
+}
+
+export async function getSeriesBySlug(slug: string): Promise<Series | null> {
+  const row = await prisma.series.findUnique({ where: { slug } });
+  if (!row) return null;
+  return {
+    slug: row.slug,
+    title: row.title,
+    description: row.description,
+    coverImage: row.coverImage ?? null,
+    type: (row.type as 'articles' | 'translation') ?? 'articles',
+    category: row.category ?? undefined,
+    status: row.status as 'draft' | 'published',
+    featured: row.featured ?? false,
+  };
+}
+
+export async function saveSeries(series: Series): Promise<void> {
+  const data = {
+    title: series.title,
+    description: series.description,
+    coverImage: series.coverImage ?? null,
+    type: series.type ?? 'articles',
+    category: series.category ?? null,
+    status: series.status ?? 'draft',
+    featured: series.featured ?? false,
+  };
+  await prisma.series.upsert({
+    where: { slug: series.slug },
+    update: data,
+    create: { slug: series.slug, ...data },
   });
 }
 
-export function getSeriesBySlug(slug: string): Series | null {
-  const filePath = path.join(SERIES_DIR, `${slug}.json`);
-  if (!fs.existsSync(filePath)) return null;
-  const raw = fs.readFileSync(filePath, 'utf-8');
-  const data = JSON.parse(raw) as Series;
-  if (!data.type) data.type = 'articles';
-  return data;
-}
-
-export function saveSeries(series: Series): void {
-  if (!fs.existsSync(SERIES_DIR)) fs.mkdirSync(SERIES_DIR, { recursive: true });
-  const filePath = path.join(SERIES_DIR, `${series.slug}.json`);
-  fs.writeFileSync(filePath, JSON.stringify(series, null, 2), 'utf-8');
-}
-
-export function deleteSeries(slug: string): void {
-  const filePath = path.join(SERIES_DIR, `${slug}.json`);
-  if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+export async function deleteSeries(slug: string): Promise<void> {
+  await prisma.series.delete({ where: { slug } }).catch(() => {});
 }

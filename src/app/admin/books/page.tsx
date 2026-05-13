@@ -1,20 +1,18 @@
 import Link from 'next/link';
-import dbConnect from '@/lib/mongoose';
-import Article from '@/models/Article';
+import prisma from '@/lib/prisma';
 import BooksMaster, { type BookRow } from './BooksMaster';
 
 async function getBooks(): Promise<BookRow[]> {
-  await dbConnect();
-  const docs = await Article.find({}).sort({ updatedAt: -1 }).lean();
+  const docs = await prisma.article.findMany({ orderBy: { updatedAt: 'desc' } });
   return docs.map((d) => {
-    const updatedAt = (d as { updatedAt?: Date }).updatedAt;
-    const rasterizedAt = (d as { rasterizedAt?: Date }).rasterizedAt ?? null;
+    const updatedAt = d.updatedAt;
+    const rasterizedAt = d.rasterizedAt ?? null;
     const isRasterized = !!rasterizedAt && !!updatedAt && rasterizedAt >= updatedAt;
     return {
-      slug: d.slug as string,
-      title: d.title as string,
-      author: d.author as string,
-      category: d.category as string,
+      slug: d.slug,
+      title: d.title,
+      author: d.author,
+      category: d.category ?? '',
       status: d.status as 'draft' | 'published',
       updatedAt: updatedAt ? updatedAt.toISOString() : null,
       rasterizedAt: rasterizedAt ? rasterizedAt.toISOString() : null,
