@@ -21,47 +21,5 @@
   "readingTime": 3,
   "coverImage": "/uploads/img-1775902413231.jpg",
   "author": "Toan Nguyen",
-  "footnotes": [],
-  "pages": [
-    {
-      "pageNumber": 1,
-      "imageUrl": "/api/articles/ngoalongkhuc/page/1/image"
-    },
-    {
-      "pageNumber": 2,
-      "imageUrl": "/api/articles/ngoalongkhuc/page/2/image"
-    },
-    {
-      "pageNumber": 3,
-      "imageUrl": "/api/articles/ngoalongkhuc/page/3/image"
-    },
-    {
-      "pageNumber": 4,
-      "imageUrl": "/api/articles/ngoalongkhuc/page/4/image"
-    },
-    {
-      "pageNumber": 5,
-      "imageUrl": "/api/articles/ngoalongkhuc/page/5/image"
-    },
-    {
-      "pageNumber": 6,
-      "imageUrl": "/api/articles/ngoalongkhuc/page/6/image"
-    },
-    {
-      "pageNumber": 7,
-      "imageUrl": "/api/articles/ngoalongkhuc/page/7/image"
-    },
-    {
-      "pageNumber": 8,
-      "imageUrl": "/api/articles/ngoalongkhuc/page/8/image"
-    },
-    {
-      "pageNumber": 9,
-      "imageUrl": "/api/articles/ngoalongkhuc/page/9/image"
-    },
-    {
-      "pageNumber": 10,
-      "imageUrl": "/api/articles/ngoalongkhuc/page/10/image"
-    }
-  ]
+  "footnotes": []
 }
