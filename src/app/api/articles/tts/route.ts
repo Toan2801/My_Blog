@@ -7,7 +7,7 @@ export async function POST(req: Request) {
     if (!text) return NextResponse.json({ error: 'No text provided' }, { status: 400 });
 
     // Limit text to 200 characters for a quick stable test, or use getAllAudioUrls
-    const urls = googleTTS.getAllAudioUrls(text.substring(0, 2000), {
+    const urls = googleTTS.getAllAudioUrls(text, {
       lang: 'vi',
       slow: false,
       host: 'https://translate.google.com',

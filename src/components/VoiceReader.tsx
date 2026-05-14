@@ -12,7 +12,8 @@ export default function VoiceReader() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const isServerFallback = useRef(false);
   const serverUrls = useRef<string[]>([]);
-  const currentUrlIndex = useRef(0);
+  const nativeChunks = useRef<string[]>([]);
+  const currentIndex = useRef(0);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -52,13 +53,13 @@ export default function VoiceReader() {
   }, []);
 
   const playServerChunk = () => {
-    if (!audioRef.current || currentUrlIndex.current >= serverUrls.current.length) {
+    if (!audioRef.current || currentIndex.current >= serverUrls.current.length) {
       setIsPlaying(false);
       return;
     }
 
     // Wrap the URL with our proxy
-    const rawUrl = serverUrls.current[currentUrlIndex.current];
+    const rawUrl = serverUrls.current[currentIndex.current];
     const proxyUrl = `/api/articles/tts/proxy?url=${encodeURIComponent(rawUrl)}`;
     
     audioRef.current.src = proxyUrl;
@@ -68,9 +69,40 @@ export default function VoiceReader() {
     });
 
     audioRef.current.onended = () => {
-      currentUrlIndex.current++;
+      currentIndex.current++;
       playServerChunk();
     };
+  };
+
+  const playNativeChunk = () => {
+    if (!synthRef.current || currentIndex.current >= nativeChunks.current.length) {
+      setIsPlaying(false);
+      return;
+    }
+
+    const voice = findBestVoice();
+    const utterance = new SpeechSynthesisUtterance(nativeChunks.current[currentIndex.current]);
+    if (voice) utterance.voice = voice;
+    utterance.lang = 'vi-VN';
+    utterance.rate = 1.0;
+
+    utterance.onstart = () => {
+      setIsPlaying(true);
+      setIsPaused(false);
+    };
+
+    utterance.onend = () => {
+      currentIndex.current++;
+      playNativeChunk();
+    };
+
+    utterance.onerror = (event) => {
+      console.error('TTS error:', event);
+      setIsPlaying(false);
+    };
+
+    utteranceRef.current = utterance;
+    synthRef.current.speak(utterance);
   };
 
   const speak = async () => {
@@ -104,7 +136,7 @@ export default function VoiceReader() {
         const data = await res.json();
         if (data.urls && data.urls.length > 0) {
           serverUrls.current = data.urls;
-          currentUrlIndex.current = 0;
+          currentIndex.current = 0;
           setIsPlaying(true);
           playServerChunk();
         }
@@ -118,20 +150,25 @@ export default function VoiceReader() {
 
     // NATIVE BROWSER SPEECH
     isServerFallback.current = false;
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.voice = voice;
-    utterance.lang = 'vi-VN';
-    utterance.rate = 1.0;
+    
+    // Split text into chunks of roughly 200 chars, ending at punctuation if possible
+    const chunks: string[] = [];
+    const sentences = text.split(/(?<=[.!?])\s+/);
+    
+    let currentChunk = "";
+    for (const sentence of sentences) {
+      if ((currentChunk + sentence).length > 200) {
+        if (currentChunk) chunks.push(currentChunk.trim());
+        currentChunk = sentence;
+      } else {
+        currentChunk += sentence;
+      }
+    }
+    if (currentChunk) chunks.push(currentChunk.trim());
 
-    utterance.onstart = () => {
-      setIsPlaying(true);
-      setIsPaused(false);
-    };
-    utterance.onend = () => setIsPlaying(false);
-    utterance.onerror = () => setIsPlaying(false);
-
-    utteranceRef.current = utterance;
-    synthRef.current?.speak(utterance);
+    nativeChunks.current = chunks;
+    currentIndex.current = 0;
+    playNativeChunk();
   };
 
   const pause = () => {
@@ -151,7 +188,8 @@ export default function VoiceReader() {
       audioRef.current.src = '';
     }
     serverUrls.current = [];
-    currentUrlIndex.current = 0;
+    nativeChunks.current = [];
+    currentIndex.current = 0;
     setIsPlaying(false);
     setIsPaused(false);
   };
