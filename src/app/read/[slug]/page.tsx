@@ -90,6 +90,7 @@ export default async function ReadPage({ params, searchParams }: Props & SearchP
 
   if (!article || article.status !== 'published') {
     notFound();
+    return null;
   }
   
   // Feature suspended
@@ -98,25 +99,34 @@ export default async function ReadPage({ params, searchParams }: Props & SearchP
 
   const session = await auth();
   const trial = !session?.user?.id;
+  const safeArticle = article!;
 
-  const htmlContent = renderArticleMarkdown(article.content);
+  const htmlContent = renderArticleMarkdown(safeArticle.content || '');
   const { pages: dynamicPages } = paginateHTML(htmlContent, 850);
   
   // Merge image metadata with markdown content
-  const allPages = (article.pages && article.pages.length > 0)
-    ? article.pages.map(p => {
-        const mdPage = article.markdownPages?.find(mp => mp.pageNumber === p.pageNumber);
-        return {
-          pageNumber: p.pageNumber,
-          html: p.html || renderArticleMarkdown(p.markdown || mdPage?.markdown || '')
-        };
-      })
-    : dynamicPages.map((html, i) => ({ pageNumber: i + 4, html }));
+  let allPages: Array<{ pageNumber: number; html: string }> = [];
+  const articlePages = safeArticle.pages || [];
+  if (articlePages.length > 0) {
+    allPages = articlePages.map(p => {
+      const mdPage = safeArticle.markdownPages?.find(mp => mp.pageNumber === p.pageNumber);
+      return {
+        pageNumber: p.pageNumber,
+        html: p.html || renderArticleMarkdown(p.markdown || mdPage?.markdown || '')
+      };
+    });
+  } else {
+    allPages = dynamicPages.map((html, i) => ({ pageNumber: i + 4, html }));
+  }
 
   // Fix: Use markdownPages for TOC if available, otherwise use allPages
-  const tocEntries = (article.markdownPages && article.markdownPages.length > 0)
-    ? buildTocEntries(article.markdownPages)
-    : buildTocEntries(allPages);
+  let tocEntries;
+  const mdPages = safeArticle.markdownPages || [];
+  if (mdPages.length > 0) {
+    tocEntries = buildTocEntries(mdPages);
+  } else {
+    tocEntries = buildTocEntries(allPages);
+  }
     
   const notes = extractNotes(allPages);
 
@@ -130,7 +140,7 @@ export default async function ReadPage({ params, searchParams }: Props & SearchP
     }>
       <CanvasReader
         slug={slug}
-        articleTitle={article.title}
+        articleTitle={safeArticle.title || ''}
         tocEntries={tocEntries}
         notes={notes}
         trial={trial}

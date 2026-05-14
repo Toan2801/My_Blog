@@ -5,7 +5,10 @@ import BooksMaster, { type BookRow } from './BooksMaster';
 
 async function getBooks(): Promise<BookRow[]> {
   await dbConnect();
-  const docs = await Article.find({}).sort({ updatedAt: -1 }).lean();
+  const docs = await Article.find({})
+    .select('slug title author category status updatedAt rasterizedAt')
+    .sort({ updatedAt: -1 })
+    .lean();
   return docs.map((d) => {
     const updatedAt = (d as { updatedAt?: Date }).updatedAt;
     const rasterizedAt = (d as { rasterizedAt?: Date }).rasterizedAt ?? null;

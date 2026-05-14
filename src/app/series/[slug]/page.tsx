@@ -92,7 +92,7 @@ export default async function SeriesLandingPage({ params }: { params: { slug: st
         </div>
       </section>
 
-      <div style={{ marginTop: 'var(--space-10)', textAlign: 'center' }}>
+      <div style={{ marginTop: 'var(--space-8)', marginBottom: 'var(--space-4)', textAlign: 'center' }}>
         <Link href="/" className="btn-secondary" style={{ display: 'inline-block', padding: '12px 32px' }}>← Trở về trang chủ</Link>
       </div>
     </div>

@@ -47,4 +47,6 @@ const ArticleSchema: Schema = new Schema({
   timestamps: true,
 });
 
+ArticleSchema.index({ updatedAt: -1 });
+
 export default mongoose.models.Article || mongoose.model<IArticle>('Article', ArticleSchema);

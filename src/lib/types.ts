@@ -32,6 +32,7 @@ export interface Article {
   readingTime: number;
   footnotes?: Footnote[];
   pages?: ArticlePage[];
+  markdownPages?: Array<{ pageNumber: number; markdown?: string; html?: string }>;
 }
 
 export interface Series {
