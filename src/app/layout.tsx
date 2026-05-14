@@ -3,7 +3,6 @@ import './globals.css';
 import './discord-theme.css';
 import './auth.css';
 import { getPublicSiteConfig } from '@/lib/public-data';
-import ReadingProgress from '@/components/ReadingProgress';
 import AuthProvider from '@/components/AuthProvider';
 import DiscordShell from '@/components/DiscordShell';
 
@@ -23,7 +22,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <head />
       <body suppressHydrationWarning>
         <AuthProvider>
-          <ReadingProgress />
           <DiscordShell config={config}>
             {children}
           </DiscordShell>

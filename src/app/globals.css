@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=Noto+Sans:wght@400;500;600;700&display=swap');
 
 /* ============================================
    DESIGN TOKENS
@@ -22,8 +22,8 @@
 
   /* Typography */
   --font-serif: 'Playfair Display', serif;
-  --font-body: 'Lora', serif;
-  --font-ui: 'Inter', -apple-system, sans-serif;
+  --font-body: 'gg sans', 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-ui: 'gg sans', 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
   /* Spacing */
   --space-1: 4px;
@@ -70,7 +70,7 @@
 }
 
 html {
-  font-size: 18px;
+  font-size: 16px;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   /* Accent Colors - Warm Palette (from header-art) */
@@ -3220,24 +3220,6 @@ figcaption.image-caption {
 /* ============================================
    READING OPTIMIZATIONS
    ============================================ */
-.reading-progress-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: transparent;
-  z-index: 2000;
-  pointer-events: none;
-}
-
-.reading-progress-bar {
-  height: 100%;
-  background: var(--gold);
-  transition: width 0.1s ease;
-  box-shadow: 0 0 10px var(--gold-light);
-}
-
 .zen-mode-active .article-sidebar,
 .zen-mode-active .footer,
 .zen-mode-active .site-header {

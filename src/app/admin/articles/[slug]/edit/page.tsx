@@ -1,21 +1,18 @@
 import { notFound } from 'next/navigation';
-import { getArticleForEditBySlug, getSiteConfig, getAllSeries } from '@/lib/data';
-import ArticleEditor from '@/components/ArticleEditor';
-import RasterizeButton from '@/components/RasterizeButton';
+import { getArticleForEditBySlug, getSiteConfig } from '@/lib/data';
+import DiscordArticleEditor from '@/components/DiscordArticleEditor';
 
-export default async function EditArticlePage({ params }: { params: { slug: string } }) {
+export default async function EditArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const article = await getArticleForEditBySlug(slug);
   if (!article) notFound();
   const config = await getSiteConfig();
-
   return (
-    <>
-      <div className="admin-header">
-        <h1 className="admin-page-title">Chỉnh sửa bài viết</h1>
-        <RasterizeButton slug={slug} />
-      </div>
-      <ArticleEditor initialArticle={article} categories={config.categories} seriesList={await getAllSeries()} isEdit />
-    </>
+    <DiscordArticleEditor
+      initialArticle={article}
+      authorName={config.authorName}
+      defaultCategory={article.category || config.categories[0]}
+      isEdit
+    />
   );
 }
