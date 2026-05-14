@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getArticleBySlug } from '@/lib/data';
 import { readRasterizedArticleData } from '@/lib/raster-data';
 import { verifyReaderToken, tokenAllowsPage } from '@/lib/reader-token';
 
 export const dynamic = 'force-dynamic';
+
+function getPrivateCacheControl(expiresAt: number): string {
+  const remainingSeconds = Math.max(0, Math.floor((expiresAt - Date.now()) / 1000));
+  const maxAge = Math.min(remainingSeconds, 300);
+  return `private, max-age=${maxAge}`;
+}
 
 export async function GET(
   request: NextRequest,
@@ -33,11 +38,8 @@ export async function GET(
     );
   }
 
-  const [article, rasterData] = await Promise.all([
-    getArticleBySlug(slug),
-    readRasterizedArticleData(slug),
-  ]);
-  if (!article || article.status !== 'published' || !rasterData) {
+  const rasterData = await readRasterizedArticleData(slug);
+  if (!rasterData) {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }
 
@@ -48,6 +50,6 @@ export async function GET(
 
   return NextResponse.json(
     { pageNumber: page.pageNumber, markdown: page.markdown },
-    { headers: { 'Cache-Control': 'private, no-store' } },
+    { headers: { 'Cache-Control': getPrivateCacheControl(info.expiresAt) } },
   );
 }

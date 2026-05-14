@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
-import { getArticleBySlug } from '@/lib/data';
 import { verifyReaderToken, tokenAllowsPage } from '@/lib/reader-token';
 import { derivePermutation, TILE_COLS, TILE_ROWS } from '@/lib/tile-shuffle';
 import { shufflePngTiles } from '@/lib/tile-shuffle-server';
@@ -24,6 +23,12 @@ function checkRateLimit(ip: string): boolean {
   if (entry.count >= RATE_LIMIT) return false;
   entry.count++;
   return true;
+}
+
+function getPrivateCacheControl(expiresAt: number): string {
+  const remainingSeconds = Math.max(0, Math.floor((expiresAt - Date.now()) / 1000));
+  const maxAge = Math.min(remainingSeconds, 300);
+  return `private, max-age=${maxAge}`;
 }
 
 export async function GET(
@@ -73,11 +78,6 @@ export async function GET(
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }
 
-  const article = await getArticleBySlug(safeSlug);
-  if (!article || article.status !== 'published') {
-    return NextResponse.json({ error: 'Not found' }, { status: 404 });
-  }
-
   // Scramble tiles deterministically from (token, slug, pageNumber).
   // The client recomputes the same permutation and unshuffles into a canvas.
   const pngBuffer = fs.readFileSync(filePath);
@@ -92,7 +92,7 @@ export async function GET(
       // correctly in <img>. The reader fetches via JS and assembles on canvas.
       'Content-Type': 'application/octet-stream',
       'Content-Length': String(scrambled.length),
-      'Cache-Control': 'private, no-store, max-age=0',
+      'Cache-Control': getPrivateCacheControl(info.expiresAt),
       'X-Page-Tile-Grid': `${TILE_COLS}x${TILE_ROWS}`,
       'X-Content-Type-Options': 'nosniff',
     },
