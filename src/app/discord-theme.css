@@ -485,6 +485,37 @@ body {
   box-sizing: border-box;
 }
 
+.dc-shell-loading {
+  min-height: calc(100vh - var(--dc-header-height) - 48px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 48px 24px;
+  color: var(--dc-text-secondary);
+}
+
+.dc-shell-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--dc-border);
+  border-top-color: var(--dc-accent);
+  border-radius: 50%;
+  animation: dc-shell-spin 0.8s linear infinite;
+}
+
+.dc-shell-loading-text {
+  margin: 0;
+  font-family: var(--dc-font);
+  font-size: 0.95rem;
+  color: var(--dc-text-secondary);
+}
+
+@keyframes dc-shell-spin {
+  to { transform: rotate(360deg); }
+}
+
 /* ---------- TOOLBAR ROW ---------- */
 .dc-toolbar {
   display: flex;

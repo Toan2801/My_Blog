@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import type { SiteConfig } from '@/lib/types';
 import DiscordSidebar from './DiscordSidebar';
 import DiscordHeader from './DiscordHeader';
+import DiscordShellLoading from './DiscordShellLoading';
 
 interface Props {
   config: SiteConfig;
@@ -32,7 +33,9 @@ export default function DiscordShell({ config, children }: Props) {
         />
         <main className="dc-main-content">
           <div className="dc-content">
-            {children}
+            <Suspense fallback={<DiscordShellLoading />}>
+              {children}
+            </Suspense>
           </div>
         </main>
       </div>
