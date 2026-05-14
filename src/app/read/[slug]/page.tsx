@@ -89,6 +89,9 @@ export default async function ReadPage({ params, searchParams }: Props & SearchP
   const article = getArticleBySlug(slug);
 
   if (!article || article.status !== 'published') notFound();
+  
+  // Feature suspended
+  notFound();
 
   const session = await auth();
   const trial = !session?.user?.id;

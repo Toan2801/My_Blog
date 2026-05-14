@@ -11,10 +11,6 @@ export interface ArticlePage {
   html?: string;
 }
 
-export interface ArticleMarkdownPage {
-  pageNumber: number;
-  markdown: string;
-}
 
 export interface Article {
   id: string;
@@ -36,7 +32,6 @@ export interface Article {
   readingTime: number;
   footnotes?: Footnote[];
   pages?: ArticlePage[];
-  markdownPages?: ArticleMarkdownPage[];
 }
 
 export interface Series {

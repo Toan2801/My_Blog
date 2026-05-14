@@ -408,14 +408,9 @@ export interface PageInfo {
   imageUrl: string;
 }
 
-export interface MarkdownPageInfo {
-  pageNumber: number;
-  markdown: string;
-}
 
 export interface RasterizeResult {
   pages: PageInfo[];
-  markdownPages: MarkdownPageInfo[];
 }
 
 function createTurndown(): TurndownService {
@@ -892,35 +887,8 @@ export async function rasterizeArticle(
       });
     }
 
-    // ── Step 5: Per-page markdown (for search) ───────────────────────
-    const turndown = createTurndown();
-    const markdownPages: MarkdownPageInfo[] = finalPages.map((rp, i): MarkdownPageInfo => {
-      const pageNumber = i + 1;
-      let md = '';
-      try {
-        switch (rp.kind) {
-          case 'cover':
-            md = `# ${title}\n\n${author}`;
-            break;
-          case 'blank':
-          case 'back':
-            md = '';
-            break;
-          case 'toc':
-            md = `# Mục lục\n\n${rp.entries.map(e => `${'  '.repeat(e.level - 1)}- ${e.text} — ${e.finalPage}`).join('\n')}`;
-            break;
-          case 'normal':
-          case 'image':
-            md = turndown.turndown(rp.blocks.join('\n'));
-            break;
-        }
-      } catch {
-        md = '';
-      }
-      return { pageNumber, markdown: md };
-    });
 
-    return { pages: results, markdownPages };
+    return { pages: results };
   } finally {
     await browser.close();
   }

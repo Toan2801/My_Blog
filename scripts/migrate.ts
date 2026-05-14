@@ -61,25 +61,24 @@ async function migrate() {
 
         try {
           console.log(`  ⏳ ${articleData.title}...`);
-          const { pages, markdownPages } = await rasterizeArticle(
+          const { pages } = await rasterizeArticle(
             articleData.slug,
             articleData.content,
             articleData.title,
             articleData.author,
           );
 
-          // Update JSON file with page + markdown metadata
+          // Update JSON file with page metadata
           articleData.pages = pages;
-          articleData.markdownPages = markdownPages;
           fs.writeFileSync(path.join(ARTICLES_DIR, file), JSON.stringify(articleData, null, 2), 'utf-8');
 
           // Update MongoDB document too
           await Article.updateOne(
             { slug: articleData.slug },
-            { $set: { pages, markdownPages } },
+            { $set: { pages } },
           );
 
-          console.log(`  ✅ ${pages.length} trang (ảnh + markdown).`);
+          console.log(`  ✅ ${pages.length} trang.`);
         } catch (err) {
           console.error(`  ❌ Lỗi khi rasterize ${articleData.slug}:`, err);
         }

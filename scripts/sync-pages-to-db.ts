@@ -32,16 +32,16 @@ async function main() {
   for (const file of files) {
     const raw = fs.readFileSync(path.join(ARTICLES_DIR, file), 'utf-8');
     const data = JSON.parse(raw);
-    if (!data.pages || !data.markdownPages) {
+    if (!data.pages) {
       skipped++;
       continue;
     }
     await Article.updateOne(
       { slug: data.slug },
-      { $set: { pages: data.pages, markdownPages: data.markdownPages } },
+      { $set: { pages: data.pages } },
     );
     updated++;
-    console.log(`  ✓ ${data.slug} — ${data.pages.length} pages, ${data.markdownPages.length} md pages`);
+    console.log(`  ✓ ${data.slug} — ${data.pages.length} pages`);
   }
 
   console.log(`\nDone. Updated ${updated}, skipped ${skipped}.`);

@@ -67,7 +67,7 @@ export default async function ArticleDetailPage({ params }: Props) {
           )}
           <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginTop: 'var(--space-4)', flexWrap: 'wrap' }}>
             <VoiceReader />
-            {article.pages && article.pages.length > 0 && (
+            {/* {article.pages && article.pages.length > 0 && (
               <Link 
                 href={`/read/${article.slug}`} 
                 className="btn-primary"
@@ -84,7 +84,7 @@ export default async function ArticleDetailPage({ params }: Props) {
               >
                 <span style={{ fontSize: '1.2rem' }}>📖</span> Đọc sách
               </Link>
-            )}
+            )} */}
           </div>
           <div style={{ width: '60px', height: '2px', background: 'var(--gold)', margin: '16px auto 0' }} />
         </header>

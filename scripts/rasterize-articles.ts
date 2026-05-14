@@ -19,7 +19,6 @@ interface ArticleJson {
   content: string;
   status: string;
   pages?: Array<{ pageNumber: number; imageUrl: string }>;
-  markdownPages?: Array<{ pageNumber: number; markdown: string }>;
   [key: string]: unknown;
 }
 
@@ -62,20 +61,19 @@ async function main() {
   for (const article of articlesToProcess) {
     try {
       console.log(`  ⏳ ${article.title} (${article.slug})...`);
-      const { pages, markdownPages } = await rasterizeArticle(
+      const { pages } = await rasterizeArticle(
         article.slug,
         article.content,
         article.title,
         (article.author as string | undefined) ?? '',
       );
 
-      // Update the JSON file with page + markdown metadata
+      // Update the JSON file with page metadata
       article.pages = pages;
-      article.markdownPages = markdownPages;
       const filePath = path.join(ARTICLES_DIR, `${article.slug}.json`);
       fs.writeFileSync(filePath, JSON.stringify(article, null, 2), 'utf-8');
 
-      console.log(`  ✅ ${pages.length} trang (ảnh + markdown) đã tạo thành công.`);
+      console.log(`  ✅ ${pages.length} trang đã tạo thành công.`);
     } catch (err) {
       console.error(`  ❌ Lỗi khi xử lý ${article.slug}:`, err);
     }

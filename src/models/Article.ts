@@ -42,10 +42,6 @@ const ArticleSchema: Schema = new Schema({
     pageNumber: { type: Number },
     imageUrl: { type: String }
   }],
-  markdownPages: [{
-    pageNumber: { type: Number },
-    markdown: { type: String }
-  }],
   rasterizedAt: { type: Date, default: null },
 }, {
   timestamps: true,

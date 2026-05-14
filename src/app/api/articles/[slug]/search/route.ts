@@ -41,40 +41,6 @@ export async function GET(
     return NextResponse.json({ hits: [], total: 0 });
   }
 
-  const article = getArticleBySlug(slug);
-  if (!article || article.status !== 'published') {
-    return NextResponse.json({ error: 'Not found' }, { status: 404 });
-  }
-
-  const allPages = article.markdownPages ?? [];
-  // Trial: search only within the trial page range.
-  const pages = info.kind === 'trial'
-    ? allPages.filter((p) => p.pageNumber <= TRIAL_MAX_PAGES)
-    : allPages;
-  const re = new RegExp(escapeRegExp(q), 'gi');
-
-  const hits: Array<{ pageNumber: number; snippet: string; count: number }> = [];
-  let total = 0;
-  for (const page of pages) {
-    re.lastIndex = 0;
-    const matches: number[] = [];
-    let m: RegExpExecArray | null;
-    while ((m = re.exec(page.markdown)) !== null) {
-      matches.push(m.index);
-      if (m.index === re.lastIndex) re.lastIndex++;
-    }
-    if (matches.length === 0) continue;
-    total += matches.length;
-    hits.push({
-      pageNumber: page.pageNumber,
-      snippet: buildSnippet(page.markdown, matches[0], q.length),
-      count: matches.length,
-    });
-    if (hits.length >= MAX_HITS) break;
-  }
-
-  return NextResponse.json(
-    { hits, total },
-    { headers: { 'Cache-Control': 'private, no-store' } },
-  );
+  // Search suspended along with markdownPages removal
+  return NextResponse.json({ hits: [], total: 0 });
 }

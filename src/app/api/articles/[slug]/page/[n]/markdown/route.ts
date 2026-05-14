@@ -32,18 +32,6 @@ export async function GET(
     );
   }
 
-  const article = getArticleBySlug(slug);
-  if (!article || article.status !== 'published') {
-    return NextResponse.json({ error: 'Not found' }, { status: 404 });
-  }
-
-  const page = (article.markdownPages ?? []).find((p) => p.pageNumber === pageNum);
-  if (!page) {
-    return NextResponse.json({ error: 'Page not found' }, { status: 404 });
-  }
-
-  return NextResponse.json(
-    { pageNumber: page.pageNumber, markdown: page.markdown },
-    { headers: { 'Cache-Control': 'private, no-store' } },
-  );
+  // Feature suspended
+  return NextResponse.json({ error: 'Feature suspended' }, { status: 404 });
 }
