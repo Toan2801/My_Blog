@@ -1,116 +1,157 @@
-# Article Route Latency Findings
+# Route Latency Findings
 
 ## Scope
 
-Investigated the slow article detail route reported in `prompt.md`:
+### Round 1 (previous analysis)
 
 ```text
-GET /articles/sunglangtruyentinluc 200 in 23.6s (next.js: 20.8s, generate-params: 20.6s, application-code: 2.9s)
-GET /articles/minhthonggiam-chinhbien013 200 in 4.1s (next.js: 42ms, application-code: 4.0s)
+GET /articles/sunglangtruyentinluc 200 in 3.3s (next.js: 824ms, application-code: 2.5s)
+GET / 200 in 2.6s (next.js: 11ms, application-code: 2.6s)
+GET /articles 200 in 2.3s (next.js: 80ms, application-code: 2.2s)
+GET /articles/minhthonggiam-chinhbien050 200 in 1749ms (next.js: 57ms, application-code: 1691ms)
 ```
 
-This is a page-route investigation, not an API-route investigation. The slow path is the App Router page at `src/app/articles/[slug]/page.tsx`.
+**Root cause (fixed):** repeated serial `getSiteConfig()` calls across layout + page, no `Promise.all` parallelization, no request-level deduplication.  
+**Fix applied:** added `src/lib/public-data.ts` with `cache()`-wrapped helpers, switched public routes to `Promise.all`, added DB indexes.
 
-## Findings
+### Round 2 (current)
 
-### 1. The 23.6s request was dominated by `generateStaticParams`
+```text
+GET /articles/sunglangtruyentinluc 200 in 1675ms (next.js: 11ms, application-code: 1664ms)
+GET /articles/phapbinhdinhcaomien 200 in 327ms (next.js: 12ms, application-code: 315ms)
+```
 
-The first log already points at the main cause: `generate-params: 20.6s`.
+These are both article detail page requests. The 5× gap between them is the subject of this investigation.
 
-That slow path came from the previous article route implementation, where `generateStaticParams()` loaded all published articles just to extract slugs. Because `getAllArticles()` in `src/lib/data.ts` fetched full article rows, this forced the route to pull every article's large text and JSON fields before rendering a single page.
+---
 
-Impact:
+## Round 2 Analysis — `/articles/[slug]`
 
-- Every article page request paid for a global article scan.
-- The cost scaled with total article count and article size.
-- Large `content` and `markdownPages` fields made the problem much worse.
+### Step-by-step measurements
 
-Status:
+Direct timings run against the live Neon database from this machine:
 
-- This specific `generateStaticParams` bottleneck has already been removed from the current route implementation.
+| Step | Time |
+| --- | ---: |
+| `getArticleBySlug()` — **cold** (first call, Neon WebSocket not yet open) | **1636 ms** |
+| `getArticleBySlug()` — warm (connection already established) | ~265 ms |
+| `getCachedSiteConfig()` — cold | 263 ms |
+| `getCachedSiteConfig()` — warm (process-level cache hit) | 0.1 ms |
+| `getArticlesLastUpdated()` aggregate query | 279 ms |
 
-### 2. The remaining 4.0s application time comes from over-fetching a very large article row
+### What happens per request
 
-Current `src/app/articles/[slug]/page.tsx` calls `getArticleBySlug(slug)` twice per request:
+The article detail page render pipeline, after the round-1 fixes:
 
-- once in `generateMetadata()`
-- once again in the page component
+```
+generateMetadata()  →  getPublicArticleBySlug(slug)        [DB query, ~265 ms warm]
+layout metadata     →  getPublicSiteConfig()               [cache hit after first request]
+layout render       →  getPublicSiteConfig()               [cache hit, deduplicated]
+page render         →  getPublicArticleBySlug(slug)        [deduplicated by React cache()]
+                    →  auth()                              [JWT verify, no DB if role in token]
+```
 
-Current `getArticleBySlug()` in `src/lib/data.ts` does a plain `prisma.article.findUnique({ where: { slug } })`, which loads the full article row even though the article detail page only uses:
+With the deduplication already in place via `React.cache()`, each warm request makes **exactly one DB round trip** — the `getArticleBySlug` query — at about **265 ms**.
 
-- `title`
-- `excerpt`
-- `author`
-- `coverImage`
-- `status`
+### Why the two logged requests differ by 5×
 
-The query still transfers these heavy fields on every request:
+| Request | Time | Explanation |
+| --- | ---: | --- |
+| `sunglangtruyentinluc` — 1664 ms | 1664 ms | **Cold** — this was the first DB query after a server restart. Neon's WebSocket connection had to be established from scratch: ~1370 ms of that is TCP + TLS + WebSocket handshake overhead. The actual query ran in ~265 ms. |
+| `phapbinhdinhcaomien` — 315 ms | 315 ms | **Warm** — connection already open. Entire application-code time is one article `findUnique` plus ~50 ms of Next.js/auth overhead. |
 
-- `content`
-- `footnotes`
-- `pages`
-- `markdownPages`
+This is confirmed by the measurement: cold `getArticleBySlug` = **1636 ms**, warm = **265 ms**. The delta (~1370 ms) is entirely Neon connection setup, not query work.
 
-The schema in `prisma/schema.prisma` confirms those fields live on the same `Article` row.
+### Root cause
 
-## Runtime Evidence
+There are two distinct problems:
 
-Direct Prisma measurements against the current database:
+**Problem 1 — Neon connection cold start (~1370 ms, first request after restart)**
 
-| slug | full row fetch | slim summary fetch | serialized row size |
-| --- | ---: | ---: | ---: |
-| `sunglangtruyentinluc` | 2480.2 ms | 262.0 ms | 172,726 bytes |
-| `minhthonggiam-chinhbien013` | 1579.4 ms | 258.5 ms | 3,627,830 bytes |
+`src/lib/prisma.ts` uses `@prisma/adapter-neon` with WebSocket transport. The Neon serverless WebSocket adapter requires a full TCP + TLS + WebSocket upgrade before any query can run. This cost is paid once per process start, but in development every server restart triggers it again.
 
-Field sizes for `minhthonggiam-chinhbien013`:
+**Problem 2 — Uncached per-request article DB query (~265 ms, every request)**
 
-- `content`: 1,812,382 chars
-- `markdownPages`: 1,804,789 chars
-- `pages`: 9,741 chars
-- `footnotes`: 2 chars
+`getArticleBySlug()` has no process-level memory cache. Every page view makes one `findUnique` round trip to Neon regardless of how recently the same article was fetched. For a publication site where articles change rarely, this is unnecessary.
 
-This means the slow article is carrying about 3.6 MB of serialized data, and most of it is text that the article detail page does not use.
+The `getCachedArticleSummaries()` pattern already shows the correct shape: check `MAX(updatedAt)`, serve from memory if fresh. `getArticleBySlug` needs the same treatment.
 
-## Why the 4.0s Log Makes Sense
+### Recommended fix
 
-The `/articles/[slug]` page currently does two independent article reads:
+#### Fix A — Cache per-slug article lookups (addresses Problem 2, reduces steady-state latency)
 
-1. `generateMetadata()` fetches the article.
-2. The page component fetches the same article again.
+Add a per-slug map to `src/lib/cache.ts` using the same `updatedAt`-based invalidation already in use for summaries:
 
-There is no function-level memoization around `getArticleBySlug()`.
+```ts
+// src/lib/cache.ts
+const articleBySlugCache = new Map<string, CacheEntry<Article | null>>();
 
-Because Prisma calls are not automatically deduplicated the way identical `fetch()` calls can be, both reads hit the database separately. For the large article above, one full-row fetch was about 1.6s in direct measurement, so duplicate reads alone are enough to explain most of the reported 4.0s application time.
+export async function getCachedArticleBySlug(slug: string): Promise<Article | null> {
+  const lastUpdated = await getArticlesLastUpdated();
+  const cached = articleBySlugCache.get(slug);
+  if (isFresh(cached ?? null, lastUpdated)) return cached!.data;
 
-## Secondary Factors
+  const row = await prisma.article.findUnique({
+    where: { slug },
+    select: ARTICLE_SELECT,
+  });
+  const data = row ? dbToArticle(row) : null;
+  articleBySlugCache.set(slug, { data, lastUpdated });
+  return data;
+}
+```
 
-### Remote database transport amplifies the cost
+Call `articleBySlugCache.delete(slug)` (or clear the whole map) inside `invalidateArticleCache()`. Then update `getPublicArticleBySlug` in `src/lib/public-data.ts` to call this instead of `getArticleBySlug`.
 
-`src/lib/prisma.ts` uses the Neon serverless adapter over WebSockets. That adds network and transport overhead to every Prisma query. The bigger the row, the more expensive this becomes.
+**Expected outcome:** warm article page drops from ~265 ms to ~0 ms (DB) + ~279 ms (invalidation check). The invalidation check is the new bottleneck — see Fix B.
 
-### `auth()` keeps the route dynamic
+#### Fix B — Batch-invalidation check (reduces invalidation check overhead)
 
-The page also calls `auth()`, so the route is rendered per request. That is not the primary bottleneck here, but it prevents the article detail page from being a simple static render.
+The `getArticlesLastUpdated()` aggregate query runs once per `getCachedArticleBySlug` call (~279 ms per warm request). To avoid this:
 
-## Most Likely Root Cause
+- Cache the `lastUpdated` result itself with a short TTL (e.g. 5 seconds):
 
-The current slow path is not React rendering. It is database over-fetching:
+```ts
+let lastUpdatedCache: { value: Date; expiresAt: number } | null = null;
 
-- fetching the entire `Article` record for a page that only needs summary fields
-- doing that full fetch twice per request
-- sending multi-megabyte article payloads over a remote Neon connection
+async function getArticlesLastUpdated(): Promise<Date> {
+  const now = Date.now();
+  if (lastUpdatedCache && now < lastUpdatedCache.expiresAt) return lastUpdatedCache.value;
+  const result = await prisma.article.aggregate({ _max: { updatedAt: true } });
+  const value = result._max.updatedAt ?? new Date(0);
+  lastUpdatedCache = { value, expiresAt: now + 5_000 };
+  return value;
+}
+```
 
-## Recommended Fix Direction
+This means the invalidation check only hits the DB once every 5 seconds at most, not on every request. Articles will appear at most 5 seconds stale after a save (acceptable for a publication site).
 
-1. Split article reads by use case.
-   - Add a lightweight `getArticleSummaryBySlug()` for `/articles/[slug]` metadata and page chrome.
-   - Keep full article reads only for routes that actually need `content`, `pages`, or `markdownPages`.
+#### Fix C — Warm the Neon connection at server start (addresses Problem 1, eliminates first-request penalty)
 
-2. Stop reading the same article twice per request.
-   - Reuse one cached server function for both metadata and page rendering, or share a slim memoized lookup.
+Use Next.js instrumentation to eagerly open the DB connection before the first user request arrives:
 
-3. Treat `content` and `markdownPages` as heavy fields.
-   - Do not include them in default article queries.
+```ts
+// src/instrumentation.ts  (already exists in the project)
+export async function register() {
+  if (process.env.NEXT_RUNTIME === 'nodejs') {
+    const { warmCaches } = await import('./lib/cache');
+    await warmCaches().catch(() => {}); // establishes Neon connection + primes caches
+  }
+}
+```
 
-4. Review other routes using `getArticleBySlug()`.
-   - The same full-row fetch pattern also exists in `/read/[slug]` and several article-related API routes.
+`warmCaches()` already exists and calls all the cache functions. Running it at startup makes the Neon WebSocket connection the moment the server is ready, so the first user request is not the one that pays the ~1370 ms setup cost.
+
+### Expected latency after all three fixes
+
+| Scenario | Before | After |
+| --- | ---: | ---: |
+| Cold (first request after restart) | ~1664 ms | ~280 ms (invalidation check, no article DB hit) |
+| Warm hit (same article, cache fresh) | ~315 ms | ~0–5 ms (pure memory) |
+| Warm miss (invalidation check + article fetch) | ~315 ms | ~280 ms (one aggregate, no findUnique) |
+
+### Fix priority
+
+1. **Fix C first** — cheapest to implement, eliminates the worst-case 1664 ms cold hit entirely. `src/instrumentation.ts` already exists; just add the `warmCaches()` call.
+2. **Fix A** — adds per-slug article cache. Most impactful for steady-state.
+3. **Fix B** — add TTL to the invalidation check. Reduces the one remaining DB query per warm request from every hit to once per 5 seconds.

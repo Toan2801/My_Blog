@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getArticleBySlug } from '@/lib/data';
+import { getPublicArticleBySlug } from '@/lib/public-data';
 import Breadcrumb from '@/components/Breadcrumb';
 import { auth } from '@/auth';
 import type { Metadata } from 'next';
@@ -9,7 +9,7 @@ interface Props { params: { slug: string } }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const article = await getArticleBySlug(slug);
+  const article = await getPublicArticleBySlug(slug);
   if (!article) return { title: 'Không tìm thấy' };
   return {
     title: article.title,
@@ -19,12 +19,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ArticleDetailPage({ params }: Props) {
   const { slug } = await params;
-  const article = await getArticleBySlug(slug);
+  const [article, session] = await Promise.all([
+    getPublicArticleBySlug(slug),
+    auth(),
+  ]);
 
   if (!article) notFound();
   if (article.status !== 'published') notFound();
 
-  const session = await auth();
   const isAuthed = !!session?.user?.id;
 
   return (

@@ -1,5 +1,8 @@
-import { getAllSeries, getSiteConfig } from '@/lib/data';
-import { getCachedArticleSummaries } from '@/lib/cache';
+import {
+  getPublicArticleSummaries,
+  getPublicSeries,
+  getPublicSiteConfig,
+} from '@/lib/public-data';
 import ArticleListClient from '@/components/ArticleListClient';
 import CategorySidebar from '@/components/CategorySidebar';
 import Breadcrumb from '@/components/Breadcrumb';
@@ -13,9 +16,11 @@ export default async function ArticlesPage({
   searchParams: Promise<{ category?: string; search?: string }>;
 }) {
   const { category, search } = await searchParams;
-  const allArticles = await getCachedArticleSummaries();
-  const allSeries = await getAllSeries();
-  const config = await getSiteConfig();
+  const [allArticles, allSeries, config] = await Promise.all([
+    getPublicArticleSummaries(),
+    getPublicSeries(),
+    getPublicSiteConfig(),
+  ]);
 
   const standaloneArticles = allArticles.filter(a => a.type === 'articles' && !a.series);
   const seriesItems = allSeries.filter(s => s.type === 'articles');

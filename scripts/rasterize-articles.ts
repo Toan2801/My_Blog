@@ -10,7 +10,6 @@ import { config } from 'dotenv';
 import { rasterizeArticle } from '../src/lib/rasterize';
 
 config({ path: '.env.local' });
-config();
 
 async function main() {
   const { default: prisma } = await import('../src/lib/prisma');

@@ -22,6 +22,42 @@ const ARTICLE_SELECT = {
   readingTime: true,
 } as const;
 
+const ARTICLE_LIST_SELECT = {
+  id: true,
+  slug: true,
+  title: true,
+  subtitle: true,
+  category: true,
+  type: true,
+  tags: true,
+  series: true,
+  seriesOrder: true,
+  date: true,
+  featured: true,
+  author: true,
+  coverImage: true,
+  status: true,
+  readingTime: true,
+} as const;
+
+const ARTICLE_INFO_SELECT = {
+  id: true,
+  slug: true,
+  title: true,
+  excerpt: true,
+  category: true,
+  type: true,
+  tags: true,
+  series: true,
+  seriesOrder: true,
+  date: true,
+  featured: true,
+  author: true,
+  coverImage: true,
+  status: true,
+  readingTime: true,
+} as const;
+
 const EDITABLE_ARTICLE_SELECT = {
   ...ARTICLE_SELECT,
   content: true,
@@ -94,10 +130,13 @@ export async function saveSiteConfig(config: SiteConfig): Promise<void> {
 export async function getAllArticles(): Promise<Article[]> {
   const rows = await prisma.article.findMany({
     where: { status: 'published' },
-    select: ARTICLE_SELECT,
+    select: ARTICLE_LIST_SELECT,
     orderBy: { date: 'desc' },
   });
-  return rows.map(dbToArticle);
+  return rows.map((row) => ({
+    ...dbToArticle(row),
+    excerpt: '',
+  }));
 }
 
 export async function getAllArticlesAdmin(): Promise<Article[]> {
@@ -111,9 +150,14 @@ export async function getAllArticlesAdmin(): Promise<Article[]> {
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
   const row = await prisma.article.findUnique({
     where: { slug },
-    select: ARTICLE_SELECT,
+    select: ARTICLE_INFO_SELECT,
   });
-  return row ? dbToArticle(row) : null;
+  return row
+    ? {
+      ...dbToArticle(row),
+      subtitle: '',
+    }
+    : null;
 }
 
 export async function getArticleForEditBySlug(slug: string): Promise<EditableArticle | null> {

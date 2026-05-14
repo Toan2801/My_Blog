@@ -17,12 +17,23 @@ let summariesCache: CacheEntry<Article[]> | null = null;
 let allSummariesCache: CacheEntry<Article[]> | null = null; // includes drafts (admin)
 let seriesCache: CacheEntry<Series[]> | null = null;
 let configCache: CacheEntry<SiteConfig> | null = null;
+const articleBySlugCache = new Map<string, CacheEntry<Article | null>>();
 
 // ─── Invalidation checks ──────────────────────────────────────────────────────
 
+// Cache the MAX(updatedAt) result for 5 s so every warm request doesn't pay a
+// DB round trip just to confirm nothing changed.
+let articlesLastUpdatedTTL: { value: Date; expiresAt: number } | null = null;
+
 async function getArticlesLastUpdated(): Promise<Date> {
+  const now = Date.now();
+  if (articlesLastUpdatedTTL && now < articlesLastUpdatedTTL.expiresAt) {
+    return articlesLastUpdatedTTL.value;
+  }
   const result = await prisma.article.aggregate({ _max: { updatedAt: true } });
-  return result._max.updatedAt ?? new Date(0);
+  const value = result._max.updatedAt ?? new Date(0);
+  articlesLastUpdatedTTL = { value, expiresAt: now + 5_000 };
+  return value;
 }
 
 async function getSeriesLastUpdated(): Promise<Date> {
@@ -166,12 +177,51 @@ export async function getCachedSiteConfig(): Promise<SiteConfig> {
   return data;
 }
 
+// ─── Per-slug article cache ──────────────────────────────────────────────────
+
+// Select shape kept in sync with ARTICLE_SELECT in data.ts.
+const SLUG_ARTICLE_SELECT = {
+  id: true, slug: true, title: true, subtitle: true, excerpt: true,
+  category: true, type: true, tags: true, series: true, seriesOrder: true,
+  date: true, featured: true, author: true, coverImage: true, status: true,
+  readingTime: true,
+} as const;
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function rowToArticle(a: any): Article {
+  return {
+    id: a.id, slug: a.slug, title: a.title, subtitle: a.subtitle ?? '',
+    excerpt: a.excerpt, category: a.category ?? undefined,
+    type: (a.type as 'articles' | 'translation') ?? 'articles',
+    tags: a.tags ?? [], series: a.series ?? null, seriesOrder: a.seriesOrder ?? null,
+    date: a.date, featured: a.featured ?? false, author: a.author,
+    coverImage: a.coverImage ?? null, status: a.status as 'draft' | 'published',
+    readingTime: a.readingTime ?? 0,
+  };
+}
+
+export async function getCachedArticleBySlug(slug: string): Promise<Article | null> {
+  // No TTL — cache lives until invalidateArticleCache() is called on write.
+  const cached = articleBySlugCache.get(slug);
+  if (cached !== undefined) return cached.data;
+
+  const row = await prisma.article.findUnique({
+    where: { slug },
+    select: SLUG_ARTICLE_SELECT,
+  });
+  const data = row ? rowToArticle(row) : null;
+  articleBySlugCache.set(slug, { data, lastUpdated: new Date() });
+  return data;
+}
+
 // ─── Cache invalidation (call after writes) ───────────────────────────────────
 
 export function invalidateArticleCache() {
   slugsCache = null;
   summariesCache = null;
   allSummariesCache = null;
+  articleBySlugCache.clear();
+  articlesLastUpdatedTTL = null;
 }
 
 export function invalidateSeriesCache() {

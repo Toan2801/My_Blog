@@ -1,7 +1,10 @@
 import Link from 'next/link';
-import { getSiteConfig, getAllSeries } from '@/lib/data';
-import { getCachedArticleSummaries } from '@/lib/cache';
-import { getVideos } from '@/lib/video-data';
+import {
+  getPublicArticleSummaries,
+  getPublicSeries,
+  getPublicSiteConfig,
+  getPublicVideos,
+} from '@/lib/public-data';
 import { formatDate } from '@/lib/utils';
 import type { Metadata } from 'next';
 
@@ -20,10 +23,12 @@ function timeAgo(dateStr: string) {
 }
 
 export default async function HomePage() {
-  const config = await getSiteConfig();
-  const allArticles = await getCachedArticleSummaries();
-  const allSeries = await getAllSeries();
-  const videos = await getVideos();
+  const [config, allArticles, allSeries, videos] = await Promise.all([
+    getPublicSiteConfig(),
+    getPublicArticleSummaries(),
+    getPublicSeries(),
+    getPublicVideos(),
+  ]);
 
   // Published content
   const published = allArticles.filter(a => a.status === 'published');
