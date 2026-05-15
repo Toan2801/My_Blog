@@ -1,50 +1,43 @@
 /**
- * migrate-html-to-markdown.ts — One-shot data migration.
+ * migrate-html-to-markdown.ts — Audit and migrate article source content.
  *
- * Converts each article's `content` field from HTML to Markdown so the source
- * data is markdown going forward. The rasterizer will then convert markdown
- * back to HTML at render time.
- *
- * Conventions chosen (decisions captured in docs/migration-html-to-markdown.md):
- *   - Image captions:   sibling `*caption*` line under `![alt](src)`
- *   - Image width:      dropped — single default rendering
- *   - <br> line break:  trailing two-space soft break (CommonMark)
- *   - <code> & <em>:    already present (from content-markup migration) →
- *                       become backticks and `_…_` via Turndown
- *   - Hidden spans:     dropped
+ * Converts each PostgreSQL Article row's `content` field from HTML to Markdown
+ * so the source data stays markdown going forward. For published articles, the
+ * script re-rasterizes page assets after a successful write unless explicitly
+ * disabled.
  *
  * Usage:
- *   npx tsx scripts/migrate-html-to-markdown.ts                 # all articles
- *   npx tsx scripts/migrate-html-to-markdown.ts --slug=abc      # single
- *   npx tsx scripts/migrate-html-to-markdown.ts --dry-run       # preview
+ *   npx tsx scripts/migrate-html-to-markdown.ts                 # migrate all HTML rows
+ *   npx tsx scripts/migrate-html-to-markdown.ts --slug=abc      # migrate one row
+ *   npx tsx scripts/migrate-html-to-markdown.ts --dry-run       # audit only
+ *   npx tsx scripts/migrate-html-to-markdown.ts --skip-rasterize
  */
 
-import fs from 'fs';
-import path from 'path';
+import { config } from 'dotenv';
 import TurndownService from 'turndown';
+import { isLikelyHtml } from '../src/lib/markdown';
+import { rasterizeArticle } from '../src/lib/rasterize';
 
-const ARTICLES_DIR = path.join(process.cwd(), 'data', 'articles');
+config({ path: '.env.local' });
 
 /** Pre-process raw HTML to flatten constructs Turndown can't carry natively. */
 function preprocessHtml(html: string): string {
   let out = html;
 
-  // 1. Image blocks: replace the wrapping div with a flat
-  //    `<p><img alt="" src=""></p><p><em>caption</em></p>` sequence so
-  //    Turndown emits `![alt](src)` followed by an italic caption line.
+  // Flatten image wrappers into plain image + italic caption blocks so
+  // Turndown emits `![alt](src)` plus an italic line immediately below it.
   out = out.replace(
     /<div class="resizable-image-parent[^"]*"([^>]*)>([\s\S]*?)<\/div><\/div>/g,
     (_full, parentAttrs, inner) => {
-      // Skip empty image blocks entirely (no src + no caption).
       const imgMatch = (inner as string).match(/<img\b([^>]*)>/i);
       if (!imgMatch) return '';
+
       const imgAttrs = imgMatch[1];
       const srcM = imgAttrs.match(/\bsrc=("([^"]*)"|'([^']*)')/);
       const altM = imgAttrs.match(/\balt=("([^"]*)"|'([^']*)')/);
       const src = srcM ? (srcM[2] ?? srcM[3] ?? '') : '';
       const alt = altM ? (altM[2] ?? altM[3] ?? '') : '';
 
-      // Caption: prefer the parent's data-caption, fall back to inner div text.
       const dataCapM = (parentAttrs as string).match(/data-caption=("([^"]*)"|'([^']*)')/);
       let caption = dataCapM ? (dataCapM[2] ?? dataCapM[3] ?? '') : '';
       if (!caption) {
@@ -62,7 +55,7 @@ function preprocessHtml(html: string): string {
     },
   );
 
-  // 2. Drop hidden placeholder spans (`<span style="display:none">…</span>`).
+  // Drop hidden placeholder spans.
   out = out.replace(/<span[^>]*style="[^"]*display:\s*none[^"]*"[^>]*>[\s\S]*?<\/span>/g, '');
 
   return out;
@@ -71,6 +64,7 @@ function preprocessHtml(html: string): string {
 function escapeAttr(s: string): string {
   return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 }
+
 function escapeText(s: string): string {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
@@ -81,84 +75,132 @@ function createTurndown(): TurndownService {
     codeBlockStyle: 'fenced',
     bulletListMarker: '-',
     emDelimiter: '_',
-    br: '  ', // two-space CommonMark soft break
+    br: '  ',
   });
+
   td.addRule('strikethrough', {
     filter: ['s', 'del'],
-    replacement: (c) => `~~${c}~~`,
+    replacement: (content) => `~~${content}~~`,
   });
   td.addRule('underline', {
     filter: ['u'],
-    replacement: (c) => `_${c}_`,
+    replacement: (content) => `_${content}_`,
   });
-  // Strip leftover inline-style spans, keep their text.
   td.addRule('stripSpan', {
     filter: 'span',
-    replacement: (c) => c,
+    replacement: (content) => content,
   });
-  // Strip outer divs that aren't image wrappers (they get flattened to children).
   td.addRule('stripDiv', {
     filter: 'div',
-    replacement: (c) => c,
+    replacement: (content) => content,
   });
+
   return td;
 }
 
 function htmlToMarkdown(html: string, td: TurndownService): string {
-  const pre = preprocessHtml(html);
-  let md = td.turndown(pre);
-  // Collapse excessive blank lines (Turndown sometimes produces 3+).
-  md = md.replace(/\n{3,}/g, '\n\n').trim();
-  return md;
+  const preprocessed = preprocessHtml(html);
+  let markdown = td.turndown(preprocessed);
+  markdown = markdown.replace(/\n{3,}/g, '\n\n').trim();
+  return markdown;
 }
 
-function main() {
+function computeReadingTime(text: string): number {
+  const words = text.replace(/[#>*`_~\-]/g, ' ').split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(words / 200));
+}
+
+async function main() {
+  const { default: prisma } = await import('../src/lib/prisma');
   const args = process.argv.slice(2);
   const slugArg = args.find(a => a.startsWith('--slug='))?.split('=')[1];
   const dryRun = args.includes('--dry-run');
+  const skipRasterize = args.includes('--skip-rasterize');
 
-  if (!fs.existsSync(ARTICLES_DIR)) {
-    console.error('data/articles/ not found.');
-    process.exit(1);
+  const articles = await prisma.article.findMany({
+    where: slugArg ? { slug: slugArg } : undefined,
+    select: {
+      slug: true,
+      title: true,
+      author: true,
+      status: true,
+      content: true,
+    },
+    orderBy: { slug: 'asc' },
+  });
+
+  if (articles.length === 0) {
+    console.log(slugArg ? `Không tìm thấy bài viết: ${slugArg}` : 'Không có bài viết nào để kiểm tra.');
+    await prisma.$disconnect();
+    process.exit(0);
   }
 
   const td = createTurndown();
-  const files = fs.readdirSync(ARTICLES_DIR).filter(f => f.endsWith('.json'));
   let updated = 0;
   let alreadyMarkdown = 0;
   let skipped = 0;
+  let rerasterized = 0;
+  let rasterizeFailures = 0;
 
-  for (const file of files) {
-    const filePath = path.join(ARTICLES_DIR, file);
-    const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  try {
+    for (const article of articles) {
+      const original = article.content ?? '';
 
-    if (slugArg && data.slug !== slugArg) continue;
+      if (!isLikelyHtml(original)) {
+        alreadyMarkdown++;
+        console.log(`  · ${article.slug} — already markdown, skip`);
+        continue;
+      }
 
-    const original: string = data.content ?? '';
+      const markdown = htmlToMarkdown(original, td);
+      if (!markdown) {
+        skipped++;
+        console.log(`  ! ${article.slug} — converted to empty markdown; skipping`);
+        continue;
+      }
 
-    // Heuristic: if content has no HTML tags, treat as already migrated.
-    if (!/<[a-z][\s\S]*?>/i.test(original)) {
-      alreadyMarkdown++;
-      console.log(`  · ${data.slug} — already markdown, skip`);
-      continue;
+      if (!dryRun) {
+        await prisma.article.update({
+          where: { slug: article.slug },
+          data: {
+            content: markdown,
+            readingTime: computeReadingTime(markdown),
+          },
+          select: { slug: true },
+        });
+
+        if (!skipRasterize && article.status === 'published') {
+          try {
+            await rasterizeArticle(article.slug, markdown, article.title, article.author ?? '');
+            await prisma.article.update({
+              where: { slug: article.slug },
+              data: { rasterizedAt: new Date() },
+              select: { slug: true },
+            });
+            rerasterized++;
+          } catch (error) {
+            rasterizeFailures++;
+            console.error(`  ⚠ ${article.slug} — migrated but rasterize failed: ${String(error)}`);
+          }
+        }
+      }
+
+      updated++;
+      const actionLabel = dryRun ? '(dry)' : '✓';
+      console.log(`  ${actionLabel} ${article.slug} — ${original.length} chars HTML → ${markdown.length} chars markdown`);
     }
 
-    const md = htmlToMarkdown(original, td);
-    if (!md) {
-      skipped++;
-      console.log(`  ! ${data.slug} — converted to empty markdown; skipping`);
-      continue;
+    const summary = dryRun ? 'Would migrate' : 'Migrated';
+    console.log(`\n${summary} ${updated} article(s). Already markdown: ${alreadyMarkdown}. Skipped: ${skipped}.`);
+    if (!dryRun && !skipRasterize) {
+      console.log(`Re-rasterized published articles: ${rerasterized}. Rasterize failures: ${rasterizeFailures}.`);
     }
-
-    data.content = md;
-    if (!dryRun) {
-      fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
-    }
-    updated++;
-    console.log(`  ${dryRun ? '(dry)' : '✓'} ${data.slug} — ${original.length} chars HTML → ${md.length} chars markdown`);
+  } finally {
+    await prisma.$disconnect();
   }
-
-  console.log(`\n${dryRun ? 'Would migrate' : 'Migrated'} ${updated} article(s). Already markdown: ${alreadyMarkdown}. Skipped: ${skipped}.`);
 }
 
-main();
+main().catch(err => {
+  console.error('Lỗi:', err);
+  process.exit(1);
+});
