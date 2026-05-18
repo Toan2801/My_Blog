@@ -88,14 +88,6 @@ html {
   --transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-body {
-  background-color: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-body);
-  position: relative;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
 
 /* Ensure readability */
 .container {
@@ -106,78 +98,6 @@ body {
 
 .site-header .container {
   padding: 0;
-}
-
-
-
-/* ============================================
-   TYPOGRAPHY
-   ============================================ */
-/* ============================================
-   TYPOGRAPHY CUSTOMIZATION (SỬA Ở ĐÂY)
-   ============================================ */
-
-/* 1. Tiêu đề chính (H1) */
-h1 {
-  font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 6vw, 3.5rem);
-  font-weight: 700;
-  color: var(--ink);
-  line-height: 1.1;
-  margin-bottom: var(--space-5);
-}
-
-/* 2. Tiêu đề mục lớn (H2) */
-h2 {
-  font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 4vw, 2.3rem);
-  font-weight: 600;
-  color: var(--ink);
-  margin-top: var(--space-7);
-  margin-bottom: var(--space-4);
-  border-bottom: 1px solid var(--border-light);
-  padding-bottom: var(--space-2);
-}
-
-/* 3. Tiêu đề mục nhỏ (H3) */
-h3 {
-  font-family: var(--font-serif);
-  font-size: clamp(1.3rem, 3vw, 1.6rem);
-  font-weight: 600;
-  color: var(--gold);
-  margin-top: var(--space-5);
-  margin-bottom: var(--space-3);
-}
-
-/* 4. Văn bản bình thường (Paragraph) */
-p {
-  font-family: var(--font-body);
-  font-size: 1.1rem;
-  /* Kích thước chữ đọc */
-  line-height: 1.85;
-  /* Khoảng cách dòng cho dễ đọc */
-  color: var(--ink-light);
-  margin-bottom: var(--space-4);
-}
-
-p {
-  margin-bottom: var(--space-4);
-}
-
-p:last-child {
-  margin-bottom: 0;
-}
-
-a {
-  color: var(--gold);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  transition: color var(--transition);
-}
-
-a:hover {
-  color: var(--gold-light);
 }
 
 /* Article Cover Frame (Modern Fit) */

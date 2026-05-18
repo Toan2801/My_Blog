@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node_modules/.bin/prisma generate *)",
+      "Bash(nvm list *)",
+      "Bash(node_modules/.bin/tsx -e ' *)"
+    ]
+  }
+}

@@ -12,7 +12,7 @@ import fs from 'fs';
 import path from 'path';
 import puppeteer from 'puppeteer';
 import TurndownService from 'turndown';
-import { renderArticleMarkdown, isLikelyHtml } from './markdown';
+import { renderArticleMarkdown } from './markdown';
 import { writeRasterizedArticleData } from './raster-data';
 
 // Root typography and page sizing (rem -> px). Images are rendered at 2x DPR.
@@ -505,11 +505,7 @@ export async function rasterizeArticle(
   title: string = '',
   author: string = '',
 ): Promise<RasterizeResult> {
-  // The source of truth is now markdown. Convert to HTML up-front; if the
-  // input still has HTML tags (un-migrated legacy data), use it as-is.
-  const htmlContent = isLikelyHtml(content)
-    ? content
-    : renderArticleMarkdown(content);
+  const htmlContent = renderArticleMarkdown(content);
 
   // Ensure output directory exists
   const slugDir = path.join(OUTPUT_DIR, slug);

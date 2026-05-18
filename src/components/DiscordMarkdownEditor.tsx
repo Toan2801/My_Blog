@@ -1,17 +1,8 @@
 'use client';
 
-import { useLayoutEffect, useRef } from 'react';
-import MarkdownIt from 'markdown-it';
-import TurndownService from 'turndown';
-
-const renderer = new MarkdownIt({ html: true, breaks: false, linkify: false, typographer: false });
-const turndown = new TurndownService({
-  headingStyle: 'atx',
-  codeBlockStyle: 'fenced',
-  emDelimiter: '*',
-  bulletListMarker: '-',
-});
-turndown.escape = (text) => text;
+import { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface Props {
   value: string;
@@ -20,129 +11,44 @@ interface Props {
   minHeight?: number;
 }
 
-function mdToHtml(md: string): string {
-  if (!md) return '';
-
-  let html = renderer.render(md);
-  html = html.replace(
-    /<p>\s*<img([^>]*)>\s*<\/p>\s*<p>\s*<em>([\s\S]*?)<\/em>\s*<\/p>/g,
-    (_m, imgAttrs: string, caption: string) =>
-      `<div class="resizable-image-parent"><div class="resizable-image-content"><img${imgAttrs}><div class="image-caption">${caption}</div></div></div>`,
-  );
-  html = html.replace(
-    /<p>\s*<img([^>]*)>\s*<\/p>/g,
-    (_m, imgAttrs: string) =>
-      `<div class="resizable-image-parent"><div class="resizable-image-content"><img${imgAttrs}></div></div>`,
-  );
-
-  return html;
-}
-
-function getSelectionOffset(root: HTMLElement): number | null {
-  const selection = window.getSelection();
-  if (!selection || selection.rangeCount === 0) return null;
-
-  const range = selection.getRangeAt(0);
-  if (!root.contains(range.endContainer)) return null;
-
-  const offsetRange = range.cloneRange();
-  offsetRange.selectNodeContents(root);
-  offsetRange.setEnd(range.endContainer, range.endOffset);
-  return offsetRange.toString().length;
-}
-
-function setSelectionOffset(root: HTMLElement, offset: number) {
-  const selection = window.getSelection();
-  if (!selection) return;
-
-  const range = document.createRange();
-  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-  let remaining = offset;
-  let node = walker.nextNode();
-
-  while (node) {
-    const text = node.textContent ?? '';
-    if (remaining <= text.length) {
-      range.setStart(node, remaining);
-      range.collapse(true);
-      selection.removeAllRanges();
-      selection.addRange(range);
-      return;
-    }
-
-    remaining -= text.length;
-    node = walker.nextNode();
-  }
-
-  range.selectNodeContents(root);
-  range.collapse(false);
-  selection.removeAllRanges();
-  selection.addRange(range);
-}
-
 export default function DiscordMarkdownEditor({ value, onChange, placeholder, minHeight = 200 }: Props) {
-  const ref = useRef<HTMLDivElement>(null);
-  const lastSyncedValue = useRef<string>('__initial__');
-  const pendingSelectionOffset = useRef<number | null>(null);
-  const isComposing = useRef(false);
-
-  useLayoutEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    el.style.minHeight = `${minHeight}px`;
-  }, [minHeight]);
-
-  useLayoutEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (value === lastSyncedValue.current) return;
-
-    const selectionOffset = pendingSelectionOffset.current;
-    const shouldRestoreSelection = selectionOffset !== null && document.activeElement === el;
-
-    el.innerHTML = mdToHtml(value);
-    lastSyncedValue.current = value;
-    pendingSelectionOffset.current = null;
-
-    if (shouldRestoreSelection) {
-      setSelectionOffset(el, selectionOffset);
-    }
-  }, [value]);
-
-  const handleInput = () => {
-    if (isComposing.current) return;
-
-    const el = ref.current;
-    if (!el) return;
-
-    pendingSelectionOffset.current = getSelectionOffset(el);
-    onChange(turndown.turndown(el.innerHTML));
-  };
-
-  const handlePaste = (e: React.ClipboardEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    const text = e.clipboardData.getData('text/plain');
-    if (typeof document.execCommand === 'function') {
-      document.execCommand('insertText', false, text);
-    }
-  };
+  const [tab, setTab] = useState<'write' | 'preview'>('write');
 
   return (
-    <div
-      ref={ref}
-      contentEditable
-      suppressContentEditableWarning
-      onCompositionStart={() => {
-        isComposing.current = true;
-      }}
-      onCompositionEnd={() => {
-        isComposing.current = false;
-        handleInput();
-      }}
-      onInput={handleInput}
-      onPaste={handlePaste}
-      className="dc-md-live"
-      data-placeholder={placeholder}
-    />
+    <div className="dc-md-editor">
+      <div className="dc-md-editor-tabs">
+        <button
+          type="button"
+          className={`dc-md-editor-tab${tab === 'write' ? ' active' : ''}`}
+          onClick={() => setTab('write')}
+        >
+          Viết
+        </button>
+        <button
+          type="button"
+          className={`dc-md-editor-tab${tab === 'preview' ? ' active' : ''}`}
+          onClick={() => setTab('preview')}
+        >
+          Xem trước
+        </button>
+      </div>
+      {tab === 'write' ? (
+        <textarea
+          className="dc-md-editor-textarea"
+          value={value}
+          onChange={e => onChange(e.target.value)}
+          placeholder={placeholder}
+          style={{ minHeight }}
+        />
+      ) : (
+        <div className="dc-md-live dc-md-editor-preview" style={{ minHeight }}>
+          {value ? (
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{value}</ReactMarkdown>
+          ) : (
+            <span className="dc-md-editor-placeholder">{placeholder}</span>
+          )}
+        </div>
+      )}
+    </div>
   );
 }

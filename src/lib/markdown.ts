@@ -22,7 +22,7 @@ const renderer = new MarkdownIt({
   typographer: false,
 });
 
-/** Detect un-migrated legacy data (still HTML) so we don't re-render it as markdown. */
+/** Detect HTML content — used by the migration script to identify un-migrated rows. */
 export function isLikelyHtml(s: string): boolean {
   return /<[a-z][a-z0-9]*\b[^>]*>/i.test(s);
 }
@@ -30,7 +30,6 @@ export function isLikelyHtml(s: string): boolean {
 /** Convert article markdown into the HTML the rasterizer / reader expects. */
 export function renderArticleMarkdown(md: string): string {
   if (!md) return '';
-  if (isLikelyHtml(md)) return md; // legacy fallback
 
   let html = renderer.render(md);
 
