@@ -66,7 +66,7 @@ export default async function ArticleDetailPage({ params }: Props) {
             </div>
           )}
           <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginTop: 'var(--space-4)', flexWrap: 'wrap' }}>
-            <VoiceReader />
+            <VoiceReader audioUrl={article.audioUrl} />
             {/* {article.pages && article.pages.length > 0 && (
               <Link 
                 href={`/read/${article.slug}`} 
