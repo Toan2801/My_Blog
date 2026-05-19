@@ -2,7 +2,17 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 
-export default function VoiceReader() {
+export default function VoiceReader({ audioUrl }: { audioUrl?: string }) {
+  if (audioUrl) {
+    return (
+      <div className="voice-reader-controls" style={{ width: '100%', maxWidth: '400px', display: 'flex', alignItems: 'center' }}>
+        <audio controls src={audioUrl} style={{ width: '100%', height: '40px', borderRadius: '20px', outline: 'none' }}>
+          Trình duyệt của bạn không hỗ trợ thẻ audio.
+        </audio>
+      </div>
+    );
+  }
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [loading, setLoading] = useState(false);

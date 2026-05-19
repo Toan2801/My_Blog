@@ -30,6 +30,7 @@ export interface Article {
   coverImage: string | null;
   status: 'draft' | 'published';
   readingTime: number;
+  audioUrl?: string;
   footnotes?: Footnote[];
   pages?: ArticlePage[];
   markdownPages?: Array<{ pageNumber: number; markdown?: string; html?: string }>;
