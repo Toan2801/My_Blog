@@ -4,36 +4,83 @@
 
 @reference "tailwindcss";
 
+/* 
+# 1. Custom classes and variables (For dark/light mode support and easy maintenance)
+Custom properties for the theme, organized by category (backgrounds, text, borders, etc.) and with semantic naming for easy maintenance and readability.
+The point of this section is to have generic semantic name like "text-normal", so when light/dark mode support is added, we can just change the value of --daidien-text-normal to black/white respectively without having to change the entire css codebase.
+The css classname should be in the format of `{prefix}-{suffix}`, where the prefix indicates the color category and the suffix indicates the shade or purpose of the color.
+The variable name should be in the format of `--daidien-{prefix}-{suffix}` to avoid conflicts and ensure clarity.
+## Prefixes
+```
+Utility	Description
+bg-*	Sets the background color of an element
+text-*	Sets the text color of an element
+decoration-*	Sets the text decoration color of an element
+border-*	Sets the border color of an element
+outline-*	Sets the outline color of an element
+shadow-*	Sets the color of box shadows
+inset-shadow-*	Sets the color of inset box shadows
+ring-*	Sets the color of ring shadows
+inset-ring-*	Sets the color of inset ring shadows
+accent-*	Sets the accent color of form controls
+caret-*	Sets the caret color in form controls
+scrollbar-thumb-*	Sets the thumb color of an element's scrollbar
+scrollbar-track-*	Sets the track color of an element's scrollbar
+fill-*	Sets the fill color of SVG elements
+stroke-*  Sets the stroke color of SVG elements
+```
+
+## Suffixes
+```
+normal  Standard color shade, typically the default color value for a given color name.
+subtle  A lighter shade of the normal color, often used for backgrounds, borders, or less prominent elements to create a softer visual effect.
+muted  A desaturated or toned-down version of the normal color, used for secondary text, icons, or elements that should not draw too much attention.
+strong  A darker or more saturated shade of the normal color, used for emphasis, important text, or elements that need to stand out.
+```
+
+# 2. Extended Colors (For themeing and semantic purposes)
+Add semantic color for success,error, warning, info. These color should be auto applied for all {prefix}. That means bg-success and text-successs should both use the same color value defined in --daidien-success, and so on for error, warning, info.
+
+```
+primary  The main color used for primary actions, highlights, and key elements in the UI.
+secondary  A complementary color used for secondary actions, accents, or to provide contrast to the primary color.
+success  A color that indicates successful actions, positive status, or confirmations.
+error  A color that indicates errors, negative status, or warnings.
+warning  A color that indicates caution, potential issues, or important notices.
+info  A color that indicates informational messages, tips, or neutral status.
+```
+*/
+
 :root {
-  --color-dc-bg-primary: #ffffff;
-  --color-dc-bg-secondary: #f2f3f5;
-  --color-dc-bg-tertiary: #e3e5e8;
-  --color-dc-accent: #5865f2;
-  --color-dc-accent-hover: #4752c4;
-  --color-dc-accent-light: rgb(88 101 242 / 0.08);
-  --color-dc-accent-medium: rgb(88 101 242 / 0.15);
-  --color-dc-border: #e5e7eb;
-  --color-dc-border-light: #f0f0f0;
-  --color-dc-text-primary: #2e2e34;
-  --color-dc-text-secondary: #595b63;
-  --color-dc-text-muted: #6C6D76;
-  --color-dc-text-link: #0078d4;
-  --color-dc-text-strong: #28282d;
-  --color-dc-code-bg: rgb(88 101 242 / 0.04);
-  --color-dc-code-border: rgb(151 151 155 / 0.36);
-  --color-dc-quote-border: #c5c7cc;
-  --color-dc-overlay: rgb(0 0 0 / 0.4);
-  --color-dc-tag-overlay: rgb(0 0 0 / 0.55);
-  --color-dc-status-success: #1f7a4a;
-  --color-dc-status-success-bg: rgb(39 174 96 / 0.12);
-  --color-dc-status-error: #c0392b;
+  /* Dark/Light Mode Variables */
+  /* bg */
+  --daidien-bg-normal: #ffffff;
+  --daidien-bg-muted: #f2f3f5;
+  --daidien-bg-strong: #e3e5e8;
+
+  /* text */
+  --daidien-text-normal: #2e2e34;
+  --daidien-text-subtle: #595b63;
+  --daidien-text-muted: #6C6D76;
+  --daidien-text-strong: #28282d;
+
+  
+  --daidien-color-primaryss: rgb(88 101 242 / 0.08);
+
+  --daidien-border-normal: rgb(151 151 155 / 0.36);
+  --daidien-border-subtle: #f0f0f0;
+
   --dc-transition-fast: 150ms ease;
   --dc-transition-slow: 200ms ease;
+  /* Extended Colors */
+  --daidien-color-primary: #5865f2;
+  --daidien-color-success: #1f7a4a;
+  --daidien-color-error: #c0392b;
 }
 
 body {
   @apply bg-transparent font-sans;
-  color: var(--color-dc-text-primary);
+  color: var(--daidien-text-normal);
 }
 
 .dc-shell {
@@ -45,9 +92,9 @@ body {
 }
 
 .dc-sidebar {
-  @apply fixed bottom-0 left-0 flex flex-col overflow-x-hidden overflow-y-auto top-12 w-72;
+  @apply fixed bottom-0 left-0 flex flex-col overflow-x-hidden overflow-y-auto top-12 w-72 max-md:w-screen max-md:z-[250] max-md:translate-x-0;
   z-index: 200;
-  background-color: var(--color-dc-bg-secondary);
+  background-color: var(--daidien-bg-muted);
   transition: width var(--dc-transition-slow), transform var(--dc-transition-slow);
 }
 
@@ -61,11 +108,11 @@ body {
 
 .dc-sidebar::-webkit-scrollbar-thumb {
   @apply rounded;
-  background-color: var(--color-dc-border);
+  background-color: var(--daidien-border-normal);
 }
 
 .sidebar-collapsed .dc-sidebar {
-  @apply w-12;
+  @apply w-12 max-md:w-72 max-md:-translate-x-full;
 }
 
 .dc-sidebar-nav {
@@ -78,7 +125,7 @@ body {
 
 .dc-nav-group-title {
   @apply flex items-center justify-between overflow-hidden whitespace-nowrap px-2 pb-1.5 text-xs font-bold uppercase;
-  color: var(--color-dc-text-muted);
+  color: var(--daidien-text-muted);
   cursor: default;
   letter-spacing: 0.05em;
   -webkit-user-select: none;
@@ -91,18 +138,18 @@ body {
 
 .dc-nav-item {
   @apply relative mb-px flex cursor-pointer items-center gap-2.5 overflow-hidden whitespace-nowrap rounded-lg px-2 py-1.5 text-sm font-medium no-underline;
-  color: var(--color-dc-text-secondary);
+  color: var(--daidien-text-subtle);
   transition: background-color var(--dc-transition-fast), color var(--dc-transition-fast);
 }
 
 .dc-nav-item:hover {
-  background-color: var(--color-dc-bg-tertiary);
-  color: var(--color-dc-text-primary);
+  background-color: var(--daidien-bg-strong);
+  color: var(--daidien-text-normal);
 }
 
 .dc-nav-item.active {
-  background-color: var(--color-dc-accent-light);
-  color: var(--color-dc-accent);
+  background-color: var(--daidien-color-primaryss);
+  color: var(--daidien-color-primary);
   font-weight: 600;
 }
 
@@ -136,20 +183,9 @@ body {
   @apply px-2 pb-1 pt-2;
 }
 
-.dc-nav-badge {
-  @apply ml-auto rounded-full px-1.5 py-px text-center text-xs font-bold;
-  min-width: 18px;
-  background-color: var(--color-dc-accent);
-  color: var(--color-dc-bg-primary);
-}
-
-.sidebar-collapsed .dc-nav-badge {
-  @apply hidden;
-}
-
 .dc-sidebar-footer {
-  @apply shrink-0 border-t;
-  border-color: var(--color-dc-border);
+  @apply shrink-0 border-t max-md:flex max-md:flex-col;
+  border-color: var(--daidien-border-normal);
 }
 
 .dc-sidebar-settings {
@@ -157,7 +193,8 @@ body {
 }
 
 .dc-sidebar-profile {
-  @apply px-3 pb-2.5 pt-2;
+  @apply px-3 pb-2.5 pt-2 max-md:order-first max-md:border-b max-md:p-3;
+  border-color: var(--daidien-border-normal);
 }
 
 .dc-sidebar-profile .profile-menu {
@@ -170,17 +207,17 @@ body {
 }
 
 .dc-sidebar-profile .profile-trigger:hover {
-  background-color: var(--color-dc-bg-tertiary);
+  background-color: var(--daidien-bg-strong);
 }
 
 .dc-sidebar-profile .profile-name {
   @apply text-sm;
-  color: var(--color-dc-text-primary);
+  color: var(--daidien-text-normal);
 }
 
 .dc-sidebar-profile .profile-login-btn {
   @apply block px-1 py-2 text-sm no-underline;
-  color: var(--color-dc-accent);
+  color: var(--daidien-color-primary);
 }
 
 .sidebar-collapsed .dc-sidebar-profile .profile-name,
@@ -205,13 +242,13 @@ body {
 }
 
 .dc-main-content {
-  @apply flex min-w-0 flex-1 flex-col ml-72;
-  background-color: var(--color-dc-bg-primary);
+  @apply flex min-w-0 flex-1 flex-col ml-72 max-md:ml-0;
+  background-color: var(--daidien-bg-normal);
   transition: margin-left var(--dc-transition-slow);
 }
 
 .dc-content {
-  @apply box-border w-full flex-1 bg-transparent px-8 py-6;
+  @apply box-border w-full flex-1 bg-transparent px-8 py-6 max-md:p-4 max-sm:p-3;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -223,25 +260,25 @@ body {
 }
 
 .sidebar-collapsed .dc-main-content {
-  @apply ml-12;
+  @apply ml-12 max-md:ml-0;
 }
 
 .dc-header {
-  @apply fixed inset-x-0 top-0 flex items-center gap-2 border-b pl-2 pr-4 h-12;
+  @apply fixed inset-x-0 top-0 flex items-center gap-2 border-b pl-2 pr-4 h-12 max-sm:pr-2 max-sm:pl-[4px];
   z-index: 300;
-  background-color: var(--color-dc-bg-primary);
-  border-color: var(--color-dc-border);
+  background-color: var(--daidien-bg-normal);
+  border-color: var(--daidien-border-normal);
 }
 
 .dc-collapse-btn {
   @apply flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-lg bg-transparent;
-  color: var(--color-dc-text-secondary);
+  color: var(--daidien-text-subtle);
   transition: background-color var(--dc-transition-fast), color var(--dc-transition-fast);
 }
 
 .dc-collapse-btn:hover {
-  background-color: var(--color-dc-bg-tertiary);
-  color: var(--color-dc-text-primary);
+  background-color: var(--daidien-bg-strong);
+  color: var(--daidien-text-normal);
 }
 
 .dc-collapse-btn svg {
@@ -257,12 +294,12 @@ body {
 }
 
 .dc-header-brand-name {
-  @apply whitespace-nowrap text-base font-bold;
-  color: var(--color-dc-text-primary);
+  @apply whitespace-nowrap text-base font-bold max-md:max-w-36 max-md:overflow-hidden max-md:text-sm max-md:text-ellipsis;
+  color: var(--daidien-text-normal);
 }
 
 .dc-header-brand:hover .dc-header-brand-name {
-  color: var(--color-dc-accent);
+  color: var(--daidien-color-primary);
 }
 
 .dc-header-spacer {
@@ -274,41 +311,41 @@ body {
 }
 
 .dc-header-search-wrap {
-  @apply flex h-8 items-center gap-2 border rounded-lg px-3.5;
+  @apply flex h-8 items-center gap-2 border rounded-lg px-3.5 max-md:hidden;
   min-width: 220px;
   max-width: 320px;
-  background-color: var(--color-dc-bg-secondary);
+  background-color: var(--daidien-bg-muted);
   transition: background-color var(--dc-transition-fast), box-shadow var(--dc-transition-fast);
 }
 
 .dc-header-search-wrap:focus-within {
-  background-color: var(--color-dc-bg-primary);
+  background-color: var(--daidien-bg-normal);
 }
 
 .dc-header-search-wrap svg {
   @apply size-4 shrink-0;
-  color: var(--color-dc-text-muted);
+  color: var(--daidien-text-muted);
 }
 
 .dc-header-search {
   @apply w-full border-0 bg-transparent text-sm outline-none;
-  color: var(--color-dc-text-primary);
+  color: var(--daidien-text-normal);
   font-family: var(--font-sans);
 }
 
 .dc-header-search::placeholder {
-  color: var(--color-dc-text-muted);
+  color: var(--daidien-text-muted);
 }
 
 .dc-header-icon-btn {
   @apply flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full bg-transparent;
-  color: var(--color-dc-text-secondary);
+  color: var(--daidien-text-subtle);
   transition: background-color var(--dc-transition-fast), color var(--dc-transition-fast);
 }
 
 .dc-header-icon-btn:hover {
-  background-color: var(--color-dc-bg-tertiary);
-  color: var(--color-dc-text-primary);
+  background-color: var(--daidien-bg-strong);
+  color: var(--daidien-text-normal);
 }
 
 .dc-header-icon-btn svg {
@@ -316,43 +353,50 @@ body {
 }
 
 .dc-mobile-search-btn {
-  @apply hidden;
+  @apply hidden max-md:flex;
+}
+
+.dc-sidebar-overlay {
+  @apply hidden max-md:fixed max-md:inset-0 max-md:top-12 max-md:bg-black/40 max-md:z-[199];
+}
+
+.dc-sidebar-overlay.open {
+  @apply max-md:block;
 }
 
 .dc-mobile-search-dropdown {
   @apply absolute left-0 right-0 border-b px-4 py-2.5 top-12 shadow-md;
   z-index: 299;
-  background-color: var(--color-dc-bg-primary);
-  border-color: var(--color-dc-border);
+  background-color: var(--daidien-bg-normal);
+  border-color: var(--daidien-border-normal);
 }
 
 .dc-mobile-search-input {
   @apply w-full rounded-full border px-4 py-2.5 text-sm outline-none;
-  background-color: var(--color-dc-bg-secondary);
-  border-color: var(--color-dc-border);
-  color: var(--color-dc-text-primary);
+  background-color: var(--daidien-bg-muted);
+  border-color: var(--daidien-border-normal);
+  color: var(--daidien-text-normal);
   font-family: var(--font-sans);
 }
 
-.dc-mobile-search-input:focus,
-.dc-toolbar-search:focus {
-  border-color: var(--color-dc-accent);
+.dc-mobile-search-input:focus {
+  border-color: var(--daidien-color-primary);
 }
 
 .dc-shell-loading {
   @apply flex flex-col items-center justify-center gap-4 px-6 py-12 h-full;
-  color: var(--color-dc-text-secondary);
+  color: var(--daidien-text-subtle);
 }
 
 .dc-shell-loading-spinner {
   @apply size-10 animate-spin rounded-full;
-  border: 3px solid var(--color-dc-border);
-  border-top-color: var(--color-dc-accent);
+  border: 3px solid var(--daidien-border-normal);
+  border-top-color: var(--daidien-color-primary);
 }
 
 .dc-shell-loading-text {
   @apply m-0 text-base;
-  color: var(--color-dc-text-secondary);
+  color: var(--daidien-text-subtle);
   font-family: var(--font-sans);
 }
 
@@ -363,8 +407,8 @@ body {
 }
 
 .dc-home-featured-pin {
-  background-color: var(--color-dc-accent-light);
-  color: var(--color-dc-accent);
+  background-color: var(--daidien-color-primaryss);
+  color: var(--daidien-color-primary);
   font-weight: 600;
 }
 
@@ -372,7 +416,7 @@ body {
 .dc-home-card-title,
 .dc-admin-post-title {
   @apply m-0 font-bold;
-  color: var(--color-dc-text-primary);
+  color: var(--daidien-text-normal);
   font-family: var(--font-sans);
 }
 
@@ -388,31 +432,13 @@ body {
 .dc-home-featured-excerpt,
 .dc-admin-post-snippet {
   @apply text-sm;
-  color: var(--color-dc-text-secondary);
+  color: var(--daidien-text-subtle);
   line-height: 1.55;
 }
 
 .dc-home-card-action svg,
 .dc-edit-publish-btn svg {
   @apply size-3.5;
-}
-
-.dc-section-header {
-  @apply mb-4 flex items-center gap-2 text-lg font-bold;
-  color: var(--color-dc-text-primary);
-  font-family: var(--font-sans);
-}
-
-.dc-section-header::after {
-  content: '';
-  @apply flex-1;
-  height: 1px;
-  margin-left: 8px;
-  background-color: var(--color-dc-border);
-}
-
-.dc-home-sidebar {
-  @apply flex flex-col gap-6;
 }
 
 .dc-shell .header-banner,
@@ -422,23 +448,7 @@ body {
   display: none !important;
 }
 
-.dc-skeleton {
-  @apply rounded-lg;
-  background: linear-gradient(90deg, var(--color-dc-bg-secondary) 25%, var(--color-dc-bg-tertiary) 50%, var(--color-dc-bg-secondary) 75%);
-  background-size: 200% 100%;
-  animation: dc-shimmer 1.5s infinite;
-}
-
 .dc-shell .profile-menu {
-  margin-left: 0;
-}
-
-body.dc-admin-page .dc-sidebar,
-body.dc-admin-page .dc-header {
-  @apply hidden;
-}
-
-body.dc-admin-page .dc-main-area {
   margin-left: 0;
 }
 
@@ -452,7 +462,7 @@ body.dc-admin-page .dc-main-area {
 .dc-admin-shell,
 .dc-edit-shell,
 .dc-home-shell {
-  @apply box-border flex w-full flex-1 flex-col px-8 py-6;
+  @apply box-border flex w-full flex-1 flex-col px-8 py-6 max-md:p-4;
 }
 
 .dc-admin-shell {
@@ -465,27 +475,27 @@ body.dc-admin-page .dc-main-area {
 }
 
 .dc-admin-topbar {
-  @apply flex items-center gap-3;
+  @apply flex items-center gap-3 max-md:flex-col max-md:items-stretch;
 }
 
 .dc-admin-search {
   @apply flex h-11 flex-1 items-center gap-2.5 rounded-full px-5;
-  background-color: var(--color-dc-bg-secondary);
+  background-color: var(--daidien-bg-muted);
   transition: background-color var(--dc-transition-fast), box-shadow var(--dc-transition-fast);
 }
 
 .dc-admin-search:focus-within {
-  background-color: var(--color-dc-bg-primary);
+  background-color: var(--daidien-bg-normal);
 }
 
 .dc-admin-search svg {
   @apply size-4 shrink-0;
-  color: var(--color-dc-text-muted);
+  color: var(--daidien-text-muted);
 }
 
 .dc-admin-search input {
   @apply flex-1 border-0 bg-transparent text-sm outline-none;
-  color: var(--color-dc-text-primary);
+  color: var(--daidien-text-normal);
   font-family: var(--font-sans);
 }
 
@@ -494,13 +504,13 @@ body.dc-admin-page .dc-main-area {
 .dc-edit-subtitle-input::placeholder,
 .dc-md-editor-textarea::placeholder,
 .dc-md-editor-placeholder {
-  color: var(--color-dc-text-muted);
+  color: var(--daidien-text-muted);
 }
 
 .dc-admin-new-btn {
-  @apply inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-xl px-5 text-sm font-semibold no-underline;
-  background-color: var(--color-dc-accent);
-  color: var(--color-dc-bg-primary);
+  @apply inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-xl px-5 text-sm font-semibold no-underline max-md:justify-center;
+  background-color: var(--daidien-color-primary);
+  color: var(--daidien-bg-normal);
   font-family: var(--font-sans);
   transition: background-color var(--dc-transition-fast), box-shadow var(--dc-transition-fast);
 }
@@ -508,8 +518,7 @@ body.dc-admin-page .dc-main-area {
 .dc-admin-new-btn:hover,
 .dc-edit-save-btn:hover:not(:disabled),
 .dc-edit-publish-btn:hover:not(:disabled) {
-  @apply shadow-md;
-  background-color: var(--color-dc-accent-hover);
+  @apply shadow-md brightness-80;
 }
 
 .dc-admin-new-btn svg,
@@ -519,14 +528,14 @@ body.dc-admin-page .dc-main-area {
 
 .dc-admin-sort {
   @apply inline-flex self-start items-center gap-2 rounded-full px-3.5 py-1.5 text-sm;
-  background-color: var(--color-dc-bg-secondary);
-  color: var(--color-dc-text-secondary);
+  background-color: var(--daidien-bg-muted);
+  color: var(--daidien-text-subtle);
   font-family: var(--font-sans);
   transition: background-color var(--dc-transition-fast);
 }
 
 .dc-admin-sort:hover {
-  background-color: var(--color-dc-bg-tertiary);
+  background-color: var(--daidien-bg-strong);
 }
 
 .dc-admin-list {
@@ -535,8 +544,8 @@ body.dc-admin-page .dc-main-area {
 
 .dc-admin-post {
   @apply block rounded-xl border px-5 py-3.5;
-  background-color: var(--color-dc-bg-primary);
-  border-color: var(--color-dc-border);
+  background-color: var(--daidien-bg-normal);
+  border-color: var(--daidien-border-normal);
   color: inherit;
   text-decoration: none;
   transition: border-color var(--dc-transition-fast), box-shadow var(--dc-transition-fast), transform var(--dc-transition-fast);
@@ -546,7 +555,6 @@ body.dc-admin-page .dc-main-area {
 .dc-home-featured:hover,
 .dc-home-card:hover {
   @apply shadow-md;
-  border-color: var(--color-dc-accent-medium);
 }
 
 .dc-admin-post-title {
@@ -563,7 +571,7 @@ body.dc-admin-page .dc-main-area {
 
 .dc-admin-post-meta {
   @apply flex items-center gap-2.5 text-xs;
-  color: var(--color-dc-text-muted);
+  color: var(--daidien-text-muted);
   font-family: var(--font-sans);
 }
 
@@ -573,7 +581,7 @@ body.dc-admin-page .dc-main-area {
 }
 
 .dc-admin-post-meta .sep {
-  color: var(--color-dc-border);
+  color: var(--daidien-border-normal);
 }
 
 .dc-admin-status-chip {
@@ -582,18 +590,18 @@ body.dc-admin-page .dc-main-area {
 }
 
 .dc-admin-status-chip.published {
-  background-color: var(--color-dc-status-success-bg);
-  color: var(--color-dc-status-success);
+  background-color: var(--daidien-color-success);
+  color: var(--daidien-color-success);
 }
 
 .dc-admin-status-chip.draft {
-  background-color: var(--color-dc-accent-light);
-  color: var(--color-dc-accent);
+  background-color: var(--daidien-color-primaryss);
+  color: var(--daidien-color-primary);
 }
 
 .dc-admin-empty {
   @apply px-4 py-12 text-center text-sm;
-  color: var(--color-dc-text-muted);
+  color: var(--daidien-text-muted);
   font-family: var(--font-sans);
 }
 
@@ -603,30 +611,30 @@ body.dc-admin-page .dc-main-area {
 
 .dc-edit-dock-status {
   @apply text-sm;
-  color: var(--color-dc-text-muted);
+  color: var(--daidien-text-muted);
   font-family: var(--font-sans);
 }
 
 .dc-edit-dock-status.error {
-  color: var(--color-dc-status-error);
+  color: var(--daidien-color-error);
 }
 
 .dc-edit-dock-status.success {
-  color: var(--color-dc-status-success);
+  color: var(--daidien-color-success);
 }
 
 .dc-edit-save-btn {
   @apply inline-flex cursor-pointer items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold;
-  background-color: var(--color-dc-accent);
-  color: var(--color-dc-bg-primary);
+  background-color: var(--daidien-color-primary);
+  color: var(--daidien-bg-normal);
   font-family: var(--font-sans);
   transition: background-color var(--dc-transition-fast), box-shadow var(--dc-transition-fast), opacity var(--dc-transition-fast);
 }
 
 .dc-edit-save-btn:disabled {
-  background-color: var(--color-dc-bg-tertiary);
+  background-color: var(--daidien-bg-strong);
   box-shadow: none;
-  color: var(--color-dc-text-muted);
+  color: var(--daidien-text-muted);
   cursor: not-allowed;
 }
 
@@ -636,20 +644,16 @@ body.dc-admin-page .dc-main-area {
 
 .dc-edit-section-label {
   @apply pl-1 text-xs font-bold;
-  color: var(--color-dc-text-secondary);
+  color: var(--daidien-text-subtle);
   font-family: var(--font-sans);
   letter-spacing: 0.04em;
 }
 
 .dc-edit-card {
   @apply flex flex-col gap-2.5 rounded-xl border px-5 py-4;
-  background-color: var(--color-dc-bg-primary);
-  border-color: var(--color-dc-border);
+  background-color: var(--daidien-bg-normal);
+  border-color: var(--daidien-border-normal);
   transition: border-color var(--dc-transition-fast), box-shadow var(--dc-transition-fast);
-}
-
-.dc-edit-card:focus-within {
-  border-color: var(--color-dc-accent-medium);
 }
 
 .dc-edit-card-body {
@@ -662,13 +666,13 @@ body.dc-admin-page .dc-main-area {
 
 .dc-edit-title-row {
   @apply flex items-center gap-1.5 text-base;
-  color: var(--color-dc-text-secondary);
+  color: var(--daidien-text-subtle);
   font-family: var(--font-sans);
 }
 
 .dc-edit-title-input {
   @apply min-w-0 flex-1 border-0 bg-transparent py-0.5 text-base font-semibold outline-none;
-  color: var(--color-dc-text-primary);
+  color: var(--daidien-text-normal);
   font-family: var(--font-sans);
 }
 
@@ -678,23 +682,23 @@ body.dc-admin-page .dc-main-area {
 
 .dc-edit-subtitle-input {
   @apply w-full border-0 bg-transparent py-0.5 text-base outline-none;
-  color: var(--color-dc-text-primary);
+  color: var(--daidien-text-normal);
   font-family: var(--font-sans);
 }
 
 .dc-edit-attach-btn {
   @apply flex size-14 shrink-0 cursor-pointer items-center justify-center rounded-lg border;
-  background-color: var(--color-dc-bg-secondary);
-  border-color: var(--color-dc-border);
-  color: var(--color-dc-text-muted);
+  background-color: var(--daidien-bg-muted);
+  border-color: var(--daidien-border-normal);
+  color: var(--daidien-text-muted);
   transition: background-color var(--dc-transition-fast), color var(--dc-transition-fast);
 }
 
 .dc-edit-attach-btn:hover,
 .dc-edit-publish-btn.withdraw:hover:not(:disabled),
 .dc-home-card-action:hover {
-  background-color: var(--color-dc-bg-tertiary);
-  color: var(--color-dc-text-primary);
+  background-color: var(--daidien-bg-strong);
+  color: var(--daidien-text-normal);
 }
 
 .dc-edit-attach-btn svg {
@@ -703,7 +707,7 @@ body.dc-admin-page .dc-main-area {
 
 .dc-edit-card-divider {
   @apply h-px;
-  background-color: var(--color-dc-border-light);
+  background-color: var(--daidien-border-subtle);
   margin: 4px -20px 0;
 }
 
@@ -713,13 +717,13 @@ body.dc-admin-page .dc-main-area {
 
 .dc-edit-footer-icon {
   @apply flex size-8 cursor-pointer items-center justify-center rounded-full p-1;
-  color: var(--color-dc-text-muted);
+  color: var(--daidien-text-muted);
   transition: background-color var(--dc-transition-fast), color var(--dc-transition-fast);
 }
 
 .dc-edit-footer-icon:hover {
-  background-color: var(--color-dc-bg-secondary);
-  color: var(--color-dc-text-primary);
+  background-color: var(--daidien-bg-muted);
+  color: var(--daidien-text-normal);
 }
 
 .dc-edit-footer-icon svg {
@@ -729,8 +733,8 @@ body.dc-admin-page .dc-main-area {
 
 .dc-edit-publish-btn {
   @apply inline-flex cursor-pointer items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold;
-  background-color: var(--color-dc-accent);
-  color: var(--color-dc-bg-primary);
+  background-color: var(--daidien-color-primary);
+  color: var(--daidien-bg-normal);
   font-family: var(--font-sans);
   transition: background-color var(--dc-transition-fast), opacity var(--dc-transition-fast), box-shadow var(--dc-transition-fast);
 }
@@ -742,14 +746,14 @@ body.dc-admin-page .dc-main-area {
 
 .dc-edit-publish-btn.withdraw {
   @apply border;
-  background-color: var(--color-dc-bg-secondary);
-  border-color: var(--color-dc-border);
-  color: var(--color-dc-text-primary);
+  background-color: var(--daidien-bg-muted);
+  border-color: var(--daidien-border-normal);
+  color: var(--daidien-text-normal);
 }
 
 .dc-md-live {
   @apply w-full break-words bg-transparent px-5 py-3.5 text-base/5.5 font-medium outline-none;
-  color: var(--color-dc-text-primary);
+  color: var(--daidien-text-normal);
   font-family: var(--font-sans);
   -webkit-user-select: text;
   user-select: text;
@@ -760,8 +764,7 @@ body.dc-admin-page .dc-main-area {
 }
 
 .dc-md-live a {
-  @apply break-words no-underline;
-  color: var(--color-dc-text-link);
+  @apply break-words no-underline text-blue-600;
   cursor: pointer;
 }
 
@@ -793,10 +796,8 @@ body.dc-admin-page .dc-main-area {
 }
 
 .dc-md-live blockquote {
-  @apply my-1.5 pl-4;
-  border-left: 0.3rem solid var(--color-dc-quote-border);
-  color: var(--color-dc-text-secondary);
-  padding-right: 0.7rem;
+  @apply my-1.5 pl-4 pr-3 border-l-4 border-solid border-gray-300 dark:border-gray-600;
+  color: var(--daidien-text-subtle);
   text-indent: 0;
 }
 
@@ -805,9 +806,8 @@ body.dc-admin-page .dc-main-area {
 }
 
 .dc-md-live code {
-  @apply border text-sm;
-  background-color: var(--color-dc-code-bg);
-  border-color: var(--color-dc-code-border);
+  @apply border text-sm bg-indigo-500/5 dark:bg-indigo-500/10;
+  border-color: var(--daidien-border-normal);
   line-height: 1.125rem;
   text-indent: 0;
   white-space: pre-wrap;
@@ -860,7 +860,7 @@ body.dc-admin-page .dc-main-area {
 .dc-md-live h4,
 .dc-md-live h5,
 .dc-md-live h6 {
-  color: var(--color-dc-text-strong);
+  color: var(--daidien-text-strong);
   line-height: 1.375em;
   margin: 1rem 0 0.25rem;
 }
@@ -898,28 +898,28 @@ body.dc-admin-page .dc-main-area {
 
 .dc-md-editor-tabs {
   @apply flex border-b px-5;
-  border-color: var(--color-dc-border);
+  border-color: var(--daidien-border-normal);
 }
 
 .dc-md-editor-tab {
   @apply -mb-px cursor-pointer border-b-2 border-transparent px-3.5 py-2 text-sm font-semibold;
-  color: var(--color-dc-text-muted);
+  color: var(--daidien-text-muted);
   font-family: var(--font-sans);
   transition: color var(--dc-transition-fast), border-color var(--dc-transition-fast);
 }
 
 .dc-md-editor-tab:hover {
-  color: var(--color-dc-text-secondary);
+  color: var(--daidien-text-subtle);
 }
 
 .dc-md-editor-tab.active {
-  border-bottom-color: var(--color-dc-accent);
-  color: var(--color-dc-accent);
+  border-bottom-color: var(--daidien-color-primary);
+  color: var(--daidien-color-primary);
 }
 
 .dc-md-editor-textarea {
   @apply box-border w-full resize-y bg-transparent px-5 py-3.5 text-sm outline-none font-mono;
-  color: var(--color-dc-text-primary);
+  color: var(--daidien-text-normal);
   line-height: 1.6;
 }
 
@@ -928,12 +928,12 @@ body.dc-admin-page .dc-main-area {
 }
 
 .dc-md-editor-placeholder {
-  color: var(--color-dc-text-muted);
+  color: var(--daidien-text-muted);
 }
 
 .dc-home-divider {
   @apply flex items-center gap-3 text-xs font-bold uppercase;
-  color: var(--color-dc-text-muted);
+  color: var(--daidien-text-muted);
   font-family: var(--font-sans);
   letter-spacing: 0.08em;
   margin: 8px 0 4px;
@@ -944,47 +944,48 @@ body.dc-admin-page .dc-main-area {
   content: '';
   @apply flex-1;
   height: 1px;
-  background-color: var(--color-dc-border);
+  background-color: var(--daidien-border-normal);
 }
 
 .dc-home-featured {
-  @apply grid items-stretch overflow-hidden rounded-xl border;
+  @apply grid items-stretch overflow-hidden rounded-xl border max-lg:[grid-template-columns:260px_1fr] max-md:[grid-template-columns:1fr];
   grid-template-columns: 320px 1fr;
   gap: 18px;
-  background-color: var(--color-dc-bg-primary);
-  border-color: var(--color-dc-border);
+  background-color: var(--daidien-bg-normal);
+  border-color: var(--daidien-border-normal);
   color: inherit;
   text-decoration: none;
   transition: border-color var(--dc-transition-fast), box-shadow var(--dc-transition-fast);
 }
 
 .dc-home-featured-thumb {
-  @apply relative size-full overflow-hidden;
+  @apply relative size-full overflow-hidden max-md:min-h-40;
   min-height: 180px;
-  background-color: var(--color-dc-bg-secondary);
+  background-color: var(--daidien-bg-muted);
 }
 
 .dc-home-featured-body {
   @apply flex min-w-0 flex-col gap-2;
   padding: 18px 18px 18px 0;
+  @apply max-md:[padding:14px_14px_18px];
 }
 
 .dc-home-featured-meta,
 .dc-home-card-header {
   @apply flex items-center gap-2 text-xs;
-  color: var(--color-dc-text-secondary);
+  color: var(--daidien-text-subtle);
   font-family: var(--font-sans);
 }
 
 .dc-home-featured-author,
 .dc-home-card-author {
   @apply font-semibold;
-  color: var(--color-dc-text-primary);
+  color: var(--daidien-text-normal);
 }
 
 .dc-home-featured-date,
 .dc-home-card-date {
-  color: var(--color-dc-text-muted);
+  color: var(--daidien-text-muted);
 }
 
 .dc-home-featured-title {
@@ -1000,14 +1001,14 @@ body.dc-admin-page .dc-main-area {
 }
 
 .dc-home-grid {
-  @apply grid gap-5;
+  @apply grid gap-5 max-lg:[grid-template-columns:repeat(2,minmax(0,1fr))] max-md:[grid-template-columns:1fr];
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .dc-home-card {
   @apply box-border flex w-full flex-col gap-2.5 rounded-xl border px-3.5 pb-3 pt-3.5;
-  background-color: var(--color-dc-bg-primary);
-  border-color: var(--color-dc-border);
+  background-color: var(--daidien-bg-normal);
+  border-color: var(--daidien-border-normal);
   color: inherit;
   text-decoration: none;
   transition: border-color var(--dc-transition-fast), box-shadow var(--dc-transition-fast), transform var(--dc-transition-fast);
@@ -1016,12 +1017,12 @@ body.dc-admin-page .dc-main-area {
 .dc-home-card-thumb {
   @apply relative w-full overflow-hidden rounded-lg;
   aspect-ratio: 16 / 9;
-  background-color: var(--color-dc-bg-secondary);
+  background-color: var(--daidien-bg-muted);
 }
 
 .dc-home-card-thumb-empty {
   @apply flex size-full items-center justify-center text-xs;
-  color: var(--color-dc-text-muted);
+  color: var(--daidien-text-muted);
   font-family: var(--font-sans);
 }
 
@@ -1032,8 +1033,8 @@ body.dc-admin-page .dc-main-area {
 
 .dc-home-card-tag {
   @apply rounded-full px-2 py-0.5 text-xs font-semibold whitespace-nowrap backdrop-blur-sm;
-  background-color: var(--color-dc-tag-overlay);
-  color: var(--color-dc-bg-primary);
+  background-color: var(--daidien-bg-normal);
+  color: var(--daidien-bg-normal);
   font-family: var(--font-sans);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
@@ -1045,124 +1046,10 @@ body.dc-admin-page .dc-main-area {
 
 .dc-home-card-action {
   @apply flex flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-medium no-underline;
-  background-color: var(--color-dc-bg-secondary);
-  border-color: var(--color-dc-border-light);
-  color: var(--color-dc-text-secondary);
+  background-color: var(--daidien-bg-muted);
+  border-color: var(--daidien-border-subtle);
+  color: var(--daidien-text-subtle);
   font-family: var(--font-sans);
   transition: background-color var(--dc-transition-fast), color var(--dc-transition-fast);
 }
 
-@keyframes dc-shimmer {
-  0% {
-    background-position: 200% 0;
-  }
-
-  100% {
-    background-position: -200% 0;
-  }
-}
-
-@media (max-width: 1100px) {
-  .dc-home-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .dc-home-featured {
-    grid-template-columns: 260px 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .dc-sidebar-overlay {
-    @apply top-12;
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 199;
-    background: var(--color-dc-overlay);
-  }
-
-  .dc-sidebar-overlay.open {
-    display: block;
-  }
-
-  .sidebar-collapsed .dc-sidebar {
-    @apply w-72;
-    transform: translateX(-100%);
-  }
-
-  .dc-sidebar {
-    @apply w-screen;
-    z-index: 250;
-    transform: translateX(0);
-  }
-
-  .dc-sidebar-profile {
-    @apply border-b p-3;
-    border-color: var(--color-dc-border);
-    order: -1;
-  }
-
-  .dc-sidebar-footer {
-    @apply flex flex-col;
-  }
-
-  .dc-main-content {
-    margin-left: 0 !important;
-  }
-
-  .dc-header-search-wrap {
-    @apply hidden;
-  }
-
-  .dc-mobile-search-btn {
-    @apply flex;
-  }
-
-  .dc-header-brand-name {
-    @apply max-w-36 overflow-hidden text-sm text-ellipsis whitespace-nowrap;
-  }
-
-  .dc-content,
-  .dc-admin-shell,
-  .dc-edit-shell,
-  .dc-home-shell {
-    @apply p-4;
-  }
-
-  .dc-home-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .dc-toolbar,
-  .dc-admin-topbar {
-    @apply flex-col items-stretch;
-  }
-
-  .dc-admin-new-btn {
-    @apply justify-center;
-  }
-
-  .dc-home-featured {
-    grid-template-columns: 1fr;
-  }
-
-  .dc-home-featured-body {
-    padding: 14px 14px 18px;
-  }
-
-  .dc-home-featured-thumb {
-    min-height: 160px;
-  }
-}
-
-@media (max-width: 480px) {
-  .dc-header {
-    @apply pr-2;
-    padding-left: 4px;
-  }
-
-  .dc-content {
-    @apply p-3;
-  }
-}
