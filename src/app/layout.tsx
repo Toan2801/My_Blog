@@ -20,7 +20,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="vi" suppressHydrationWarning>
       <head />
-      <body className="font-sans" suppressHydrationWarning>
+      <body className="font-sans text-normal bg-transparent" suppressHydrationWarning>
         <AuthProvider>
           <DiscordShell config={config}>
             {children}

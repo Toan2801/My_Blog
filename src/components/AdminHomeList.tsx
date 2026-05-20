@@ -55,19 +55,23 @@ export default function AdminHomeList({ articles }: Props) {
 
   return (
     <>
-      <div className="dc-admin-topbar">
-        <label className="dc-admin-search">
+      <div className="flex items-center gap-3 max-md:flex-col max-md:items-stretch">
+        <label className="flex h-11 flex-1 items-center gap-2.5 rounded-full bg-surface px-5 transition focus-within:bg-base [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-muted">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <circle cx="11" cy="11" r="7" />
             <line x1="20" y1="20" x2="16.5" y2="16.5" />
           </svg>
           <input
+            className="flex-1 border-0 bg-transparent text-sm text-normal outline-none placeholder:text-muted"
             value={q}
             onChange={e => setQ(e.target.value)}
             placeholder="Tìm kiếm hoặc tạo bài đăng…"
           />
         </label>
-        <Link href="/admin/articles/new" className="dc-admin-new-btn">
+        <Link
+          href="/admin/articles/new"
+          className="inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-xl bg-themed px-5 text-sm font-semibold text-white no-underline transition hover:shadow-md hover:brightness-80 max-md:justify-center [&_svg]:size-4"
+        >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
           </svg>
@@ -75,10 +79,10 @@ export default function AdminHomeList({ articles }: Props) {
         </Link>
       </div>
 
-      <div style={{ position: 'relative' }}>
+      <div className="relative">
         <button
           type="button"
-          className="dc-admin-sort"
+          className="inline-flex self-start items-center gap-2 rounded-full bg-surface px-3.5 py-1.5 text-sm text-subtle transition-colors hover:bg-hover [&_svg]:size-4"
           onClick={() => setSortOpen(o => !o)}
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -92,39 +96,17 @@ export default function AdminHomeList({ articles }: Props) {
           </svg>
         </button>
         {sortOpen && (
-          <div
-            style={{
-              position: 'absolute',
-              top: '110%',
-              left: 0,
-              zIndex: 20,
-              background: 'var(--dc-bg-surface)',
-              border: '1px solid var(--dc-border)',
-              borderRadius: 'var(--dc-radius-md)',
-              boxShadow: 'var(--dc-shadow-md)',
-              padding: 6,
-              minWidth: 180,
-            }}
-          >
+          <div className="absolute left-0 top-[110%] z-20 min-w-[180px] rounded-xl border border-normal bg-base p-1.5 shadow-md">
             {(['recent', 'title', 'status'] as SortMode[]).map(opt => (
               <button
                 key={opt}
                 type="button"
                 onClick={() => { setSort(opt); setSortOpen(false); }}
-                style={{
-                  display: 'block',
-                  width: '100%',
-                  textAlign: 'left',
-                  padding: '8px 12px',
-                  border: 'none',
-                  background: sort === opt ? 'var(--dc-accent-light)' : 'transparent',
-                  color: sort === opt ? 'var(--dc-accent)' : 'var(--dc-text-primary)',
-                  fontFamily: 'var(--dc-font)',
-                  fontSize: '0.84rem',
-                  fontWeight: sort === opt ? 600 : 500,
-                  borderRadius: 'var(--dc-radius-sm)',
-                  cursor: 'pointer',
-                }}
+                className={`block w-full cursor-pointer rounded-md border-0 px-3 py-2 text-left text-[0.84rem] ${
+                  sort === opt
+                    ? 'bg-hover font-semibold text-themed'
+                    : 'bg-transparent font-medium text-normal'
+                }`}
               >
                 {opt === 'recent' ? 'Mới nhất' : opt === 'title' ? 'Theo tên' : 'Theo trạng thái'}
               </button>
@@ -133,27 +115,35 @@ export default function AdminHomeList({ articles }: Props) {
         )}
       </div>
 
-      <div className="dc-admin-list">
+      <div className="flex flex-col gap-2.5">
         {filtered.length === 0 ? (
-          <div className="dc-admin-empty">
+          <div className="px-4 py-12 text-center text-sm text-muted">
             {q ? 'Không tìm thấy bài đăng phù hợp.' : (
-              <>Chưa có bài đăng nào. <Link href="/admin/articles/new" style={{ color: 'var(--dc-accent)' }}>Tạo bài đầu tiên →</Link></>
+              <>Chưa có bài đăng nào. <Link href="/admin/articles/new" className="text-themed">Tạo bài đầu tiên →</Link></>
             )}
           </div>
         ) : (
           filtered.map(a => (
-            <Link key={a.slug} href={`/admin/articles/${a.slug}/edit`} className="dc-admin-post">
-              <p className="dc-admin-post-title">{a.title}</p>
-              <p className="dc-admin-post-snippet">{snippet(a.excerpt)}</p>
-              <div className="dc-admin-post-meta">
-                <span className={`dc-admin-status-chip ${a.status}`}>
+            <Link
+              key={a.slug}
+              href={`/admin/articles/${a.slug}/edit`}
+              className="block rounded-xl border border-normal bg-base px-5 py-3.5 text-inherit no-underline transition hover:shadow-md"
+            >
+              <p className="mb-1 text-base font-bold text-normal">{a.title}</p>
+              <p className="mb-2 line-clamp-1 text-sm leading-6 text-subtle">{snippet(a.excerpt)}</p>
+              <div className="flex items-center gap-2.5 text-xs text-muted">
+                <span
+                  className={a.status === 'published'
+                    ? 'rounded-full px-2 py-0.5 text-xs font-bold uppercase tracking-wider bg-success'
+                    : 'rounded-full px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-themed'}
+                >
                   {a.status === 'published' ? 'Đã đăng' : 'Nháp'}
                 </span>
-                <span className="sep">•</span>
+                <span>•</span>
                 <span>{relativeTime(a.date)}</span>
                 {a.category && (
                   <>
-                    <span className="sep">•</span>
+                    <span>•</span>
                     <span>{a.category}</span>
                   </>
                 )}

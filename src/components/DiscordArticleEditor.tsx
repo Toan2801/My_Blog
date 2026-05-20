@@ -125,15 +125,47 @@ export default function DiscordArticleEditor({ initialArticle, authorName, defau
   };
 
   const isPublished = form.status === 'published';
+  const saveDisabled = !dirty || saving;
+  const publishDisabled = saving || (!isEdit && !form.title.trim());
+  const editCardClassName = 'flex flex-col gap-2.5 rounded-xl border border-normal bg-base px-5 py-4 transition';
+  const editCardPlainClassName = 'flex flex-col gap-2.5 rounded-xl border border-normal bg-base p-0 transition';
+  const saveButtonClassName = [
+    'inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition [&_svg]:size-3.5',
+    saveDisabled
+      ? 'cursor-not-allowed bg-hover text-muted shadow-none'
+      : 'bg-themed text-white hover:shadow-md hover:brightness-80',
+  ].join(' ');
+  const publishButtonClassName = [
+    'inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition [&_svg]:size-3.5',
+    isPublished
+      ? publishDisabled
+        ? 'cursor-not-allowed border border-normal bg-surface text-normal opacity-72'
+        : 'border border-normal bg-surface text-normal hover:bg-hover hover:text-normal'
+      : publishDisabled
+        ? 'cursor-not-allowed bg-themed text-white opacity-72'
+        : 'bg-themed text-white hover:shadow-md hover:brightness-80',
+  ].join(' ');
 
   return (
-    <div className="dc-edit-shell">
-      <div className="dc-edit-dock">
-        {msg && <span className={`dc-edit-dock-status ${msg.kind}`}>{msg.text}</span>}
+    <div className="box-border flex w-full flex-1 flex-col gap-5 px-8 py-6 max-md:p-4">
+      <div className="sticky top-4 z-10 flex items-center justify-end gap-3">
+        {msg && (
+          <span
+            className={`text-sm ${
+              msg.kind === 'error'
+                ? 'text-error'
+                : msg.kind === 'success'
+                  ? 'text-success'
+                  : 'text-muted'
+            }`}
+          >
+            {msg.text}
+          </span>
+        )}
         <button
           type="button"
-          className="dc-edit-save-btn"
-          disabled={!dirty || saving}
+          className={saveButtonClassName}
+          disabled={saveDisabled}
           onClick={handleSave}
         >
           {saving ? 'Đang lưu…' : 'Lưu'}
@@ -141,20 +173,20 @@ export default function DiscordArticleEditor({ initialArticle, authorName, defau
       </div>
 
       {/* Card 1 — Title + Subtitle (no title label) */}
-      <div className="dc-edit-section">
-        <div className="dc-edit-card">
-          <div className="dc-edit-card-body">
-            <div className="dc-edit-card-fields">
-              <div className="dc-edit-title-row">
+      <div className="flex flex-col gap-2.5">
+        <div className={editCardClassName}>
+          <div className="flex items-start gap-3.5">
+            <div className="flex min-w-0 flex-1 flex-col gap-1.5">
+              <div className="flex items-center gap-1.5 text-base text-subtle">
                 <input
-                  className="dc-edit-title-input"
+                  className="min-w-0 flex-1 border-0 bg-transparent py-0.5 text-base font-semibold text-normal outline-none placeholder:font-medium placeholder:text-muted"
                   value={form.title}
                   onChange={e => update('title', e.target.value)}
                   placeholder="Tiêu đề"
                 />
               </div>
               <input
-                className="dc-edit-subtitle-input"
+                className="w-full border-0 bg-transparent py-0.5 text-base text-normal outline-none placeholder:text-muted"
                 value={form.subtitle}
                 onChange={e => update('subtitle', e.target.value)}
                 placeholder="Phụ đề"
@@ -165,11 +197,11 @@ export default function DiscordArticleEditor({ initialArticle, authorName, defau
               onChange={v => update('coverImage', v)}
             />
           </div>
-          <div className="dc-edit-card-divider" />
-          <div className="dc-edit-card-footer">
+          <div className="h-px mt-1 mb-0 -mx-5 bg-hover" />
+          <div className="flex items-center justify-between gap-3 pt-1">
             <button
               type="button"
-              className="dc-edit-footer-icon"
+              className="flex size-8 cursor-pointer items-center justify-center rounded-full p-1 text-muted transition-colors hover:bg-surface hover:text-normal [&_svg]:size-4"
               title="Cảm xúc"
               onClick={() => { /* placeholder */ }}
             >
@@ -182,8 +214,8 @@ export default function DiscordArticleEditor({ initialArticle, authorName, defau
             </button>
             <button
               type="button"
-              className={`dc-edit-publish-btn${isPublished ? ' withdraw' : ''}`}
-              disabled={saving || (!isEdit && !form.title.trim())}
+              className={publishButtonClassName}
+              disabled={publishDisabled}
               onClick={handleToggleRelease}
               title={isPublished ? 'Thu hồi bài đăng' : 'Xuất bản bài đăng'}
             >
@@ -206,9 +238,9 @@ export default function DiscordArticleEditor({ initialArticle, authorName, defau
       </div>
 
       {/* Card 2 — Tóm tắt */}
-      <div className="dc-edit-section">
-        <div className="dc-edit-section-label">Tóm tắt</div>
-        <div className="dc-edit-card" style={{ padding: 0 }}>
+      <div className="flex flex-col gap-2.5">
+        <div className="pl-1 text-xs font-bold tracking-wider text-subtle">Tóm tắt</div>
+        <div className={editCardPlainClassName}>
           <DiscordMarkdownEditor
             value={form.excerpt}
             onChange={v => update('excerpt', v)}
@@ -219,9 +251,9 @@ export default function DiscordArticleEditor({ initialArticle, authorName, defau
       </div>
 
       {/* Card 3 — Nội dung */}
-      <div className="dc-edit-section">
-        <div className="dc-edit-section-label">Nội dung</div>
-        <div className="dc-edit-card" style={{ padding: 0 }}>
+      <div className="flex flex-col gap-2.5">
+        <div className="pl-1 text-xs font-bold tracking-wider text-subtle">Nội dung</div>
+        <div className={editCardPlainClassName}>
           <DiscordMarkdownEditor
             value={form.content}
             onChange={v => update('content', v)}
@@ -250,12 +282,12 @@ function CoverImagePicker({ value, onChange }: { value: string; onChange: (v: st
     <>
       <button
         type="button"
-        className="dc-edit-attach-btn"
+        className="flex size-14 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-normal bg-surface text-muted transition-colors hover:bg-hover hover:text-normal [&_svg]:size-6"
         onClick={() => document.getElementById(inputId)?.click()}
         title={value ? 'Thay ảnh bìa' : 'Thêm ảnh bìa'}
       >
         {value ? (
-          <img src={value} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }} />
+          <img src={value} alt="" className="size-full rounded-[inherit] object-cover" />
         ) : (
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -269,8 +301,9 @@ function CoverImagePicker({ value, onChange }: { value: string; onChange: (v: st
       <input
         id={inputId}
         type="file"
+        className="hidden"
         accept="image/*"
-        style={{ display: 'none' }}
+        aria-label="Tải ảnh bìa lên"
         onChange={e => {
           const f = e.target.files?.[0];
           if (f) void handleUpload(f);

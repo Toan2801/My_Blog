@@ -1,5 +1,6 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { Suspense, useState } from 'react';
 import type { SiteConfig } from '@/lib/types';
 import DiscordSidebar from './DiscordSidebar';
@@ -14,9 +15,11 @@ interface Props {
 export default function DiscordShell({ config, children }: Props) {
   // collapsed = true means sidebar icon-only on desktop, hidden on mobile
   const [collapsed, setCollapsed] = useState(false);
+  const pathname = usePathname();
+  const isAdminRoute = pathname.startsWith('/admin');
 
   return (
-    <div className={`dc-shell${collapsed ? ' sidebar-collapsed' : ''}`}>
+    <div className="flex min-h-screen flex-col">
       {/* Header spans full page width, always on top */}
       <DiscordHeader
         config={config}
@@ -25,14 +28,20 @@ export default function DiscordShell({ config, children }: Props) {
       />
 
       {/* Body: sidebar + content, sits below the fixed header */}
-      <div className="dc-body">
+      <div className="mt-12 flex min-h-12 flex-1">
         <DiscordSidebar
           config={config}
           collapsed={collapsed}
           onClose={() => setCollapsed(true)}
         />
-        <main className="dc-main-content">
-          <div className="dc-content">
+        <main
+          className={`flex min-w-0 flex-1 flex-col bg-base transition-all duration-200 max-md:ml-0 ${collapsed ? 'ml-12' : 'ml-72'}`}
+        >
+          <div
+            className={isAdminRoute
+              ? 'box-border w-full flex-1 bg-transparent max-w-none p-0'
+              : 'box-border m-0 mx-auto w-full max-w-7xl flex-1 bg-transparent px-8 py-6 max-md:p-4 max-sm:p-3'}
+          >
             <Suspense fallback={<DiscordShellLoading />}>
               {children}
             </Suspense>
