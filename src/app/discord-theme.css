@@ -1,68 +1,13 @@
-/* ============================================
-   DISCORD-INSPIRED COMMUNITY FORUM THEME
-   ============================================ */
-
 @reference "tailwindcss";
 
-/* 
-# 1. Custom classes and variables (For dark/light mode support and easy maintenance)
-Custom properties for the theme, organized by category (backgrounds, text, borders, etc.) and with semantic naming for easy maintenance and readability.
-The point of this section is to have generic semantic name like "text-normal", so when light/dark mode support is added, we can just change the value of --daidien-text-normal to black/white respectively without having to change the entire css codebase.
-The css classname should be in the format of `{prefix}-{suffix}`, where the prefix indicates the color category and the suffix indicates the shade or purpose of the color.
-The variable name should be in the format of `--daidien-{prefix}-{suffix}` to avoid conflicts and ensure clarity.
-## Prefixes
-```
-Utility	Description
-bg-*	Sets the background color of an element
-text-*	Sets the text color of an element
-decoration-*	Sets the text decoration color of an element
-border-*	Sets the border color of an element
-outline-*	Sets the outline color of an element
-shadow-*	Sets the color of box shadows
-inset-shadow-*	Sets the color of inset box shadows
-ring-*	Sets the color of ring shadows
-inset-ring-*	Sets the color of inset ring shadows
-accent-*	Sets the accent color of form controls
-caret-*	Sets the caret color in form controls
-scrollbar-thumb-*	Sets the thumb color of an element's scrollbar
-scrollbar-track-*	Sets the track color of an element's scrollbar
-fill-*	Sets the fill color of SVG elements
-stroke-*  Sets the stroke color of SVG elements
-```
-
-## Suffixes
-```
-normal  Standard color shade, typically the default color value for a given color name.
-subtle  A lighter shade of the normal color, often used for backgrounds, borders, or less prominent elements to create a softer visual effect.
-muted  A desaturated or toned-down version of the normal color, used for secondary text, icons, or elements that should not draw too much attention.
-strong  A darker or more saturated shade of the normal color, used for emphasis, important text, or elements that need to stand out.
-```
-
-# 2. Extended Colors (For themeing and semantic purposes)
-Add semantic color for success,error, warning, info. These color should be auto applied for all {prefix}. That means bg-success and text-successs should both use the same color value defined in --daidien-success, and so on for error, warning, info.
-
-```
-primary  The main color used for primary actions, highlights, and key elements in the UI.
-secondary  A complementary color used for secondary actions, accents, or to provide contrast to the primary color.
-success  A color that indicates successful actions, positive status, or confirmations.
-error  A color that indicates errors, negative status, or warnings.
-warning  A color that indicates caution, potential issues, or important notices.
-info  A color that indicates informational messages, tips, or neutral status.
-```
-*/
-
 :root {
-  /* Dark/Light Mode Variables */
-  /* bg */
-  --daidien-bg-normal: #ffffff;
-  --daidien-bg-muted: #f2f3f5;
-  --daidien-bg-strong: #e3e5e8;
-
-  /* text */
-  --daidien-text-normal: #2e2e34;
-  --daidien-text-subtle: #595b63;
-  --daidien-text-muted: #6C6D76;
-  --daidien-text-strong: #28282d;
+  --bg-base: #ffffff;
+  --bg-surface: #f2f3f5;
+  --bg-hover: #e3e5e8;
+  --text-normal: #2e2e34;
+  --text-subtle: #595b63;
+  --text-muted: #6C6D76;
+  --text-strong: #28282d;
 
   
   --daidien-color-primaryss: rgb(88 101 242 / 0.08);
@@ -78,9 +23,33 @@ info  A color that indicates informational messages, tips, or neutral status.
   --daidien-color-error: #c0392b;
 }
 
+.bg-base {
+  @apply neutral-100 dark:neutral-800
+}
+
+.bg-surface {
+  @apply neutral-50 dark:neutral-700
+}
+
+.text-strong {
+  @apply neutral-950 dark:neutral-50
+}
+
+.text-normal {
+  @apply neutral-900 dark:neutral-100
+}
+
+.text-subtle {
+  @apply neutral-700 dark:neutral-300
+}
+
+.text-strong {
+  @apply neutral-600 dark:neutral-400
+}
+
 body {
   @apply bg-transparent font-sans;
-  color: var(--daidien-text-normal);
+  color: var(--text-normal);
 }
 
 .dc-shell {
@@ -94,7 +63,7 @@ body {
 .dc-sidebar {
   @apply fixed bottom-0 left-0 flex flex-col overflow-x-hidden overflow-y-auto top-12 w-72 max-md:w-screen max-md:z-[250] max-md:translate-x-0;
   z-index: 200;
-  background-color: var(--daidien-bg-muted);
+  background-color: var(--bg-surface);
   transition: width var(--dc-transition-slow), transform var(--dc-transition-slow);
 }
 
@@ -125,7 +94,7 @@ body {
 
 .dc-nav-group-title {
   @apply flex items-center justify-between overflow-hidden whitespace-nowrap px-2 pb-1.5 text-xs font-bold uppercase;
-  color: var(--daidien-text-muted);
+  color: var(--text-muted);
   cursor: default;
   letter-spacing: 0.05em;
   -webkit-user-select: none;
@@ -138,13 +107,13 @@ body {
 
 .dc-nav-item {
   @apply relative mb-px flex cursor-pointer items-center gap-2.5 overflow-hidden whitespace-nowrap rounded-lg px-2 py-1.5 text-sm font-medium no-underline;
-  color: var(--daidien-text-subtle);
+  color: var(--text-subtle);
   transition: background-color var(--dc-transition-fast), color var(--dc-transition-fast);
 }
 
 .dc-nav-item:hover {
-  background-color: var(--daidien-bg-strong);
-  color: var(--daidien-text-normal);
+  background-color: var(--bg-hover);
+  color: var(--text-normal);
 }
 
 .dc-nav-item.active {
@@ -207,12 +176,12 @@ body {
 }
 
 .dc-sidebar-profile .profile-trigger:hover {
-  background-color: var(--daidien-bg-strong);
+  background-color: var(--bg-hover);
 }
 
 .dc-sidebar-profile .profile-name {
   @apply text-sm;
-  color: var(--daidien-text-normal);
+  color: var(--text-normal);
 }
 
 .dc-sidebar-profile .profile-login-btn {
@@ -243,7 +212,7 @@ body {
 
 .dc-main-content {
   @apply flex min-w-0 flex-1 flex-col ml-72 max-md:ml-0;
-  background-color: var(--daidien-bg-normal);
+  background-color: var(--bg-base);
   transition: margin-left var(--dc-transition-slow);
 }
 
@@ -266,19 +235,19 @@ body {
 .dc-header {
   @apply fixed inset-x-0 top-0 flex items-center gap-2 border-b pl-2 pr-4 h-12 max-sm:pr-2 max-sm:pl-[4px];
   z-index: 300;
-  background-color: var(--daidien-bg-normal);
+  background-color: var(--bg-base);
   border-color: var(--daidien-border-normal);
 }
 
 .dc-collapse-btn {
   @apply flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-lg bg-transparent;
-  color: var(--daidien-text-subtle);
+  color: var(--text-subtle);
   transition: background-color var(--dc-transition-fast), color var(--dc-transition-fast);
 }
 
 .dc-collapse-btn:hover {
-  background-color: var(--daidien-bg-strong);
-  color: var(--daidien-text-normal);
+  background-color: var(--bg-hover);
+  color: var(--text-normal);
 }
 
 .dc-collapse-btn svg {
@@ -295,7 +264,7 @@ body {
 
 .dc-header-brand-name {
   @apply whitespace-nowrap text-base font-bold max-md:max-w-36 max-md:overflow-hidden max-md:text-sm max-md:text-ellipsis;
-  color: var(--daidien-text-normal);
+  color: var(--text-normal);
 }
 
 .dc-header-brand:hover .dc-header-brand-name {
@@ -314,38 +283,37 @@ body {
   @apply flex h-8 items-center gap-2 border rounded-lg px-3.5 max-md:hidden;
   min-width: 220px;
   max-width: 320px;
-  background-color: var(--daidien-bg-muted);
+  background-color: var(--bg-surface);
   transition: background-color var(--dc-transition-fast), box-shadow var(--dc-transition-fast);
 }
 
 .dc-header-search-wrap:focus-within {
-  background-color: var(--daidien-bg-normal);
+  background-color: var(--bg-base);
 }
 
 .dc-header-search-wrap svg {
   @apply size-4 shrink-0;
-  color: var(--daidien-text-muted);
+  color: var(--text-muted);
 }
 
 .dc-header-search {
   @apply w-full border-0 bg-transparent text-sm outline-none;
-  color: var(--daidien-text-normal);
-  font-family: var(--font-sans);
+  color: var(--text-normal);
 }
 
 .dc-header-search::placeholder {
-  color: var(--daidien-text-muted);
+  color: var(--text-muted);
 }
 
 .dc-header-icon-btn {
   @apply flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full bg-transparent;
-  color: var(--daidien-text-subtle);
+  color: var(--text-subtle);
   transition: background-color var(--dc-transition-fast), color var(--dc-transition-fast);
 }
 
 .dc-header-icon-btn:hover {
-  background-color: var(--daidien-bg-strong);
-  color: var(--daidien-text-normal);
+  background-color: var(--bg-hover);
+  color: var(--text-normal);
 }
 
 .dc-header-icon-btn svg {
@@ -367,16 +335,15 @@ body {
 .dc-mobile-search-dropdown {
   @apply absolute left-0 right-0 border-b px-4 py-2.5 top-12 shadow-md;
   z-index: 299;
-  background-color: var(--daidien-bg-normal);
+  background-color: var(--bg-base);
   border-color: var(--daidien-border-normal);
 }
 
 .dc-mobile-search-input {
   @apply w-full rounded-full border px-4 py-2.5 text-sm outline-none;
-  background-color: var(--daidien-bg-muted);
+  background-color: var(--bg-surface);
   border-color: var(--daidien-border-normal);
-  color: var(--daidien-text-normal);
-  font-family: var(--font-sans);
+  color: var(--text-normal);
 }
 
 .dc-mobile-search-input:focus {
@@ -385,7 +352,7 @@ body {
 
 .dc-shell-loading {
   @apply flex flex-col items-center justify-center gap-4 px-6 py-12 h-full;
-  color: var(--daidien-text-subtle);
+  color: var(--text-subtle);
 }
 
 .dc-shell-loading-spinner {
@@ -396,8 +363,7 @@ body {
 
 .dc-shell-loading-text {
   @apply m-0 text-base;
-  color: var(--daidien-text-subtle);
-  font-family: var(--font-sans);
+  color: var(--text-subtle);
 }
 
 .dc-home-featured-pin,
@@ -416,8 +382,7 @@ body {
 .dc-home-card-title,
 .dc-admin-post-title {
   @apply m-0 font-bold;
-  color: var(--daidien-text-normal);
-  font-family: var(--font-sans);
+  color: var(--text-normal);
 }
 
 .dc-home-card-title {
@@ -432,7 +397,7 @@ body {
 .dc-home-featured-excerpt,
 .dc-admin-post-snippet {
   @apply text-sm;
-  color: var(--daidien-text-subtle);
+  color: var(--text-subtle);
   line-height: 1.55;
 }
 
@@ -480,23 +445,22 @@ body {
 
 .dc-admin-search {
   @apply flex h-11 flex-1 items-center gap-2.5 rounded-full px-5;
-  background-color: var(--daidien-bg-muted);
+  background-color: var(--bg-surface);
   transition: background-color var(--dc-transition-fast), box-shadow var(--dc-transition-fast);
 }
 
 .dc-admin-search:focus-within {
-  background-color: var(--daidien-bg-normal);
+  background-color: var(--bg-base);
 }
 
 .dc-admin-search svg {
   @apply size-4 shrink-0;
-  color: var(--daidien-text-muted);
+  color: var(--text-muted);
 }
 
 .dc-admin-search input {
   @apply flex-1 border-0 bg-transparent text-sm outline-none;
-  color: var(--daidien-text-normal);
-  font-family: var(--font-sans);
+  color: var(--text-normal);
 }
 
 .dc-admin-search input::placeholder,
@@ -504,14 +468,13 @@ body {
 .dc-edit-subtitle-input::placeholder,
 .dc-md-editor-textarea::placeholder,
 .dc-md-editor-placeholder {
-  color: var(--daidien-text-muted);
+  color: var(--text-muted);
 }
 
 .dc-admin-new-btn {
   @apply inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-xl px-5 text-sm font-semibold no-underline max-md:justify-center;
   background-color: var(--daidien-color-primary);
-  color: var(--daidien-bg-normal);
-  font-family: var(--font-sans);
+  color: var(--bg-base);
   transition: background-color var(--dc-transition-fast), box-shadow var(--dc-transition-fast);
 }
 
@@ -528,14 +491,13 @@ body {
 
 .dc-admin-sort {
   @apply inline-flex self-start items-center gap-2 rounded-full px-3.5 py-1.5 text-sm;
-  background-color: var(--daidien-bg-muted);
-  color: var(--daidien-text-subtle);
-  font-family: var(--font-sans);
+  background-color: var(--bg-surface);
+  color: var(--text-subtle);
   transition: background-color var(--dc-transition-fast);
 }
 
 .dc-admin-sort:hover {
-  background-color: var(--daidien-bg-strong);
+  background-color: var(--bg-hover);
 }
 
 .dc-admin-list {
@@ -544,7 +506,7 @@ body {
 
 .dc-admin-post {
   @apply block rounded-xl border px-5 py-3.5;
-  background-color: var(--daidien-bg-normal);
+  background-color: var(--bg-base);
   border-color: var(--daidien-border-normal);
   color: inherit;
   text-decoration: none;
@@ -571,8 +533,7 @@ body {
 
 .dc-admin-post-meta {
   @apply flex items-center gap-2.5 text-xs;
-  color: var(--daidien-text-muted);
-  font-family: var(--font-sans);
+  color: var(--text-muted);
 }
 
 .dc-admin-post-meta svg {
@@ -586,7 +547,6 @@ body {
 
 .dc-admin-status-chip {
   @apply text-xs font-bold;
-  font-family: var(--font-sans);
 }
 
 .dc-admin-status-chip.published {
@@ -601,8 +561,7 @@ body {
 
 .dc-admin-empty {
   @apply px-4 py-12 text-center text-sm;
-  color: var(--daidien-text-muted);
-  font-family: var(--font-sans);
+  color: var(--text-muted);
 }
 
 .dc-edit-dock {
@@ -611,8 +570,7 @@ body {
 
 .dc-edit-dock-status {
   @apply text-sm;
-  color: var(--daidien-text-muted);
-  font-family: var(--font-sans);
+  color: var(--text-muted);
 }
 
 .dc-edit-dock-status.error {
@@ -626,15 +584,14 @@ body {
 .dc-edit-save-btn {
   @apply inline-flex cursor-pointer items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold;
   background-color: var(--daidien-color-primary);
-  color: var(--daidien-bg-normal);
-  font-family: var(--font-sans);
+  color: var(--bg-base);
   transition: background-color var(--dc-transition-fast), box-shadow var(--dc-transition-fast), opacity var(--dc-transition-fast);
 }
 
 .dc-edit-save-btn:disabled {
-  background-color: var(--daidien-bg-strong);
+  background-color: var(--bg-hover);
   box-shadow: none;
-  color: var(--daidien-text-muted);
+  color: var(--text-muted);
   cursor: not-allowed;
 }
 
@@ -644,14 +601,13 @@ body {
 
 .dc-edit-section-label {
   @apply pl-1 text-xs font-bold;
-  color: var(--daidien-text-subtle);
-  font-family: var(--font-sans);
+  color: var(--text-subtle);
   letter-spacing: 0.04em;
 }
 
 .dc-edit-card {
   @apply flex flex-col gap-2.5 rounded-xl border px-5 py-4;
-  background-color: var(--daidien-bg-normal);
+  background-color: var(--bg-base);
   border-color: var(--daidien-border-normal);
   transition: border-color var(--dc-transition-fast), box-shadow var(--dc-transition-fast);
 }
@@ -666,14 +622,12 @@ body {
 
 .dc-edit-title-row {
   @apply flex items-center gap-1.5 text-base;
-  color: var(--daidien-text-subtle);
-  font-family: var(--font-sans);
+  color: var(--text-subtle);
 }
 
 .dc-edit-title-input {
   @apply min-w-0 flex-1 border-0 bg-transparent py-0.5 text-base font-semibold outline-none;
-  color: var(--daidien-text-normal);
-  font-family: var(--font-sans);
+  color: var(--text-normal);
 }
 
 .dc-edit-title-input::placeholder {
@@ -682,23 +636,22 @@ body {
 
 .dc-edit-subtitle-input {
   @apply w-full border-0 bg-transparent py-0.5 text-base outline-none;
-  color: var(--daidien-text-normal);
-  font-family: var(--font-sans);
+  color: var(--text-normal);
 }
 
 .dc-edit-attach-btn {
   @apply flex size-14 shrink-0 cursor-pointer items-center justify-center rounded-lg border;
-  background-color: var(--daidien-bg-muted);
+  background-color: var(--bg-surface);
   border-color: var(--daidien-border-normal);
-  color: var(--daidien-text-muted);
+  color: var(--text-muted);
   transition: background-color var(--dc-transition-fast), color var(--dc-transition-fast);
 }
 
 .dc-edit-attach-btn:hover,
 .dc-edit-publish-btn.withdraw:hover:not(:disabled),
 .dc-home-card-action:hover {
-  background-color: var(--daidien-bg-strong);
-  color: var(--daidien-text-normal);
+  background-color: var(--bg-hover);
+  color: var(--text-normal);
 }
 
 .dc-edit-attach-btn svg {
@@ -717,13 +670,13 @@ body {
 
 .dc-edit-footer-icon {
   @apply flex size-8 cursor-pointer items-center justify-center rounded-full p-1;
-  color: var(--daidien-text-muted);
+  color: var(--text-muted);
   transition: background-color var(--dc-transition-fast), color var(--dc-transition-fast);
 }
 
 .dc-edit-footer-icon:hover {
-  background-color: var(--daidien-bg-muted);
-  color: var(--daidien-text-normal);
+  background-color: var(--bg-surface);
+  color: var(--text-normal);
 }
 
 .dc-edit-footer-icon svg {
@@ -734,8 +687,7 @@ body {
 .dc-edit-publish-btn {
   @apply inline-flex cursor-pointer items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold;
   background-color: var(--daidien-color-primary);
-  color: var(--daidien-bg-normal);
-  font-family: var(--font-sans);
+  color: var(--bg-base);
   transition: background-color var(--dc-transition-fast), opacity var(--dc-transition-fast), box-shadow var(--dc-transition-fast);
 }
 
@@ -746,15 +698,14 @@ body {
 
 .dc-edit-publish-btn.withdraw {
   @apply border;
-  background-color: var(--daidien-bg-muted);
+  background-color: var(--bg-surface);
   border-color: var(--daidien-border-normal);
-  color: var(--daidien-text-normal);
+  color: var(--text-normal);
 }
 
 .dc-md-live {
   @apply w-full break-words bg-transparent px-5 py-3.5 text-base/5.5 font-medium outline-none;
-  color: var(--daidien-text-normal);
-  font-family: var(--font-sans);
+  color: var(--text-normal);
   -webkit-user-select: text;
   user-select: text;
 }
@@ -797,7 +748,7 @@ body {
 
 .dc-md-live blockquote {
   @apply my-1.5 pl-4 pr-3 border-l-4 border-solid border-gray-300 dark:border-gray-600;
-  color: var(--daidien-text-subtle);
+  color: var(--text-subtle);
   text-indent: 0;
 }
 
@@ -860,7 +811,7 @@ body {
 .dc-md-live h4,
 .dc-md-live h5,
 .dc-md-live h6 {
-  color: var(--daidien-text-strong);
+  color: var(--text-strong);
   line-height: 1.375em;
   margin: 1rem 0 0.25rem;
 }
@@ -903,13 +854,12 @@ body {
 
 .dc-md-editor-tab {
   @apply -mb-px cursor-pointer border-b-2 border-transparent px-3.5 py-2 text-sm font-semibold;
-  color: var(--daidien-text-muted);
-  font-family: var(--font-sans);
+  color: var(--text-muted);
   transition: color var(--dc-transition-fast), border-color var(--dc-transition-fast);
 }
 
 .dc-md-editor-tab:hover {
-  color: var(--daidien-text-subtle);
+  color: var(--text-subtle);
 }
 
 .dc-md-editor-tab.active {
@@ -919,7 +869,7 @@ body {
 
 .dc-md-editor-textarea {
   @apply box-border w-full resize-y bg-transparent px-5 py-3.5 text-sm outline-none font-mono;
-  color: var(--daidien-text-normal);
+  color: var(--text-normal);
   line-height: 1.6;
 }
 
@@ -928,15 +878,12 @@ body {
 }
 
 .dc-md-editor-placeholder {
-  color: var(--daidien-text-muted);
+  color: var(--text-muted);
 }
 
 .dc-home-divider {
-  @apply flex items-center gap-3 text-xs font-bold uppercase;
-  color: var(--daidien-text-muted);
-  font-family: var(--font-sans);
-  letter-spacing: 0.08em;
-  margin: 8px 0 4px;
+  @apply flex items-center gap-3 text-xs font-bold uppercase tracking-widest my-0 mt-2 mb-1;
+  color: var(--text-muted);
 }
 
 .dc-home-divider::before,
@@ -951,7 +898,7 @@ body {
   @apply grid items-stretch overflow-hidden rounded-xl border max-lg:[grid-template-columns:260px_1fr] max-md:[grid-template-columns:1fr];
   grid-template-columns: 320px 1fr;
   gap: 18px;
-  background-color: var(--daidien-bg-normal);
+  background-color: var(--bg-base);
   border-color: var(--daidien-border-normal);
   color: inherit;
   text-decoration: none;
@@ -961,7 +908,7 @@ body {
 .dc-home-featured-thumb {
   @apply relative size-full overflow-hidden max-md:min-h-40;
   min-height: 180px;
-  background-color: var(--daidien-bg-muted);
+  background-color: var(--bg-surface);
 }
 
 .dc-home-featured-body {
@@ -973,19 +920,18 @@ body {
 .dc-home-featured-meta,
 .dc-home-card-header {
   @apply flex items-center gap-2 text-xs;
-  color: var(--daidien-text-subtle);
-  font-family: var(--font-sans);
+  color: var(--text-subtle);
 }
 
 .dc-home-featured-author,
 .dc-home-card-author {
   @apply font-semibold;
-  color: var(--daidien-text-normal);
+  color: var(--text-normal);
 }
 
 .dc-home-featured-date,
 .dc-home-card-date {
-  color: var(--daidien-text-muted);
+  color: var(--text-muted);
 }
 
 .dc-home-featured-title {
@@ -1007,7 +953,7 @@ body {
 
 .dc-home-card {
   @apply box-border flex w-full flex-col gap-2.5 rounded-xl border px-3.5 pb-3 pt-3.5;
-  background-color: var(--daidien-bg-normal);
+  background-color: var(--bg-base);
   border-color: var(--daidien-border-normal);
   color: inherit;
   text-decoration: none;
@@ -1017,13 +963,12 @@ body {
 .dc-home-card-thumb {
   @apply relative w-full overflow-hidden rounded-lg;
   aspect-ratio: 16 / 9;
-  background-color: var(--daidien-bg-muted);
+  background-color: var(--bg-surface);
 }
 
 .dc-home-card-thumb-empty {
   @apply flex size-full items-center justify-center text-xs;
-  color: var(--daidien-text-muted);
-  font-family: var(--font-sans);
+  color: var(--text-muted);
 }
 
 .dc-home-card-tags {
@@ -1033,9 +978,8 @@ body {
 
 .dc-home-card-tag {
   @apply rounded-full px-2 py-0.5 text-xs font-semibold whitespace-nowrap backdrop-blur-sm;
-  background-color: var(--daidien-bg-normal);
-  color: var(--daidien-bg-normal);
-  font-family: var(--font-sans);
+  background-color: var(--bg-base);
+  color: var(--bg-base);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
@@ -1046,10 +990,9 @@ body {
 
 .dc-home-card-action {
   @apply flex flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-medium no-underline;
-  background-color: var(--daidien-bg-muted);
+  background-color: var(--bg-surface);
   border-color: var(--daidien-border-subtle);
-  color: var(--daidien-text-subtle);
-  font-family: var(--font-sans);
+  color: var(--text-subtle);
   transition: background-color var(--dc-transition-fast), color var(--dc-transition-fast);
 }
 
