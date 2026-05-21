@@ -56,7 +56,7 @@ export default function AdminHomeList({ articles }: Props) {
   return (
     <>
       <div className="flex items-center gap-3 max-md:flex-col max-md:items-stretch">
-        <label className="flex h-11 flex-1 items-center gap-2.5 rounded-full bg-surface px-5 transition focus-within:bg-base [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-muted">
+        <label className="flex h-11 flex-1 items-center gap-2.5 rounded-full bg-surface px-5 transition focus-within:bg-base [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-neutral-600 dark:[&_svg]:text-neutral-400">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <circle cx="11" cy="11" r="7" />
             <line x1="20" y1="20" x2="16.5" y2="16.5" />

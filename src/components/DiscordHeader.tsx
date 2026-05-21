@@ -89,7 +89,7 @@ export default function DiscordHeader({ config, collapsed, onToggle }: Props) {
         </button>
 
         {/* Search input — hidden on mobile */}
-        <div className="flex h-8 min-w-[220px] max-w-[320px] items-center gap-2 rounded-lg border border-normal bg-surface px-3.5 transition focus-within:bg-base max-md:hidden [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-muted">
+        <div className="flex h-8 min-w-[220px] max-w-[320px] items-center gap-2 rounded-lg border border-normal bg-surface px-3.5 transition focus-within:bg-base max-md:hidden [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-neutral-600 dark:[&_svg]:text-neutral-400">
           <IconSearch />
           <input
             type="text"

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import './discord-theme.css';
 import './auth.css';
 import { getPublicSiteConfig } from '@/lib/public-data';
 import AuthProvider from '@/components/AuthProvider';
