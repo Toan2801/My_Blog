@@ -1,5 +1,11 @@
 'use client';
 
+import {
+  ArrowDownTrayIcon,
+  ArrowUpTrayIcon,
+  FaceSmileIcon,
+  PhotoIcon,
+} from '@heroicons/react/24/outline';
 import { useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import type { EditableArticle } from '@/lib/types';
@@ -145,6 +151,7 @@ export default function DiscordArticleEditor({ initialArticle, authorName, defau
         ? 'cursor-not-allowed bg-themed text-white opacity-72'
         : 'bg-themed text-white hover:shadow-md hover:brightness-80',
   ].join(' ');
+        const PublishStatusIcon = isPublished ? ArrowDownTrayIcon : ArrowUpTrayIcon;
 
   return (
     <div className="box-border flex w-full flex-1 flex-col gap-5 px-8 py-6 max-md:p-4">
@@ -205,12 +212,7 @@ export default function DiscordArticleEditor({ initialArticle, authorName, defau
               title="Cảm xúc"
               onClick={() => { /* placeholder */ }}
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-                <line x1="9" y1="9" x2="9.01" y2="9" />
-                <line x1="15" y1="9" x2="15.01" y2="9" />
-              </svg>
+              <FaceSmileIcon />
             </button>
             <button
               type="button"
@@ -219,18 +221,7 @@ export default function DiscordArticleEditor({ initialArticle, authorName, defau
               onClick={handleToggleRelease}
               title={isPublished ? 'Thu hồi bài đăng' : 'Xuất bản bài đăng'}
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                {isPublished ? (
-                  <>
-                    <path d="M3 6h18" />
-                    <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
-                  </>
-                ) : (
-                  <>
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                  </>
-                )}
-              </svg>
+              <PublishStatusIcon />
               {isPublished ? 'Thu hồi' : 'Xuất bản'}
             </button>
           </div>
@@ -289,13 +280,7 @@ function CoverImagePicker({ value, onChange }: { value: string; onChange: (v: st
         {value ? (
           <img src={value} alt="" className="size-full rounded-[inherit] object-cover" />
         ) : (
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <circle cx="8.5" cy="8.5" r="1.5" />
-            <path d="M21 15l-5-5L5 21" />
-            <path d="M16 3v4" />
-            <path d="M14 5h4" />
-          </svg>
+          <PhotoIcon />
         )}
       </button>
       <input

@@ -1,5 +1,11 @@
 'use client';
 
+import {
+  AdjustmentsHorizontalIcon,
+  ChevronDownIcon,
+  MagnifyingGlassIcon,
+  PencilSquareIcon,
+} from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import type { Article } from '@/lib/types';
@@ -57,10 +63,7 @@ export default function AdminHomeList({ articles }: Props) {
     <>
       <div className="flex items-center gap-3 max-md:flex-col max-md:items-stretch">
         <label className="flex h-11 flex-1 items-center gap-2.5 rounded-full bg-surface px-5 transition focus-within:bg-base [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-neutral-600 dark:[&_svg]:text-neutral-400">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <circle cx="11" cy="11" r="7" />
-            <line x1="20" y1="20" x2="16.5" y2="16.5" />
-          </svg>
+          <MagnifyingGlassIcon />
           <input
             className="flex-1 border-0 bg-transparent text-sm text-normal outline-none placeholder:text-muted"
             value={q}
@@ -72,9 +75,7 @@ export default function AdminHomeList({ articles }: Props) {
           href="/admin/articles/new"
           className="inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-xl bg-themed px-5 text-sm font-semibold text-white no-underline transition hover:shadow-md hover:brightness-80 max-md:justify-center [&_svg]:size-4"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-          </svg>
+          <PencilSquareIcon />
           Bài đăng mới
         </Link>
       </div>
@@ -85,15 +86,9 @@ export default function AdminHomeList({ articles }: Props) {
           className="inline-flex self-start items-center gap-2 rounded-full bg-surface px-3.5 py-1.5 text-sm text-subtle transition-colors hover:bg-hover [&_svg]:size-4"
           onClick={() => setSortOpen(o => !o)}
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="6" y1="12" x2="18" y2="12" />
-            <line x1="10" y1="18" x2="14" y2="18" />
-          </svg>
+          <AdjustmentsHorizontalIcon />
           Sắp xếp &amp; Hiển thị: {sortLabel}
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <polyline points="6 9 12 15 18 9" />
-          </svg>
+          <ChevronDownIcon />
         </button>
         {sortOpen && (
           <div className="absolute left-0 top-[110%] z-20 min-w-[180px] rounded-xl border border-normal bg-base p-1.5 shadow-md">

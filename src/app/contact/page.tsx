@@ -1,3 +1,8 @@
+import {
+  EnvelopeIcon,
+  QrCodeIcon,
+  UserCircleIcon,
+} from '@heroicons/react/24/outline';
 import { getSiteConfig } from '@/lib/data';
 import type { Metadata } from 'next';
 
@@ -30,13 +35,13 @@ export default async function ContactPage() {
               <p className="section-label">Thông Tin Liên Lạc</p>
               {config.facebook && (
                 <div className="contact-item">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
+                  <UserCircleIcon style={{ width: 18, height: 18 }} />
                   <a href={config.facebook} target="_blank" rel="noopener noreferrer">Facebook cá nhân</a>
                 </div>
               )}
               {config.authorEmail && (
                 <div className="contact-item">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>
+                  <EnvelopeIcon style={{ width: 18, height: 18 }} />
                   <a href={`mailto:${config.authorEmail}`}>{config.authorEmail}</a>
                 </div>
               )}
@@ -61,7 +66,7 @@ export default async function ContactPage() {
                   />
                 ) : (
                   <div className="qr-placeholder">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /><rect x="14" y="14" width="2" height="2" /><rect x="18" y="14" width="3" height="3" /><rect x="14" y="19" width="7" height="2" /></svg>
+                    <QrCodeIcon style={{ width: 32, height: 32 }} />
                     <span>QR Code chưa được cài đặt</span>
                     <span style={{ fontSize: '0.72rem', color: 'var(--ink-muted)' }}>Admin có thể upload tại /admin</span>
                   </div>

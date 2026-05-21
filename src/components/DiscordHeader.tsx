@@ -1,5 +1,11 @@
 'use client';
 
+import {
+  ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
+  MagnifyingGlassIcon,
+  SunIcon,
+} from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useState } from 'react';
 import type { SiteConfig } from '@/lib/types';
@@ -10,46 +16,9 @@ interface Props {
   onToggle: () => void;
 }
 
-/* SVG for the sidebar-panel collapse/expand */
-const IconSidebarCollapse = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="3" width="18" height="18" rx="2" />
-    <line x1="9" y1="3" x2="9" y2="21" />
-    <polyline points="12 9 9 12 12 15" />
-  </svg>
-);
-
-const IconSidebarExpand = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="3" width="18" height="18" rx="2" />
-    <line x1="9" y1="3" x2="9" y2="21" />
-    <polyline points="15 9 18 12 15 15" />
-  </svg>
-);
-
-const IconSearch = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="11" cy="11" r="8" />
-    <line x1="21" y1="21" x2="16.65" y2="16.65" />
-  </svg>
-);
-
-const IconSun = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="5" />
-    <line x1="12" y1="1" x2="12" y2="3" />
-    <line x1="12" y1="21" x2="12" y2="23" />
-    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-    <line x1="1" y1="12" x2="3" y2="12" />
-    <line x1="21" y1="12" x2="23" y2="12" />
-    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-  </svg>
-);
-
 export default function DiscordHeader({ config, collapsed, onToggle }: Props) {
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
+  const SidebarToggleIcon = collapsed ? ChevronDoubleRightIcon : ChevronDoubleLeftIcon;
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex h-12 items-center gap-2 border-b border-normal bg-base pl-2 pr-4 max-sm:pr-2 max-sm:pl-1">
@@ -60,7 +29,7 @@ export default function DiscordHeader({ config, collapsed, onToggle }: Props) {
         aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         title={collapsed ? 'Mở sidebar' : 'Thu gọn sidebar'}
       >
-        {collapsed ? <IconSidebarExpand /> : <IconSidebarCollapse />}
+        <SidebarToggleIcon />
       </button>
 
       {/* Brand: logo + title */}
@@ -85,12 +54,12 @@ export default function DiscordHeader({ config, collapsed, onToggle }: Props) {
           title="Dark mode (coming soon)"
           onClick={() => alert('Dark mode feature is coming soon!')}
         >
-          <IconSun />
+          <SunIcon />
         </button>
 
         {/* Search input — hidden on mobile */}
         <div className="flex h-8 min-w-[220px] max-w-[320px] items-center gap-2 rounded-lg border border-normal bg-surface px-3.5 transition focus-within:bg-base max-md:hidden [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-neutral-600 dark:[&_svg]:text-neutral-400">
-          <IconSearch />
+          <MagnifyingGlassIcon />
           <input
             type="text"
             className="w-full border-0 bg-transparent text-sm text-normal outline-none placeholder:text-muted"
@@ -105,7 +74,7 @@ export default function DiscordHeader({ config, collapsed, onToggle }: Props) {
           aria-label="Open search"
           onClick={() => setMobileSearchOpen(o => !o)}
         >
-          <IconSearch />
+          <MagnifyingGlassIcon />
         </button>
       </div>
 

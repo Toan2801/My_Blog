@@ -1,5 +1,6 @@
 'use client';
 
+import { ArrowUpTrayIcon } from '@heroicons/react/24/outline';
 import { useState, useRef } from 'react';
 
 export default function DonationPage() {
@@ -56,7 +57,7 @@ export default function DonationPage() {
           <img src={qrPreview} alt="QR Preview" style={{ width: 180, height: 180, objectFit: 'contain', borderRadius: 'var(--radius)', border: '1px solid var(--border)', marginBottom: 'var(--space-4)' }} />
         ) : (
           <div className="qr-placeholder" onClick={() => fileRef.current?.click()} style={{ marginBottom: 'var(--space-4)' }}>
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <ArrowUpTrayIcon style={{ width: 32, height: 32 }} />
             <span>Nhấp để chọn ảnh QR</span>
           </div>
         )}
