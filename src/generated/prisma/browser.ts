@@ -53,11 +53,6 @@ export type Series = Prisma.SeriesModel
  */
 export type SiteConfig = Prisma.SiteConfigModel
 /**
- * Model Video
- * 
- */
-export type Video = Prisma.VideoModel
-/**
  * Model Comment
  * 
  */

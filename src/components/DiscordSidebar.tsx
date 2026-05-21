@@ -3,12 +3,9 @@
 import {
   ArrowsRightLeftIcon,
   BookOpenIcon,
-  ChatBubbleLeftEllipsisIcon,
   Cog6ToothIcon,
   HomeIcon,
-  LanguageIcon,
   ListBulletIcon,
-  VideoCameraIcon,
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -47,9 +44,6 @@ export default function DiscordSidebar({ config, collapsed, onClose }: Props) {
   const navItems = [
     { href: '/', label: 'Trang chủ', icon: HomeIcon },
     { href: '/articles', label: 'Bài viết', icon: BookOpenIcon },
-    { href: '/translations', label: 'Bài dịch', icon: LanguageIcon },
-    { href: '/videos', label: 'Video', icon: VideoCameraIcon },
-    { href: '/contact', label: 'Liên hệ', icon: ChatBubbleLeftEllipsisIcon },
   ];
 
   const isActive = (href: string) =>

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 const TIPS = [
   "Nhấn '+ Bài viết mới' để bắt đầu soạn thảo kiến thức lịch sử nhé!",
-  "Bạn có thể nhúng link YouTube trực tiếp trong mục Quản lý Video.",
+  "Dùng mục Sắp xếp để tìm nhanh bài viết theo tên hoặc trạng thái.",
   "Đừng quên kiểm tra các bài viết nháp trước khi đăng chính thức.",
   "Sử dụng nút 'Sửa' để cập nhật nội dung cho các bài viết cũ.",
   "Nhấn vào logo History Blog để quay lại trang dành cho độc giả."

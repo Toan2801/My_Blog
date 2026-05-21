@@ -3,7 +3,7 @@
 ## Overview
 
 - This is a Next.js 16 App Router project using React 19, TypeScript, Prisma, and PostgreSQL.
-- The site is a Vietnamese history publication with long-form original articles, translated texts, article series, videos, a canvas-based reader, and an admin interface for managing content.
+- The site is a Vietnamese history publication with long-form original articles, article series, a canvas-based reader, and an admin interface for managing content.
 - Runtime data lives in PostgreSQL. Uploaded media is stored on disk under `public/uploads/`, and rasterized reader assets are stored under `storage/page-images/`.
 
 ## Actual Project Structure
@@ -15,7 +15,6 @@
 - `src/app/articles/[slug]/page.tsx`: article detail page.
 - `src/app/read/[slug]/page.tsx`: authenticated or trial reader surface backed by rasterized page assets.
 - `src/app/series/[slug]/page.tsx`: series landing pages.
-- `src/app/translations/`, `src/app/videos/`, `src/app/contact/`: public content surfaces.
 
 ### Admin Surface
 
@@ -23,7 +22,6 @@
 - `src/app/admin/books/`: article-management dashboard with rasterization controls.
 - `src/app/admin/articles/`: create, edit, list, preview, and delete article content.
 - `src/app/admin/series/`: manage series metadata.
-- `src/app/admin/videos/`: manage video entries.
 - `src/app/admin/settings/page.tsx`: edit site configuration, homepage quote block, categories, donation text, and QR image path.
 - `src/app/admin/donation/`: donation-specific admin screen.
 
@@ -32,7 +30,6 @@
 - `src/app/api/articles/route.ts`: creates and updates articles through `src/lib/data.ts`, and triggers rasterization for published content.
 - `src/app/api/series/route.ts`: reads and writes series records.
 - `src/app/api/config/route.ts`: reads and updates site configuration.
-- `src/app/api/admin/videos/route.ts`: reads and writes videos.
 - `src/app/api/admin/articles/[slug]/rasterize/route.ts` and `src/app/api/admin/articles/batch-rasterize/route.ts`: rasterize published article pages for the reader.
 - `src/app/api/auth/signup/route.ts`: email/password account creation.
 - `src/app/api/upload/route.ts` and `src/app/api/upload-qr/route.ts`: save uploaded files under `public/uploads/`.
@@ -41,7 +38,6 @@
 ### Shared Logic and Models
 
 - `src/lib/data.ts`: primary Prisma-backed content store for articles, series, and site config.
-- `src/lib/video-data.ts`: Prisma-backed video store.
 - `src/lib/public-data.ts`: cached public data accessors used by the public site.
 - `src/lib/prisma.ts`: shared Prisma client bootstrap. This module throws immediately when `DATABASE_URL` is missing.
 - `src/lib/raster-data.ts`: reader asset manifest helpers for `storage/page-images/`.
@@ -65,7 +61,7 @@
 
 ## Storage and Content Model
 
-- Articles, series, site config, videos, users, auth tables, and comments are persisted through Prisma.
+- Articles, series, site config, users, auth tables, and comments are persisted through Prisma.
 - Uploaded files are stored on disk under `public/uploads/`.
 - Reader page images and per-page markdown are stored under `storage/page-images/` and served through token-gated API routes.
 - Uploaded files are stored on disk under `public/uploads/`, and the upload routes create the directory if it does not already exist.

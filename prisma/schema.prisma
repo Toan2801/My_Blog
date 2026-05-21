@@ -109,16 +109,6 @@ model SiteConfig {
   data Json
 }
 
-model Video {
-  id          String   @id
-  title       String
-  url         String
-  description String
-  createdAt   DateTime @default(now())
-
-  @@index([createdAt])
-}
-
 model Comment {
   id          String   @id @default(cuid())
   articleSlug String

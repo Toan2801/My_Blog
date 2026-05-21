@@ -1,6 +1,6 @@
 # History Blog
 
-This repository contains a Next.js 16 application for publishing long-form history articles, series, videos, and reader-safe rasterized book pages.
+This repository contains a Next.js 16 application for publishing long-form history articles, series, and reader-safe rasterized book pages.
 
 ## Requirements
 
@@ -56,7 +56,7 @@ To create the first admin account, set `ADMIN_EMAILS` to the email you want to e
 
 ## Data and Storage
 
-- Articles, series, site config, videos, users, comments, and auth tables live in PostgreSQL through Prisma.
+- Articles, series, site config, users, comments, and auth tables live in PostgreSQL through Prisma.
 - Uploaded files are written to `public/uploads/` by the upload API routes.
 - Rasterized page images are written to `storage/page-images/{slug}/page-N.png` and `storage/page-images/{slug}/manifest.json`.
 - `storage/page-images/` is a generated artifact for the reader experience; do not treat it as hand-edited source.

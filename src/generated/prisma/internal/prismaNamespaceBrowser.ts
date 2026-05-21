@@ -58,7 +58,6 @@ export const ModelName = {
   Article: 'Article',
   Series: 'Series',
   SiteConfig: 'SiteConfig',
-  Video: 'Video',
   Comment: 'Comment'
 } as const
 
@@ -181,17 +180,6 @@ export const SiteConfigScalarFieldEnum = {
 } as const
 
 export type SiteConfigScalarFieldEnum = (typeof SiteConfigScalarFieldEnum)[keyof typeof SiteConfigScalarFieldEnum]
-
-
-export const VideoScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  url: 'url',
-  description: 'description',
-  createdAt: 'createdAt'
-} as const
-
-export type VideoScalarFieldEnum = (typeof VideoScalarFieldEnum)[keyof typeof VideoScalarFieldEnum]
 
 
 export const CommentScalarFieldEnum = {

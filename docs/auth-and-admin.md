@@ -63,7 +63,7 @@ The admin UI lives under `/admin` and includes:
 - `/admin`: dashboard.
 - `/admin/books`: article management with rasterization status and batch actions.
 - `/admin/articles/*`: create, edit, preview, publish, and delete flows.
-- `/admin/series`, `/admin/videos`, `/admin/settings`, `/admin/donation`: supporting management surfaces.
+- `/admin/series`, `/admin/settings`, `/admin/donation`: supporting management surfaces.
 
 ## Rasterization Status
 

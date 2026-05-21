@@ -50,7 +50,7 @@ export default function DonationPage() {
       <div className="admin-card">
         <p className="admin-card-title">Upload Mã QR</p>
         <p style={{ fontFamily: 'var(--font-ui)', fontSize: '0.875rem', color: 'var(--ink-muted)', marginBottom: 'var(--space-4)' }}>
-          Upload ảnh QR code (Momo, VietQR, v.v.) để hiển thị trên trang Liên Hệ.
+          Upload ảnh QR code (Momo, VietQR, v.v.) để hiển thị trong các khối ủng hộ của trang.
         </p>
 
         {qrPreview ? (
