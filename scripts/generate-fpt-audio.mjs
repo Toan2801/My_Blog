@@ -1,4 +1,5 @@
 import fs from 'fs/promises';
+import fsSync from 'fs';
 import { createWriteStream } from 'fs';
 import path from 'path';
 import axios from 'axios';
@@ -30,6 +31,7 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
  * Hàm gửi text lên FPT AI và đợi lấy link file MP3
  */
 async function textToSpeechFPT(text) {
+  console.log('Sending POST to FPT AI...');
   try {
     const response = await axios.post('https://api.fpt.ai/hmi/tts/v5', text, {
       headers: {
@@ -37,8 +39,10 @@ async function textToSpeechFPT(text) {
         'voice': VOICE,
         'speed': SPEED,
         'Content-Type': 'application/x-www-form-urlencoded' // FPT yêu cầu header này dù gửi text
-      }
+      },
+      timeout: 15000
     });
+    console.log('FPT AI response received:', response.data);
 
     if (response.data && response.data.error === 0) {
       const audioUrl = response.data.async;
@@ -61,11 +65,17 @@ async function downloadAudio(url, outputPath) {
   let attempts = 0;
 
   // Polling liên tục chờ file audio render xong
+  console.log(`Bắt đầu tải audio từ ${url}`);
   while (!isReady && attempts < 60) {
     try {
-      const headRes = await axios.head(url);
-      if (headRes.status === 200) isReady = true;
+      console.log(`Polling attempt ${attempts + 1}...`);
+      const headRes = await axios.head(url, { timeout: 10000 });
+      if (headRes.status === 200) {
+        console.log('Audio is ready (status 200)');
+        isReady = true;
+      }
     } catch (e) {
+      console.log(`Polling failed with status: ${e.response?.status || e.message}`);
       attempts++;
       await delay(3000); // Đợi 3s rồi thử lại
     }
@@ -74,12 +84,15 @@ async function downloadAudio(url, outputPath) {
   if (!isReady) throw new Error('Timeout chờ FPT render audio.');
 
   // Tải file về
+  console.log('Bắt đầu tải file stream...');
   const writer = createWriteStream(outputPath);
   const response = await axios({
     url,
     method: 'GET',
-    responseType: 'stream'
+    responseType: 'stream',
+    timeout: 30000
   });
+  console.log('Piping stream...');
   response.data.pipe(writer);
 
   return new Promise((resolve, reject) => {
@@ -128,13 +141,37 @@ async function processArticle(slug) {
 
   const chunkFiles = [];
 
-  // 3. Gọi TTS cho từng chunk
+  // 3. Lấy URL và tải file cho từng chunk (có hỗ trợ resume)
   for (let i = 0; i < chunks.length; i++) {
-    console.log(`- Đang thu âm phần ${i + 1}/${chunks.length}...`);
-    const asyncUrl = await textToSpeechFPT(chunks[i]);
     const chunkPath = path.join(TEMP_DIR, `${slug}_chunk_${i}.mp3`);
-    await downloadAudio(asyncUrl, chunkPath);
     chunkFiles.push(chunkPath);
+
+    // Kiểm tra nếu file đã tồn tại và có dung lượng thì bỏ qua (resume)
+    if (fsSync.existsSync(chunkPath) && fsSync.statSync(chunkPath).size > 0) {
+      console.log(`- Phần ${i + 1}/${chunks.length} đã có sẵn, bỏ qua thu âm...`);
+      continue;
+    }
+
+    console.log(`- Đang thu âm phần ${i + 1}/${chunks.length}...`);
+    
+    // Thử tối đa 3 lần cho mỗi chunk
+    let success = false;
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        const asyncUrl = await textToSpeechFPT(chunks[i]);
+        await downloadAudio(asyncUrl, chunkPath);
+        success = true;
+        break;
+      } catch (err) {
+        console.error(`  Lỗi ở phần ${i + 1} (lần ${attempt}):`, err.message);
+        if (attempt < 3) await delay(5000);
+      }
+    }
+    
+    if (!success) {
+      throw new Error(`Thất bại hoàn toàn ở phần ${i + 1}/${chunks.length} sau 3 lần thử.`);
+    }
+
     await delay(1000); // Nghỉ 1s tránh spam API
   }
 
