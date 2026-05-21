@@ -2,8 +2,8 @@
 
 :root {
   --border-normal: rgb(151 151 155 / 0.36);
-  --daidien-color-primary: #5865f2;
-  --daidien-color-primary-rgb: 88 101 242;
+  --daidien-color-primary: #915934;
+  --daidien-color-primary-rgb: 145 89 52;
 }
 
 @utility bg-base {
@@ -19,6 +19,26 @@
 }
 
 @utility bg-themed {
+  background-color: var(--daidien-color-primary);
+}
+
+@utility bg-vibrant {
+  background-image: radial-gradient(
+      ellipse at top left,
+      rgb(255 255 255  / 0.5),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse at bottom right,
+      rgb(255 255 255  / 0.5),
+      transparent 60%
+    ),
+    linear-gradient(
+      135deg,
+      rgb(var(--daidien-color-primary-rgb) / 1) 0%,
+      rgb(var(--daidien-color-primary-rgb) / 0.6) 50%,
+      #1e1f22 100%
+    );
   background-color: var(--daidien-color-primary);
 }
 

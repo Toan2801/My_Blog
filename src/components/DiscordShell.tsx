@@ -17,6 +17,11 @@ export default function DiscordShell({ config, children }: Props) {
   const [collapsed, setCollapsed] = useState(false);
   const pathname = usePathname();
   const isAdminRoute = pathname.startsWith('/admin');
+  const isAuthRoute = pathname.startsWith('/login') || pathname.startsWith('/signup');
+
+  if (isAuthRoute) {
+    return <>{children}</>;
+  }
 
   return (
     <div className="flex min-h-screen flex-col">
