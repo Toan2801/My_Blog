@@ -11,9 +11,6 @@ export async function POST(
   if (!slug) {
     return NextResponse.json({ error: 'Missing slug' }, { status: 400 });
   }
-
-  const script = path.join(process.cwd(), 'scripts', 'generate-fpt-audio.mjs');
-
   try {
     await new Promise<void>((resolve, reject) => {
       exec(
