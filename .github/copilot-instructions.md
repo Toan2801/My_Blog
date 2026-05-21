@@ -2,71 +2,72 @@
 
 ## Overview
 
-- This is a Next.js 16 App Router project using React 19, TypeScript, and Mongoose.
-- The site is a Vietnamese history publication with long-form original articles, translated texts, article series, videos, author/support pages, and an admin interface for managing content.
-- The project uses a mixed storage model: most authoring flows write to JSON files in `data/`, while MongoDB is used by the migration workflow and server-side database code.
+- This is a Next.js 16 App Router project using React 19, TypeScript, Prisma, and PostgreSQL.
+- The site is a Vietnamese history publication with long-form original articles, translated texts, article series, videos, a canvas-based reader, and an admin interface for managing content.
+- Runtime data lives in PostgreSQL. Uploaded media is stored on disk under `public/uploads/`, and rasterized reader assets are stored under `storage/page-images/`.
 
 ## Actual Project Structure
 
 ### Routing Surface
 
-- `src/app/page.tsx`: homepage with featured original articles, featured translations, and featured series.
+- `src/app/page.tsx`: homepage with featured and recent articles.
 - `src/app/articles/page.tsx`: article listing and filtering UI.
-- `src/app/articles/[slug]/page.tsx`: article detail page with table of contents, reading progress, comments, support QR, and voice reader.
-- `src/app/series/[slug]/page.tsx`: series landing pages for grouped article content.
-- `src/app/translations/`: translated content landing surface.
-- `src/app/videos/`: public video listing page backed by `data/videos.json`.
-- `src/app/contact/`: contact page.
+- `src/app/articles/[slug]/page.tsx`: article detail page.
+- `src/app/read/[slug]/page.tsx`: authenticated or trial reader surface backed by rasterized page assets.
+- `src/app/series/[slug]/page.tsx`: series landing pages.
+- `src/app/translations/`, `src/app/videos/`, `src/app/contact/`: public content surfaces.
 
 ### Admin Surface
 
 - `src/app/admin/page.tsx`: admin dashboard.
+- `src/app/admin/books/`: article-management dashboard with rasterization controls.
 - `src/app/admin/articles/`: create, edit, list, preview, and delete article content.
 - `src/app/admin/series/`: manage series metadata.
-- `src/app/admin/videos/`: manage embedded videos stored in `data/videos.json`.
+- `src/app/admin/videos/`: manage video entries.
 - `src/app/admin/settings/page.tsx`: edit site configuration, homepage quote block, categories, donation text, and QR image path.
 - `src/app/admin/donation/`: donation-specific admin screen.
 
 ### API Surface
 
-- `src/app/api/articles/route.ts`: reads and writes article JSON files through `src/lib/data.ts`.
-- `src/app/api/series/route.ts`: reads and writes series JSON files.
-- `src/app/api/config/route.ts`: reads and updates `data/config.json`.
-- `src/app/api/admin/videos/route.ts`: reads and writes `data/videos.json`.
+- `src/app/api/articles/route.ts`: creates and updates articles through `src/lib/data.ts`, and triggers rasterization for published content.
+- `src/app/api/series/route.ts`: reads and writes series records.
+- `src/app/api/config/route.ts`: reads and updates site configuration.
+- `src/app/api/admin/videos/route.ts`: reads and writes videos.
+- `src/app/api/admin/articles/[slug]/rasterize/route.ts` and `src/app/api/admin/articles/batch-rasterize/route.ts`: rasterize published article pages for the reader.
+- `src/app/api/auth/signup/route.ts`: email/password account creation.
 - `src/app/api/upload/route.ts` and `src/app/api/upload-qr/route.ts`: save uploaded files under `public/uploads/`.
 - `src/app/api/comments/`: comment-related server endpoints.
 
 ### Shared Logic and Models
 
-- `src/lib/data.ts`: primary filesystem-backed content store for articles, series, and site config.
-- `src/lib/video-data.ts`: filesystem-backed store for video entries.
-- `src/lib/mongoose.ts`: MongoDB connection helper. This module throws immediately when `MONGODB_URI` is missing.
+- `src/lib/data.ts`: primary Prisma-backed content store for articles, series, and site config.
+- `src/lib/video-data.ts`: Prisma-backed video store.
+- `src/lib/public-data.ts`: cached public data accessors used by the public site.
+- `src/lib/prisma.ts`: shared Prisma client bootstrap. This module throws immediately when `DATABASE_URL` is missing.
+- `src/lib/raster-data.ts`: reader asset manifest helpers for `storage/page-images/`.
+- `src/lib/rasterize.ts`: Puppeteer-based rasterization pipeline.
 - `src/lib/types.ts`: shared TypeScript interfaces for articles, footnotes, series, and site config.
-- `src/models/Article.ts` and `src/models/SiteConfig.ts`: Mongoose schemas used by migration and database-backed code.
+- `src/auth.ts`, `src/auth.config.ts`, and `src/proxy.ts`: authentication and RBAC entry points.
 
 ### Reusable Components
 
-- `src/components/ArticleEditor.tsx` and `src/components/RichTextEditor.tsx`: admin editing experience built around Tiptap.
-- `src/components/ArticleBody.tsx`, `TableOfContents.tsx`, `ReadingProgress.tsx`, and `FontSizeControl.tsx`: article reading experience.
-- `src/components/VoiceReader.tsx`: text-to-speech UI.
+- `src/components/DiscordArticleEditor.tsx` and `src/components/DiscordMarkdownEditor.tsx`: admin editing experience.
+- `src/components/CanvasReader.tsx`: book-style reading experience for rasterized pages.
 - `src/components/SupportQR.tsx`: donation/support module.
 - `src/components/SeriesEditor.tsx`: series editing workflow.
 
 ### Content and Assets
 
-- `data/articles/*.json`: the source of truth for article bodies, metadata, tags, series membership, featured flags, and publication status.
-- `data/series/*.json`: series metadata used to group article collections.
-- `data/config.json`: site-wide configuration including blog branding, author info, categories, homepage quote block, and donation settings.
-- `data/videos.json`: public/admin video entries.
+- `prisma/schema.prisma`: source of truth for the database schema.
+- `src/generated/prisma/`: generated Prisma client output.
+- `storage/page-images/`: generated page PNGs and manifests for the reader.
 - `public/uploads/`: uploaded article images, donation QR images, and other local media.
 
 ## Storage and Content Model
 
-- Articles and series are edited through the admin UI but are persisted to JSON files, not directly to MongoDB.
-- Site settings are also persisted to JSON through `src/app/api/config/route.ts`.
-- Videos are stored separately in `data/videos.json` through `src/lib/video-data.ts`.
-- The current migration script only migrates `data/config.json` and `data/articles/*.json` into MongoDB.
-- Series JSON files and videos are not migrated by `scripts/migrate.ts` at the moment, so do not assume MongoDB is the complete source of truth for all content.
+- Articles, series, site config, videos, users, auth tables, and comments are persisted through Prisma.
+- Uploaded files are stored on disk under `public/uploads/`.
+- Reader page images and per-page markdown are stored under `storage/page-images/` and served through token-gated API routes.
 - Uploaded files are stored on disk under `public/uploads/`, and the upload routes create the directory if it does not already exist.
 
 ## Local Environment Setup
@@ -75,28 +76,23 @@
 
 - Node.js 20 or newer.
 - npm 10 or newer.
-- MongoDB Community Server installed locally or a reachable remote MongoDB instance.
-
-### Local MongoDB on This Windows Machine
-
-- MongoDB Server 8.3.1 is installed.
-- The Windows service name is `MongoDB`.
-- The service is configured to start automatically and was verified running during setup.
-- Default local connection string for this machine: `mongodb://127.0.0.1:27017/history-blog`.
+- A reachable PostgreSQL database.
 
 ### Environment File
 
-Create `.env.local` from `.env.example` and keep at least these values:
+Create `.env.local` and keep at least these values:
 
 ```env
-MONGODB_URI=mongodb://127.0.0.1:27017/history-blog
+DATABASE_URL=postgresql://...
+AUTH_SECRET=replace-with-a-random-secret
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
 Notes:
 
-- `MONGODB_URI` is required because `src/lib/mongoose.ts` fails fast when it is missing.
+- `DATABASE_URL` is required because `src/lib/prisma.ts` fails fast when it is missing.
 - `NEXT_PUBLIC_SITE_URL` is used by redirect routes and should point to the currently running environment.
+- `READER_TOKEN_SECRET`, `ADMIN_EMAILS`, and Google OAuth credentials are optional but commonly used in local development.
 
 ### Install Dependencies
 
@@ -140,43 +136,34 @@ npm run lint
 
 The project currently has pre-existing lint failures in unrelated application files. Do not assume a lint failure is caused by your current change unless the error points at the file you just touched.
 
-## Migration Workflow
+## Rasterization Workflow
 
 ### Command
 
 Run:
 
 ```bash
-npm run migrate
+npm run rasterize
 ```
 
 ### What the Script Does
 
-- `scripts/migrate.ts` loads `.env.local` using `dotenv`.
-- It connects to MongoDB using `MONGODB_URI`.
-- It reads site configuration from `data/config.json`.
-- It deletes existing `SiteConfig` documents and inserts the current config JSON.
-- It reads every JSON file in `data/articles/`.
-- For each article, it deletes any existing MongoDB document with the same slug, then inserts the JSON payload into the `Article` collection.
-
-### Important Migration Limitations
-
-- The script does not currently migrate `data/series/*.json`.
-- The script does not currently migrate `data/videos.json`.
-- The script currently logs messages that mention MongoDB Atlas, but it works with local MongoDB as long as `MONGODB_URI` points at the local instance.
+- `scripts/rasterize-articles.ts` loads `.env.local` using `dotenv`.
+- It reads published articles from PostgreSQL using Prisma.
+- It renders page images and per-page markdown via `src/lib/rasterize.ts`.
+- It writes the generated assets to `storage/page-images/<slug>/` and updates `rasterizedAt` on the article row.
 
 ## Editing Guidance
 
 - Preserve the App Router structure. Do not reintroduce Pages Router patterns.
-- When editing article flows, keep `data/articles/*.json`, `src/lib/types.ts`, API request payloads, and Mongoose article fields aligned.
-- When editing series flows, keep article `series` and `seriesOrder` usage consistent with `data/series/*.json` and the series APIs.
-- When editing settings flows, preserve the schema used in `data/config.json` and `src/app/admin/settings/page.tsx`.
-- When editing video flows, keep `data/videos.json`, `src/lib/video-data.ts`, and `src/app/api/admin/videos/route.ts` in sync.
+- When editing article flows, keep `prisma/schema.prisma`, `src/lib/types.ts`, and API request payloads aligned.
+- When editing series, site config, or video flows, keep the Prisma schema and the corresponding `src/lib/*data.ts` helpers aligned.
 - Prefer minimal changes that preserve existing Vietnamese content, editorial formatting, and slugs.
 - Treat `public/uploads/` as local storage, not a generated cache.
+- Treat `storage/page-images/` as generated output, not hand-authored source.
 
 ## Validation Expectations
 
 - Run `npm run lint` after code changes when practical.
 - Run `npm run build` for routing, API, server, or production-facing changes.
-- If your change affects migrations or MongoDB-backed code, confirm that `MONGODB_URI` resolves to a reachable database before treating runtime failures as code defects.
+- If your change affects Prisma-backed code, confirm that `DATABASE_URL` resolves to a reachable database before treating runtime failures as code defects.

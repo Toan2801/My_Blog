@@ -4,7 +4,7 @@
  * Visually paginates article HTML into 3:4 portrait pages,
  * then screenshots each page to a PNG file on disk.
  *
- * Used by: scripts/migrate.ts, scripts/rasterize-articles.ts
+ * Used by: scripts/rasterize-articles.ts and the admin rasterize API routes.
  * NOT imported by Next.js runtime code (Puppeteer is devDependency only).
  */
 

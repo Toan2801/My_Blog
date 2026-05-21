@@ -10,8 +10,6 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:deploy": "prisma migrate deploy",
-    "migrate:postgres": "tsx scripts/migrate-mongo-to-postgres.ts",
-    "migrate:users": "tsx scripts/migrate-users.ts",
     "rasterize": "tsx scripts/rasterize-articles.ts",
     "test": "vitest run",
     "test:watch": "vitest"
@@ -48,7 +46,6 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.3",
     "happy-dom": "^20.9.0",
-    "mongodb": "^7.2.0",
     "prisma": "^7.8.0",
     "puppeteer": "^24.43.0",
     "tailwindcss": "^4.1.16",

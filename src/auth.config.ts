@@ -1,8 +1,8 @@
 /**
- * Edge-safe NextAuth config slice — imported by middleware.ts (which runs in
- * the Edge runtime and cannot pull in Node-only deps like mongoose, bcryptjs,
- * or the mongodb driver). The full config in src/auth.ts extends this with
- * the MongoDB adapter and Credentials provider, both of which require Node.
+ * Edge-safe NextAuth config slice — imported by src/proxy.ts, which runs on
+ * the Edge runtime and must not pull in Node-only dependencies such as the
+ * Prisma adapter, Prisma client, or bcryptjs. The full config in src/auth.ts
+ * adds the providers and database-backed callbacks.
  */
 import type { NextAuthConfig } from 'next-auth';
 

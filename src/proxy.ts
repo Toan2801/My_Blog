@@ -8,7 +8,8 @@ import authConfig from '@/auth.config';
  * redirected to /login (UI) or get 401 (API).
  *
  * Uses the edge-safe auth.config slice — pulling in src/auth.ts here would
- * crash the Edge runtime because of mongoose/bcryptjs/mongodb imports.
+ * pull Node-only auth dependencies such as Prisma-backed auth callbacks and
+ * bcrypt password verification into the Edge runtime.
  */
 const { auth } = NextAuth(authConfig);
 

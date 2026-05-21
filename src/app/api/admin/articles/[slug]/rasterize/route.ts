@@ -8,7 +8,7 @@ import prisma from '@/lib/prisma';
  * sets `rasterizedAt` on completion. Blocks until the script finishes so the
  * client can show a definitive success/failure state.
  *
- * Middleware (src/middleware.ts) gates this to admin role.
+ * RBAC in src/proxy.ts gates this route to admin users.
  */
 export async function POST(
   _req: Request,
