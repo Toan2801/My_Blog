@@ -34,7 +34,7 @@ export default async function ArticleDetailPage({ params }: Props) {
       <div className="container" style={{ marginTop: 'var(--space-6)' }}>
         <Breadcrumb
           items={[
-            { label: 'Bài viết', href: '/articles' },
+            { label: 'Trang chủ', href: '/' },
             { label: article.title },
           ]}
         />

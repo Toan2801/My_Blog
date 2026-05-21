@@ -11,7 +11,7 @@ export default function DiscordShellLoading({ message = 'Dang tai noi dung...' }
       aria-busy="true"
     >
       <div
-        className="size-10 animate-spin rounded-full border-4 border-solid border-normal border-t-themed"
+        className="size-10 animate-spin rounded-full border-4 border-solid border-t border-themed"
         aria-hidden="true"
       />
       <p className="m-0 text-base text-subtle">{message}</p>

@@ -11,7 +11,6 @@
 ### Routing Surface
 
 - `src/app/page.tsx`: homepage with featured and recent articles.
-- `src/app/articles/page.tsx`: article listing and filtering UI.
 - `src/app/articles/[slug]/page.tsx`: article detail page.
 - `src/app/read/[slug]/page.tsx`: authenticated or trial reader surface backed by rasterized page assets.
 - `src/app/series/[slug]/page.tsx`: series landing pages.
@@ -22,8 +21,7 @@
 - `src/app/admin/books/`: article-management dashboard with rasterization controls.
 - `src/app/admin/articles/`: create, edit, list, preview, and delete article content.
 - `src/app/admin/series/`: manage series metadata.
-- `src/app/admin/settings/page.tsx`: edit site configuration, homepage quote block, categories, donation text, and QR image path.
-- `src/app/admin/donation/`: donation-specific admin screen.
+- `src/app/admin/settings/page.tsx`: edit site configuration, homepage quote block, categories, and core site metadata.
 
 ### API Surface
 
@@ -32,7 +30,7 @@
 - `src/app/api/config/route.ts`: reads and updates site configuration.
 - `src/app/api/admin/articles/[slug]/rasterize/route.ts` and `src/app/api/admin/articles/batch-rasterize/route.ts`: rasterize published article pages for the reader.
 - `src/app/api/auth/signup/route.ts`: email/password account creation.
-- `src/app/api/upload/route.ts` and `src/app/api/upload-qr/route.ts`: save uploaded files under `public/uploads/`.
+- `src/app/api/upload/route.ts`: saves uploaded files under `public/uploads/`.
 - `src/app/api/comments/`: comment-related server endpoints.
 
 ### Shared Logic and Models
@@ -49,7 +47,6 @@
 
 - `src/components/DiscordArticleEditor.tsx` and `src/components/DiscordMarkdownEditor.tsx`: admin editing experience.
 - `src/components/CanvasReader.tsx`: book-style reading experience for rasterized pages.
-- `src/components/SupportQR.tsx`: donation/support module.
 - `src/components/SeriesEditor.tsx`: series editing workflow.
 
 ### Content and Assets
@@ -57,7 +54,7 @@
 - `prisma/schema.prisma`: source of truth for the database schema.
 - `src/generated/prisma/`: generated Prisma client output.
 - `storage/page-images/`: generated page PNGs and manifests for the reader.
-- `public/uploads/`: uploaded article images, donation QR images, and other local media.
+- `public/uploads/`: uploaded article images and other local media.
 
 ## Storage and Content Model
 

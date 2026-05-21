@@ -107,7 +107,6 @@ const DEFAULT_CONFIG: SiteConfig = {
   quoteBlock: { text: '', author: '' },
   suggestedReading: [],
   categories: [],
-  donation: { text: '', qrImage: null },
 };
 
 export async function getSiteConfig(): Promise<SiteConfig> {

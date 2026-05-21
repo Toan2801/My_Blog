@@ -12,7 +12,6 @@ interface Config {
   featuredArticleSlug: string;
   quoteBlock: { text: string; author: string };
   categories: string[];
-  donation: { text: string; qrImage: string };
 }
 
 export default function SettingsPage() {
@@ -114,28 +113,6 @@ export default function SettingsPage() {
         </div>
       </div>
 
-      <div className="admin-card">
-        <p className="admin-card-title">Cấu Hình Ủng Hộ (Donation)</p>
-        <div className="form-group">
-          <label className="form-label">Văn bản kêu gọi ủng hộ</label>
-          <textarea 
-            className="form-textarea" 
-            value={config.donation?.text || ''} 
-            onChange={e => update('donation', { ...config.donation, text: e.target.value })} 
-            style={{ minHeight: '80px' }} 
-            placeholder="Ví dụ: Ủng hộ tác giả duy trì blog..."
-          />
-        </div>
-        <div className="form-group" style={{ marginTop: 'var(--space-3)' }}>
-          <label className="form-label">Đường dẫn ảnh QR Code</label>
-          <input 
-            className="form-input" 
-            value={config.donation?.qrImage || ''} 
-            onChange={e => update('donation', { ...config.donation, qrImage: e.target.value })} 
-            placeholder="/uploads/qr-code.png"
-          />
-        </div>
-      </div>
     </>
   );
 }

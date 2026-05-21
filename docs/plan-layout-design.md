@@ -117,7 +117,6 @@ The current site already has a header, nav, footer, and article pages. The chang
 |------|--------------|--------------|
 | **Header** | Hero image + single-row nav | Three-tier header: top bar → logo → mega-nav with dropdowns |
 | **Homepage** | Grid of featured articles/series | Hero slider + main column + sidebar layout |
-| **Article listing** | Full-width card grid with filter bar | Left sidebar category tree + right content grid |
 | **Article detail** | Full reading page with TOC sidebar | Same reading page, plus "Open in reader" button linking to canvas reader |
 | **Series listing** | Cards on series page | Book-cover grid layout matching the reference's book listing |
 | **Footer** | Two-column links + copyright | Three-column footer: nav links, categories, organ/author info |
@@ -163,17 +162,7 @@ The current site already has a header, nav, footer, and article pages. The chang
   <nav className="header-nav">
     <ul className="nav-items">
       <li><Link href="/">Trang chủ</Link></li>
-      <li className="has-dropdown">
-        <Link href="/articles">Bài viết</Link>
-        <ul className="dropdown">
-          {config.categories.map(cat => (
-            <li key={cat}><Link href={`/articles?category=${cat}`}>{cat}</Link></li>
-          ))}
-        </ul>
-      </li>
-      <li><Link href="/translations">Bài dịch</Link></li>
-      <li><Link href="/videos">Video</Link></li>
-      <li><Link href="/contact">Liên hệ</Link></li>
+      <li><Link href="/admin">Quản trị</Link></li>
     </ul>
   </nav>
 </header>

@@ -70,7 +70,6 @@ export interface SiteConfig {
   quoteBlock: { text: string; author: string };
   suggestedReading: string[];
   categories: string[];
-  donation: { text: string; qrImage: string | null };
   facebook?: string;
   heroImage?: string;
 }

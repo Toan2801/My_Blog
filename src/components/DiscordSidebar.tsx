@@ -2,10 +2,8 @@
 
 import {
   ArrowsRightLeftIcon,
-  BookOpenIcon,
   Cog6ToothIcon,
   HomeIcon,
-  ListBulletIcon,
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -22,7 +20,6 @@ interface Props {
 
 export default function DiscordSidebar({ config, collapsed, onClose }: Props) {
   const pathname = usePathname();
-  const CategoryIcon = ListBulletIcon;
   const SettingsIcon = Cog6ToothIcon;
   const sidebarClassName = [
     'fixed bottom-0 left-0 top-12 z-30 flex flex-col overflow-x-hidden overflow-y-auto bg-surface transition-all duration-200 max-md:z-40',
@@ -43,7 +40,6 @@ export default function DiscordSidebar({ config, collapsed, onClose }: Props) {
 
   const navItems = [
     { href: '/', label: 'Trang chủ', icon: HomeIcon },
-    { href: '/articles', label: 'Bài viết', icon: BookOpenIcon },
   ];
 
   const isActive = (href: string) =>
@@ -92,28 +88,6 @@ export default function DiscordSidebar({ config, collapsed, onClose }: Props) {
             </a>
           </div>
 
-          {/* Categories */}
-          {config.categories.length > 0 && (
-            <div className={navGroupClassName}>
-              <div className="flex cursor-default select-none items-center justify-between overflow-hidden whitespace-nowrap px-2 pb-1.5 text-xs font-bold uppercase tracking-wider text-muted">
-                <span className={collapsed ? 'hidden' : ''}>Chủ đề</span>
-              </div>
-              {config.categories.map(cat => (
-                <Link
-                  key={cat}
-                  href={`/articles?category=${encodeURIComponent(cat)}`}
-                  className={navItemClassName(false)}
-                  onClick={onClose}
-                  title={cat}
-                >
-                    <span className="flex size-4 shrink-0 items-center opacity-70">
-                      <CategoryIcon className="size-5" />
-                    </span>
-                  <span className={navLabelClassName}>{cat}</span>
-                </Link>
-              ))}
-            </div>
-          )}
         </div>
 
         {/* ── Footer: settings + profile ── */}

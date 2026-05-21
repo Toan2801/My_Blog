@@ -790,8 +790,6 @@ export async function rasterizeArticle(
     }
     finalPages.push({ kind: 'back' });
 
-    // Load donation assets once.
-    const qrDataUrl = loadAssetDataUrl('/uploads/qr-1775885889862.png');
     const escTitle = escapeHtml(title);
     const escAuthor = escapeHtml(author);
 
@@ -846,9 +844,8 @@ export async function rasterizeArticle(
         }
         case 'back':
           return `<div class="back-page">
-    <div class="back-title">Hỡi các bạn độc giả yêu quý!</div>
-    <div class="back-text">Việc viết và dịch bài rất tốn thời gian và công sức. Nếu các bạn đọc thấy hay, xin vui lòng quét mã QR này tặng mình 1 li cafe để mình có động lực thức khuya viết tiếp phục vụ các bạn. Xin chân thành cảm ơn mọi người ạ.</div>
-    ${qrDataUrl ? `<img class="back-qr" src="${qrDataUrl}" alt="QR ủng hộ" />` : ''}
+    <div class="back-title">Cảm ơn bạn đã đọc!</div>
+    <div class="back-text">Bản số hóa này khép lại tại đây. Hẹn gặp lại bạn trong những bài viết và cuốn sách tiếp theo.</div>
     <div class="back-footer-note">Cảm ơn bạn đã đọc tới cuối sách.</div>
   </div>`;
       }

@@ -1,9 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getSeriesBySlug, getArticlesBySeries, getSiteConfig } from '@/lib/data';
-import { formatDate } from '@/lib/utils';
+import { getSeriesBySlug, getArticlesBySeries } from '@/lib/data';
 import Breadcrumb from '@/components/Breadcrumb';
-import SupportQR from '@/components/SupportQR';
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const { slug } = await params;
@@ -21,12 +19,11 @@ export default async function SeriesLandingPage({ params }: { params: { slug: st
   if (!series) notFound();
 
   const articles = await getArticlesBySeries(series.title);
-  const config = await getSiteConfig();
 
   return (
     <div className="container" style={{ marginTop: 'var(--space-6)', marginBottom: 'var(--space-10)' }}>
       <Breadcrumb items={[
-        { label: 'Bài viết', href: '/articles' },
+        { label: 'Trang chủ', href: '/' },
         { label: series.title },
       ]} />
 
@@ -49,8 +46,6 @@ export default async function SeriesLandingPage({ params }: { params: { slug: st
           dangerouslySetInnerHTML={{ __html: series.description.replace(/\n/g, '<br/>') }}
         />
       </header>
-
-      <SupportQR qrImage={config.donation.qrImage} facebookUrl={config.facebook} />
 
       {/* Book-cover grid */}
       <section style={{ marginTop: 'var(--space-8)' }}>
