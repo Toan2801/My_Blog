@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getPublicArticleBySlug } from '@/lib/public-data';
-import Breadcrumb from '@/components/Breadcrumb';
 import { auth } from '@/auth';
 import type { Metadata } from 'next';
 
@@ -30,52 +29,70 @@ export default async function ArticleDetailPage({ params }: Props) {
   const isAuthed = !!session?.user?.id;
 
   return (
-    <article>
-      <div className="container" style={{ marginTop: 'var(--space-6)' }}>
-        <Breadcrumb
-          items={[
-            { label: 'Trang chủ', href: '/' },
-            { label: article.title },
-          ]}
-        />
+    <article className="flex flex-col gap-6">
+      <nav className="flex flex-wrap items-center gap-2 text-sm text-muted" aria-label="Breadcrumb">
+        <Link href="/" className="transition-colors hover:text-normal">
+          Trang chủ
+        </Link>
+        <span aria-hidden="true">/</span>
+        <span className="text-subtle">{article.title}</span>
+      </nav>
 
-        <div className="book-detail">
-          <div className="book-detail-cover">
+      <div className="grid gap-8 lg:grid-cols-[20rem_minmax(0,1fr)] lg:items-start xl:gap-12">
+        <div className="mx-auto w-full max-w-80 lg:mx-0">
+          <div className="flex h-[30rem] w-full items-center justify-center overflow-hidden rounded-3xl border border-normal bg-surface shadow-sm">
             {article.coverImage ? (
               <img
                 src={article.coverImage}
                 alt={article.title}
-                className="book-detail-cover-img"
+                className="h-full w-full object-cover"
               />
             ) : (
-              <div className="book-detail-cover-placeholder" aria-hidden="true">
-                <span>{article.title.slice(0, 1)}</span>
+              <div className="flex h-full w-full items-center justify-center text-7xl font-bold text-muted">
+                {article.title.slice(0, 1)}
               </div>
             )}
+          </div>
+        </div>
+
+        <div className="flex min-w-0 flex-col gap-6 lg:pt-3">
+          <div className="flex flex-col gap-4">
+            <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted">
+              {article.author}
+            </p>
+            <h1 className="text-3xl font-bold leading-tight text-strong md:text-4xl xl:text-5xl">
+              {article.title}
+            </h1>
+            <p className="max-w-3xl text-base leading-8 text-subtle md:text-lg">
+              {article.excerpt}
+            </p>
           </div>
 
-          <div className="book-detail-info">
-            <h1 className="book-detail-title">{article.title}</h1>
-            <p className="book-detail-author">{article.author}</p>
-            <p className="book-detail-excerpt">{article.excerpt}</p>
-            {isAuthed ? (
-              <Link href={`/read/${slug}`} className="book-detail-read-btn">
-                📖 Đọc sách
+          {isAuthed ? (
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href={`/read/${slug}`}
+                className="inline-flex items-center justify-center rounded-2xl bg-themed px-5 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              >
+                Đọc sách
               </Link>
-            ) : (
-              <div className="book-detail-cta-group">
-                <Link href={`/read/${slug}?trial=1`} className="book-detail-trial-btn">
-                  📖 Đọc thử
-                </Link>
-                <Link
-                  href={`/login?callbackUrl=${encodeURIComponent(`/read/${slug}`)}`}
-                  className="book-detail-read-btn"
-                >
-                  Đăng nhập để đọc tiếp
-                </Link>
-              </div>
-            )}
-          </div>
+            </div>
+          ) : (
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href={`/read/${slug}?trial=1`}
+                className="inline-flex items-center justify-center rounded-2xl border border-normal bg-surface px-5 py-3 text-sm font-semibold text-normal transition-colors hover:bg-hover"
+              >
+                Đọc thử
+              </Link>
+              <Link
+                href={`/login?callbackUrl=${encodeURIComponent(`/read/${slug}`)}`}
+                className="inline-flex items-center justify-center rounded-2xl bg-themed px-5 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              >
+                Đăng nhập để đọc tiếp
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </article>
