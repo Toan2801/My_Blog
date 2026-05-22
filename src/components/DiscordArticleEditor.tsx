@@ -133,8 +133,8 @@ export default function DiscordArticleEditor({ initialArticle, authorName, defau
   const isPublished = form.status === 'published';
   const saveDisabled = !dirty || saving;
   const publishDisabled = saving || (!isEdit && !form.title.trim());
-  const editCardClassName = 'flex flex-col gap-2.5 rounded-xl border border-normal bg-base px-5 py-4 transition';
-  const editCardPlainClassName = 'flex flex-col gap-2.5 rounded-xl border border-normal bg-base p-0 transition';
+  const editCardClassName = 'flex flex-col gap-2.5 rounded-xl border border-normal bg-normal px-5 py-4 transition';
+  const editCardPlainClassName = 'flex flex-col gap-2.5 rounded-xl border border-normal bg-normal p-0 transition';
   const saveButtonClassName = [
     'inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition [&_svg]:size-3.5',
     saveDisabled
@@ -145,8 +145,8 @@ export default function DiscordArticleEditor({ initialArticle, authorName, defau
     'inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition [&_svg]:size-3.5',
     isPublished
       ? publishDisabled
-        ? 'cursor-not-allowed border border-normal bg-surface text-normal opacity-72'
-        : 'border border-normal bg-surface text-normal hover:bg-hover hover:text-normal'
+        ? 'cursor-not-allowed border border-normal bg-muted text-normal opacity-72'
+        : 'border border-normal bg-muted text-normal hover:bg-hover hover:text-normal'
       : publishDisabled
         ? 'cursor-not-allowed bg-themed text-white opacity-72'
         : 'bg-themed text-white hover:shadow-md hover:brightness-80',
@@ -208,7 +208,7 @@ export default function DiscordArticleEditor({ initialArticle, authorName, defau
           <div className="flex items-center justify-between gap-3 pt-1">
             <button
               type="button"
-              className="flex size-8 cursor-pointer items-center justify-center rounded-full p-1 text-muted transition-colors hover:bg-surface hover:text-normal [&_svg]:size-4"
+              className="flex size-8 cursor-pointer items-center justify-center rounded-full p-1 text-muted transition-colors hover:bg-muted hover:text-normal [&_svg]:size-4"
               title="Cảm xúc"
               onClick={() => { /* placeholder */ }}
             >
@@ -273,7 +273,7 @@ function CoverImagePicker({ value, onChange }: { value: string; onChange: (v: st
     <>
       <button
         type="button"
-        className="flex size-14 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-normal bg-surface text-muted transition-colors hover:bg-hover hover:text-normal [&_svg]:size-6"
+        className="flex size-14 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-normal bg-muted text-muted transition-colors hover:bg-hover hover:text-normal [&_svg]:size-6"
         onClick={() => document.getElementById(inputId)?.click()}
         title={value ? 'Thay ảnh bìa' : 'Thêm ảnh bìa'}
       >

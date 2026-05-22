@@ -22,21 +22,14 @@ export default function DiscordSidebar({ config, collapsed, onClose }: Props) {
   const pathname = usePathname();
   const SettingsIcon = Cog6ToothIcon;
   const sidebarClassName = [
-    'fixed bottom-0 left-0 top-12 z-30 flex flex-col overflow-x-hidden overflow-y-auto bg-surface transition-all duration-200 max-md:z-40',
+    'fixed bottom-0 left-0 top-0 pt-12 z-30 flex flex-col overflow-x-hidden overflow-y-auto border-r border-normal bg-subtle transition-all duration-200 max-md:z-40',
     collapsed ? 'w-12 max-md:w-72 max-md:-translate-x-full' : 'w-72 max-md:w-screen max-md:translate-x-0',
   ].join(' ');
-  const navGroupClassName = collapsed ? 'px-2 pb-1 pt-2' : 'px-2 pb-1 pt-3';
   const navItemClassName = (active = false) => [
-    'relative mb-px flex items-center overflow-hidden whitespace-nowrap rounded-lg text-sm font-medium no-underline transition-colors hover:bg-hover hover:text-normal',
-    collapsed ? 'justify-center gap-2.5 px-0 py-2.5' : 'gap-2.5 px-2 py-1.5',
+    'relative mb-px flex items-center overflow-hidden whitespace-nowrap rounded-lg text-sm font-medium no-underline transition-colors gap-2 px-2 py-2 hover:bg-hover hover:text-normal',
     active ? 'font-semibold text-themed' : 'cursor-pointer text-subtle',
   ].join(' ');
   const navLabelClassName = collapsed ? 'hidden' : 'flex-1 overflow-hidden text-ellipsis transition-all duration-200';
-  const profileWrapperClassName = [
-    'border-normal',
-    collapsed ? 'flex justify-center p-2' : 'px-3 pb-2.5 pt-2',
-    'max-md:order-first max-md:border-b max-md:p-3',
-  ].join(' ');
 
   const navItems = [
     { href: '/', label: 'Trang chủ', icon: HomeIcon },
@@ -57,10 +50,7 @@ export default function DiscordSidebar({ config, collapsed, onClose }: Props) {
       <aside className={sidebarClassName}>
         {/* ── Main nav section ── */}
         <div className="flex-1 overflow-x-hidden overflow-y-auto">
-          <div className={navGroupClassName}>
-            <div className="flex cursor-default select-none items-center justify-between overflow-hidden whitespace-nowrap px-2 pb-1.5 text-xs font-bold uppercase tracking-wider text-muted">
-              <span className={collapsed ? 'hidden' : ''}>Điều hướng</span>
-            </div>
+          <div className='px-2 pb-1 pt-2'>
             {navItems.map(item => (
               <Link
                 key={item.href}
@@ -108,7 +98,7 @@ export default function DiscordSidebar({ config, collapsed, onClose }: Props) {
           </div>
 
           {/* Profile — uses existing ProfileMenu */}
-          <div className={profileWrapperClassName}>
+          <div className={`border-normal ${collapsed ? 'flex justify-center p-2' : 'px-3 pb-2.5 pt-2'} max-md:order-first max-md:border-b max-md:p-3`}>
             <ProfileMenu collapsed={collapsed} />
           </div>
         </div>

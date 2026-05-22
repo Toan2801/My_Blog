@@ -154,6 +154,8 @@ npm run rasterize
 - Prefer minimal changes that preserve existing Vietnamese content, editorial formatting, and slugs.
 - Treat `public/uploads/` as local storage, not a generated cache.
 - Treat `storage/page-images/` as generated output, not hand-authored source.
+- For UI styling, use only Tailwind CSS utility classes and pre-defined custom utilities from `src/app/globals.css`.
+- Avoid inline styles or new ad-hoc CSS selectors unless explicitly requested for a task.
 
 ## Validation Expectations
 

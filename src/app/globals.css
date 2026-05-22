@@ -4,18 +4,30 @@
   --border-normal: rgb(151 151 155 / 0.36);
   --daidien-color-primary: #915934;
   --daidien-color-primary-rgb: 145 89 52;
+
+  --plant-color:  theme(colors.lime.800);
+  --water-color: theme(colors.sky.900);
+  --fire-color:  theme(colors.orange.800);
+  --earth-color: theme(colors.amber.600);
+}
+@utility bg-strong {
+  @apply bg-white dark:bg-black;
 }
 
-@utility bg-base {
-  @apply bg-neutral-100 dark:bg-neutral-900;
-}
-
-@utility bg-surface {
+@utility bg-normal {
   @apply bg-neutral-50 dark:bg-neutral-950;
 }
 
+@utility bg-subtle {
+  @apply bg-neutral-100 dark:bg-neutral-900;
+}
+
+@utility bg-muted {
+  @apply bg-neutral-200 dark:bg-neutral-800;
+}
+
 @utility bg-hover {
-  @apply bg-neutral-200 dark:bg-neutral-600;
+  @apply bg-neutral-300 dark:bg-neutral-600;
 }
 
 @utility bg-themed {
@@ -74,8 +86,12 @@
   @apply text-neutral-600 dark:text-neutral-400;
 }
 
+@utility text-han {
+  font-family: var(--font-han), serif;
+}
+
 @utility text-themed {
-  background-color: rgb(var(--daidien-color-primary-rgb) / 0.1);
+  background-color: rgb(var(--daidien-color-primary-rgb) / 0.3);
   color: var(--daidien-color-primary);
 }
 
@@ -101,4 +117,35 @@
 
 @utility border-themed {
   border-color: var(--daidien-color-primary);
+}
+
+
+/* @utility bg-logo {
+  background-image: linear-gradient(
+    to right,
+    var(--plant-color) 0%,
+    var(--plant-color) 15%,
+    var(--water-color) 25%,
+    var(--water-color) 35%,
+    var(--fire-color) 45%,
+    var(--fire-color) 55%,
+    var(--earth-color) 65%,
+    var(--earth-color) 75%,
+    var(--fifth-color) 85%,
+    var(--fifth-color) 100%
+  );
+} */
+
+.bg-logo {
+  background-image: linear-gradient(
+    to right,
+    var(--plant-color) 15%,
+    var(--plant-color) 25%,
+    var(--water-color) 35%,
+    var(--water-color) 45%,
+    var(--fire-color) 55%,
+    var(--fire-color) 65%,
+    var(--earth-color) 75%,
+    var(--earth-color) 85%
+  );
 }

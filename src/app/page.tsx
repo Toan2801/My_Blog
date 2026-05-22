@@ -41,9 +41,9 @@ export default async function HomePage() {
       {featured && (
         <Link
           href={`/articles/${featured.slug}`}
-          className="grid items-stretch gap-4 overflow-hidden rounded-xl border border-normal bg-base text-inherit no-underline transition hover:shadow-md grid-cols-[320px_1fr] max-lg:grid-cols-[260px_1fr] max-md:grid-cols-1"
+          className="grid items-stretch gap-4 overflow-hidden rounded-xl border border-normal bg-normal text-inherit no-underline transition hover:shadow-md grid-cols-[320px_1fr] max-lg:grid-cols-[260px_1fr] max-md:grid-cols-1"
         >
-          <div className="relative size-full min-h-48 overflow-hidden bg-surface max-md:min-h-40">
+          <div className="relative size-full min-h-48 overflow-hidden bg-muted max-md:min-h-40">
             {featured.coverImage ? (
               <img src={featured.coverImage} alt={featured.title} />
             ) : null}
@@ -65,9 +65,9 @@ export default async function HomePage() {
       )}
 
       <div className="my-0 mt-2 mb-1 flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-muted">
-        <span className="h-px flex-1 bg-surface" />
+        <span className="h-px flex-1 bg-muted" />
         Bài đăng cũ hơn
-        <span className="h-px flex-1 bg-surface" />
+        <span className="h-px flex-1 bg-muted" />
       </div>
 
       <div className="grid grid-cols-3 gap-5 max-lg:grid-cols-2 max-md:grid-cols-1">
@@ -75,7 +75,7 @@ export default async function HomePage() {
           <Link
             key={article.slug}
             href={`/articles/${article.slug}`}
-            className="box-border flex w-full flex-col gap-2.5 rounded-xl border border-normal bg-base px-3.5 pb-3 pt-3.5 text-inherit no-underline transition hover:shadow-md"
+            className="box-border flex w-full flex-col gap-2.5 rounded-xl border border-normal bg-subtle px-3.5 pb-3 pt-3.5 text-inherit no-underline transition hover:shadow-md"
           >
             <div className="flex items-center gap-2 text-xs text-subtle">
               <span className="font-semibold text-normal">
@@ -84,7 +84,7 @@ export default async function HomePage() {
               <span className="text-muted">· {timeAgo(article.date)}</span>
             </div>
             <h3 className="m-0 line-clamp-2 text-base font-bold leading-6 text-normal">{article.title}</h3>
-            <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-surface">
+            <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted">
               {article.coverImage ? (
                 <img src={article.coverImage} alt={article.title} />
               ) : (
@@ -93,7 +93,7 @@ export default async function HomePage() {
               {article.tags.length > 0 && (
                 <div className="absolute bottom-2 left-2 flex max-w-[calc(100%-16px)] flex-wrap gap-1">
                   {article.tags.slice(0, 3).map(tag => (
-                    <span key={tag} className="rounded-full bg-base px-2 py-0.5 text-normal text-xs font-semibold whitespace-nowrap backdrop-blur-sm">
+                    <span key={tag} className="rounded-full bg-normal px-2 py-0.5 text-normal text-xs font-semibold whitespace-nowrap backdrop-blur-sm">
                       #{tag}
                     </span>
                   ))}
@@ -101,11 +101,11 @@ export default async function HomePage() {
               )}
             </div>
             <div className="mt-0.5 flex gap-2">
-              <span className="flex flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-normal bg-surface px-2.5 py-1.5 text-xs font-medium text-subtle no-underline transition-colors hover:bg-hover hover:text-normal">
+              <span className="flex flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-normal bg-muted px-2.5 py-1.5 text-xs font-medium text-subtle no-underline transition-colors hover:bg-hover hover:text-normal">
                 <ChatBubbleOvalLeftEllipsisIcon className="size-3.5" />
                 Bình luận
               </span>
-              <span className="flex flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-normal bg-surface px-2.5 py-1.5 text-xs font-medium text-subtle no-underline transition-colors hover:bg-hover hover:text-normal">
+              <span className="flex flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-normal bg-muted px-2.5 py-1.5 text-xs font-medium text-subtle no-underline transition-colors hover:bg-hover hover:text-normal">
                 <BookmarkIcon className="size-3.5" />
                 Lưu
               </span>

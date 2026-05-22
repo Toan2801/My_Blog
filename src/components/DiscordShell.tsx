@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import type { SiteConfig } from '@/lib/types';
 import DiscordSidebar from './DiscordSidebar';
 import DiscordHeader from './DiscordHeader';
@@ -19,6 +19,13 @@ export default function DiscordShell({ config, children }: Props) {
   const isAdminRoute = pathname.startsWith('/admin');
   const isAuthRoute = pathname.startsWith('/login') || pathname.startsWith('/signup');
 
+  useEffect(() => {
+    document.body.classList.toggle('sidebar-open', !collapsed);
+    return () => {
+      document.body.classList.remove('sidebar-open');
+    };
+  }, [collapsed]);
+
   if (isAuthRoute) {
     return <>{children}</>;
   }
@@ -31,16 +38,21 @@ export default function DiscordShell({ config, children }: Props) {
         collapsed={collapsed}
         onToggle={() => setCollapsed(c => !c)}
       />
+      <DiscordSidebar
+        config={config}
+        collapsed={collapsed}
+        onClose={() => setCollapsed(true)}
+      />
 
-      {/* Body: sidebar + content, sits below the fixed header */}
-      <div className="mt-12 flex min-h-12 flex-1">
-        <DiscordSidebar
-          config={config}
-          collapsed={collapsed}
-          onClose={() => setCollapsed(true)}
-        />
+      <div
+  className={`pointer-events-none fixed right-0 top-0 z-40 h-12 bg-strong transition-all duration-200 max-md:left-0 ${
+    collapsed ? 'left-12' : 'left-72'
+  }`}
+/>
+
+      
         <main
-          className={`flex min-w-0 flex-1 flex-col bg-base transition-all duration-200 max-md:ml-0 ${collapsed ? 'ml-12' : 'ml-72'}`}
+          className={`mt-12 flex min-w-0 min-h-12 flex-1 flex-col bg-strong transition-all duration-200 max-md:ml-0 ${collapsed ? 'ml-12' : 'ml-72'}`}
         >
           <div
             className={isAdminRoute
@@ -53,6 +65,5 @@ export default function DiscordShell({ config, children }: Props) {
           </div>
         </main>
       </div>
-    </div>
   );
 }

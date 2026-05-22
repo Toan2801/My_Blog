@@ -62,7 +62,7 @@ export default function AdminHomeList({ articles }: Props) {
   return (
     <>
       <div className="flex items-center gap-3 max-md:flex-col max-md:items-stretch">
-        <label className="flex h-11 flex-1 items-center gap-2.5 rounded-full bg-surface px-5 transition focus-within:bg-base [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-neutral-600 dark:[&_svg]:text-neutral-400">
+        <label className="flex h-11 flex-1 items-center gap-2.5 rounded-full bg-muted px-5 transition focus-within:bg-normal [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-neutral-600 dark:[&_svg]:text-neutral-400">
           <MagnifyingGlassIcon />
           <input
             className="flex-1 border-0 bg-transparent text-sm text-normal outline-none placeholder:text-muted"
@@ -83,7 +83,7 @@ export default function AdminHomeList({ articles }: Props) {
       <div className="relative">
         <button
           type="button"
-          className="inline-flex self-start items-center gap-2 rounded-full bg-surface px-3.5 py-1.5 text-sm text-subtle transition-colors hover:bg-hover [&_svg]:size-4"
+          className="inline-flex self-start items-center gap-2 rounded-full bg-muted px-3.5 py-1.5 text-sm text-subtle transition-colors hover:bg-hover [&_svg]:size-4"
           onClick={() => setSortOpen(o => !o)}
         >
           <AdjustmentsHorizontalIcon />
@@ -91,7 +91,7 @@ export default function AdminHomeList({ articles }: Props) {
           <ChevronDownIcon />
         </button>
         {sortOpen && (
-          <div className="absolute left-0 top-[110%] z-20 min-w-[180px] rounded-xl border border-normal bg-base p-1.5 shadow-md">
+          <div className="absolute left-0 top-[110%] z-20 min-w-[180px] rounded-xl border border-normal bg-normal p-1.5 shadow-md">
             {(['recent', 'title', 'status'] as SortMode[]).map(opt => (
               <button
                 key={opt}
@@ -122,7 +122,7 @@ export default function AdminHomeList({ articles }: Props) {
             <Link
               key={a.slug}
               href={`/admin/articles/${a.slug}/edit`}
-              className="block rounded-xl border border-normal bg-base px-5 py-3.5 text-inherit no-underline transition hover:shadow-md"
+              className="block rounded-xl border border-normal bg-normal px-5 py-3.5 text-inherit no-underline transition hover:shadow-md"
             >
               <p className="mb-1 text-base font-bold text-normal">{a.title}</p>
               <p className="mb-2 line-clamp-1 text-sm leading-6 text-subtle">{snippet(a.excerpt)}</p>
