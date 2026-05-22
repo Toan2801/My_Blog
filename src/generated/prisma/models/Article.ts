@@ -53,7 +53,6 @@ export type ArticleMinAggregateOutputType = {
   coverImage: string | null
   status: string | null
   readingTime: number | null
-  rasterizedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -75,7 +74,6 @@ export type ArticleMaxAggregateOutputType = {
   coverImage: string | null
   status: string | null
   readingTime: number | null
-  rasterizedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -99,7 +97,6 @@ export type ArticleCountAggregateOutputType = {
   status: number
   readingTime: number
   footnotes: number
-  rasterizedAt: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -133,7 +130,6 @@ export type ArticleMinAggregateInputType = {
   coverImage?: true
   status?: true
   readingTime?: true
-  rasterizedAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -155,7 +151,6 @@ export type ArticleMaxAggregateInputType = {
   coverImage?: true
   status?: true
   readingTime?: true
-  rasterizedAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -179,7 +174,6 @@ export type ArticleCountAggregateInputType = {
   status?: true
   readingTime?: true
   footnotes?: true
-  rasterizedAt?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -290,7 +284,6 @@ export type ArticleGroupByOutputType = {
   status: string
   readingTime: number
   footnotes: runtime.JsonValue | null
-  rasterizedAt: Date | null
   createdAt: Date
   updatedAt: Date
   _count: ArticleCountAggregateOutputType | null
@@ -337,7 +330,6 @@ export type ArticleWhereInput = {
   status?: Prisma.StringFilter<"Article"> | string
   readingTime?: Prisma.IntFilter<"Article"> | number
   footnotes?: Prisma.JsonNullableFilter<"Article">
-  rasterizedAt?: Prisma.DateTimeNullableFilter<"Article"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Article"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Article"> | Date | string
 }
@@ -361,7 +353,6 @@ export type ArticleOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   readingTime?: Prisma.SortOrder
   footnotes?: Prisma.SortOrderInput | Prisma.SortOrder
-  rasterizedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -388,7 +379,6 @@ export type ArticleWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.StringFilter<"Article"> | string
   readingTime?: Prisma.IntFilter<"Article"> | number
   footnotes?: Prisma.JsonNullableFilter<"Article">
-  rasterizedAt?: Prisma.DateTimeNullableFilter<"Article"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Article"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Article"> | Date | string
 }, "id" | "slug">
@@ -412,7 +402,6 @@ export type ArticleOrderByWithAggregationInput = {
   status?: Prisma.SortOrder
   readingTime?: Prisma.SortOrder
   footnotes?: Prisma.SortOrderInput | Prisma.SortOrder
-  rasterizedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ArticleCountOrderByAggregateInput
@@ -444,7 +433,6 @@ export type ArticleScalarWhereWithAggregatesInput = {
   status?: Prisma.StringWithAggregatesFilter<"Article"> | string
   readingTime?: Prisma.IntWithAggregatesFilter<"Article"> | number
   footnotes?: Prisma.JsonNullableWithAggregatesFilter<"Article">
-  rasterizedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Article"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Article"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Article"> | Date | string
 }
@@ -468,7 +456,6 @@ export type ArticleCreateInput = {
   status?: string
   readingTime?: number
   footnotes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  rasterizedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -492,7 +479,6 @@ export type ArticleUncheckedCreateInput = {
   status?: string
   readingTime?: number
   footnotes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  rasterizedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -516,7 +502,6 @@ export type ArticleUpdateInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   readingTime?: Prisma.IntFieldUpdateOperationsInput | number
   footnotes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  rasterizedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -540,7 +525,6 @@ export type ArticleUncheckedUpdateInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   readingTime?: Prisma.IntFieldUpdateOperationsInput | number
   footnotes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  rasterizedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -564,7 +548,6 @@ export type ArticleCreateManyInput = {
   status?: string
   readingTime?: number
   footnotes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  rasterizedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -588,7 +571,6 @@ export type ArticleUpdateManyMutationInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   readingTime?: Prisma.IntFieldUpdateOperationsInput | number
   footnotes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  rasterizedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -612,7 +594,6 @@ export type ArticleUncheckedUpdateManyInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   readingTime?: Prisma.IntFieldUpdateOperationsInput | number
   footnotes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  rasterizedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -644,7 +625,6 @@ export type ArticleCountOrderByAggregateInput = {
   status?: Prisma.SortOrder
   readingTime?: Prisma.SortOrder
   footnotes?: Prisma.SortOrder
-  rasterizedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -671,7 +651,6 @@ export type ArticleMaxOrderByAggregateInput = {
   coverImage?: Prisma.SortOrder
   status?: Prisma.SortOrder
   readingTime?: Prisma.SortOrder
-  rasterizedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -693,7 +672,6 @@ export type ArticleMinOrderByAggregateInput = {
   coverImage?: Prisma.SortOrder
   status?: Prisma.SortOrder
   readingTime?: Prisma.SortOrder
-  rasterizedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -745,7 +723,6 @@ export type ArticleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   status?: boolean
   readingTime?: boolean
   footnotes?: boolean
-  rasterizedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["article"]>
@@ -769,7 +746,6 @@ export type ArticleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   status?: boolean
   readingTime?: boolean
   footnotes?: boolean
-  rasterizedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["article"]>
@@ -793,7 +769,6 @@ export type ArticleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   status?: boolean
   readingTime?: boolean
   footnotes?: boolean
-  rasterizedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["article"]>
@@ -817,12 +792,11 @@ export type ArticleSelectScalar = {
   status?: boolean
   readingTime?: boolean
   footnotes?: boolean
-  rasterizedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ArticleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "slug" | "title" | "subtitle" | "excerpt" | "content" | "category" | "type" | "tags" | "series" | "seriesOrder" | "date" | "featured" | "author" | "coverImage" | "status" | "readingTime" | "footnotes" | "rasterizedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["article"]>
+export type ArticleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "slug" | "title" | "subtitle" | "excerpt" | "content" | "category" | "type" | "tags" | "series" | "seriesOrder" | "date" | "featured" | "author" | "coverImage" | "status" | "readingTime" | "footnotes" | "createdAt" | "updatedAt", ExtArgs["result"]["article"]>
 
 export type $ArticlePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Article"
@@ -846,7 +820,6 @@ export type $ArticlePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     status: string
     readingTime: number
     footnotes: runtime.JsonValue | null
-    rasterizedAt: Date | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["article"]>
@@ -1290,7 +1263,6 @@ export interface ArticleFieldRefs {
   readonly status: Prisma.FieldRef<"Article", 'String'>
   readonly readingTime: Prisma.FieldRef<"Article", 'Int'>
   readonly footnotes: Prisma.FieldRef<"Article", 'Json'>
-  readonly rasterizedAt: Prisma.FieldRef<"Article", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Article", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Article", 'DateTime'>
 }

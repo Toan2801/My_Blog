@@ -1,13 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+import { getReaderDocument, renderReaderPageSvg } from '@/lib/reader-pages';
 import { verifyReaderToken, tokenAllowsPage } from '@/lib/reader-token';
-import { derivePermutation, TILE_COLS, TILE_ROWS } from '@/lib/tile-shuffle';
-import { shufflePngTiles } from '@/lib/tile-shuffle-server';
 
 export const dynamic = 'force-dynamic';
-
-const PAGE_IMAGE_ROOT = path.join(process.cwd(), 'storage', 'page-images');
 
 const rateLimitMap = new Map<string, { count: number; reset: number }>();
 const RATE_LIMIT = 240;
@@ -72,28 +67,21 @@ export async function GET(
     );
   }
 
-  const safeSlug = path.basename(slug);
-  const filePath = path.join(PAGE_IMAGE_ROOT, safeSlug, `page-${pageNum}.png`);
-  if (!filePath.startsWith(PAGE_IMAGE_ROOT) || !fs.existsSync(filePath)) {
+  const readerDocument = await getReaderDocument(slug);
+  if (!readerDocument || !readerDocument.pages.some((page) => page.pageNumber === pageNum)) {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }
 
-  // Scramble tiles deterministically from (token, slug, pageNumber).
-  // The client recomputes the same permutation and unshuffles into a canvas.
-  const pngBuffer = fs.readFileSync(filePath);
-  const permutation = await derivePermutation(token!, slug, pageNum);
-  const scrambled = shufflePngTiles(pngBuffer, permutation);
+  const svg = await renderReaderPageSvg(slug, pageNum, request.headers);
+  if (!svg) {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 });
+  }
 
-  const body = new Uint8Array(scrambled);
-  return new NextResponse(body, {
+  return new NextResponse(svg, {
     status: 200,
     headers: {
-      // Not image/png — these bytes are a scrambled PNG that won't render
-      // correctly in <img>. The reader fetches via JS and assembles on canvas.
-      'Content-Type': 'application/octet-stream',
-      'Content-Length': String(scrambled.length),
+      'Content-Type': 'image/svg+xml; charset=utf-8',
       'Cache-Control': getPrivateCacheControl(info.expiresAt),
-      'X-Page-Tile-Grid': `${TILE_COLS}x${TILE_ROWS}`,
       'X-Content-Type-Options': 'nosniff',
     },
   });

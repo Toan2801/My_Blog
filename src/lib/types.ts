@@ -42,11 +42,6 @@ export interface EditableArticle extends Article {
   footnotes?: Footnote[];
 }
 
-export interface RasterizedArticleAssets {
-  pages: ArticlePage[];
-  markdownPages: ArticleMarkdownPage[];
-}
-
 export interface Series {
   slug: string;
   title: string;

@@ -30,16 +30,16 @@ describe('RBAC decision table', () => {
     expect(decide({ path: '/admin/books', user: null })).toBe('redirect-login');
   });
   it('returns 401 for anon API hits on /api/admin', () => {
-    expect(decide({ path: '/api/admin/articles/foo/rasterize', user: null })).toBe('401');
+    expect(decide({ path: '/api/admin/articles/foo', user: null })).toBe('401');
   });
   it('redirects non-admin UI hits on /admin to home', () => {
     expect(decide({ path: '/admin', user: { role: 'user' } })).toBe('redirect-home');
   });
   it('returns 403 for non-admin API hits', () => {
-    expect(decide({ path: '/api/admin/articles/batch-rasterize', user: { role: 'user' } })).toBe('403');
+    expect(decide({ path: '/api/admin/articles/foo', user: { role: 'user' } })).toBe('403');
   });
   it('allows admin hits everywhere', () => {
     expect(decide({ path: '/admin', user: { role: 'admin' } })).toBe('allow');
-    expect(decide({ path: '/api/admin/articles/x/rasterize', user: { role: 'admin' } })).toBe('allow');
+    expect(decide({ path: '/api/admin/articles/x', user: { role: 'admin' } })).toBe('allow');
   });
 });

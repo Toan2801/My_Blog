@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getArticleBySlug } from '@/lib/data';
-import { readRasterizedArticleData } from '@/lib/raster-data';
+import { getReaderDocument } from '@/lib/reader-pages';
 import { auth } from '@/auth';
 import { issueUserReaderToken } from '@/lib/reader-token';
 
@@ -46,11 +46,11 @@ export async function GET(
   }
 
   const { slug } = await params;
-  const [article, rasterData] = await Promise.all([
+  const [article, readerDocument] = await Promise.all([
     getArticleBySlug(slug),
-    readRasterizedArticleData(slug),
+    getReaderDocument(slug),
   ]);
-  if (!article || article.status !== 'published' || !rasterData) {
+  if (!article || article.status !== 'published' || !readerDocument) {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }
 
@@ -64,7 +64,7 @@ export async function GET(
   }
 
   const { token, expiresAt } = issueUserReaderToken(session.user.id, slug);
-  const pages = rasterData.pages.map((p) => ({
+  const pages = readerDocument.pages.map((p) => ({
     pageNumber: p.pageNumber,
     imageUrl: p.imageUrl,
   }));

@@ -61,15 +61,13 @@ Anonymous users can open `/read/<slug>?trial=1`, which fetches `/api/articles/[s
 The admin UI lives under `/admin` and includes:
 
 - `/admin`: dashboard.
-- `/admin/books`: article management with rasterization status and batch actions.
+- `/admin/books`: article management with on-demand reader availability notes.
 - `/admin/articles/*`: create, edit, preview, publish, and delete flows.
 - `/admin/series`, `/admin/settings`: supporting management surfaces.
 
-## Rasterization Status
+## Reader Availability
 
-Articles store `rasterizedAt` and `updatedAt` in [prisma/schema.prisma](../prisma/schema.prisma). Admin surfaces treat an article as current when `rasterizedAt >= updatedAt`.
-
-Published article saves trigger background rasterization through [src/app/api/articles/route.ts](../src/app/api/articles/route.ts), and admin-only rasterize endpoints can also run it on demand.
+Published articles are paginated and rendered as SVG on demand. There is no separate rasterization or pre-generation step in the admin workflow.
 
 ## API Surface
 
@@ -79,11 +77,9 @@ Published article saves trigger background rasterization through [src/app/api/ar
 | `/api/auth/signup` | POST | — | Email/password registration |
 | `/api/articles/[slug]/pages` | GET | session required | Issues a reader token |
 | `/api/articles/[slug]/preview` | GET | none | Issues a trial token capped to 5 pages |
-| `/api/articles/[slug]/page/[n]/image` | GET | token | Streams rasterized page images |
+| `/api/articles/[slug]/page/[n]/image` | GET | token | Streams on-demand SVG pages |
 | `/api/articles/[slug]/page/[n]/markdown` | GET | token | Streams per-page markdown |
-| `/api/articles/[slug]/search` | GET | token | Searches rasterized page markdown |
-| `/api/admin/articles/[slug]/rasterize` | POST | admin | Rasterizes one article |
-| `/api/admin/articles/batch-rasterize` | POST | admin | Rasterizes multiple articles |
+| `/api/articles/[slug]/search` | GET | token | Searches on-demand page markdown |
 
 ## Tests
 
@@ -98,4 +94,4 @@ Relevant suites include reader-token issuance, password policy validation, previ
 
 - Email verification and password reset are not implemented.
 - Admin promotion is environment-driven through `ADMIN_EMAILS` or direct database edits.
-- The reader depends on generated raster assets in `storage/page-images/`; unpublished or unrasterized articles will not open correctly in the book reader.
+- The reader depends on token-gated, on-demand page generation; unpublished articles still cannot open in the book reader.

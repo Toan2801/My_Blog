@@ -1,6 +1,6 @@
 # History Blog
 
-This repository contains a Next.js 16 application for publishing long-form history articles, series, and reader-safe rasterized book pages.
+This repository contains a Next.js 16 application for publishing long-form history articles, series, and an on-demand SVG reader experience.
 
 ## Requirements
 
@@ -50,7 +50,7 @@ To create the first admin account, set `ADMIN_EMAILS` to the email you want to e
 | `DATABASE_URL` | Yes | Connects Prisma and the app runtime to PostgreSQL. |
 | `AUTH_SECRET` | Yes (prod) | NextAuth signing secret. |
 | `NEXT_PUBLIC_SITE_URL` | Recommended | Base URL used by redirect routes and generated links. |
-| `READER_TOKEN_SECRET` | Recommended | HMAC secret for canvas-reader tokens. A hardcoded dev fallback exists, but should not be used outside local development. |
+| `READER_TOKEN_SECRET` | Recommended | HMAC secret for reader page tokens. A hardcoded dev fallback exists, but should not be used outside local development. |
 | `ADMIN_EMAILS` | No | Comma-separated emails auto-promoted to `admin` on sign-in or sign-up. |
 | `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | No | Enables Google sign-in. Without them, email/password auth still works. |
 
@@ -58,8 +58,7 @@ To create the first admin account, set `ADMIN_EMAILS` to the email you want to e
 
 - Articles, series, site config, users, comments, and auth tables live in PostgreSQL through Prisma.
 - Uploaded files are written to `public/uploads/` by the upload API routes.
-- Rasterized page images are written to `storage/page-images/{slug}/page-N.png` and `storage/page-images/{slug}/manifest.json`.
-- `storage/page-images/` is a generated artifact for the reader experience; do not treat it as hand-edited source.
+- Reader pages are paginated from article markdown on demand and rendered as SVG through token-gated API routes.
 
 ## Useful Commands
 
@@ -68,8 +67,6 @@ npm run dev
 npm run lint
 npm run build
 npm run test
-npm run rasterize
-npm run rasterize -- --slug=<slug>
 npm run prisma:generate
 npm run prisma:migrate
 npm run prisma:deploy
@@ -81,12 +78,11 @@ Authentication, RBAC, reader trial access, and admin surfaces are documented in 
 
 - `src/app/`: Next.js App Router pages, layouts, and API routes
 - `src/components/`: reusable UI and editor components
-- `src/lib/`: Prisma data access, caching, rasterization helpers, reader tokens, and shared utilities
+- `src/lib/`: Prisma data access, caching, on-demand reader page helpers, reader tokens, and shared utilities
 - `prisma/`: schema and migrations
-- `storage/page-images/`: generated rasterized page assets for the reader
 
 ## Notes
 
 - This project uses the App Router on Next.js 16 and React 19.
-- Rasterization uses Puppeteer and runs through `scripts/rasterize-articles.ts`; the Next.js runtime itself does not import Puppeteer.
-- The reader fetches images with short-lived signed tokens from [src/lib/reader-token.ts](src/lib/reader-token.ts). Direct GETs of `/api/articles/.../image` without `?t=<token>` are rejected.
+- The reader generates page SVGs on demand with Satori and serves them through short-lived signed tokens from [src/lib/reader-token.ts](src/lib/reader-token.ts).
+- Direct GETs of `/api/articles/.../image` without `?t=<token>` are rejected.

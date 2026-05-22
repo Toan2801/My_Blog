@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { readRasterizedArticleData } from '@/lib/raster-data';
+import { getReaderDocument } from '@/lib/reader-pages';
 import { verifyReaderToken, TRIAL_MAX_PAGES } from '@/lib/reader-token';
 
 export const dynamic = 'force-dynamic';
@@ -41,12 +41,12 @@ export async function GET(
     return NextResponse.json({ hits: [], total: 0 });
   }
 
-  const rasterData = await readRasterizedArticleData(slug);
-  if (!rasterData) {
+  const readerDocument = await getReaderDocument(slug);
+  if (!readerDocument) {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }
 
-  const allPages = rasterData.markdownPages;
+  const allPages = readerDocument.markdownPages;
   // Trial: search only within the trial page range.
   const pages = info.kind === 'trial'
     ? allPages.filter((p) => p.pageNumber <= TRIAL_MAX_PAGES)

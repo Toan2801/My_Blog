@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import { getArticleBySlug } from '@/lib/data';
-import { readRasterizedArticleData } from '@/lib/raster-data';
+import { getReaderDocument } from '@/lib/reader-pages';
 import CanvasReader from '@/components/CanvasReader';
 import { auth } from '@/auth';
 import type { Metadata } from 'next';
@@ -23,8 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 /** Scan per-page markdown for h1/h2/h3 headings and pair each with the page number.
- *  Pages 1 (cover) and 3 (auto-generated TOC) are skipped since their headings
- *  are scaffolding, not real article sections.
+ *  Page 1 is a generated cover page, so its markdown is intentionally ignored.
  */
 function buildTocEntries(
   markdownPages?: ArticleMarkdownPage[],
@@ -32,7 +31,7 @@ function buildTocEntries(
   const entries: Array<{ level: number; text: string; pageNumber: number }> = [];
   if (!Array.isArray(markdownPages)) return entries;
   for (const p of markdownPages) {
-    if (p.pageNumber === 1 || p.pageNumber === 3) continue;
+    if (p.pageNumber === 1) continue;
     const md = p.markdown || '';
     const re = /^(#{1,3})\s+(.+?)\s*$/gm;
     let m: RegExpExecArray | null;
@@ -53,12 +52,12 @@ interface SearchProps {
 export default async function ReadPage({ params, searchParams }: Props & SearchProps) {
   const { slug } = await params;
   const sp = searchParams ? await searchParams : {};
-  const [article, rasterData] = await Promise.all([
+  const [article, readerDocument] = await Promise.all([
     getArticleBySlug(slug),
-    readRasterizedArticleData(slug),
+    getReaderDocument(slug),
   ]);
 
-  if (!article || article.status !== 'published' || !rasterData) notFound();
+  if (!article || article.status !== 'published' || !readerDocument) notFound();
 
   const session = await auth();
   const trialRequested = sp.trial === '1';
@@ -71,12 +70,12 @@ export default async function ReadPage({ params, searchParams }: Props & SearchP
     redirect(`/login?callbackUrl=${cb}`);
   }
 
-  const tocEntries = buildTocEntries(rasterData.markdownPages);
+  const tocEntries = buildTocEntries(readerDocument.markdownPages);
 
   return (
     <Suspense fallback={
       <div className="reader-layout">
-        <div className="reader-loading" style={{ position: 'fixed', inset: 0 }}>
+        <div className="reader-loading fixed inset-0">
           <div className="reader-spinner" />
         </div>
       </div>

@@ -4,12 +4,12 @@
  * Article `content` is stored as markdown (since the html-to-markdown migration).
  * This module is the single source of truth for the markdown rendering rules,
  * used by:
- *   - The rasterizer (src/lib/rasterize.ts) — converts MD → HTML before paginating.
+ *   - The on-demand reader page pipeline — converts MD → HTML for block analysis.
  *
  * Conventions:
  *   - Image captions follow the image as an italic line (`![alt](src)\n*caption*`),
  *     and we re-pair them into a `<div class="resizable-image-parent">…</div>`
- *     wrapper so existing CSS + the rasterizer's image-page detection keep working.
+ *     wrapper so the reader page pipeline can keep image blocks together.
  *   - Soft `<br>` line breaks come from CommonMark trailing two-space markers.
  */
 
@@ -27,7 +27,7 @@ export function isLikelyHtml(s: string): boolean {
   return /<[a-z][a-z0-9]*\b[^>]*>/i.test(s);
 }
 
-/** Convert article markdown into the HTML the rasterizer / reader expects. */
+/** Convert article markdown into the HTML the reader page pipeline expects. */
 export function renderArticleMarkdown(md: string): string {
   if (!md) return '';
 

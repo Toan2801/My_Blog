@@ -1115,7 +1115,6 @@ export const ArticleScalarFieldEnum = {
   status: 'status',
   readingTime: 'readingTime',
   footnotes: 'footnotes',
-  rasterizedAt: 'rasterizedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

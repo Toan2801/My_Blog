@@ -5,13 +5,13 @@ vi.mock('@/lib/data', () => ({
   getArticleBySlug: vi.fn(),
 }));
 
-vi.mock('@/lib/raster-data', () => ({
-  readRasterizedArticleData: vi.fn(),
+vi.mock('@/lib/reader-pages', () => ({
+  getReaderDocument: vi.fn(),
 }));
 
 import { GET as previewGET } from '@/app/api/articles/[slug]/preview/route';
 import * as data from '@/lib/data';
-import * as rasterData from '@/lib/raster-data';
+import * as readerPages from '@/lib/reader-pages';
 import { verifyReaderToken, tokenAllowsPage, TRIAL_MAX_PAGES } from '@/lib/reader-token';
 
 function makeRequest(host = 'localhost:3000') {
@@ -34,7 +34,7 @@ describe('GET /api/articles/[slug]/preview', () => {
       author: 'A',
       status: 'published',
     });
-    (rasterData.readRasterizedArticleData as ReturnType<typeof vi.fn>).mockReturnValue({
+    (readerPages.getReaderDocument as ReturnType<typeof vi.fn>).mockReturnValue({
       pages: allPages,
       markdownPages: [],
     });
@@ -54,7 +54,7 @@ describe('GET /api/articles/[slug]/preview', () => {
 
   it('404 for unknown slug', async () => {
     (data.getArticleBySlug as ReturnType<typeof vi.fn>).mockReturnValue(null);
-    (rasterData.readRasterizedArticleData as ReturnType<typeof vi.fn>).mockReturnValue(null);
+    (readerPages.getReaderDocument as ReturnType<typeof vi.fn>).mockReturnValue(null);
     const res = await previewGET(makeRequest(), { params: Promise.resolve({ slug: 'missing' }) });
     expect(res.status).toBe(404);
   });
@@ -63,7 +63,7 @@ describe('GET /api/articles/[slug]/preview', () => {
     (data.getArticleBySlug as ReturnType<typeof vi.fn>).mockReturnValue({
       slug: 'foo', status: 'draft',
     });
-    (rasterData.readRasterizedArticleData as ReturnType<typeof vi.fn>).mockReturnValue({
+    (readerPages.getReaderDocument as ReturnType<typeof vi.fn>).mockReturnValue({
       pages: [],
       markdownPages: [],
     });

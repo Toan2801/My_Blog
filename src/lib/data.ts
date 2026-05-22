@@ -1,7 +1,6 @@
 import prisma from './prisma';
 import type { Article, EditableArticle, SiteConfig, Series } from './types';
 import { invalidateArticleCache, invalidateSeriesCache, invalidateConfigCache } from './cache';
-import { deleteRasterizedArticleData } from './raster-data';
 
 const ARTICLE_SELECT = {
   id: true,
@@ -57,6 +56,17 @@ const ARTICLE_INFO_SELECT = {
   status: true,
   readingTime: true,
 } as const;
+
+const ARTICLE_READER_SELECT = {
+  ...ARTICLE_INFO_SELECT,
+  content: true,
+  updatedAt: true,
+} as const;
+
+export interface ReaderSourceArticle extends Article {
+  content: string;
+  updatedAt: Date;
+}
 
 const EDITABLE_ARTICLE_SELECT = {
   ...ARTICLE_SELECT,
@@ -159,6 +169,21 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
     : null;
 }
 
+export async function getArticleReaderBySlug(slug: string): Promise<ReaderSourceArticle | null> {
+  const row = await prisma.article.findUnique({
+    where: { slug },
+    select: ARTICLE_READER_SELECT,
+  });
+  return row
+    ? {
+      ...dbToArticle(row),
+      subtitle: '',
+      content: row.content ?? '',
+      updatedAt: row.updatedAt,
+    }
+    : null;
+}
+
 export async function getArticleForEditBySlug(slug: string): Promise<EditableArticle | null> {
   const row = await prisma.article.findUnique({
     where: { slug },
@@ -197,7 +222,6 @@ export async function saveArticle(article: EditableArticle): Promise<void> {
 
 export async function deleteArticle(slug: string): Promise<void> {
   await prisma.article.delete({ where: { slug } }).catch(() => {});
-  await deleteRasterizedArticleData(slug).catch(() => {});
   invalidateArticleCache();
 }
 

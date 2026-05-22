@@ -10,26 +10,18 @@ async function getBooks(): Promise<BookRow[]> {
       author: true,
       category: true,
       status: true,
-      rasterizedAt: true,
       updatedAt: true,
     },
     orderBy: { updatedAt: 'desc' },
   });
-  return docs.map((d) => {
-    const updatedAt = d.updatedAt;
-    const rasterizedAt = d.rasterizedAt ?? null;
-    const isRasterized = !!rasterizedAt && !!updatedAt && rasterizedAt >= updatedAt;
-    return {
-      slug: d.slug,
-      title: d.title,
-      author: d.author,
-      category: d.category ?? '',
-      status: d.status as 'draft' | 'published',
-      updatedAt: updatedAt ? updatedAt.toISOString() : null,
-      rasterizedAt: rasterizedAt ? rasterizedAt.toISOString() : null,
-      isRasterized,
-    };
-  });
+  return docs.map((d) => ({
+    slug: d.slug,
+    title: d.title,
+    author: d.author,
+    category: d.category ?? '',
+    status: d.status as 'draft' | 'published',
+    updatedAt: d.updatedAt ? d.updatedAt.toISOString() : null,
+  }));
 }
 
 export default async function AdminBooksPage() {

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
 import { getArticleBySlug } from '@/lib/data';
-import { readRasterizedArticleData } from '@/lib/raster-data';
+import { getReaderDocument } from '@/lib/reader-pages';
 import { issueTrialReaderToken, TRIAL_MAX_PAGES } from '@/lib/reader-token';
 
 /**
@@ -24,17 +24,17 @@ export async function GET(
   if (!isValidOrigin) return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
 
   const { slug } = await params;
-  const [article, rasterData] = await Promise.all([
+  const [article, readerDocument] = await Promise.all([
     getArticleBySlug(slug),
-    readRasterizedArticleData(slug),
+    getReaderDocument(slug),
   ]);
-  if (!article || article.status !== 'published' || !rasterData) {
+  if (!article || article.status !== 'published' || !readerDocument) {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }
 
   const sessionId = crypto.randomBytes(16).toString('base64url');
   const { token, expiresAt } = issueTrialReaderToken(sessionId, slug);
-  const allPages = rasterData.pages;
+  const allPages = readerDocument.pages;
   const totalPages = allPages.length;
   const pages = allPages.slice(0, TRIAL_MAX_PAGES).map((p) => ({
     pageNumber: p.pageNumber,

@@ -5,7 +5,6 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { PageFlip } from 'page-flip';
 import ReaderToolbar from './ReaderToolbar';
 import ReaderSidebar, { type TocEntry } from './ReaderSidebar';
-import { derivePermutation, TILE_COLS, TILE_ROWS, TILE_COUNT } from '@/lib/tile-shuffle';
 
 /** Render a markdown snippet's inline syntax: `code`, _italic_, **bold**. */
 function renderInlineMarkdown(text: string): ReactNode {
@@ -45,11 +44,11 @@ interface SearchHit {
   count: number;
 }
 
-/** How many pages around the current one to keep painted on-canvas. */
+/** How many pages around the current one to keep loaded in the DOM. */
 const WINDOW_BEHIND = 2;
 const WINDOW_AHEAD = 3;
 
-/** Logical (CSS) page dimensions used by page-flip — match rasterize.ts. */
+/** Logical (CSS) page dimensions used by page-flip — match the generated SVG page size. */
 const LOGICAL_W = 512;
 const LOGICAL_H = 768;
 
@@ -80,11 +79,11 @@ export default function CanvasReader({ slug, articleTitle, tocEntries = [], tria
   const pagesRef = useRef<PageInfo[]>([]);
   const tokenRef = useRef<string>('');
 
-  // Per-page DOM state: the wrapper div (used by page-flip) and the canvas
-  // we paint into. Index = pageNumber - 1.
+  // Per-page DOM state: the wrapper div (used by page-flip) and the <img>
+  // element that displays the generated SVG. Index = pageNumber - 1.
   const pageElsRef = useRef<HTMLDivElement[]>([]);
-  const pageCanvasesRef = useRef<HTMLCanvasElement[]>([]);
-  // 'idle' = blank canvas, 'loading' = fetching, 'ready' = painted.
+  const pageImagesRef = useRef<HTMLImageElement[]>([]);
+  // 'idle' = blank page, 'loading' = fetching, 'ready' = image loaded.
   const pageStatusRef = useRef<('idle' | 'loading' | 'ready')[]>([]);
 
   /* ── Fetch page metadata + session token ─────────────────────── */
@@ -102,75 +101,48 @@ export default function CanvasReader({ slug, articleTitle, tocEntries = [], tria
     return { pages: data.pages as PageInfo[], token: data.token as string };
   }, [slug, trial]);
 
-  /* ── Tile-unshuffle a page into its canvas ───────────────────── */
+  /* ── Load a generated SVG page into its <img> host ───────────── */
   const loadPageInto = useCallback(async (pageIdx: number) => {
     if (pageStatusRef.current[pageIdx] !== 'idle') return;
     const info = pagesRef.current[pageIdx];
-    const canvas = pageCanvasesRef.current[pageIdx];
-    if (!info || !canvas) return;
+    const image = pageImagesRef.current[pageIdx];
+    const host = pageElsRef.current[pageIdx];
+    if (!info || !image || !host) return;
 
     pageStatusRef.current[pageIdx] = 'loading';
     try {
       const url = `${info.imageUrl}?t=${encodeURIComponent(tokenRef.current)}`;
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const bytes = new Uint8Array(await res.arrayBuffer());
-      // Body is a scrambled PNG. The browser will still decode it as PNG
-      // bytes (it's structurally valid) — we just route through createImageBitmap.
-      const blob = new Blob([bytes], { type: 'image/png' });
-      const bitmap = await createImageBitmap(blob);
-
-      const permutation = await derivePermutation(
-        tokenRef.current,
-        slug,
-        info.pageNumber,
-      );
-
-      // Size the canvas to the bitmap's native resolution so text stays crisp.
-      canvas.width = bitmap.width;
-      canvas.height = bitmap.height;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) throw new Error('canvas 2d unavailable');
-
-      const tileW = bitmap.width / TILE_COLS;
-      const tileH = bitmap.height / TILE_ROWS;
-
-      // permutation[i] = original index that was placed at shuffled index i.
-      // So tile sitting at shuffled position i belongs at original position
-      // permutation[i] when reassembling.
-      for (let i = 0; i < TILE_COUNT; i++) {
-        const srcCol = i % TILE_COLS;
-        const srcRow = Math.floor(i / TILE_COLS);
-        const dstIdx = permutation[i];
-        const dstCol = dstIdx % TILE_COLS;
-        const dstRow = Math.floor(dstIdx / TILE_COLS);
-        ctx.drawImage(
-          bitmap,
-          srcCol * tileW,
-          srcRow * tileH,
-          tileW,
-          tileH,
-          dstCol * tileW,
-          dstRow * tileH,
-          tileW,
-          tileH,
-        );
-      }
-      bitmap.close?.();
-      pageStatusRef.current[pageIdx] = 'ready';
+      await new Promise<void>((resolve, reject) => {
+        image.onload = () => {
+          pageStatusRef.current[pageIdx] = 'ready';
+          host.classList.add('is-ready');
+          resolve();
+        };
+        image.onerror = () => {
+          pageStatusRef.current[pageIdx] = 'idle';
+          host.classList.remove('is-ready');
+          reject(new Error(`HTTP load failed for page ${info.pageNumber}`));
+        };
+        image.src = url;
+      });
     } catch (e) {
       pageStatusRef.current[pageIdx] = 'idle';
       console.error(`page ${pageIdx + 1} load failed`, e);
     }
-  }, [slug]);
+  }, []);
 
-  /* ── Clear a previously-loaded canvas, freeing memory ─────────── */
+  /* ── Clear a previously-loaded page image, freeing memory ─────── */
   const clearPage = useCallback((pageIdx: number) => {
     if (pageStatusRef.current[pageIdx] === 'idle') return;
-    const canvas = pageCanvasesRef.current[pageIdx];
-    if (canvas) {
-      // Setting width clears the bitmap and releases its backing store.
-      canvas.width = canvas.width;
+    const image = pageImagesRef.current[pageIdx];
+    const host = pageElsRef.current[pageIdx];
+    if (image) {
+      image.onload = null;
+      image.onerror = null;
+      image.removeAttribute('src');
+    }
+    if (host) {
+      host.classList.remove('is-ready');
     }
     pageStatusRef.current[pageIdx] = 'idle';
   }, []);
@@ -206,7 +178,7 @@ export default function CanvasReader({ slug, articleTitle, tocEntries = [], tria
         if (destroyed) return;
 
         if (!pages.length) {
-          setError('Bài viết chưa được rasterize. Vui lòng chạy: npm run rasterize');
+          setError('Bài viết chưa có trang để hiển thị.');
           setLoading(false);
           return;
         }
@@ -215,32 +187,32 @@ export default function CanvasReader({ slug, articleTitle, tocEntries = [], tria
         tokenRef.current = token || '';
         setTotalPages(pages.length);
 
-        // Build the page DOM up-front. Each "page" is a div containing a
-        // canvas that we paint into on demand.
+        // Build the page DOM up-front. Each "page" is a div containing an
+        // image element that points at the token-gated SVG endpoint.
         const els: HTMLDivElement[] = [];
-        const canvases: HTMLCanvasElement[] = [];
+        const images: HTMLImageElement[] = [];
         for (let i = 0; i < pages.length; i++) {
           const div = document.createElement('div');
           div.className = 'reader-page-host';
 
-          const canvas = document.createElement('canvas');
-          canvas.className = 'reader-page-canvas';
-          // Initial logical size — actual pixel size is set on first paint.
-          canvas.width = LOGICAL_W;
-          canvas.height = LOGICAL_H;
+          const image = document.createElement('img');
+          image.className = 'reader-page-image';
+          image.alt = `Trang ${i + 1}`;
+          image.draggable = false;
+          image.decoding = 'async';
 
           const placeholder = document.createElement('div');
           placeholder.className = 'reader-page-placeholder';
           placeholder.textContent = `Trang ${i + 1}`;
 
-          div.appendChild(canvas);
+          div.appendChild(image);
           div.appendChild(placeholder);
 
           els.push(div);
-          canvases.push(canvas);
+          images.push(image);
         }
         pageElsRef.current = els;
-        pageCanvasesRef.current = canvases;
+        pageImagesRef.current = images;
         pageStatusRef.current = pages.map(() => 'idle');
 
         if (!containerRef.current) return;
@@ -300,7 +272,7 @@ export default function CanvasReader({ slug, articleTitle, tocEntries = [], tria
         flipRef.current = null;
       }
       pageElsRef.current = [];
-      pageCanvasesRef.current = [];
+      pageImagesRef.current = [];
       pageStatusRef.current = [];
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
