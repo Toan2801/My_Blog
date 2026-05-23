@@ -68,3 +68,19 @@ export interface SiteConfig {
   facebook?: string;
   heroImage?: string;
 }
+
+export interface MenuItem {
+  href: string;
+  label: string;
+  icon: string;
+}
+
+interface LogoDivision {
+  text: string;
+  isHiddenOnCollapse: boolean;
+}
+
+export interface LogoConfig {
+  subDomain: LogoDivision[];
+  domain: LogoDivision[];
+}

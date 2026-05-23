@@ -2,8 +2,10 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import { getPublicSiteConfig } from '@/lib/public-data';
+import { getMenuItems, getLogoConfig } from '@/lib/site-config';
 import AuthProvider from '@/components/AuthProvider';
 import DiscordShell from '@/components/DiscordShell';
+
 
 const hanFont = localFont({
   src: '../fonts/Jigmo.ttf',
@@ -23,13 +25,16 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const config = await getPublicSiteConfig();
+  const menuItems = getMenuItems();
+  const logoConfig = getLogoConfig();
+  
 
   return (
     <html lang="vi" suppressHydrationWarning>
       <head />
       <body className={`${hanFont.variable} font-sans text-normal bg-normal`} suppressHydrationWarning>
         <AuthProvider>
-          <DiscordShell config={config}>
+          <DiscordShell config={config} menuItems={menuItems} logoConfig={logoConfig}>
             {children}
           </DiscordShell>
         </AuthProvider>
