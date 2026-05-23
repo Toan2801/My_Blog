@@ -3,7 +3,9 @@
     "allow": [
       "Bash(node_modules/.bin/prisma generate *)",
       "Bash(nvm list *)",
-      "Bash(node_modules/.bin/tsx -e ' *)"
+      "Bash(node_modules/.bin/tsx -e ' *)",
+      "Bash(taskkill /PID 23372 /F)",
+      "Bash(node -e ' *)"
     ]
   }
 }

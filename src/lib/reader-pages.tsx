@@ -6,8 +6,18 @@ import path from 'path';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import satori from 'satori';
+import { Noto_Sans } from 'next/font/google';
 import { getArticleReaderBySlug, type ReaderSourceArticle } from './data';
 import type { ArticleMarkdownPage, ArticlePage } from './types';
+
+// Declare the font for Next.js font system (CSS injection in React components)
+const _notoSans = Noto_Sans({
+  subsets: ['latin', 'latin-ext', 'vietnamese'],
+  weight: ['400', '600', '800'],
+  display: 'swap',
+});
+
+const READER_FONT_FAMILY = 'Noto Sans';
 
 const PAGE_WIDTH = 768;
 const PAGE_HEIGHT = 1152;
@@ -183,37 +193,42 @@ async function readFirstExisting(pathsToTry: string[]): Promise<Buffer | null> {
 async function loadFonts() {
   if (!fontsPromise) {
     fontsPromise = (async () => {
-      const vietnameseRegular = await readFirstExisting([
-        path.join(process.cwd(), 'node_modules', '@fontsource', 'be-vietnam-pro', 'files', 'be-vietnam-pro-vietnamese-400-normal.woff'),
-      ]);
-      const latinRegular = await readFirstExisting([
-        path.join(process.cwd(), 'node_modules', '@fontsource', 'be-vietnam-pro', 'files', 'be-vietnam-pro-latin-ext-400-normal.woff'),
-        path.join(process.cwd(), 'node_modules', '@fontsource', 'be-vietnam-pro', 'files', 'be-vietnam-pro-latin-400-normal.woff'),
-      ]);
-      const vietnameseBold = await readFirstExisting([
-        path.join(process.cwd(), 'node_modules', '@fontsource', 'be-vietnam-pro', 'files', 'be-vietnam-pro-vietnamese-600-normal.woff'),
-      ]);
-      const latinBold = await readFirstExisting([
-        path.join(process.cwd(), 'node_modules', '@fontsource', 'be-vietnam-pro', 'files', 'be-vietnam-pro-latin-ext-600-normal.woff'),
-        path.join(process.cwd(), 'node_modules', '@fontsource', 'be-vietnam-pro', 'files', 'be-vietnam-pro-latin-600-normal.woff'),
-      ]);
-      const hanFont = await readFirstExisting([
-        path.join(process.cwd(), 'src', 'fonts', 'Jigmo.ttf'),
-      ]);
+      // Google Fonts without a browser UA returns a single TTF per weight (all glyphs
+      // including Vietnamese), which is what Satori needs. Avoid the subset-WOFF2 path
+      // since it requires parsing multiple unicode-range blocks.
+      const css = await fetch(
+        'https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;800&display=swap',
+      ).then((r) => r.text());
 
-      const fonts: SatoriFontOption[] = [];
-      if (vietnameseRegular) {
-        fonts.push({ name: 'Be Vietnam Pro', data: vietnameseRegular, weight: 400, style: 'normal' });
+      const blockPattern = /@font-face\s*\{([^}]+)\}/g;
+      const downloads: Promise<SatoriFontOption | null>[] = [];
+      let match: RegExpExecArray | null;
+
+      while ((match = blockPattern.exec(css)) !== null) {
+        const block = match[1];
+        const urlMatch = block.match(/url\((https:\/\/[^)]+)\)/);
+        const weightMatch = block.match(/font-weight:\s*(\d+)/);
+        if (!urlMatch || !weightMatch) continue;
+
+        const fontUrl = urlMatch[1];
+        const weight = parseInt(weightMatch[1], 10);
+        downloads.push(
+          fetch(fontUrl)
+            .then((r) => r.arrayBuffer())
+            .then((data) => ({
+              name: READER_FONT_FAMILY,
+              data: Buffer.from(data),
+              weight: weight as SatoriFontOption['weight'],
+              style: 'normal' as const,
+            }))
+            .catch(() => null),
+        );
       }
-      if (latinRegular) {
-        fonts.push({ name: 'Be Vietnam Pro', data: latinRegular, weight: 400, style: 'normal' });
-      }
-      if (vietnameseBold) {
-        fonts.push({ name: 'Be Vietnam Pro', data: vietnameseBold, weight: 600, style: 'normal' });
-      }
-      if (latinBold) {
-        fonts.push({ name: 'Be Vietnam Pro', data: latinBold, weight: 600, style: 'normal' });
-      }
+
+      const results = await Promise.all(downloads);
+      const fonts: SatoriFontOption[] = results.filter((f): f is SatoriFontOption => f !== null);
+
+      const hanFont = await readFirstExisting([path.join(process.cwd(), 'src', 'fonts', 'Jigmo.ttf')]);
       if (hanFont) {
         fonts.push({ name: 'Jigmo', data: hanFont, weight: 600, style: 'normal' });
       }
@@ -260,24 +275,29 @@ function sNode(
   };
 }
 
+function extractFirstHeading(markdown: string): string {
+  const match = markdown.match(/^#{1,3}\s+(.+)$/m);
+  return match ? match[1].trim() : '';
+}
+
 function renderMarkdown(markdown: string, origin: string) {
   return sNode(ReactMarkdown, {
     remarkPlugins: [remarkGfm],
     components: {
       h1: ({ children }: { children?: unknown }) => sNode('div', {
-        style: { display: 'flex', fontSize: 34, fontWeight: 600, lineHeight: 1.25, marginBottom: 20, color: '#1f2937' },
+        style: { display: 'flex', fontSize: 34, fontWeight: 800, lineHeight: 1.25, marginBottom: 20, color: '#2E2E34' },
       }, children),
       h2: ({ children }: { children?: unknown }) => sNode('div', {
-        style: { display: 'flex', fontSize: 28, fontWeight: 600, lineHeight: 1.3, marginBottom: 18, color: '#1f2937' },
+        style: { display: 'flex', fontSize: 28, fontWeight: 800, lineHeight: 1.3, marginBottom: 18, color: '#2E2E34' },
       }, children),
       h3: ({ children }: { children?: unknown }) => sNode('div', {
-        style: { display: 'flex', fontSize: 24, fontWeight: 600, lineHeight: 1.3, marginBottom: 16, color: '#374151' },
+        style: { display: 'flex', fontSize: 24, fontWeight: 600, lineHeight: 1.3, marginBottom: 16, color: '#2E2E34' },
       }, children),
       p: ({ children }: { children?: unknown }) => sNode('div', {
-        style: { display: 'flex', fontSize: 24, lineHeight: 1.7, marginBottom: 18, color: '#4b5563' },
+        style: { display: 'flex', fontSize: 24, lineHeight: 1.375, marginBottom: 18, color: '#6C6C73' },
       }, children),
       strong: ({ children }: { children?: unknown }) => sNode('span', {
-        style: { fontWeight: 600, color: '#111827' },
+        style: { fontWeight: 600, color: '#2E2E34' },
       }, children),
       em: ({ children }: { children?: unknown }) => sNode('span', {
         style: { fontStyle: 'italic' },
@@ -289,21 +309,21 @@ function renderMarkdown(markdown: string, origin: string) {
         style: { display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 18 },
       }, children),
       li: ({ children }: { children?: unknown }) => sNode('div', {
-        style: { display: 'flex', gap: 12, fontSize: 24, lineHeight: 1.6, color: '#4b5563' },
+        style: { display: 'flex', gap: 12, fontSize: 24, lineHeight: 1.375, color: '#6C6C73' },
       },
-      sNode('span', { style: { width: 18, color: '#915934' } }, '•'),
+      sNode('span', { style: { width: 18, color: '#6C6C73' } }, '•'),
       sNode('span', { style: { flex: 1 } }, children)),
       blockquote: ({ children }: { children?: unknown }) => sNode('div', {
-        style: { display: 'flex', borderLeft: '6px solid #d1d5db', paddingLeft: 18, marginBottom: 18, color: '#374151' },
+        style: { display: 'flex', borderLeft: '6px solid rgba(151, 151, 159, 0.4)', paddingLeft: 18, marginBottom: 18, color: '#6C6C73' },
       }, children),
       code: ({ children }: { children?: unknown }) => sNode('span', {
-        style: { fontFamily: 'Be Vietnam Pro', fontSize: 22, backgroundColor: '#f3f4f6', color: '#7c2d12', paddingLeft: 8, paddingRight: 8, paddingTop: 2, paddingBottom: 2, borderRadius: 6 },
+        style: { fontFamily: READER_FONT_FAMILY, fontSize: 22, backgroundColor: '#f3f4f6', color: '#595961', paddingLeft: 8, paddingRight: 8, paddingTop: 2, paddingBottom: 2, borderRadius: 6 },
       }, children),
       pre: ({ children }: { children?: unknown }) => sNode('div', {
-        style: { display: 'flex', marginBottom: 18, backgroundColor: '#f3f4f6', borderRadius: 16, padding: 20, color: '#1f2937' },
+        style: { display: 'flex', marginBottom: 18, backgroundColor: '#f3f4f6', borderRadius: 16, padding: 20, color: '#2E2E34' },
       }, children),
       hr: () => sNode('div', {
-        style: { display: 'flex', width: '100%', height: 1, backgroundColor: '#e5e7eb', marginBottom: 18 },
+        style: { display: 'flex', width: '100%', height: 1, backgroundColor: 'rgba(151, 151, 159, 0.28)', marginBottom: 18 },
       }),
       img: ({ src, alt }: { src?: string; alt?: string }) => {
         const resolved = resolveAssetUrl(origin, src);
@@ -326,7 +346,6 @@ function renderMarkdown(markdown: string, origin: string) {
 
 function renderPageShell(document: ReaderDocument, page: ReaderPageDescriptor, origin: string) {
   const { article } = document;
-  const coverImage = resolveAssetUrl(origin, article.coverImage);
 
   if (page.kind === 'cover') {
     return sNode('div', {
@@ -335,34 +354,22 @@ function renderPageShell(document: ReaderDocument, page: ReaderPageDescriptor, o
         width: '100%',
         height: '100%',
         flexDirection: 'column',
-        justifyContent: 'space-between',
-        backgroundColor: '#f8fafc',
-        padding: 56,
-        color: '#111827',
-        fontFamily: 'Be Vietnam Pro',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#ffffff',
+        paddingTop: 96,
+        paddingBottom: 96,
+        paddingLeft: 48,
+        paddingRight: 48,
+        fontFamily: READER_FONT_FAMILY,
       },
     },
-    sNode('div', { style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center' } },
-      sNode('div', { style: { display: 'flex', fontSize: 24, letterSpacing: 4, textTransform: 'uppercase', color: '#915934' } }, article.author),
-      sNode('div', { style: { display: 'flex', fontSize: 44, fontFamily: 'Jigmo', color: '#1f2937' } }, '经书大典'),
-    ),
-    sNode('div', { style: { display: 'flex', flex: 1, alignItems: 'center', gap: 40 } },
-      sNode('div', { style: { display: 'flex', flex: 1, flexDirection: 'column', gap: 24 } },
-        sNode('div', { style: { display: 'flex', fontSize: 26, textTransform: 'uppercase', letterSpacing: 3, color: '#6b7280' } }, 'Đọc trực tuyến'),
-        sNode('div', { style: { display: 'flex', fontSize: 58, fontWeight: 600, lineHeight: 1.1, color: '#111827' } }, article.title),
-        sNode('div', { style: { display: 'flex', fontSize: 28, lineHeight: 1.6, color: '#4b5563' } }, article.excerpt || 'Phiên bản trình đọc theo yêu cầu.'),
-      ),
-      sNode('div', { style: { display: 'flex', width: 280, height: 420, alignItems: 'center', justifyContent: 'center', borderRadius: 32, border: '1px solid rgba(145, 89, 52, 0.18)', backgroundColor: '#ffffff', overflow: 'hidden' } },
-        coverImage
-          ? sNode('img', { src: coverImage, alt: article.title, style: { width: '100%', height: '100%', objectFit: 'cover' } })
-          : sNode('div', { style: { display: 'flex', fontSize: 120, fontWeight: 600, color: '#cbd5e1' } }, article.title.slice(0, 1)),
-      ),
-    ),
-    sNode('div', { style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 22, color: '#6b7280' } },
-      sNode('div', { style: { display: 'flex' } }, article.date),
-      sNode('div', { style: { display: 'flex' } }, `Trang 1 / ${document.totalPages}`),
-    ));
+    sNode('div', { style: { display: 'flex', fontSize: 53, fontWeight: 800, lineHeight: 1.2, color: '#2E2E34', marginBottom: 48 } }, article.title),
+    sNode('div', { style: { display: 'flex', fontWeight: 600, fontSize: 24, color: '#6C6C73', letterSpacing: 1 } }, article.author.toUpperCase()),
+    );
   }
+
+  const activeHeading = extractFirstHeading(page.markdown);
 
   return sNode('div', {
     style: {
@@ -371,25 +378,70 @@ function renderPageShell(document: ReaderDocument, page: ReaderPageDescriptor, o
       height: '100%',
       flexDirection: 'column',
       backgroundColor: '#ffffff',
-      paddingTop: 42,
-      paddingBottom: 36,
-      paddingLeft: 52,
-      paddingRight: 52,
-      color: '#1f2937',
-      fontFamily: 'Be Vietnam Pro',
+      fontFamily: READER_FONT_FAMILY,
     },
   },
-  sNode('div', { style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 26, fontSize: 21, color: '#6b7280' } },
-    sNode('div', { style: { display: 'flex', fontWeight: 600 } }, article.author),
-    sNode('div', { style: { display: 'flex', maxWidth: 360, textAlign: 'right' } }, article.title),
+  // Header — 120px, matches original .page-header
+  sNode('div', {
+    style: {
+      display: 'flex',
+      width: '100%',
+      height: 120,
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      justifyContent: 'center',
+      paddingLeft: 24,
+      paddingRight: 24,
+      gap: 3,
+      overflow: 'hidden',
+    },
+  },
+    sNode('div', { style: { display: 'flex', alignItems: 'center', gap: 12 } },
+      sNode('div', { style: { display: 'flex', fontWeight: 600, fontSize: 21, color: '#6C6C73', lineHeight: 1.2857 } }, article.author),
+      activeHeading
+        ? sNode('div', { style: { display: 'flex', fontSize: 18, fontWeight: 400, color: '#2E2E34', maxWidth: 432, overflow: 'hidden' } }, `Đang đọc: ${activeHeading}`)
+        : null,
+    ),
+    sNode('div', { style: { display: 'flex', fontWeight: 800, fontSize: 24, color: '#6C6C73', lineHeight: 1.25, marginTop: 4 } }, article.title),
   ),
-  sNode('div', { style: { display: 'flex', flex: 1, flexDirection: 'column', overflow: 'hidden', border: '2px solid rgba(151, 151, 159, 0.28)', borderRadius: 24, paddingTop: 34, paddingBottom: 22, paddingLeft: 34, paddingRight: 34 } },
+  // Content box — matches original .page (border, radius, padding, color)
+  sNode('div', {
+    style: {
+      display: 'flex',
+      flex: 1,
+      flexDirection: 'column',
+      marginLeft: 24,
+      marginRight: 24,
+      padding: 24,
+      border: '2px solid rgba(151, 151, 159, 0.28)',
+      borderRadius: 12,
+      overflow: 'hidden',
+      fontSize: 24,
+      fontWeight: 500,
+      lineHeight: 1.375,
+      color: '#6C6C73',
+      backgroundColor: '#ffffff',
+    },
+  },
     renderMarkdown(page.markdown, origin),
   ),
-  sNode('div', { style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 22, fontSize: 20, color: '#6b7280' } },
-    sNode('div', { style: { display: 'flex' } }, article.date),
-    sNode('div', { style: { display: 'flex' } }, `Trang ${page.pageNumber} / ${document.totalPages}`),
-  ));
+  // Footer — 96px, matches original .page-footer
+  sNode('div', {
+    style: {
+      display: 'flex',
+      width: '100%',
+      height: 96,
+      alignItems: 'center',
+      paddingLeft: 24,
+      paddingRight: 24,
+    },
+  },
+    sNode('div', { style: { display: 'flex', alignItems: 'center', color: '#595961', fontSize: 21 } },
+      sNode('div', { style: { display: 'flex', width: 14, height: 14, backgroundColor: '#6C6C73', borderRadius: 7, marginRight: 8, flexShrink: 0 } }),
+      String(page.pageNumber),
+    ),
+  ),
+  );
 }
 
 function getOriginFromHeaders(headers: Headers): string {
