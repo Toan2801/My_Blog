@@ -450,7 +450,7 @@ li {
 .book-cover-image {
   width: 100%;
   height: 240px; /* Ép chiều cao cố định để không bị quá to */
-  object-fit: contain; /* Đảm bảo thấy hết ảnh, không bị mất đầu */
+  object-fit: fill; /* Đảm bảo khớp ô, không có khoảng trắng và không bị mất chi tiết (cho phép stretch) */
   border-radius: 8px;
   background: #f0f0f0;
   border: 1px solid rgba(0,0,0,0.1);

@@ -36,7 +36,7 @@ export default async function SeriesLandingPage({ params }: { params: { slug: st
             <img
               src={series.coverImage}
               alt={series.title}
-              style={{ width: '100%', aspectRatio: '2/3', objectFit: 'cover', borderRadius: 'var(--radius)', boxShadow: 'var(--shadow-md)' }}
+              style={{ width: '100%', aspectRatio: '2/3', objectFit: 'fill', borderRadius: 'var(--radius)', boxShadow: 'var(--shadow-md)' }}
             />
           </div>
         )}
