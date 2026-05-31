@@ -1,6 +1,5 @@
 import { getAllArticles, getAllSeries, getSiteConfig } from '@/lib/data';
 import ArticleListClient from '@/components/ArticleListClient';
-import CategorySidebar from '@/components/CategorySidebar';
 import Breadcrumb from '@/components/Breadcrumb';
 import type { Metadata } from 'next';
 
@@ -16,11 +15,11 @@ export default async function ArticlesPage({
   const allSeries = getAllSeries();
   const config = getSiteConfig();
 
-  const standaloneArticles = allArticles.filter(a => a.type === 'articles' && !a.series);
+  const articles = allArticles.filter(a => a.type === 'articles');
   const seriesItems = allSeries.filter(s => s.type === 'articles');
 
   const items = [
-    ...standaloneArticles.map(a => ({ ...a, isSeries: false as const })),
+    ...articles.map(a => ({ ...a, isSeries: false as const })),
     ...seriesItems.map(s => ({ ...s, isSeries: true as const }))
   ];
 

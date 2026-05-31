@@ -5,14 +5,15 @@ import { useState } from 'react';
 
 interface Props {
   slug: string;
+  style?: React.CSSProperties;
 }
 
-export default function DeleteArticleButton({ slug }: Props) {
+export default function DeleteArticleButton({ slug, style }: Props) {
   const router = useRouter();
   const [deleting, setDeleting] = useState(false);
 
   const handleDelete = async () => {
-    if (!confirm('Xác nhận xóa bài viết này? Hành động này không thể hoàn tác.')) return;
+    if (!confirm('Bạn có chắc chắn muốn xóa bài viết này không? Hành động này không thể hoàn tác.')) return;
     
     setDeleting(true);
     try {
@@ -21,7 +22,11 @@ export default function DeleteArticleButton({ slug }: Props) {
       });
 
       if (res.ok) {
-        router.refresh();
+        if (window.location.pathname.includes('/articles/') && !window.location.pathname.endsWith('/articles')) {
+          window.location.href = '/articles';
+        } else {
+          window.location.reload();
+        }
       } else {
         alert('Có lỗi xảy ra khi xóa bài viết.');
       }
@@ -36,16 +41,15 @@ export default function DeleteArticleButton({ slug }: Props) {
     <button 
       type="button" 
       onClick={handleDelete} 
-      className="btn-edit" 
+      className="delete-article-btn" 
       style={{ 
-        color: 'var(--error)', 
-        borderColor: 'rgba(192,57,43,0.2)',
         opacity: deleting ? 0.5 : 1,
-        cursor: deleting ? 'not-allowed' : 'pointer'
+        cursor: deleting ? 'not-allowed' : 'pointer',
+        ...style
       }}
       disabled={deleting}
     >
-      {deleting ? '...' : 'Xóa'}
+      {deleting ? '...' : '🗑️ Xóa'}
     </button>
   );
 }

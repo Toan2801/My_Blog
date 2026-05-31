@@ -10,6 +10,8 @@ import ZenToggle from '@/components/ZenToggle';
 import SupportQR from '@/components/SupportQR';
 import VoiceReader from '@/components/VoiceReader';
 import type { Metadata } from 'next';
+import { auth } from '@/auth';
+import DeleteArticleButton from '@/components/DeleteArticleButton';
 
 interface Props { params: { slug: string } }
 
@@ -28,10 +30,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function ArticleDetailPage({ params }: Props) {
+export default async function ArticleDetailPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ highlight?: string }>;
+}) {
   const { slug } = await params;
+  const { highlight } = await searchParams;
   const article = getArticleBySlug(slug);
   const config = getSiteConfig();
+  const session = await auth();
+  const isAdmin = session?.user?.role === 'admin';
 
   if (!article) notFound();
   if (article.status !== 'published') notFound();
@@ -65,8 +76,38 @@ export default async function ArticleDetailPage({ params }: Props) {
               ))}
             </div>
           )}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginTop: 'var(--space-4)', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginTop: 'var(--space-4)', flexWrap: 'wrap', alignItems: 'center' }}>
             <VoiceReader audioUrl={article.audioUrl} />
+            {isAdmin ? (
+              <>
+                <Link 
+                  href={`/admin/articles/${article.slug}/edit`} 
+                  className="edit-article-btn"
+                  style={{ textDecoration: 'none' }}
+                  title="Sửa bài viết"
+                >
+                  ✏️ Sửa bài viết
+                </Link>
+                <DeleteArticleButton slug={article.slug} />
+              </>
+            ) : (
+              <>
+                <button 
+                  className="edit-article-btn disabled" 
+                  disabled 
+                  title="Bạn cần đăng nhập với quyền Admin để sửa bài viết"
+                >
+                  ✏️ Sửa bài viết
+                </button>
+                <button 
+                  className="delete-article-btn disabled" 
+                  disabled 
+                  title="Bạn cần đăng nhập với quyền Admin để xóa bài viết"
+                >
+                  🗑️ Xóa bài viết
+                </button>
+              </>
+            )}
             {/* {article.pages && article.pages.length > 0 && (
               <Link 
                 href={`/read/${article.slug}`} 
@@ -150,7 +191,7 @@ export default async function ArticleDetailPage({ params }: Props) {
             )}
 
             <SupportQR qrImage={config.donation.qrImage} facebookUrl={config.facebook} />
-            <ArticleBody content={renderArticleMarkdown(article.content)} />
+            <ArticleBody content={renderArticleMarkdown(article.content)} highlight={highlight} />
 
 
             {article.series && (

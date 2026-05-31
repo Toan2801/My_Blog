@@ -1006,9 +1006,15 @@ li {
   height: 52px;
   border-bottom: 2px solid #a0783a; /* True gold border */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  overflow-x: auto;
+  overflow: visible;
   scrollbar-width: none;
   -ms-overflow-style: none;
+}
+
+@media (max-width: 768px) {
+  .main-nav-premium-inner {
+    overflow-x: auto;
+  }
 }
 
 .main-nav-premium-inner::-webkit-scrollbar {
@@ -4017,3 +4023,74 @@ figcaption.image-caption {
 
 .toc-level-2 { padding-left: var(--space-3); }
 .toc-level-3 { padding-left: var(--space-5); }
+
+/* ============================================
+   ADMIN EDIT POST BUTTON
+   ============================================ */
+.edit-article-btn {
+  font-family: var(--font-ui), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gold, #c68a2b);
+  background: var(--gold-pale, #fdf4e0);
+  border: 1px solid var(--gold, #c68a2b);
+  border-radius: 4px;
+  padding: 4px 12px;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.edit-article-btn:hover:not(.disabled) {
+  background: var(--gold, #c68a2b);
+  color: white !important;
+}
+
+.edit-article-btn.disabled {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.3) !important;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ============================================
+   ADMIN DELETE POST BUTTON
+   ============================================ */
+.delete-article-btn {
+  font-family: var(--font-ui), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #b3261e;
+  background: #fdecea;
+  border: 1px solid #b3261e;
+  border-radius: 4px;
+  padding: 4px 12px;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delete-article-btn:hover:not(.disabled) {
+  background: #b3261e;
+  color: white !important;
+}
+
+.delete-article-btn.disabled {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.3) !important;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+

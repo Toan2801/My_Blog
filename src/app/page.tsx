@@ -3,15 +3,19 @@ import { getSiteConfig, getAllArticles, getAllSeries } from '@/lib/data';
 import { formatDate } from '@/lib/utils';
 import type { Metadata } from 'next';
 import TiltCard from '@/components/TiltCard';
+import { auth } from '@/auth';
+import DeleteArticleButton from '@/components/DeleteArticleButton';
 
 export const metadata: Metadata = {
   title: 'Trang Chủ',
 };
 
-export default function HomePage() {
+export default async function HomePage() {
   const config = getSiteConfig();
   const allArticles = getAllArticles();
   const allSeries = getAllSeries();
+  const session = await auth();
+  const isAdmin = session?.user?.role === 'admin';
 
   // Standalone articles (not part of a series)
   const regularArticles = allArticles.filter(a => !a.series);
@@ -96,11 +100,30 @@ export default function HomePage() {
                       <p style={{ fontSize: '0.9rem', color: 'var(--ink-light)', lineHeight: '1.6', flex: 1, marginBottom: 'var(--space-4)' }}>
                         {article.excerpt.length > 150 ? article.excerpt.substring(0, 150) + '...' : article.excerpt}
                       </p>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto', gap: '8px', flexWrap: 'wrap' }}>
                         <span style={{ fontSize: '0.8rem', color: 'var(--ink-muted)' }}>{formatDate(article.date)}</span>
-                        <Link href={`/articles/${article.slug}`} className="btn-secondary" style={{ fontSize: '0.85rem', padding: '6px 16px' }}>
-                          Đọc tiếp
-                        </Link>
+                        <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+                          {isAdmin ? (
+                            <>
+                              <Link href={`/admin/articles/${article.slug}/edit`} className="edit-article-btn" style={{ fontSize: '0.8rem', padding: '4px 10px' }} title="Sửa bài viết">
+                                ✏️ Sửa
+                              </Link>
+                              <DeleteArticleButton slug={article.slug} style={{ fontSize: '0.8rem', padding: '4px 10px' }} />
+                            </>
+                          ) : (
+                            <>
+                              <button className="edit-article-btn disabled" disabled style={{ fontSize: '0.8rem', padding: '4px 10px' }} title="Bạn cần đăng nhập với quyền Admin để sửa bài viết">
+                                ✏️ Sửa
+                              </button>
+                              <button className="delete-article-btn disabled" disabled style={{ fontSize: '0.8rem', padding: '4px 10px' }} title="Bạn cần đăng nhập với quyền Admin để xóa bài viết">
+                                🗑️ Xóa
+                              </button>
+                            </>
+                          )}
+                          <Link href={`/articles/${article.slug}`} className="btn-secondary" style={{ fontSize: '0.85rem', padding: '6px 16px' }}>
+                            ĐỌC
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -156,11 +179,30 @@ export default function HomePage() {
                       <p style={{ fontSize: '0.9rem', color: 'var(--ink-light)', lineHeight: '1.6', flex: 1, marginBottom: 'var(--space-4)' }}>
                         {article.excerpt.length > 150 ? article.excerpt.substring(0, 150) + '...' : article.excerpt}
                       </p>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto', gap: '8px', flexWrap: 'wrap' }}>
                         <span style={{ fontSize: '0.8rem', color: 'var(--ink-muted)' }}>{formatDate(article.date)}</span>
-                        <Link href={`/articles/${article.slug}`} className="btn-secondary" style={{ fontSize: '0.85rem', padding: '6px 16px' }}>
-                          Đọc tiếp
-                        </Link>
+                        <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+                          {isAdmin ? (
+                            <>
+                              <Link href={`/admin/articles/${article.slug}/edit`} className="edit-article-btn" style={{ fontSize: '0.8rem', padding: '4px 10px' }} title="Sửa bài viết">
+                                ✏️ Sửa
+                              </Link>
+                              <DeleteArticleButton slug={article.slug} style={{ fontSize: '0.8rem', padding: '4px 10px' }} />
+                            </>
+                          ) : (
+                            <>
+                              <button className="edit-article-btn disabled" disabled style={{ fontSize: '0.8rem', padding: '4px 10px' }} title="Bạn cần đăng nhập với quyền Admin để sửa bài viết">
+                                ✏️ Sửa
+                              </button>
+                              <button className="delete-article-btn disabled" disabled style={{ fontSize: '0.8rem', padding: '4px 10px' }} title="Bạn cần đăng nhập với quyền Admin để xóa bài viết">
+                                🗑️ Xóa
+                              </button>
+                            </>
+                          )}
+                          <Link href={`/articles/${article.slug}`} className="btn-secondary" style={{ fontSize: '0.85rem', padding: '6px 16px' }}>
+                            ĐỌC
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
