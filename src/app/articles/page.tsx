@@ -1,4 +1,4 @@
-import { getAllArticles, getAllSeries, getSiteConfig } from '@/lib/data';
+import { getAllArticlesMeta, getAllSeries, getSiteConfig } from '@/lib/data';
 import ArticleListClient from '@/components/ArticleListClient';
 import Breadcrumb from '@/components/Breadcrumb';
 import type { Metadata } from 'next';
@@ -11,7 +11,7 @@ export default async function ArticlesPage({
   searchParams: Promise<{ category?: string; search?: string }>;
 }) {
   const { category, search } = await searchParams;
-  const allArticles = getAllArticles();
+  const allArticles = getAllArticlesMeta();
   const allSeries = getAllSeries();
   const config = getSiteConfig();
 

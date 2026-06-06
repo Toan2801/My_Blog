@@ -16,6 +16,53 @@ export function saveSiteConfig(config: SiteConfig): void {
   fs.writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2), 'utf-8');
 }
 
+let _metaCache: Article[] | null = null;
+let _metaAdminCache: Article[] | null = null;
+
+export function invalidateCache() {
+  _metaCache = null;
+  _metaAdminCache = null;
+}
+
+export function getAllArticlesMeta(): Article[] {
+  if (_metaCache) return _metaCache;
+  if (!fs.existsSync(ARTICLES_DIR)) return [];
+  const files = fs.readdirSync(ARTICLES_DIR).filter(f => f.endsWith('.json'));
+  const meta = files
+    .map(f => {
+      const raw = fs.readFileSync(path.join(ARTICLES_DIR, f), 'utf-8');
+      let data = JSON.parse(raw) as any;
+      if (!data.type) data.type = 'articles';
+      delete data.content;
+      delete data.pages;
+      delete data.markdownPages;
+      return data as Article;
+    })
+    .filter(a => a.status === 'published')
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  _metaCache = meta;
+  return meta;
+}
+
+export function getAllArticlesMetaAdmin(): Article[] {
+  if (_metaAdminCache) return _metaAdminCache;
+  if (!fs.existsSync(ARTICLES_DIR)) return [];
+  const files = fs.readdirSync(ARTICLES_DIR).filter(f => f.endsWith('.json'));
+  const meta = files
+    .map(f => {
+      const raw = fs.readFileSync(path.join(ARTICLES_DIR, f), 'utf-8');
+      let data = JSON.parse(raw) as any;
+      if (!data.type) data.type = 'articles';
+      delete data.content;
+      delete data.pages;
+      delete data.markdownPages;
+      return data as Article;
+    })
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  _metaAdminCache = meta;
+  return meta;
+}
+
 export function getAllArticles(): Article[] {
   if (!fs.existsSync(ARTICLES_DIR)) return [];
   const files = fs.readdirSync(ARTICLES_DIR).filter(f => f.endsWith('.json'));
@@ -56,11 +103,13 @@ export function saveArticle(article: Article): void {
   if (!fs.existsSync(ARTICLES_DIR)) fs.mkdirSync(ARTICLES_DIR, { recursive: true });
   const filePath = path.join(ARTICLES_DIR, `${article.slug}.json`);
   fs.writeFileSync(filePath, JSON.stringify(article, null, 2), 'utf-8');
+  invalidateCache();
 }
 
 export function deleteArticle(slug: string): void {
   const filePath = path.join(ARTICLES_DIR, `${slug}.json`);
   if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+  invalidateCache();
 }
 
 export function getCategories(): string[] {
@@ -74,7 +123,7 @@ export function getRelatedArticles(current: Article, all: Article[], limit = 3):
     .slice(0, limit);
 }
 export function getArticlesBySeries(seriesName: string): Article[] {
-  const all = getAllArticles();
+  const all = getAllArticlesMeta();
   return all
     .filter(a => a.series === seriesName)
     .sort((a, b) => (a.seriesOrder || 0) - (b.seriesOrder || 0));

@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getArticleBySlug, getAllArticles, getRelatedArticles, getSiteConfig, getAllSeries } from '@/lib/data';
+import { getArticleBySlug, getAllArticlesMeta, getRelatedArticles, getSiteConfig, getAllSeries } from '@/lib/data';
 import { formatDate } from '@/lib/utils';
 import ArticleBody from '@/components/ArticleBody';
 import TableOfContents from '@/components/TableOfContents';
@@ -16,7 +16,7 @@ import DeleteArticleButton from '@/components/DeleteArticleButton';
 interface Props { params: { slug: string } }
 
 export async function generateStaticParams() {
-  const articles = getAllArticles();
+  const articles = getAllArticlesMeta();
   return articles.map(a => ({ slug: a.slug }));
 }
 
@@ -47,7 +47,7 @@ export default async function ArticleDetailPage({
   if (!article) notFound();
   if (article.status !== 'published') notFound();
 
-  const allArticles = getAllArticles();
+  const allArticles = getAllArticlesMeta();
   const allSeries = getAllSeries();
   const related = getRelatedArticles(article, allArticles);
 
@@ -62,6 +62,19 @@ export default async function ArticleDetailPage({
           <p className="article-header-category">{article.category}</p>
           <h1 className="article-title">{article.title}</h1>
           {article.subtitle && <p className="article-subtitle">{article.subtitle}</p>}
+          {article.excerpt && article.excerpt.length > 30 && (
+            <div style={{ 
+              maxWidth: '700px', 
+              margin: '16px auto', 
+              textAlign: 'center', 
+              fontStyle: 'italic', 
+              fontSize: '0.95rem', 
+              color: 'var(--ink-light)',
+              lineHeight: 1.6
+            }}>
+              {article.excerpt}
+            </div>
+          )}
           <div className="article-meta" style={{ color: 'var(--ink-muted)', justifyContent: 'center', marginBottom: 'var(--space-5)' }}>
             <span>{article.author}</span>
             <span className="sep">·</span>

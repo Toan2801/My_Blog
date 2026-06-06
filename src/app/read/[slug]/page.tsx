@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
-import { getArticleBySlug, getAllArticles } from '@/lib/data';
+import { getArticleBySlug, getAllArticlesMeta } from '@/lib/data';
 import CanvasReader from '@/components/CanvasReader';
 import { auth } from '@/auth';
 import type { Metadata } from 'next';
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const articles = getAllArticles();
+  const articles = getAllArticlesMeta();
   return articles
     .filter(a => a.status === 'published')
     .map(a => ({ slug: a.slug }));

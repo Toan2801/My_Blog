@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getSiteConfig, getAllArticles, getAllSeries } from '@/lib/data';
+import { getSiteConfig, getAllArticlesMeta, getAllSeries } from '@/lib/data';
 import { formatDate } from '@/lib/utils';
 import type { Metadata } from 'next';
 import TiltCard from '@/components/TiltCard';
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default async function HomePage() {
   const config = getSiteConfig();
-  const allArticles = getAllArticles();
+  const allArticles = getAllArticlesMeta();
   const allSeries = getAllSeries();
   const session = await auth();
   const isAdmin = session?.user?.role === 'admin';
