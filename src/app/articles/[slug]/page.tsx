@@ -62,6 +62,39 @@ export default async function ArticleDetailPage({
           <p className="article-header-category">{article.category}</p>
           <h1 className="article-title">{article.title}</h1>
           {article.subtitle && <p className="article-subtitle">{article.subtitle}</p>}
+          {article.series && (
+            <div className="series-nav-top admin-card" style={{ padding: 'var(--space-4)', margin: 'var(--space-4) auto', maxWidth: '700px', borderLeft: '4px solid var(--gold)', textAlign: 'left' }}>
+              <p style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--ink-muted)', marginBottom: '8px' }}>
+                Thuộc loạt bài viết: <Link href={`/series/${seriesSlug}`} style={{ color: 'var(--gold)', fontWeight: 'bold', textDecoration: 'none' }} className="hover-underline">{article.series}</Link>
+              </p>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+                {(() => {
+                  const seriesArticles = allArticles
+                    .filter(a => a.series === article.series)
+                    .sort((a, b) => (a.seriesOrder || 0) - (b.seriesOrder || 0));
+                  const currentIndex = seriesArticles.findIndex(a => a.slug === article.slug);
+                  const prev = seriesArticles[currentIndex - 1];
+                  const next = seriesArticles[currentIndex + 1];
+
+                  return (
+                    <>
+                      {prev ? (
+                        <Link href={`/articles/${prev.slug}`} style={{ fontSize: '0.85rem', color: 'var(--gold)', maxWidth: '100%', whiteSpace: 'normal', overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center' }}>
+                          ← {prev.title}
+                        </Link>
+                      ) : <span />}
+
+                      {next ? (
+                        <Link href={`/articles/${next.slug}`} style={{ fontSize: '0.85rem', color: 'var(--gold)', maxWidth: '100%', whiteSpace: 'normal', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'right', display: 'flex', alignItems: 'center', marginLeft: 'auto' }}>
+                          {next.title} →
+                        </Link>
+                      ) : <span />}
+                    </>
+                  );
+                })()}
+              </div>
+            </div>
+          )}
           {article.excerpt && article.excerpt.length > 30 && (
             <div style={{ 
               maxWidth: '700px', 
@@ -169,39 +202,7 @@ export default async function ArticleDetailPage({
           </aside>
 
           <div className="article-body-container" style={{ flex: 1, minWidth: 0 }}>
-            {article.series && (
-              <div className="series-nav-top admin-card" style={{ padding: 'var(--space-4)', marginBottom: 'var(--space-6)', borderLeft: '4px solid var(--gold)' }}>
-                <p style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--ink-muted)', marginBottom: '8px' }}>
-                  Thuộc loạt bài viết: <Link href={`/series/${seriesSlug}`} style={{ color: 'var(--gold)', fontWeight: 'bold', textDecoration: 'none' }} className="hover-underline">{article.series}</Link>
-                </p>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
-                  {(() => {
-                    const seriesArticles = allArticles
-                      .filter(a => a.series === article.series)
-                      .sort((a, b) => (a.seriesOrder || 0) - (b.seriesOrder || 0));
-                    const currentIndex = seriesArticles.findIndex(a => a.slug === article.slug);
-                    const prev = seriesArticles[currentIndex - 1];
-                    const next = seriesArticles[currentIndex + 1];
 
-                    return (
-                      <>
-                        {prev ? (
-                          <Link href={`/articles/${prev.slug}`} style={{ fontSize: '0.85rem', color: 'var(--gold)', maxWidth: '100%', whiteSpace: 'normal', overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center' }}>
-                            ← {prev.title}
-                          </Link>
-                        ) : <span />}
-
-                        {next ? (
-                          <Link href={`/articles/${next.slug}`} style={{ fontSize: '0.85rem', color: 'var(--gold)', maxWidth: '100%', whiteSpace: 'normal', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'right', display: 'flex', alignItems: 'center', marginLeft: 'auto' }}>
-                            {next.title} →
-                          </Link>
-                        ) : <span />}
-                      </>
-                    );
-                  })()}
-                </div>
-              </div>
-            )}
 
             <SupportQR qrImage={config.donation.qrImage} facebookUrl={config.facebook} />
             <ArticleBody content={renderArticleMarkdown(article.content)} highlight={highlight} />
