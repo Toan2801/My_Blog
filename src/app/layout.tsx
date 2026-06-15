@@ -12,6 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: { default: config.blogTitle, template: `%s · ${config.blogTitle}` },
     description: config.blogDescription,
+    referrer: 'no-referrer',
   };
 }
 
