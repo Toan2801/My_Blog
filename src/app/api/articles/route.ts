@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { saveArticle, deleteArticle, getAllArticlesAdmin } from '@/lib/data';
+import { saveArticle, deleteArticle, getAllArticlesAdmin, getArticleBySlug } from '@/lib/data';
 import { Article } from '@/lib/types';
 import { execFile } from 'child_process';
 import path from 'path';
@@ -20,6 +20,12 @@ export async function POST(req: NextRequest) {
     if (!article.slug || !article.title) {
       return NextResponse.json({ error: 'Thiếu tiêu đề hoặc slug' }, { status: 400 });
     }
+    
+    const oldArticle = getArticleBySlug(article.slug);
+    if (oldArticle && oldArticle.audioUrl && !article.audioUrl) {
+      article.audioUrl = oldArticle.audioUrl;
+    }
+    
     saveArticle(article);
 
     // Trigger rasterization in the background for published articles
@@ -39,6 +45,12 @@ export async function PUT(req: NextRequest) {
     if (!article.slug || !article.title) {
       return NextResponse.json({ error: 'Thiếu tiêu đề hoặc slug' }, { status: 400 });
     }
+
+    const oldArticle = getArticleBySlug(article.slug);
+    if (oldArticle && oldArticle.audioUrl && !article.audioUrl) {
+      article.audioUrl = oldArticle.audioUrl;
+    }
+
     saveArticle(article);
 
     // Re-rasterize on update for published articles
