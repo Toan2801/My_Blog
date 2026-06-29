@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { writeFileSync, mkdirSync } from 'fs';
+import { writeFileSync, readFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { getSiteConfig, saveSiteConfig } from '@/lib/data';
+
+// NOTE: We intentionally avoid importing from '@/lib/data' here.
+// That module reads from the 'data/articles/' directory, which causes
+// Vercel's file tracing to bundle all article JSON files (~200MB) into
+// this tiny function, pushing it over the 250MB size limit.
 
 export async function POST(req: NextRequest) {
   try {
@@ -19,9 +23,12 @@ export async function POST(req: NextRequest) {
     writeFileSync(join(uploadDir, filename), buffer);
 
     const url = `/uploads/${filename}`;
-    const config = getSiteConfig();
+
+    // Read and update config.json directly (avoids importing @/lib/data)
+    const configPath = join(process.cwd(), 'data', 'config.json');
+    const config = JSON.parse(readFileSync(configPath, 'utf-8'));
     config.donation.qrImage = url;
-    saveSiteConfig(config);
+    writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf-8');
 
     return NextResponse.json({ success: true, url });
   } catch (e) {
