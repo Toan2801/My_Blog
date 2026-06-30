@@ -40,6 +40,7 @@ export interface Series {
   slug: string;
   title: string;
   description: string;
+  content?: string;
   coverImage: string | null;
   type: 'articles' | 'translation';
   category?: string;

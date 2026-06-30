@@ -96,6 +96,16 @@ export default async function SeriesLandingPage({ params }: { params: { slug: st
 
       <SupportQR qrImage={config.donation.qrImage} facebookUrl={config.facebook} />
 
+      {/* Table of Contents / Series Content */}
+      {series.content && (
+        <section className="article-body-container" style={{ maxWidth: '800px', margin: '0 auto var(--space-8)' }}>
+          <div
+            className="article-body"
+            dangerouslySetInnerHTML={{ __html: series.content }}
+          />
+        </section>
+      )}
+
       {/* Book-cover grid */}
       <section style={{ marginTop: 'var(--space-8)' }}>
         <p className="section-label">Các phần ({articles.length})</p>
