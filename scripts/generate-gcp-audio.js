@@ -88,6 +88,21 @@ async function processArticles() {
     const chunkFiles = [];
     let hasError = false;
 
+    async function synthesizeSpeechWithRetry(request, maxRetries = 3, delayMs = 2000) {
+      for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+          const [response] = await client.synthesizeSpeech(request);
+          return response;
+        } catch (err) {
+          console.warn(`- Cảnh báo: Lỗi API ở lần thử ${attempt}/${maxRetries}: ${err.message}`);
+          if (attempt === maxRetries) {
+            throw err;
+          }
+          await new Promise(resolve => setTimeout(resolve, delayMs * attempt));
+        }
+      }
+    }
+
     for (let i = 0; i < chunks.length; i++) {
       console.log(`- Đang xử lý phần ${i + 1}/${chunks.length}...`);
       const request = {
@@ -98,7 +113,7 @@ async function processArticles() {
       };
 
       try {
-        const [response] = await client.synthesizeSpeech(request);
+        const response = await synthesizeSpeechWithRetry(request);
         const chunkPath = path.join(tempDir, `${data.slug}_${i}.mp3`);
         await util.promisify(fs.writeFile)(chunkPath, response.audioContent, 'binary');
         chunkFiles.push(chunkPath);
