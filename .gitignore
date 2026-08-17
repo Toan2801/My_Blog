@@ -45,3 +45,11 @@ next-env.d.ts
 /public/data/image/articles/
 /data/page-images/
 google-credentials.json
+
+# Large local models and audio (keep out of Git)
+/models/piper/*.onnx
+/public/audio/minhthonggiam-chinhbien059.mp3
+/public/audio/minhthonggiam-chinhbien062.mp3
+/public/audio/minhthonggiam-chinhbien075.mp3
+/public/audio/quevuongchudolang.mp3
+/temp_edge_audio/
