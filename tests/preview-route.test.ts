@@ -5,7 +5,7 @@ vi.mock('@/lib/data', () => ({
   getArticleBySlug: vi.fn(),
 }));
 
-import { GET as previewGET } from '@/app/api/articles/[slug]/preview/route';
+import { GET as previewGET } from '@/server/api-handlers/articles/[slug]/preview/route';
 import * as data from '@/lib/data';
 import { verifyReaderToken, tokenAllowsPage, TRIAL_MAX_PAGES } from '@/lib/reader-token';
 

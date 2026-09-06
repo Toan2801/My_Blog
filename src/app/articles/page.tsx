@@ -1,16 +1,12 @@
 import { getAllArticlesMeta, getAllSeries, getSiteConfig } from '@/lib/data';
-import ArticleListClient from '@/components/ArticleListClient';
+import ArticleListFromUrl from '@/components/ArticleListFromUrl';
+import { Suspense } from 'react';
 import Breadcrumb from '@/components/Breadcrumb';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = { title: 'Bài viết' };
 
-export default async function ArticlesPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ category?: string; search?: string }>;
-}) {
-  const { category, search } = await searchParams;
+export default function ArticlesPage() {
   const allArticles = getAllArticlesMeta();
   const allSeries = getAllSeries();
   const config = getSiteConfig();
@@ -27,12 +23,12 @@ export default async function ArticlesPage({
     <div className="container">
       <Breadcrumb items={[{ label: 'Bài viết' }]} />
       <div className="articles-layout-wrapper">
-        <ArticleListClient
+        <Suspense fallback={<p>Đang tải danh sách...</p>}>
+        <ArticleListFromUrl
           items={items}
           categories={config.categories}
-          initialCategory={category}
-          initialSearch={search}
         />
+        </Suspense>
       </div>
     </div>
   );
