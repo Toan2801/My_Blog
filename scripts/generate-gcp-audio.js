@@ -310,7 +310,7 @@ function summarizeCommandError(label, code, stderr) {
   return `${label} failed with exit code ${code}${tail ? `: ${tail}` : ''}`;
 }
 
-async function runWithRetry(task, label, maxRetries = 3, delayMs = 1500) {
+async function runWithRetry(task, label, maxRetries = 7, delayMs = 1500) {
   for (let attempt = 1; attempt <= maxRetries; attempt += 1) {
     try {
       await task();
@@ -472,7 +472,7 @@ async function processArticle(file, runtime) {
       await runWithRetry(
         () => synthesizeChunk(runtime, textPath, chunkPath),
         `chunk ${index + 1}`,
-        3,
+        7,
         runtime.provider === 'edge' ? retryDelayMs : 1500,
       );
       chunkFiles.push(chunkPath);
