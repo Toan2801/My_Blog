@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { createHash } = require('crypto');
 const { execFileSync, spawn } = require('child_process');
 
 const articlesDir = path.join(__dirname, '../data/articles');
@@ -436,8 +437,11 @@ async function processArticle(file, runtime) {
     return false;
   }
 
+  if (!/^[a-zA-Z0-9_-]+$/.test(data.slug)) {
+    throw new Error(`Invalid article slug: ${data.slug}`);
+  }
   const finalAudioPath = path.join(audioDir, `${data.slug}.mp3`);
-  if (fs.existsSync(finalAudioPath) && !force) {
+  if (fs.existsSync(finalAudioPath) && fs.statSync(finalAudioPath).size > 0 && !force) {
     const updated = updateAudioUrlIfNeeded(filePath, data);
     console.log(`Skip ${file}: audio already exists${updated ? ', audioUrl updated' : ''}.`);
     return false;
@@ -455,9 +459,31 @@ async function processArticle(file, runtime) {
   console.log(`- Text length: ${plainText.length.toLocaleString()} chars`);
   console.log(`- Chunks: ${chunks.length.toLocaleString()} (max ${maxChunkChars} chars each)`);
 
-  const articleTempDir = path.join(tempDir, data.slug);
-  fs.rmSync(articleTempDir, { recursive: true, force: true });
+  const hash = (value) => createHash('sha256').update(value).digest('hex');
+  const settings = runtime.provider === 'edge'
+    ? [edgeVoice, edgeRate, edgePitch, edgeVolume]
+    : [piperModelPath, hash(fs.readFileSync(piperModelPath)), hash(fs.readFileSync(piperConfigPath)),
+      piperLengthScale, piperSentenceSilence, piperVolume];
+  const fingerprint = hash(JSON.stringify([1, runtime.provider, runtime.chunkExtension, settings, chunks]));
+  const articleTempDir = path.join(tempDir, data.slug, fingerprint);
   fs.mkdirSync(articleTempDir, { recursive: true });
+  const statusPath = path.join(articleTempDir, 'status.json');
+  let status = { fingerprint, totalChunks: chunks.length, completed: {} };
+  if (fs.existsSync(statusPath)) {
+    try {
+      const saved = JSON.parse(fs.readFileSync(statusPath, 'utf8'));
+      if (saved.fingerprint === fingerprint && saved.completed && typeof saved.completed === 'object') {
+        status = saved;
+      }
+    } catch {
+      console.warn('- Unreadable status; unverified chunks will be regenerated.');
+    }
+  }
+  const saveStatus = () => {
+    fs.writeFileSync(`${statusPath}.tmp`, JSON.stringify(status, null, 2), 'utf8');
+    fs.renameSync(`${statusPath}.tmp`, statusPath);
+  };
+  saveStatus();
 
   try {
     const chunkFiles = [];
@@ -467,14 +493,28 @@ async function processArticle(file, runtime) {
       const textPath = path.join(articleTempDir, `${chunkNumber}.txt`);
       const chunkPath = path.join(articleTempDir, `${chunkNumber}.${runtime.chunkExtension}`);
 
+      if (status.completed[chunkNumber] && fs.existsSync(chunkPath)
+          && fs.statSync(chunkPath).size > 0
+          && hash(fs.readFileSync(chunkPath)) === status.completed[chunkNumber]) {
+        console.log(`- Reusing completed chunk ${index + 1}/${chunks.length}.`);
+        chunkFiles.push(chunkPath);
+        continue;
+      }
+      delete status.completed[chunkNumber];
+      saveStatus();
+      const partialChunkPath = path.join(articleTempDir, `${chunkNumber}.partial.${runtime.chunkExtension}`);
+
       fs.writeFileSync(textPath, chunks[index], 'utf8');
       console.log(`- Generating chunk ${index + 1}/${chunks.length}...`);
       await runWithRetry(
-        () => synthesizeChunk(runtime, textPath, chunkPath),
+        () => synthesizeChunk(runtime, textPath, partialChunkPath),
         `chunk ${index + 1}`,
         7,
         runtime.provider === 'edge' ? retryDelayMs : 1500,
       );
+      fs.renameSync(partialChunkPath, chunkPath);
+      status.completed[chunkNumber] = hash(fs.readFileSync(chunkPath));
+      saveStatus();
       chunkFiles.push(chunkPath);
 
       if (runtime.provider === 'edge' && chunkDelayMs > 0 && index < chunks.length - 1) {
@@ -489,17 +529,23 @@ async function processArticle(file, runtime) {
     fs.writeFileSync(concatListPath, concatContent, 'utf8');
 
     console.log('- Concatenating audio chunks...');
+    const pendingAudioPath = path.join(audioDir, `${data.slug}.partial.mp3`);
     await runCommand(
       'ffmpeg',
-      buildConcatArgs(runtime, concatListPath, finalAudioPath),
+      buildConcatArgs(runtime, concatListPath, pendingAudioPath),
       'ffmpeg concat',
     );
+    if (fs.statSync(pendingAudioPath).size === 0) {
+      throw new Error('ffmpeg wrote an empty audio file');
+    }
+    fs.renameSync(pendingAudioPath, finalAudioPath);
 
     updateAudioUrlIfNeeded(filePath, data);
     console.log(`Saved: /audio/${data.slug}.mp3`);
     return true;
-  } finally {
-    fs.rmSync(articleTempDir, { recursive: true, force: true });
+  } catch (error) {
+    console.warn(`- Progress saved at ${statusPath}. Run the same command to resume.`);
+    throw error;
   }
 }
 

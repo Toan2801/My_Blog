@@ -53,3 +53,4 @@ google-credentials.json
 /public/audio/minhthonggiam-chinhbien075.mp3
 /public/audio/quevuongchudolang.mp3
 /temp_edge_audio/
+/public/audio/*.partial.mp3
